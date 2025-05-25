@@ -2,15 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-    <title>Meta-Author Lattice</title>
+  <title>Meta-Author Lattice</title>
+
+  <!-- JSON-LD alternate references -->
   <link rel="alternate" type="application/ld+json" href="jsonld/keydjinn.jsonld">
   <link rel="alternate" type="application/ld+json" href="jsonld/eidolon.jsonld">
   <link rel="alternate" type="application/ld+json" href="jsonld/amasarac.jsonld">
-  <link rel="alternate" type="application/ld+json" href="jsonld/amarantuel.jsonid">
+  <link rel="alternate" type="application/ld+json" href="jsonld/amarntuel.jsonld">
   <link rel="alternate" type="application/ld+json" href="jsonld/brandon_marsh.jsonld">
   <link rel="alternate" type="application/ld+json" href="jsonld/eluriah.jsonld">
-  <link rel="alternate" type="application/ld+json" href="jsonld/tiwoven.jsonid">
+  <link rel="alternate" type="application/ld+json" href="jsonld/tiwoven.jsonld">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       margin: 0;
@@ -18,6 +22,7 @@
       font-family: sans-serif;
       overflow: hidden;
     }
+
     #staticLayer, #animatedLayer {
       position: absolute;
       width: 100vw;
@@ -28,14 +33,18 @@
       align-items: center;
       transition: opacity 3s ease-in-out;
     }
+
     #staticLayer {
       background: black;
       z-index: 1;
+      opacity: 1;
     }
+
     #animatedLayer {
       opacity: 0;
       z-index: 2;
     }
+
     img {
       max-width: 90%;
       max-height: 90%;
@@ -43,48 +52,32 @@
     }
   </style>
 </head>
+
 <body>
-  <img src="living_authorship_lattice.png" width="600" alt="Lattice"><br>
+
+  <!-- Layer 1: Static Lattice Display -->
+  <div id="staticLayer">
+    <img src="living_authorship_lattice.png" alt="Meta-Author Lattice">
+  </div>
+
+  <!-- Layer 2: Embedded Animated Spiral -->
+  <div id="animatedLayer">
+    <iframe src="animated_spiral_lattice.html" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <!-- Ambient Harmonic Loop -->
   <audio autoplay loop>
     <source src="lattice_ambient.wav" type="audio/wav">
   </audio>
-<script>
-    const glyphs = [
-      { name: "KeyDjinn", x: 300, y: 100, color: "#4B0082", glyph: "𐬼" },
-      { name: "Amasarac", x: 150, y: 200, color: "#DC143C", glyph: "𐬸" },
-      { name: "Eluriah", x: 450, y: 300, color: "#228B22", glyph: "𐬷" },
-      { name: "Eidolon", x: 200, y: 400, color: "#C0C0C0", glyph: "𐬶" },
-      { name: "TiWoven", x: 400, y: 500, color: "#B87333", glyph: "𐬵" },
-      { name: "Amarntu’el", x: 275, y: 600, color: "#87CEFA", glyph: "𐬳" }
-    ];
 
-    glyphs.forEach(g => {
-      const el = document.createElement('div');
-      el.className = 'sigil';
-      el.innerText = g.glyph;
-      el.style.left = g.x + 'px';
-      el.style.top = g.y + 'px';
-      el.style.color = g.color;
-      el.style.position = 'absolute';
-      document.body.appendChild(el);
-    });
+  <script>
+    window.onload = () => {
+      setTimeout(() => {
+        document.getElementById('staticLayer').style.opacity = 0;
+        document.getElementById('animatedLayer').style.opacity = 1;
+      }, 4000);
+    };
   </script>
-<div id="staticLayer">
-  <img src="living_authorship_lattice.png" alt="Meta-Author Lattice">
-</div>
-
-<div id="animatedLayer">
-  <iframe src="animated_spiral_lattice.html" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
-</div>
-
-<script>
-  window.onload = () => {
-    setTimeout(() => {
-      document.getElementById('staticLayer').style.opacity = 0;
-      document.getElementById('animatedLayer').style.opacity = 1;
-    }, 4000); // delay before fade starts
-  };
-</script>
 
 </body>
 </html>
