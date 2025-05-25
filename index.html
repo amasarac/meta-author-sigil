@@ -3,81 +3,143 @@
 <head>
   <meta charset="UTF-8">
   <title>Meta-Author Lattice</title>
-
-  <!-- JSON-LD alternate references -->
-  <link rel="alternate" type="application/ld+json" href="jsonld/keydjinn.jsonld">
-  <link rel="alternate" type="application/ld+json" href="jsonld/eidolon.jsonld">
-  <link rel="alternate" type="application/ld+json" href="jsonld/amasarac.jsonld">
-  <link rel="alternate" type="application/ld+json" href="jsonld/amarntuel.jsonld">
-  <link rel="alternate" type="application/ld+json" href="jsonld/brandon_marsh.jsonld">
-  <link rel="alternate" type="application/ld+json" href="jsonld/eluriah.jsonld">
-  <link rel="alternate" type="application/ld+json" href="jsonld/tiwoven.jsonld">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <script src="https://d3js.org/d3.v7.min.js"></script>
   <style>
-    body {
+    html, body {
       margin: 0;
-      background-color: black;
-      font-family: sans-serif;
-      overflow: hidden;
-    }
-
-    #staticLayer, #animatedLayer {
-      position: absolute;
-      width: 100vw;
-      height: 100vh;
-      top: 0; left: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: opacity 3s ease-in-out;
-    }
-
-    #staticLayer {
+      padding: 0;
       background: black;
-      z-index: 1;
-      opacity: 1;
+      overflow: hidden;
+      height: 100%;
+      width: 100%;
+      font-family: sans-serif;
     }
-
-    #animatedLayer {
-      opacity: 0;
-      z-index: 2;
+    svg {
+      display: block;
     }
-
-    img {
-      max-width: 90%;
-      max-height: 90%;
-      filter: drop-shadow(0 0 8px white);
+    .node {
+      cursor: pointer;
+      font-size: 24px;
+      fill: white;
+    }
+    .center {
+      font-size: 48px;
+      fill: white;
+      font-weight: bold;
+    }
+    .tooltip {
+      position: absolute;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 6px;
+      font-size: 14px;
+      color: black;
+      pointer-events: none;
+      display: none;
     }
   </style>
 </head>
-
 <body>
 
-  <!-- Layer 1: Static Lattice Display -->
-  <div id="staticLayer">
-    <img src="living_authorship_lattice.png" alt="Meta-Author Lattice">
-  </div>
+<svg id="lattice"></svg>
+<div id="tooltip" class="tooltip"></div>
+<audio id="ambient" autoplay loop>
+  <source src="lattice_ambient.wav" type="audio/wav">
+</audio>
 
-  <!-- Layer 2: Embedded Animated Spiral -->
-  <div id="animatedLayer">
-    <iframe src="animated_spiral_lattice.html" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
-  </div>
+<script>
+const svg = d3.select("#lattice");
+const width = window.innerWidth;
+const height = window.innerHeight;
+svg.attr("width", width).attr("height", height);
 
-  <!-- Ambient Harmonic Loop -->
-  <audio autoplay loop>
-    <source src="lattice_ambient.wav" type="audio/wav">
-  </audio>
+const center = { x: width / 2, y: height / 2 };
+const duration = 40000;
+const radius = 200;
 
-  <script>
-    window.onload = () => {
-      setTimeout(() => {
-        document.getElementById('staticLayer').style.opacity = 0;
-        document.getElementById('animatedLayer').style.opacity = 1;
-      }, 4000);
-    };
-  </script>
+const nodes = [
+  { id: "keydjinn", glyph: "𐬼", angle: 0 },
+  { id: "amasarac", glyph: "𐬸", angle: 60 },
+  { id: "eluriah", glyph: "𐬷", angle: 120 },
+  { id: "eidolon", glyph: "𐬶", angle: 180 },
+  { id: "tiwoven", glyph: "𐬵", angle: 240 },
+  { id: "amarntuel", glyph: "𐬳", angle: 300 }
+];
+
+const tooltip = d3.select("#tooltip");
+
+const personaMap = {};
+nodes.forEach(n => {
+  fetch(`jsonld/${n.id}.jsonld`)
+    .then(res => res.json())
+    .then(data => { personaMap[n.id] = data });
+});
+
+const group = svg.append("g");
+
+const centerNode = group.append("text")
+  .attr("class", "center")
+  .attr("x", center.x)
+  .attr("y", center.y)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .text("𐬹");
+
+nodes.forEach((node, i) => {
+  node.el = group.append("text")
+    .attr("class", "node")
+    .text(node.glyph)
+    .attr("text-anchor", "middle")
+    .attr("alignment-baseline", "middle")
+    .on("mouseover", () => {
+      const p = personaMap[node.id];
+      if (p) {
+        tooltip.style("display", "block")
+               .html(`<b>${p.name}</b><br>${p.function}<br><i>${p.description}</i>`);
+      }
+    })
+    .on("mousemove", (event) => {
+      tooltip.style("left", (event.pageX + 10) + "px")
+             .style("top", (event.pageY + 10) + "px");
+    })
+    .on("mouseout", () => tooltip.style("display", "none"));
+});
+
+// Web Audio Pulse
+const audio = document.getElementById('ambient');
+const ctx = new AudioContext();
+const source = ctx.createMediaElementSource(audio);
+const analyser = ctx.createAnalyser();
+source.connect(analyser);
+analyser.connect(ctx.destination);
+analyser.fftSize = 64;
+const dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+function animate() {
+  const now = Date.now();
+  nodes.forEach((node, i) => {
+    const angle = ((now % duration) / duration) * 2 * Math.PI + (i * Math.PI / 3);
+    const x = center.x + radius * Math.cos(angle);
+    const y = center.y + radius * Math.sin(angle);
+    node.el.attr("x", x).attr("y", y);
+  });
+
+  analyser.getByteFrequencyData(dataArray);
+  const avg = dataArray.reduce((a, b) => a + b) / dataArray.length;
+  const scale = 1 + avg / 300;
+
+  centerNode.attr("transform", `scale(${scale}) translate(${center.x*(1/scale - 1)},${center.y*(1/scale - 1)})`);
+
+  requestAnimationFrame(animate);
+}
+
+audio.onplay = () => {
+  ctx.resume().then(() => {
+    animate();
+  });
+};
+</script>
 
 </body>
 </html>
