@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Meta-Author Spiral Lattice</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body { margin: 0; background: #0f0f0f; overflow: hidden; font-family: sans-serif; }
+    .node { cursor: pointer; font-size: 24px; fill: white; }
+    .center { font-size: 40px; font-weight: bold; }
+    .tooltip {
+      position: absolute;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 6px;
+      pointer-events: none;
+      font-size: 14px;
+      color: black;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <svg width="100%" height="100%" id="lattice"></svg>
+  <div id="tooltip" class="tooltip"></div>
+  <audio id="ambient" autoplay loop>
+    <source src="lattice_ambient.wav" type="audio/wav">
+  </audio>
+
+<script>
+const width = window.innerWidth;
+const height = window.innerHeight;
+const svg = d3.select("#lattice")
+              .attr("viewBox", [0, 0, width, height]);
+
+const center = { x: width / 2, y: height / 2 };
+const nodes = [
+  { id: "keydjinn", glyph: "𐬼", angle: 0 },
+  { id: "amasarac", glyph: "𐬸", angle: 60 },
+  { id: "eluriah", glyph: "𐬷", angle: 120 },
+  { id: "eidolon", glyph: "𐬶", angle: 180 },
+  { id: "tiwoven", glyph: "𐬵", angle: 240 },
+  { id: "amarntuel", glyph: "𐬳", angle: 300 }
+];
+
+const radius = 200;
+const duration = 40_000; // 40 seconds per full rotation
+const tooltip = d3.select("#tooltip");
+
+// Web Audio API for reactive pulsing
+const audio = document.getElementById('ambient');
+const context = new AudioContext();
+const source = context.createMediaElementSource(audio);
+const analyser = context.createAnalyser();
+source.connect(analyser);
+analyser.connect(context.destination);
+analyser.fftSize = 64;
+const bufferLength = analyser.frequencyBinCount;
+const dataArray = new Uint8Array(bufferLength);
+
+let centerNode = svg.append("text")
+  .attr("class", "center")
+  .attr("x", center.x)
+  .attr("y", center.y)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .text("𐬹");
+
+// Load dynamic metadata
+const personaMap = {};
+
+nodes.forEach(n => {
+  fetch(`jsonld/${n.id}.jsonld`)
+    .then(res => res.json())
+    .then(data => {
+      personaMap[n.id] = data;
+    });
+});
+
+let orbitGroup = svg.append("g");
+
+nodes.forEach((node, i) => {
+  node.el = orbitGroup.append("text")
+    .attr("class", "node")
+    .attr("text-anchor", "middle")
+    .attr("alignment-baseline", "middle")
+    .text(node.glyph)
+    .on("mouseover", () => {
+      const p = personaMap[node.id];
+      if (p) {
+        tooltip.style("display", "block")
+               .html(`<b>${p.name}</b><br>${p.function}<br><i>${p.description}</i>`);
+      }
+    })
+    .on("mousemove", (event) => {
+      tooltip.style("left", (event.pageX + 10) + "px")
+             .style("top", (event.pageY + 10) + "px");
+    })
+    .on("mouseout", () => tooltip.style("display", "none"));
+});
+
+function animateOrbit(time) {
+  nodes.forEach((node, i) => {
+    const angle = ((Date.now() % duration) / duration) * 2 * Math.PI + (i * Math.PI / 3);
+    const x = center.x + radius * Math.cos(angle);
+    const y = center.y + radius * Math.sin(angle);
+    node.el.attr("x", x).attr("y", y);
+  });
+
+  // Pulse the central sigil
+  analyser.getByteFrequencyData(dataArray);
+  const avg = dataArray.reduce((a, b) => a + b, 0) / bufferLength;
+  const scale = 1 + avg / 256;
+
+  centerNode.attr("transform", `scale(${scale}) translate(${center.x*(1/scale - 1)},${center.y*(1/scale - 1)})`);
+
+  requestAnimationFrame(animateOrbit);
+}
+
+// Start after audio context resume
+audio.onplay = () => {
+  context.resume().then(() => {
+    animateOrbit();
+  });
+}
+</script>
+</body>
+</html>
