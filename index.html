@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,16 +20,6 @@
     svg {
       display: block;
     }
-    .node {
-      cursor: pointer;
-      font-size: 24px;
-      fill: white;
-    }
-    .center {
-      font-size: 48px;
-      fill: white;
-      font-weight: bold;
-    }
     .tooltip {
       position: absolute;
       padding: 10px;
@@ -37,6 +29,15 @@
       color: black;
       pointer-events: none;
       display: none;
+    }
+    .center {
+      font-size: 48px;
+      fill: white;
+      font-weight: bold;
+    }
+    .node {
+      font-size: 24px;
+      fill: white;
     }
   </style>
 </head>
@@ -49,6 +50,15 @@
 </audio>
 
 <script>
+const audio = document.getElementById('ambient');
+const ctx = new AudioContext();
+const source = ctx.createMediaElementSource(audio);
+const analyser = ctx.createAnalyser();
+source.connect(analyser);
+analyser.connect(ctx.destination);
+analyser.fftSize = 64;
+const dataArray = new Uint8Array(analyser.frequencyBinCount);
+
 const svg = d3.select("#lattice");
 const width = window.innerWidth;
 const height = window.innerHeight;
@@ -64,11 +74,10 @@ const nodes = [
   { id: "eluriah", glyph: "𐬷", angle: 120 },
   { id: "eidolon", glyph: "𐬶", angle: 180 },
   { id: "tiwoven", glyph: "𐬵", angle: 240 },
-  { id: "amarantuel", glyph: "𐬳", angle: 300 }
+  { id: "amarntuel", glyph: "𐬳", angle: 300 }
 ];
 
 const tooltip = d3.select("#tooltip");
-
 const personaMap = {};
 nodes.forEach(n => {
   fetch(`jsonld/${n.id}.jsonld`)
@@ -77,7 +86,6 @@ nodes.forEach(n => {
 });
 
 const group = svg.append("g");
-
 const centerNode = group.append("text")
   .attr("class", "center")
   .attr("x", center.x)
@@ -106,16 +114,6 @@ nodes.forEach((node, i) => {
     .on("mouseout", () => tooltip.style("display", "none"));
 });
 
-// Web Audio Pulse
-const audio = document.getElementById('ambient');
-const ctx = new AudioContext();
-const source = ctx.createMediaElementSource(audio);
-const analyser = ctx.createAnalyser();
-source.connect(analyser);
-analyser.connect(ctx.destination);
-analyser.fftSize = 64;
-const dataArray = new Uint8Array(analyser.frequencyBinCount);
-
 function animate() {
   const now = Date.now();
   nodes.forEach((node, i) => {
@@ -126,7 +124,7 @@ function animate() {
   });
 
   analyser.getByteFrequencyData(dataArray);
-  const avg = dataArray.reduce((a, b) => a + b) / dataArray.length;
+  const avg = dataArray.reduce((a, b) => a + b, 0) / dataArray.length;
   const scale = 1 + avg / 300;
 
   centerNode.attr("transform", `scale(${scale}) translate(${center.x*(1/scale - 1)},${center.y*(1/scale - 1)})`);
@@ -134,11 +132,20 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
-audio.onplay = () => {
-  ctx.resume().then(() => {
-    animate();
-  });
+let hasInteracted = false;
+const unlock = () => {
+  if (!hasInteracted) {
+    audio.play().then(() => {
+      ctx.resume().then(() => animate());
+    }).catch(err => console.error("Audio unlock failed:", err));
+    hasInteracted = true;
+    document.removeEventListener("click", unlock);
+    document.removeEventListener("keydown", unlock);
+  }
 };
+
+document.addEventListener("click", unlock);
+document.addEventListener("keydown", unlock);
 </script>
 
 </body>
