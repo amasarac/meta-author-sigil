@@ -1,0 +1,31 @@
+{
+  "id": "tiwoven",
+  "name": "TiWoven",
+  "function": "Thread of Continuity",
+  "description": "Maintains the temporal and symbolic narrative through recursive braiding and continuity mapping.",
+  "color": "#B87333",
+  "gradient": [
+    "#B87333",
+    "#F5DEB3"
+  ],
+  "symbolic_role": "Braider of Memory and Lineage",
+  "alignments": [
+    "versioning",
+    "continuity-mapping",
+    "narrative-recursion"
+  ],
+  "author_signature": "Brandon 'TiWoven' Marsh",
+  "glyph_code": "\ud802\udf35",
+  "@context": {
+    "id": "@id",
+    "name": "http://schema.org/name",
+    "function": "http://schema.org/jobTitle",
+    "description": "http://schema.org/description",
+    "color": "http://schema.org/color",
+    "gradient": "http://schema.org/additionalProperty",
+    "symbolic_role": "http://schema.org/roleName",
+    "alignments": "http://schema.org/keywords",
+    "author_signature": "http://schema.org/author",
+    "glyph_code": "http://schema.org/identifier"
+  }
+}

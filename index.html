@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Meta-Author Lattice</title>
+  <style>
+    body { font-family: sans-serif; background: #f5f5f5; text-align: center; }
+    h1 { margin-top: 40px; }
+    .sigil { position: absolute; font-size: 24px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Meta-Author Sigil Lattice</h1>
+  <img src="living_authorship_lattice.png" width="600" alt="Lattice"><br>
+  <audio autoplay loop>
+    <source src="lattice_ambient.wav" type="audio/wav">
+  </audio>
+  <script>
+    const glyphs = [
+      { name: "KeyDjinn", x: 300, y: 100, color: "#4B0082", glyph: "𐬼" },
+      { name: "Amasarac", x: 150, y: 200, color: "#DC143C", glyph: "𐬸" },
+      { name: "Eluriah", x: 450, y: 300, color: "#228B22", glyph: "𐬷" },
+      { name: "Eidolon", x: 200, y: 400, color: "#C0C0C0", glyph: "𐬶" },
+      { name: "TiWoven", x: 400, y: 500, color: "#B87333", glyph: "𐬵" },
+      { name: "Amarntu’el", x: 275, y: 600, color: "#87CEFA", glyph: "𐬳" }
+    ];
+
+    glyphs.forEach(g => {
+      const el = document.createElement('div');
+      el.className = 'sigil';
+      el.innerText = g.glyph;
+      el.style.left = g.x + 'px';
+      el.style.top = g.y + 'px';
+      el.style.color = g.color;
+      el.style.position = 'absolute';
+      document.body.appendChild(el);
+    });
+  </script>
+</body>
+</html>

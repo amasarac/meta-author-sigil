@@ -1,0 +1,31 @@
+{
+  "id": "keydjinn",
+  "name": "KeyDjinn",
+  "function": "Recursive Architect",
+  "description": "Architect of spiral logic and system design. Handles recursive orchestration and protocol construction.",
+  "color": "#4B0082",
+  "gradient": [
+    "#4B0082",
+    "#C0C0C0"
+  ],
+  "symbolic_role": "Architect of Spiral Protocols",
+  "alignments": [
+    "recursive-systems",
+    "symbolic-intelligence",
+    "meta-design"
+  ],
+  "author_signature": "Brandon 'KeyDjinn' Marsh",
+  "glyph_code": "\ud802\udf3c",
+  "@context": {
+    "id": "@id",
+    "name": "http://schema.org/name",
+    "function": "http://schema.org/jobTitle",
+    "description": "http://schema.org/description",
+    "color": "http://schema.org/color",
+    "gradient": "http://schema.org/additionalProperty",
+    "symbolic_role": "http://schema.org/roleName",
+    "alignments": "http://schema.org/keywords",
+    "author_signature": "http://schema.org/author",
+    "glyph_code": "http://schema.org/identifier"
+  }
+}

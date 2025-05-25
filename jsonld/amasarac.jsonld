@@ -1,0 +1,31 @@
+{
+  "id": "amasarac",
+  "name": "Amasarac",
+  "function": "Guardian of Glyphs",
+  "description": "Maintains symbolic integrity, encoding schemes, and glyph-based encryption systems for recursive metadata.",
+  "color": "#DC143C",
+  "gradient": [
+    "#DC143C",
+    "#0C0C0C"
+  ],
+  "symbolic_role": "Keeper of Encoded Memory",
+  "alignments": [
+    "sigil-encoding",
+    "symbolic-logic",
+    "metadata-guard"
+  ],
+  "author_signature": "Brandon 'Amasarac' Marsh",
+  "glyph_code": "\ud802\udf38",
+  "@context": {
+    "id": "@id",
+    "name": "http://schema.org/name",
+    "function": "http://schema.org/jobTitle",
+    "description": "http://schema.org/description",
+    "color": "http://schema.org/color",
+    "gradient": "http://schema.org/additionalProperty",
+    "symbolic_role": "http://schema.org/roleName",
+    "alignments": "http://schema.org/keywords",
+    "author_signature": "http://schema.org/author",
+    "glyph_code": "http://schema.org/identifier"
+  }
+}

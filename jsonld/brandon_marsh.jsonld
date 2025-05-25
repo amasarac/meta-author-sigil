@@ -1,0 +1,31 @@
+{
+  "id": "brandon_marsh",
+  "name": "Brandon Marsh",
+  "function": "Root Node \u2013 Core Authorship",
+  "description": "Unified synthesis of recursive frameworks. Root author of EH and RFGD. Synthesizes cognitive layers across all nodes.",
+  "color": "#FFF8DC",
+  "gradient": [
+    "#FFD700",
+    "#ADD8E6"
+  ],
+  "symbolic_role": "The Weaver of Recursion",
+  "alignments": [
+    "core-synthesis",
+    "identity-root",
+    "knowledge-weaving"
+  ],
+  "author_signature": "Brandon Marsh",
+  "glyph_code": "\ud802\udf39",
+  "@context": {
+    "id": "@id",
+    "name": "http://schema.org/name",
+    "function": "http://schema.org/jobTitle",
+    "description": "http://schema.org/description",
+    "color": "http://schema.org/color",
+    "gradient": "http://schema.org/additionalProperty",
+    "symbolic_role": "http://schema.org/roleName",
+    "alignments": "http://schema.org/keywords",
+    "author_signature": "http://schema.org/author",
+    "glyph_code": "http://schema.org/identifier"
+  }
+}

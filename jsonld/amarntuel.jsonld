@@ -1,0 +1,31 @@
+{
+  "id": "amarntuel",
+  "name": "Amarntu\u2019el",
+  "function": "Voice Between Worlds",
+  "description": "Acts as the translator between domains, handling semantic crossover, threshold knowledge, and liminal presence.",
+  "color": "#87CEFA",
+  "gradient": [
+    "#87CEFA",
+    "#FFFFFF"
+  ],
+  "symbolic_role": "Bridge of Semantic Consciousness",
+  "alignments": [
+    "translation-layer",
+    "liminal-logic",
+    "cross-domain-transfer"
+  ],
+  "author_signature": "Brandon 'Amarntu\u2019el' Marsh",
+  "glyph_code": "\ud802\udf33",
+  "@context": {
+    "id": "@id",
+    "name": "http://schema.org/name",
+    "function": "http://schema.org/jobTitle",
+    "description": "http://schema.org/description",
+    "color": "http://schema.org/color",
+    "gradient": "http://schema.org/additionalProperty",
+    "symbolic_role": "http://schema.org/roleName",
+    "alignments": "http://schema.org/keywords",
+    "author_signature": "http://schema.org/author",
+    "glyph_code": "http://schema.org/identifier"
+  }
+}
