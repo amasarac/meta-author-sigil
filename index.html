@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Meta-Author Lattice</title>
+    <title>Meta-Author Lattice</title>
   <link rel="alternate" type="application/ld+json" href="jsonld/keydjinn.jsonld">
   <link rel="alternate" type="application/ld+json" href="jsonld/eidolon.jsonld">
   <link rel="alternate" type="application/ld+json" href="jsonld/amasarac.jsonld">
@@ -11,19 +10,45 @@
   <link rel="alternate" type="application/ld+json" href="jsonld/brandon_marsh.jsonld">
   <link rel="alternate" type="application/ld+json" href="jsonld/eluriah.jsonld">
   <link rel="alternate" type="application/ld+json" href="jsonld/tiwoven.jsonid">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body { font-family: sans-serif; background: #f5f5f5; text-align: center; }
-    h1 { margin-top: 40px; }
-    .sigil { position: absolute; font-size: 24px; font-weight: bold; }
+    body {
+      margin: 0;
+      background-color: black;
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+    #staticLayer, #animatedLayer {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      top: 0; left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 3s ease-in-out;
+    }
+    #staticLayer {
+      background: black;
+      z-index: 1;
+    }
+    #animatedLayer {
+      opacity: 0;
+      z-index: 2;
+    }
+    img {
+      max-width: 90%;
+      max-height: 90%;
+      filter: drop-shadow(0 0 8px white);
+    }
   </style>
 </head>
 <body>
-  <h1>Meta-Author Sigil Lattice</h1>
   <img src="living_authorship_lattice.png" width="600" alt="Lattice"><br>
   <audio autoplay loop>
     <source src="lattice_ambient.wav" type="audio/wav">
   </audio>
-  <script>
+<script>
     const glyphs = [
       { name: "KeyDjinn", x: 300, y: 100, color: "#4B0082", glyph: "𐬼" },
       { name: "Amasarac", x: 150, y: 200, color: "#DC143C", glyph: "𐬸" },
@@ -44,5 +69,22 @@
       document.body.appendChild(el);
     });
   </script>
+<div id="staticLayer">
+  <img src="living_authorship_lattice.png" alt="Meta-Author Lattice">
+</div>
+
+<div id="animatedLayer">
+  <iframe src="animated_spiral_lattice.html" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<script>
+  window.onload = () => {
+    setTimeout(() => {
+      document.getElementById('staticLayer').style.opacity = 0;
+      document.getElementById('animatedLayer').style.opacity = 1;
+    }, 4000); // delay before fade starts
+  };
+</script>
+
 </body>
 </html>
