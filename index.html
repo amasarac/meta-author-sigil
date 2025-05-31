@@ -50,6 +50,14 @@
 </audio>
 
 <script>
+  // Example snippet in JS to load a seed
+fetch('jsonld/some_seed.jsonld')
+  .then(response => response.json())
+  .then(seed => {
+    // initialize sigil with this seed
+    SigilApp.loadSeed(seed);
+  });
+
 const audio = document.getElementById('ambient');
 const ctx = new AudioContext();
 const source = ctx.createMediaElementSource(audio);
