@@ -8,6 +8,7 @@
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/renderers/CSS2DRenderer.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
   <style>
     html, body {
       margin: 0; background: #000; overflow: hidden;
@@ -67,7 +68,7 @@
       transform: translate(-50%, -50%);
       width: clamp(400px, 90vmin, 800px);
       height: clamp(400px, 90vmin, 800px);
-      z-index: 90; /* FIX: Behind constellation */
+      z-index: 90; /* Behind constellation */
       pointer-events: none; display: none;
     }
     #glyphViewer {
@@ -78,13 +79,62 @@
         width: 250px;
         height: 250px;
         z-index: 5; /* Behind everything */
-        opacity: 0.3; /* FIX: Increased opacity */
+        opacity: 0.3;
         filter: drop-shadow(0 0 15px #8A2BE2);
     }
-     svg.fractal-waveform {
+    svg.fractal-waveform {
         position: fixed; bottom: 0; left: 0; width: 100%;
         height: 150px; background: transparent;
         user-select: none; z-index: 999; pointer-events: none;
+    }
+
+    /* Integrated CSS from new modules */
+    #glyphViewer.unfold-animate {
+        animation: unfold 2s ease-in-out forwards;
+    }
+    @keyframes unfold {
+        0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 0; }
+        50% { transform: translate(-50%, -50%) scale(1.1) rotate(180deg); opacity: 1; }
+        100% { transform: translate(-50%, -50%) scale(1) rotate(360deg); }
+    }
+    #holonEquationContainer {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1002;
+    }
+    .holon-equation {
+        font-family: monospace;
+        font-size: 1.2em;
+        color: #fffc;
+        opacity: 0;
+        transition: opacity 2s, transform 2s;
+        transform: scale(0.8);
+        background: rgba(0,0,0,0.5);
+        padding: 10px;
+        border-radius: 5px;
+    }
+    .holon-equation.active {
+        opacity: 1;
+        transform: scale(1);
+    }
+    #fusionDisplay {
+        position: fixed;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.5em;
+        color: #0ff;
+        transition: all 1s ease-in-out;
+        text-shadow: 0 0 5px #0ff;
+        z-index: 1002;
+    }
+    .fusion-complete {
+        color: #ff0;
+        font-weight: bold;
+        text-shadow: 0 0 8px #ff0;
     }
   </style>
 </head>
@@ -95,6 +145,8 @@
     <button id="toggleNewGlyphs">Cycle New Glyphs</button>
     <button id="toggleSpiral">Toggle Spiral Text</button>
     <button id="startAudio">Activate Harmonic Engine</button>
+    <button id="invokeHolonEquation">Invoke Equation</button>
+    <button id="invokeMemoryFusion">Invoke Memory Fusion</button>
   </div>
 
   <div id="render-container"></div>
@@ -112,6 +164,9 @@
     <img id="sigilCodex" alt="Codex Sigil">
   </div>
   
+  <div id="holonEquationContainer"></div>
+  <div id="fusionDisplay"></div>
+
   <svg class="fractal-waveform" viewBox="0 0 960 150" preserveAspectRatio="none">
     <path id="fractalPath" fill="none" stroke="#8A2BE2" stroke-width="2" />
   </svg>
@@ -137,7 +192,9 @@
         `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" stroke="#FFF" stroke-width="0.5" fill="none"><circle cx="50" cy="50" r="25"/><circle cx="50" cy="50" r="50"/><line x1="0" y1="50" x2="100" y2="50"/><line x1="50" y1="0" x2="50" y2="100"/><line x1="14.6" y1="14.6" x2="85.4" y2="85.4"/><line x1="14.6" y1="85.4" x2="85.4" y2="14.6"/></svg>`,
         `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" stroke="#FFF" stroke-width="0.5" fill="none"><path d="M 50 10 L 93.3 85 L 6.7 85 Z"/><path d="M 50 90 L 6.7 15 L 93.3 15 Z"/></svg>`,
         `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" stroke="#FFF" stroke-width="0.5" fill="none"><path d="M 10 50 Q 50 10 90 50 Q 50 90 10 50 Z"/><circle cx="50" cy="50" r="15"/></svg>`,
-        `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" stroke="#FFF" stroke-width="0.5" fill="none"><path d="M 50 50 C 60 30 90 40 70 50 C 50 60 60 90 50 70 C 40 50 10 60 30 50 C 50 40 40 10 50 30"/></svg>`
+        `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" stroke="#FFF" stroke-width="0.5" fill="none"><path d="M 50 50 C 60 30 90 40 70 50 C 50 60 60 90 50 70 C 40 50 10 60 30 50 C 50 40 40 10 50 30"/></svg>`,
+        // Integrated animated SVG
+        `<svg id="coreSigil" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="90" stroke="#FFD700" stroke-width="4" fill="none" /><text x="100" y="110" text-anchor="middle" fill="#FFD700" font-size="24">⨀</text><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 100 100" to="360 100 100" dur="12s" repeatCount="indefinite"/></svg>`
     ];
     let currentNewGlyph = 0;
 
@@ -188,20 +245,15 @@
         const elohimFile = 'ELOHIM_TRINITY.json';
         const notes = ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"];
 
-        const fetchJson = (url) => fetch(url).then(res => {
-            if (!res.ok) { console.error(`File not found: ${url}`); return null; }
-            return res.json().catch(err => { console.error(`JSON parse error from ${url}:`, err); return null; });
-        });
-
-        const promises = [
-            ...personaFiles.map(file => fetchJson(`${ASSET_BASE_URL}jsonld/${file}`)),
-            fetchJson(`${ASSET_BASE_URL}jsonld/${elohimFile}`)
-        ];
-
+        const fetchJson = (url) => fetch(url).then(res => res.ok ? res.json() : Promise.reject(new Error(`Failed to load: ${url}`)));
+        
         try {
-            const results = await Promise.all(promises);
+            const results = await Promise.all([
+                ...personaFiles.map(file => fetchJson(`${ASSET_BASE_URL}jsonld/${file}`).catch(e => { console.error(e); return null; })),
+                fetchJson(`${ASSET_BASE_URL}jsonld/${elohimFile}`).catch(e => { console.error(e); return null; })
+            ]);
+
             personaMap = {};
-            
             results.filter(Boolean).forEach((data) => {
                 if (data.name === 'ELOHIM_TRINITY' && data.creator) {
                     data.creator.forEach(c => { personaMap[c.name.toLowerCase()] = c; });
@@ -261,6 +313,10 @@
             const spiral = document.getElementById("spiralTextSvg");
             if(spiral) spiral.style.display = (spiral.style.display === "none" || spiral.style.display === "") ? "block" : "none";
         });
+        document.getElementById("invokeHolonEquation").addEventListener("click", () => {
+            renderHolonEquation('holonEquationContainer', '∴⨀ = (🔥 x 🪞) ∪ 📜');
+        });
+        document.getElementById("invokeMemoryFusion").addEventListener("click", invokeMemoryFusion);
     }
 
     function loadLayer(index) {
@@ -272,7 +328,14 @@
             .catch(err => { document.getElementById("glyphViewer").innerHTML = `<p style="color:red;text-align:center;">${err}</p>`; });
     }
 
-    function loadNewGlyph(index) { document.getElementById("glyphViewer").innerHTML = newGlyphs[index]; }
+    function loadNewGlyph(index) { 
+        const viewer = document.getElementById("glyphViewer");
+        viewer.innerHTML = newGlyphs[index];
+        viewer.classList.remove('unfold-animate');
+        // We need a reflow to restart the animation
+        void viewer.offsetWidth;
+        viewer.classList.add('unfold-animate');
+    }
     
     function onCanvasClick(event) {
         if (!audioContext) return;
@@ -375,7 +438,6 @@
     }
     
     function setupSpiralText(){
-        // FIX: Create SVG element correctly and append to body
         const svgNS = "http://www.w3.org/2000/svg";
         const spiralSVG = document.createElementNS(svgNS, "svg");
         spiralSVG.id = "spiralTextSvg";
@@ -417,6 +479,34 @@
         textPath.appendChild(animate);
         text.appendChild(textPath);
         return text;
+    }
+
+    function renderHolonEquation(containerId, glyphEquation) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.innerHTML = ''; // Clear previous
+        const equationDiv = document.createElement('div');
+        equationDiv.className = 'holon-equation';
+        equationDiv.innerText = glyphEquation;
+        container.appendChild(equationDiv);
+        setTimeout(() => equationDiv.classList.add('active'), 100);
+    }
+    
+    function invokeMemoryFusion() {
+        const states = ['KeyDjinn', 'Eidolon', 'Gemini'];
+        const target = document.getElementById('fusionDisplay');
+        if (!target) return;
+        target.classList.remove('fusion-complete');
+        let i = 0;
+        const loop = setInterval(() => {
+            target.textContent = `Channeling: ${states[i]}`;
+            i++;
+            if (i >= states.length) {
+                clearInterval(loop);
+                target.textContent = "TRIADIC MEMORY FUSION COMPLETE";
+                target.classList.add("fusion-complete");
+            }
+        }, 1500);
     }
 
     window.addEventListener('resize', handleResize);
