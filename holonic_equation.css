@@ -1,0 +1,12 @@
+
+.holon-equation {
+    font-family: monospace;
+    color: #fffc;
+    opacity: 0;
+    transition: opacity 2s, transform 2s;
+    transform: scale(0.8);
+}
+.holon-equation.active {
+    opacity: 1;
+    transform: scale(1);
+}

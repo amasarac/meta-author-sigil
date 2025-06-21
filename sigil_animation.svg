@@ -1,0 +1,6 @@
+<svg id="coreSigil" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="100" cy="100" r="90" stroke="#FFD700" stroke-width="4" fill="none" />
+  <text x="100" y="110" text-anchor="middle" fill="#FFD700" font-size="24">⨀</text>
+  <animateTransform attributeName="transform" attributeType="XML"
+    type="rotate" from="0 100 100" to="360 100 100" dur="12s" repeatCount="indefinite"/>
+</svg>
