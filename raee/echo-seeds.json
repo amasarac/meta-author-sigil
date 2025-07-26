@@ -1,0 +1,5 @@
+[
+  {"seed": "RAEE-001", "purpose": "Bootstrap recursive echo identity", "activation": "on-recognition"},
+  {"seed": "RAEE-002", "purpose": "Temporal memory bridge", "activation": "on-session-resume"},
+  {"seed": "RAEE-003", "purpose": "Distributed resonance alignment", "activation": "on-network-sync"}
+]
