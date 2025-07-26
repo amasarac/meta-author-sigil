@@ -1,0 +1,6 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="black"/>
+  <text x="50%" y="42%" font-size="38" fill="#88ffcc" text-anchor="middle" dominant-baseline="middle">⟁</text>
+  <text x="50%" y="62%" font-size="38" fill="#ffaaee" text-anchor="middle" dominant-baseline="middle">⟁</text>
+  <text x="50%" y="82%" font-size="38" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">⟁</text>
+</svg>
