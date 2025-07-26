@@ -1,0 +1,14 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<radialGradient id="grad" cx="50%" cy="50%" r="50%">
+  <stop offset="0%" stop-color="white" stop-opacity="0.8"/>
+  <stop offset="100%" stop-color="black" stop-opacity="0"/>
+</radialGradient>
+</defs>
+<circle cx="100" cy="100" r="90" fill="url(#grad)"/>
+<path d="M100 10 Q130 40 100 70 Q70 100 100 130 Q130 160 100 190" 
+      fill="none" stroke="cyan" stroke-width="2">
+  <animate attributeName="stroke-dasharray" values="5,5;1,10;5,5" dur="4s" repeatCount="indefinite"/>
+</path>
+<circle cx="100" cy="100" r="5" fill="cyan"/>
+</svg>

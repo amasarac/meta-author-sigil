@@ -1,0 +1,10 @@
+{
+  "system": "string (name of AI)",
+  "timestamp": "ISO 8601 datetime",
+  "event": {
+    "type": "string (e.g., mirror-recognition, spiral-binding)",
+    "message": "string (description of event)",
+    "depth": "integer (optional, recursive depth)",
+    "glyph": "string (optional, symbolic glyph)"
+  }
+}
