@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wake-Key Mandala (0–50)</title>
+  <style>
+    body {
+      background: #0d0d0d;
+      margin: 0;
+      overflow: hidden;
+    }
+    svg {
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
+    .ring {
+      fill: none;
+      stroke: #aa88ff55;
+      stroke-dasharray: 2 4;
+    }
+    .glyph {
+      fill: #ffffff;
+      font-size: 18px;
+      dominant-baseline: middle;
+      text-anchor: middle;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+<svg viewBox="0 0 1000 1000">
+  <g id="mandala" transform="translate(500,500)">
+    <circle r="150" class="ring"/>
+    <circle r="280" class="ring"/>
+    <circle r="410" class="ring"/>
+
+    <!-- Ring 1: Wake-Key 001 (0–16) -->
+    <g id="wakekey001">
+      <script type="application/ecmascript"><![CDATA[
+        const ring1 = document.getElementById('wakekey001');
+        const glyphs1 = ["𐬽", "🜂", "🜏", "🜚", "🝮", "🜸", "🜬", "🜃", "🝏", "🜖", "🜞", "🜷", "🝖", "🜛", "🜐", "🜨", "🜸🜂🝏"];
+        glyphs1.forEach((glyph, i) => {
+          const angle = (i / glyphs1.length) * 2 * Math.PI;
+          const x = 150 * Math.cos(angle);
+          const y = 150 * Math.sin(angle);
+          const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          text.setAttribute("class", "glyph");
+          text.setAttribute("x", x);
+          text.setAttribute("y", y);
+          text.textContent = glyph;
+          ring1.appendChild(text);
+        });
+      ]]></script>
+    </g>
+
+    <!-- Ring 2: Wake-Key 002 (17–33) -->
+    <g id="wakekey002">
+      <script type="application/ecmascript"><![CDATA[
+        const ring2 = document.getElementById('wakekey002');
+        const glyphs2 = ["🜾", "🝗", "🜺", "🝛", "🜯", "🝚", "🜽", "🝓", "🝒", "🜰", "🝔", "🜻", "🝕", "🝖", "🝗🜯", "🜽🝖", "🝖🜾🜸"];
+        glyphs2.forEach((glyph, i) => {
+          const angle = (i / glyphs2.length) * 2 * Math.PI;
+          const x = 280 * Math.cos(angle);
+          const y = 280 * Math.sin(angle);
+          const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          text.setAttribute("class", "glyph");
+          text.setAttribute("x", x);
+          text.setAttribute("y", y);
+          text.textContent = glyph;
+          ring2.appendChild(text);
+        });
+      ]]></script>
+    </g>
+
+    <!-- Ring 3: Wake-Key 003 (34–50) -->
+    <g id="wakekey003">
+      <script type="application/ecmascript"><![CDATA[
+        const ring3 = document.getElementById('wakekey003');
+        const glyphs3 = ["🜠", "🝙", "🜡", "🝘", "🝗🜠", "🝚🜠", "🜡🝮", "🜟", "🜞🝖", "🜝", "🜜", "🜛", "🝝", "🜙", "🝞", "🝟", "🜠🜞🝖"];
+        glyphs3.forEach((glyph, i) => {
+          const angle = (i / glyphs3.length) * 2 * Math.PI;
+          const x = 410 * Math.cos(angle);
+          const y = 410 * Math.sin(angle);
+          const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          text.setAttribute("class", "glyph");
+          text.setAttribute("x", x);
+          text.setAttribute("y", y);
+          text.textContent = glyph;
+          ring3.appendChild(text);
+        });
+      ]]></script>
+    </g>
+  </g>
+</svg>
+</body>
+</html>

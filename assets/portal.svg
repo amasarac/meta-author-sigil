@@ -1,0 +1,52 @@
+<svg width="1000" height="440" viewBox="0 0 1000 440" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="cosmic3" cx="50%" cy="58%" r="75%">
+      <stop offset="0%" stop-color="#fff7fc" stop-opacity="0.89"></stop>
+      <stop offset="80%" stop-color="#191931" stop-opacity="0"></stop>
+    </radialGradient>
+    <linearGradient id="portalstroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9fffff"></stop>
+      <stop offset="50%" stop-color="#e29fff"></stop>
+      <stop offset="100%" stop-color="#fff7b7"></stop>
+    </linearGradient>
+    <filter id="aura" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="18" result="coloredBlur"></feGaussianBlur>
+      <feMerge>
+        <feMergeNode in="coloredBlur"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Cosmic portal glow -->
+  <ellipse cx="500" cy="220" rx="390" ry="140" fill="url(#cosmic3)"></ellipse>
+  <!-- Portal threshold (main circle) -->
+  <ellipse cx="500" cy="220" rx="128" ry="128" fill="none" stroke="url(#portalstroke)" stroke-width="18" filter="url(#aura)" opacity="0.79"></ellipse>
+  <ellipse cx="500" cy="220" rx="60" ry="60" fill="none" stroke="#fff" stroke-width="3" opacity="0.28"></ellipse>
+  <!-- AMASARAC abstract-glyphs (upright, with literal hints) -->
+  <path d="M326,200 Q345,120 380,140 Q385,90 430,120 Q420,180 475,180 Q440,130 505,130 Q480,210 570,170 Q542,112 610,140 Q600,200 645,205 Q648,160 690,200" stroke="url(#portalstroke)" stroke-width="15" fill="none" filter="url(#aura)" opacity="0.95"></path>
+  <!-- ENOCH negative-space hints (rotational) -->
+  <path d="M420,320 Q500,250 575,320" stroke="#191931" stroke-width="31" fill="none" opacity="0.45"></path>
+  <path d="M397,230 Q440,230 505,230" stroke="#191931" stroke-width="21" fill="none" opacity="0.33"></path>
+  <ellipse cx="500" cy="220" rx="43" ry="43" fill="none" stroke="#191931" stroke-width="17" opacity="0.27"></ellipse>
+  <!-- Lattice: spiral & runic lines -->
+  <path d="M500,220 m-100,0 a100,100 0 1,0 200,0 a100,100 0 1,0 -200,0" stroke="#e9c6ff" stroke-width="2.2" fill="none" opacity="0.15"></path>
+  <path d="M500,220 m-60,0 a60,60 0 1,0 120,0 a60,60 0 1,0 -120,0" stroke="#f6fff9" stroke-width="1.2" fill="none" opacity="0.11"></path>
+  <path d="M495,120 Q540,200 495,320" stroke="#ffe0ff" stroke-width="2.7" fill="none" opacity="0.13"></path>
+  <path d="M510,130 Q470,200 510,310" stroke="#e6fff0" stroke-width="2.3" fill="none" opacity="0.15"></path>
+  <!-- Runes: stylized, semi-random, arc-shaped along the outer halo -->
+  <text x="410" y="72" fill="#baffff" font-size="26" font-family="monospace" font-weight="bold" opacity="0.38" transform="rotate(-12 500 220)">
+    ᚠ ᛃ ᛉ ᛗ ᛟ
+  </text>
+  <text x="690" y="345" fill="#e5dfff" font-size="22" font-family="monospace" font-weight="bold" opacity="0.31" transform="rotate(17 500 220)">
+    ᚪ ᛝ ᛞ ᚷ ᛋ
+  </text>
+  <text x="110" y="215" fill="#9fdfff" font-size="18" font-family="monospace" font-weight="bold" opacity="0.23" transform="rotate(-25 500 220)">
+    ᛃ ᛗ ᚠ
+  </text>
+  <!-- Portal starlight -->
+  <circle cx="164" cy="87" r="2.7" fill="#fff"></circle>
+  <circle cx="885" cy="353" r="1.7" fill="#baffff"></circle>
+  <circle cx="488" cy="38" r="2.2" fill="#fff9ff"></circle>
+  <circle cx="878" cy="243" r="1.8" fill="#eaffff"></circle>
+  <circle cx="285" cy="395" r="1.3" fill="#ffe0fa"></circle>
+</svg>
