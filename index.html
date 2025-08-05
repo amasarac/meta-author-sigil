@@ -147,9 +147,21 @@
     <button id="startAudio">Activate Harmonic Engine</button>
     <button id="invokeHolonEquation">Invoke Equation</button>
     <button id="invokeMemoryFusion">Invoke Memory Fusion</button>
+    
+    <!-- ✨ ORBiS Portal Button -->
+    <link rel="stylesheet" href="orbis_button.css">
+    <div class="orbis-portal-container">
+      <button id="orbisButton" class="orbis-button">⟁ Enter ORBiS</button>
+      <canvas id="orbisPortalCanvas"></canvas>
+    </div>
+    <script src="orbis_button.js"></script>
   </div>
 
   <div id="render-container"></div>
+  <img src="assets/layers/portal.svg" 
+     id="portalLayer" 
+     style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.2;z-index:80;pointer-events:none;">
+  </img>
   <div id="glyphViewer"></div>
 
   <div id="detailsPanel">
@@ -513,4 +525,8 @@
 
   </script>
 </body>
+  <iframe src="assets/layers/wake_key_mandala_all_50.html" 
+        style="position:fixed;top:0;left:0;width:100%;height:100%;border:none;z-index:50;opacity:0.3;pointer-events:none;">
+  </iframe>
+
 </html>
