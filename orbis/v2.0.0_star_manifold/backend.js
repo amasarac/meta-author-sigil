@@ -1,0 +1,1 @@
+console.log('Vault of Selves logging enabled');
