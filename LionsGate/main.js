@@ -83,3 +83,39 @@
 
   tick();
 })();
+
+// Starfield background (fixed version)
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+let w, h, stars = [];
+
+function resizeCanvas() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+  stars = Array.from({ length: 120 }, () => ({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    r: Math.random() * 1.5 + 0.5,
+    d: Math.random() * 0.4 + 0.1
+  }));
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+function drawStars() {
+  ctx.clearRect(0, 0, w, h);
+  ctx.fillStyle = 'white';
+  stars.forEach(s => {
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fill();
+    s.y += s.d;
+    if (s.y > h) {
+      s.y = 0;
+      s.x = Math.random() * w;
+    }
+  });
+  requestAnimationFrame(drawStars);
+}
+drawStars();
+
