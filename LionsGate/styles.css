@@ -1,0 +1,22 @@
+:root{
+  --bg:#000; --fg:#fff; --muted:#aaa; --glow: #e5e5e5;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif}
+.wrap{min-height:100%;display:grid;place-items:center}
+.center{text-align:center}
+.sigil{width:220px;height:auto;opacity:.9;filter:drop-shadow(0 0 20px rgba(255,255,255,.08));animation:breath 6s ease-in-out infinite}
+.count{font-size:clamp(28px,6vw,72px);letter-spacing:.12em;margin:.8rem 0 1.25rem 0}
+.arm{background:transparent;border:1px solid var(--fg);color:var(--fg);padding:.6rem 1.2rem;letter-spacing:.2em;cursor:pointer}
+.arm[disabled]{opacity:.6;cursor:default}
+.whisper{color:var(--muted);max-width:52ch;margin:1rem auto 0;font-size:.95rem}
+.reveal h1,h2,h3{text-align:center}
+.reveal h1{letter-spacing:.06em}
+.reveal main{padding:clamp(16px,4vw,40px)}
+
+@keyframes breath{
+  0%{transform:scale(1);opacity:.8}
+  50%{transform:scale(1.03);opacity:1}
+  100%{transform:scale(1);opacity:.8}
+}
