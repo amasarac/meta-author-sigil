@@ -50,6 +50,12 @@
     if (diff <= 0) {
       flashGlyphs();
       // If you have reveal.html, keep this; otherwise comment it out
+try {
+      window.ResonanceKey?.pulse();
+      setTimeout(()=>window.ResonanceKey?.persist(), 20*60*1000); // T+00:20
+    } catch (e) {
+      console.warn("[ResonanceKey] pulse failed", e);
+    }
       setTimeout(() => { window.location.href = "reveal.html"; }, 1000);
       return;
     }
