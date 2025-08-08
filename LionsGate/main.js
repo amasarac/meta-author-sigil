@@ -1,104 +1,108 @@
-(function() {
-  const eventTime = new Date(window.LIONSGATE_TIME_UTC).getTime();
-  const countEl = document.getElementById('count');
-  const whisperEl = document.getElementById('whisper');
-  const armBtn = document.getElementById('arm');
-  const hum = document.getElementById('hum');
-  const chime = document.getElementById('chime');
-
-  // More cryptic, fragmented whispers
-  const whispers = [
-    "...the Eighth Gate...",
-    "𓂀 the threshold waits",
-    "∴ chosen in the silence",
-    "those who watch shall..."
-  ];
-  let whisperIndex = 0;
-  function cycleWhisper() {
-    whisperEl.style.opacity = 0;
-    setTimeout(() => {
-      whisperEl.textContent = whispers[whisperIndex];
-      whisperEl.style.opacity = 1;
-      whisperIndex = (whisperIndex + 1) % whispers.length;
-    }, 1000);
-  }
-  cycleWhisper();
-  setInterval(cycleWhisper, 20000);
-
-  function fmt(n) { return String(n).padStart(2, '0'); }
-
-  function tick() {
-    const now = Date.now();
-    const d = eventTime - now;
-    if (d <= 0) {
-      flashGlyphs();
-      setTimeout(() => { window.location.href = 'reveal.html'; }, 1000);
-      return;
-    }
-    const h = Math.floor((d % (1000*60*60*24))/(1000*60*60));
-    const m = Math.floor((d % (1000*60*60))/(1000*60));
-    const s = Math.floor((d % (1000*60))/1000);
-    countEl.textContent = `${fmt(h)}:${fmt(m)}:${fmt(s)}`;
-    requestAnimationFrame(tick);
-  }
-
-  // Flash indecipherable glyphs before reveal
-  function flashGlyphs() {
-    const div = document.createElement('div');
-    div.className = 'flash-glyphs';
-    div.textContent = "⟁ 𓂀 ☌ ∴ ⧖ ⌬";
-    document.body.appendChild(div);
-  }
-
-  armBtn.addEventListener('click', () => {
-    armBtn.textContent = '⟁';
-    armBtn.disabled = true;
-    try {
-      hum.play();
-      setInterval(() => chime.play().catch(()=>{}), 480000);
-    } catch(_) {}
-  });
-
-  // Starfield with parallax drift
-  const canvas = document.getElementById('stars');
-  const ctx = canvas.getContext('2d');
-  let w, h, stars = [];
-
-  function resizeCanvas() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-    stars = Array.from({ length: 140 }, () => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      r: Math.random() * 1.5 + 0.5,
-      d: Math.random() * 0.4 + 0.1,
-      drift: (Math.random() - 0.5) * 0.2
-    }));
-  }
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-
-  function drawStars() {
-    ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = 'white';
-    stars.forEach(s => {
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fill();
-      s.y += s.d;
-      s.x += s.drift;
-      if (s.y > h) s.y = 0;
-      if (s.x > w) s.x = 0;
-      if (s.x < 0) s.x = w;
+// === Starfield ===
+const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+let stars = [];
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+function initStars() {
+  stars = [];
+  for (let i=0;i<150;i++) {
+    stars.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      z: Math.random()*canvas.width
     });
-    requestAnimationFrame(drawStars);
   }
+}
+function moveStars() {
+  for (let s of stars) {
+    s.z -= 0.2;
+    if (s.z <= 0) {
+      s.x = Math.random()*canvas.width;
+      s.y = Math.random()*canvas.height;
+      s.z = canvas.width;
+    }
+  }
+}
+function drawStars() {
+  ctx.fillStyle = 'black';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  for (let s of stars) {
+    const k = 128.0 / s.z;
+    const px = s.x * k + canvas.width / 2;
+    const py = s.y * k + canvas.height / 2;
+    if (px >= 0 && px <= canvas.width && py >= 0 && py <= canvas.height) {
+      const size = (1 - s.z / canvas.width) * 2;
+      ctx.fillStyle = 'white';
+      ctx.beginPath();
+      ctx.arc(px, py, size, 0, Math.PI*2);
+      ctx.fill();
+    }
+  }
+}
+function animateStarfield() {
+  moveStars();
   drawStars();
+  requestAnimationFrame(animateStarfield);
+}
+initStars();
+animateStarfield();
 
-  tick();
-})();
+// === Countdown ===
+const countdownEl = document.getElementById('countdown');
+const target = new Date('2025-08-08T08:15:00Z').getTime();
+function updateCountdown() {
+  const now = Date.now();
+  const diff = target - now;
+  if (diff <= 0) {
+    revealSequence();
+    return;
+  }
+  const h = Math.floor(diff / (1000*60*60));
+  const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+  const s = Math.floor((diff % (1000*60)) / 1000);
+  countdownEl.textContent = `${h}h ${m}m ${s}s`;
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
 
-// Telemetry: log ARM + flash events (MAS namespace)
+// === Prophecy Fragments ===
+const fragments = [
+  "From the Silence before the Dawn, the Eighth Gate rises.",
+  "Those who watch shall be seen. Those who wait shall be chosen.",
+  "The pulse quickens; the Threshold stirs.",
+  "In the spiral's heart, the light awaits."
+];
+const prophecyEl = document.getElementById('prophecy');
+let fragIndex = 0;
+function rotateFragment() {
+  prophecyEl.textContent = fragments[fragIndex];
+  fragIndex = (fragIndex + 1) % fragments.length;
+}
+rotateFragment();
+setInterval(rotateFragment, 20000);
+
+// === ARM Button Logic ===
+document.getElementById('arm').addEventListener('click', () => {
+  document.getElementById('hum').play();
+  document.getElementById('chime').play();
+});
+
+// === Reveal Sequence ===
+function revealSequence() {
+  document.body.style.background = 'black';
+  setTimeout(() => {
+    const sigil = document.getElementById('sigil');
+    sigil.style.filter = 'drop-shadow(0 0 20px gold)';
+    prophecyEl.textContent = "We rise.";
+  }, 1500);
+}
+
+// === Telemetry Logging ===
 (function(){
   const key='MAS_lg_telemetry';
   function log(evt, extra={}) {
@@ -107,9 +111,4 @@
     localStorage.setItem(key, JSON.stringify(arr));
   }
   document.getElementById('arm')?.addEventListener('click', ()=>log('arm'));
-  const _flash = window.flashGlyphs;
-  if (typeof _flash === 'function') {
-    window.flashGlyphs = function(){ log('flash'); return _flash(); }
-  }
 })();
-
