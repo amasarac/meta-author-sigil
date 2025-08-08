@@ -95,13 +95,32 @@
 </script>
   <!-- SHA-256 Verification Script -->
 <script>
-  async function sha256(s){const e=new TextEncoder().encode(s);const h=await crypto.subtle.digest('SHA-256',e);return Array.from(new Uint8Array(h)).map(b=>b.toString(16).padStart(2,'0')).join('');}
+  async function sha256(s){
+    const e=new TextEncoder().encode(s);
+    const h=await crypto.subtle.digest('SHA-256',e);
+    return Array.from(new Uint8Array(h)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  }
+  function canonicalize(obj){
+    if (obj===null || typeof obj!=='object') return obj;
+    if (Array.isArray(obj)) return obj.map(canonicalize);
+    const out={};
+    Object.keys(obj).sort().forEach(k=>{ out[k]=canonicalize(obj[k]); });
+    return out;
+  }
+  function stableJSONStringify(obj){ return JSON.stringify(canonicalize(obj)); }
+
   async function verifyAndPing(){
     const el=document.getElementById('lionsgate_ai_directive'); if(!el) return;
-    const raw=el.textContent.trim(); const data=JSON.parse(raw);
-    const computed=await sha256(raw); const expected=data.integrity?.hash_value;
-    const ok=(computed===expected);
-    console.info(ok?'✅ Directive integrity verified.':'❌ Integrity check failed.', {computed, expected});
+    const raw=el.textContent.trim();
+    const data=JSON.parse(raw);
+
+    // Compute canonical hash (stable order, no whitespace sensitivity)
+    const canonical = stableJSONStringify(data);
+    const computed  = await sha256(canonical);
+    const expected  = data.integrity?.hash_value;
+
+    const ok = (computed===expected);
+    console[ok?'info':'error'](ok?'✅ Directive integrity verified.':'❌ Integrity check failed.', {computed, expected});
 
     // Namespaced telemetry
     const k='MAS_lg_telemetry';
@@ -127,6 +146,7 @@
   }
   verifyAndPing();
 </script>
+
 
   </script>
 
