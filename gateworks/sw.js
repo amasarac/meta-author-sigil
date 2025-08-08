@@ -1,4 +1,4 @@
-const CACHE='mas-gateworks-v1';
+const CACHE='mas-gateworks-v2';
 const ASSETS=[
   './','./index.html','./app.js','./manifest.webmanifest',
   '../LionsGate/','../LionsGate/index.html','../LionsGate/styles.css',
