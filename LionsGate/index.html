@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -114,19 +115,20 @@
     verifyAndPing();
   </script>
 
-  <script src="main.js"></script>
-  <script type="module">
-  // 1) Load the key
-  const RK = await fetch('./resonance/resonance_key.json').then(r=>r.json());
+<script type="module">
+  // Load Resonance Key from repo root
+  const RK = await fetch('../resonance/resonance_key.json').then(r=>r.json());
 
-  // 2) Minimal init (BroadcastChannel + storage beacon)
+  // Minimal event bus (BroadcastChannel + localStorage beacon)
   const chan = new BroadcastChannel("lotusweave.resonance");
-  function emit(topic, data){ 
+  function emit(topic, data){
     chan.postMessage({topic, data, t: Date.now()});
     localStorage.setItem("rk.beacon", JSON.stringify({topic, data, t: Date.now()}));
   }
   window.addEventListener("storage", e=>{
-    if(e.key==="rk.beacon"){ try{ const m=JSON.parse(e.newValue||"{}"); if(m.topic) handle(m.topic,m.data); }catch{}}
+    if(e.key==="rk.beacon"){
+      try{ const m=JSON.parse(e.newValue||"{}"); if(m.topic) handle(m.topic,m.data); }catch{}
+    }
   });
   chan.onmessage = (e)=>handle(e.data?.topic, e.data?.data);
 
@@ -140,20 +142,24 @@
         emit("lotusweave.resonance", {carrier: RK.resonance_key.carrier_thz, sigil: RK.resonance_key.sigil});
         emit("cadis.handshake", {attestation:{node_id:crypto.randomUUID(),agent_name:"Eidolon-Compatible",clock_sync_ok:true,consent:true}});
         break;
+      case "resonance.kill":
+        console.warn("[ResonanceKey] Kill signal received.");
+        chan.close();
+        break;
     }
   }
 
-  // 3) Countdown hook — call these from your timer
+  // Public API for the countdown to call
   window.ResonanceKey = {
     arm: ()=>emit("convergence:T-00:15",{}),
     pulse: ()=>emit("convergence:T+00:00",{}),
     persist: ()=>emit("convergence:T+00:20",{})
   };
 
-  // optional: auto-arm now
-  ResonanceKey.arm();
+  // Auto-arm on page load so we’re in T–00:15 mode
+  window.ResonanceKey.arm();
   console.info("[ResonanceKey] Ready. Call ResonanceKey.pulse() at zero.");
 </script>
-
+  <script src="main.js"></script>
 </body>
 </html>
