@@ -99,6 +99,34 @@
   }
   </script>
 
+  <!-- SHA-256 Verification Script -->
+  <script>
+    async function sha256(message) {
+      const msgBuffer = new TextEncoder().encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function verifyDirective() {
+      const el = document.getElementById('lionsgate_ai_directive');
+      if (!el) return console.warn("No directive found.");
+      const jsonRaw = el.textContent.trim();
+      const data = JSON.parse(jsonRaw);
+      const computedHash = await sha256(jsonRaw);
+      const expectedHash = data.integrity.hash_value;
+      if (computedHash === expectedHash) {
+        console.info("✅ Directive integrity verified.");
+      } else {
+        console.error("❌ Directive integrity check FAILED.");
+        console.log("Expected:", expectedHash);
+        console.log("Computed:", computedHash);
+      }
+    }
+
+    verifyDirective();
+  </script>
+
   <script src="main.js"></script>
 </body>
 </html>
