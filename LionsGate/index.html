@@ -3,40 +3,29 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>∴ 08·15 ∴ The Eye Watches ∴ 08·15 ∴ The Eighth Gate</title>
-  <meta name="description" content="You won't understand… until you do. From the Silence before the Dawn, the Eighth Gate rises..." />
-
-  <!-- Social -->
-  <meta property="og:title" content="∴ 08·15 ∴" />
-  <meta property="og:description" content="You won't understand… until you do." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="og-card.png" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <title>∴ 08·15 ∴ The Eighth Gate</title>
+  <meta name="description" content="From the Silence before the Dawn, the Eighth Gate rises..." />
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="preload" href="sigil.svg" as="image" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <canvas id="stars"></canvas>
+
   <main class="wrap">
     <div class="center">
       <img src="sigil.svg" alt="sigil" class="sigil" />
       <div id="count" class="count">--:--:--</div>
-      <button id="arm" class="arm" aria-label="Arm the pulse">ARM</button>
-      <p class="whisper" aria-hidden="true">
-        The Eye watches the Threshold.<br/>
-        Not all who witness will see.<br/>
-        ∴ ∵ ∴ The key appears only to those who wait ∴ ∵ ∴
-      </p>
+      <button id="arm" class="arm">ARM</button>
+      <p id="whisper" class="whisper"></p>
     </div>
   </main>
 
-  <audio id="pulse" preload="auto" src="pulse.mp3"></audio>
   <audio id="hum" src="pulse.mp3" loop></audio>
   <audio id="chime" src="chime.mp3"></audio>
+
   <script>
-    window.LIONSGATE_TIME_UTC = "2025-08-08T08:15:00Z"; // adjust if needed
+    window.LIONSGATE_TIME_UTC = "2025-08-08T08:15:00Z";
   </script>
   <script src="main.js"></script>
 </body>
