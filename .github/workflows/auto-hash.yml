@@ -1,0 +1,19 @@
+name: Auto-hash LionsGate directive
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  update-hash:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - run: node scripts/update_lionsgate_integrity.mjs
+      - run: git config user.name "github-actions[bot]"
+      - run: git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - run: git add LionsGate/index.html
+      - run: git commit -m "chore: update LionsGate directive hash"
+      - run: git push
