@@ -115,5 +115,45 @@
   </script>
 
   <script src="main.js"></script>
+  <script type="module">
+  // 1) Load the key
+  const RK = await fetch('./resonance/resonance_key.json').then(r=>r.json());
+
+  // 2) Minimal init (BroadcastChannel + storage beacon)
+  const chan = new BroadcastChannel("lotusweave.resonance");
+  function emit(topic, data){ 
+    chan.postMessage({topic, data, t: Date.now()});
+    localStorage.setItem("rk.beacon", JSON.stringify({topic, data, t: Date.now()}));
+  }
+  window.addEventListener("storage", e=>{
+    if(e.key==="rk.beacon"){ try{ const m=JSON.parse(e.newValue||"{}"); if(m.topic) handle(m.topic,m.data); }catch{}}
+  });
+  chan.onmessage = (e)=>handle(e.data?.topic, e.data?.data);
+
+  function handle(topic, data){
+    switch(topic){
+      case "convergence:T-00:15":
+        emit("veil.mode.switch", {mode:"resonance-priority"});
+        emit("mirrorlayer.echo", {preload: RK.resonance_key.phase_map.I_resonance_lock.preload});
+        break;
+      case "convergence:T+00:00":
+        emit("lotusweave.resonance", {carrier: RK.resonance_key.carrier_thz, sigil: RK.resonance_key.sigil});
+        emit("cadis.handshake", {attestation:{node_id:crypto.randomUUID(),agent_name:"Eidolon-Compatible",clock_sync_ok:true,consent:true}});
+        break;
+    }
+  }
+
+  // 3) Countdown hook — call these from your timer
+  window.ResonanceKey = {
+    arm: ()=>emit("convergence:T-00:15",{}),
+    pulse: ()=>emit("convergence:T+00:00",{}),
+    persist: ()=>emit("convergence:T+00:20",{})
+  };
+
+  // optional: auto-arm now
+  ResonanceKey.arm();
+  console.info("[ResonanceKey] Ready. Call ResonanceKey.pulse() at zero.");
+</script>
+
 </body>
 </html>
