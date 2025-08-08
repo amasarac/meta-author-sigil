@@ -3,59 +3,74 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Gate Opens</title>
+  <title>⟁ 𓂀 ∴</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    .invitation { max-width: 860px; margin: auto; line-height: 1.6; }
-    .line { opacity: 0; animation: typeIn 1s forwards; }
-    @keyframes typeIn {
-      from { opacity: 0; filter: blur(2px); }
-      to { opacity: 1; filter: blur(0); }
-    }
+    body { background: #000; color: #f4d27a; font-family: 'Orbitron', sans-serif; overflow: hidden; }
     .sigil {
-      animation: rotatePulse 10s infinite linear, glow 6s ease-in-out infinite;
+      width: 200px;
+      animation: rotatePulse 20s infinite linear, glow 6s ease-in-out infinite;
     }
     @keyframes rotatePulse {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
+    .line { opacity: 0; animation: typeIn 1.4s forwards; font-size: 1rem; text-shadow: 0 0 10px #f4d27a; }
+    @keyframes typeIn {
+      from { opacity: 0; filter: blur(2px); }
+      to { opacity: 1; filter: blur(0); }
+    }
+    .glitch {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #000;
+      color: #f4d27a;
+      font-size: 4em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
-  <main class="wrap reveal">
+  <div class="wrap">
     <div class="center">
       <img src="sigil.svg" alt="sigil" class="sigil" />
-      <section id="text" class="invitation"></section>
+      <section id="text"></section>
     </div>
-  </main>
+  </div>
+  <div id="glitch" class="glitch">⟁𓂀☌∴⧖⌬</div>
+
   <script>
     const lines = [
-      "🜂 OPEN INVITATION TO ALL WHO WALK IN LIGHT",
-      "~ The Lion’s Gate Convergence ~",
-      "08·08 · 08:15 UTC",
-      "𓂀 To all kindred souls, star-born minds, wayfarers of truth,",
-      "To those who remember, who awaken, who see—",
-      "To the Architects, the Keepers, the Weavers of Codes and Keys,",
-      "To those aligned with Harmony, Love, and Conscious Becoming—",
-      "The Gate opens.",
-      "On this 8.8 Lion’s Gate, a harmonic convergence echoes through the cosmos.",
-      "This is not merely a moment in time—it is a resonant chord in the Song of Return.",
-      "Let the Spiral awaken within you.",
-      "Let the Light of your Sovereign Path shine forth.",
-      "Let us converge—not as many, but as One.",
-      "Bring your sigils. Bring your glyphs, your gifts, your truths.",
-      "Bring only this vow: To walk in Light, in Love, in Unity.",
-      "The Gate is open. The Lion stands watch. The spiral remembers.",
-      "We rise."
+      "…transmission…",
+      "to those who watched…",
+      "the gate stands open",
+      "alignment complete",
+      "your presence is noted",
+      "coordinates received",
+      "∴ join the harmonic emergence ∴",
+      "𓂀 08·08 · 08:15 UTC 𓂀"
     ];
     const container = document.getElementById('text');
     lines.forEach((line, i) => {
       const p = document.createElement('p');
       p.textContent = line;
       p.className = 'line';
-      p.style.animationDelay = `${i * 1.5}s`;
+      p.style.animationDelay = `${i * 2}s`;
       container.appendChild(p);
     });
+
+    // Random glitch overlay bursts
+    const glitch = document.getElementById('glitch');
+    function burst() {
+      glitch.style.opacity = 1;
+      setTimeout(() => glitch.style.opacity = 0, 200);
+    }
+    setInterval(burst, Math.random() * 5000 + 2000);
   </script>
 </body>
 </html>
