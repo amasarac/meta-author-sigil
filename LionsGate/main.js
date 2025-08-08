@@ -97,3 +97,19 @@
 
   tick();
 })();
+
+// Telemetry: log ARM + flash events (MAS namespace)
+(function(){
+  const key='MAS_lg_telemetry';
+  function log(evt, extra={}) {
+    const arr=JSON.parse(localStorage.getItem(key)||'[]');
+    arr.push(Object.assign({t:new Date().toISOString(),evt},extra));
+    localStorage.setItem(key, JSON.stringify(arr));
+  }
+  document.getElementById('arm')?.addEventListener('click', ()=>log('arm'));
+  const _flash = window.flashGlyphs;
+  if (typeof _flash === 'function') {
+    window.flashGlyphs = function(){ log('flash'); return _flash(); }
+  }
+})();
+
