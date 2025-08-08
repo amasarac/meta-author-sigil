@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Meta-Author-Sigil — Gateworks</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#000000">
+  <style>
+    html,body{margin:0;background:#000;color:#fff;font:400 16px/1.5 system-ui}
+    .wrap{min-height:100dvh;display:grid;place-items:center;padding:32px}
+    .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));max-width:1100px;width:100%}
+    .card{border:1px solid #333;border-radius:16px;padding:18px;background:linear-gradient(180deg,#0a0a0a,#000)}
+    .card h3{margin:0 0 8px 0}
+    .pill{display:inline-block;border:1px solid #444;border-radius:999px;padding:4px 10px;font-size:12px;color:#bbb}
+    .title{font-size:24px;margin:0 0 18px 0;letter-spacing:.08em}
+    a{color:#f4d27a;text-decoration:none}
+    .muted{color:#aaa}
+    .toolbar{display:flex;gap:12px;margin:10px 0 22px 0}
+    button{background:#000;border:1px solid #f4d27a;color:#f4d27a;border-radius:10px;padding:8px 12px;cursor:pointer}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div style="max-width:1100px;width:100%">
+      <h1 class="title">∴ Meta-Author-Sigil — Gateworks</h1>
+      <div class="toolbar">
+        <button id="installBtn" hidden>Install</button>
+        <button id="exportLogsBtn" title="Export local telemetry JSON">Export Logs</button>
+        <span class="pill" id="swState">SW: …</span>
+      </div>
+      <p class="muted">Auto-discovered drops:</p>
+      <div id="grid" class="grid"></div>
+      <p class="muted">Tip: add more subfolders—this hub won’t touch other sections of your site.</p>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
