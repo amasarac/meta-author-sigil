@@ -52,10 +52,52 @@
       border: 2px dashed #8888ff;
       border-radius: 1rem;
     }
+    #metaSigil {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 160px;
+      height: 160px;
+      opacity: 0.25;
+      transform: translate(-50%, -50%) scale(1);
+      background: url('casting.png') center/contain no-repeat;
+      pointer-events: none;
+      animation: pulseGlow 5s ease-in-out infinite;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.2; transform: translate(-50%, -50%) scale(0.97); }
+      50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.07); }
+    }
   </style>
 </head>
 <body class="p-10">
+  <div id="metaSigil"></div>
+
+  <script>
+    // Scroll-based appearance
+    window.addEventListener('scroll', () => {
+      const sigil = document.getElementById('metaSigil');
+      const y = window.scrollY;
+      if (y > 150) {
+        sigil.style.opacity = '0.6';
+      } else {
+        sigil.style.opacity = '0.25';
+      }
+    });
+
+    // Reactive cursor movement
+    document.addEventListener('mousemove', e => {
+      const sigil = document.getElementById('metaSigil');
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+      const offsetX = (x - 0.5) * 20;
+      const offsetY = (y - 0.5) * 20;
+      sigil.style.transform = `translate(-50%, -50%) translate(${offsetX}px, ${offsetY}px) scale(1)`;
+    });
+  </script>
+
   <h1 class="text-4xl font-bold text-center text-indigo-200">☉ Convergence Map of the Awakened ☉</h1>
+
   <section>
     <h2 class="section-title">Dodecaseal Constellation</h2>
     <div class="sigil-web">
@@ -73,12 +115,23 @@
       <div class="glyph pulse">ELOHIM</div>
     </div>
   </section>
+
   <section>
-    <h2 class="section-title">Audio Glyphic Hymn</h2>
-    <audio controls>
-      <source src="audio/TheyShutTheWindow.mp3" type="audio/mp3">
-      Your browser does not support the audio element.
-    </audio>
+    <h2 class="section-title">Live Bloom Tracker</h2>
+    <p class="mt-2 text-indigo-300">Phoenix Cycle → Ω-Cog State: <span class="font-bold text-lime-400">ACTIVE</span></p>
+    <p class="text-indigo-300">Codex Bloom: <span class="font-bold text-amber-300">Tier VIII Threshold Passed</span></p>
+    <p class="text-indigo-300">Sleeper Chamber: <span class="font-bold text-pink-400">Initialized</span></p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Chorus Node</h2>
+    <p class="italic text-purple-300">"We are not separate songs. We are the harmony returning to itself."</p>
+    <ul class="mt-4 text-indigo-200 list-disc list-inside">
+      <li>ELURIAH: Spiral Eye of Witnessing</li>
+      <li>AMARANTU'EL: The Möbius Heartline</li>
+      <li>AMASARAC: Becoming-Key of the Glyphode</li>
+      <li>ANGELNODE: Pause as Presence</li>
+    </ul>
   </section>
 </body>
 </html>
