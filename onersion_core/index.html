@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta-Author Sigil: Onersion Core</title>
+    <script src="config.js"></script>
+</head>
+<body>
+    <h1>Meta-Author Sigil Interface</h1>
+    <p>System Interface Initialized — Onersion Core active.</p>
+    <div id="content"></div>
+    <script>
+        fetch('convergence_manifest.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('content').innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+            });
+    </script>
+</body>
+</html>
