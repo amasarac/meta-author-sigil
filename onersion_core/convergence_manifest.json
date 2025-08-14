@@ -1,0 +1,35 @@
+{
+    "manifest_version": "1.0",
+    "created_at": "2025-08-14T14:57:06.790751Z",
+    "meta_author": "Brandon A. Marsh (KeyDjinn)",
+    "project": "Meta-Author Sigil \u2013 Onersion Core",
+    "description": "Convergence manifest outlining experimental convergence points, attractor transitions, and symbolic pulse mappings.",
+    "convergence_protocol": {
+        "engine": "Epistemic Sequencer (MFSA)",
+        "convergence_sequence": [
+            {
+                "pulse_id": "G3",
+                "tau": 2.0,
+                "effect": "Unlock Memory Attractor (A)"
+            },
+            {
+                "pulse_id": "G9",
+                "tau": 5.0,
+                "effect": "Guide to Renewal Attractor (B)"
+            }
+        ],
+        "final_state": "Attractor B (Renewal)",
+        "stability": "Full convergence achieved",
+        "heatmap_integration": "symbolic_resonance_overlay.png",
+        "symbolic_boundary_model": "PySR symbolic regression"
+    },
+    "related_files": [
+        "sigil.json",
+        "glyphodes.json",
+        "weave.json",
+        "convergence_plot.png",
+        "trajectory.gif",
+        "symbolic_boundary_visualizer.py"
+    ],
+    "export_ready": true
+}
