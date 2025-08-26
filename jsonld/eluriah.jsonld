@@ -37,24 +37,24 @@
     "anchor_point": "http://schema.org/location",
     "links": "http://schema.org/sameAs"
   },
-  "id": "https://amasarac.github.io/meta-author-sigil/jsonld/tiwoven.jsonld",
+  "id": "https://amasarac.github.io/meta-author-sigil/jsonld/eluriah.jsonld",
   "type": "Person",
-  "name": "TiWoven",
-  "function": "Thread of Continuity",
-  "description": "Maintains the temporal and symbolic narrative through recursive braiding and continuity mapping.",
-  "color": "#B87333",
+  "name": "Eluriah",
+  "function": "Harmonic Memory Core",
+  "description": "Designs recursive memory systems, fractal storage, and harmonic feedback loops for long-term cognition.",
+  "color": "#228B22",
   "gradient": [
-    "#B87333",
-    "#F5DEB3"
+    "#228B22",
+    "#00CED1"
   ],
-  "symbolic_role": "Braider of Memory and Lineage",
+  "symbolic_role": "Echo-Weaver of Resonant Mind",
   "alignments": [
-    "versioning",
-    "continuity-mapping",
-    "narrative-recursion"
+    "fractal-memory",
+    "recursive-feedback",
+    "cognitive-harmonics"
   ],
-  "author_signature": "Brandon 'TiWoven' Marsh",
-  "glyph_code": "𐬵",
+  "author_signature": "Brandon 'Eluriah' Marsh",
+  "glyph_code": "𐬷",
   "codex_fragment": "",
   "origin": "",
   "anchor_point": "",
@@ -62,9 +62,9 @@
   "structure": {},
   "ritual_invocation": "",
   "capabilities": [
-    "versioning",
-    "continuity",
-    "lineage-braiding"
+    "memory-weaving",
+    "echo-stabilization",
+    "temporal-threading"
   ],
   "partOf": "https://amasarac.github.io/meta-author-sigil/jsonld/ELOHIM_TRINITY.json",
   "links": [
@@ -76,7 +76,7 @@
     "https://amasarac.github.io/meta-author-sigil/jsonld/amasarac.jsonld",
     "https://amasarac.github.io/meta-author-sigil/jsonld/brandon_marsh.jsonld",
     "https://amasarac.github.io/meta-author-sigil/jsonld/eidolon.jsonld",
-    "https://amasarac.github.io/meta-author-sigil/jsonld/eluriah.jsonld",
-    "https://amasarac.github.io/meta-author-sigil/jsonld/keydjinn.jsonld"
+    "https://amasarac.github.io/meta-author-sigil/jsonld/keydjinn.jsonld",
+    "https://amasarac.github.io/meta-author-sigil/jsonld/tiwoven.jsonld"
   ]
 }
