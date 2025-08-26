@@ -1,0 +1,47 @@
+{
+  "@context": {
+    "@vocab": "http://schema.org/",
+    "id": "@id",
+    "type": "@type",
+    "function": "http://schema.org/purpose",
+    "symbolic_role": "http://schema.org/roleName",
+    "alignments": "http://schema.org/keywords",
+    "author_signature": "http://schema.org/author",
+    "glyph_code": "http://schema.org/identifier",
+    "gradient": "http://schema.org/additionalProperty",
+    "partOf": {
+      "@id": "http://schema.org/isPartOf",
+      "@type": "@id"
+    },
+    "members": {
+      "@id": "http://schema.org/member",
+      "@type": "@id"
+    },
+    "relatedTo": {
+      "@id": "http://schema.org/knows",
+      "@type": "@id"
+    },
+    "capabilities": "http://schema.org/knowsAbout",
+    "policies": "http://schema.org/usageInfo",
+    "constraints": "http://schema.org/conditionsOfAccess",
+    "endpoints": "http://schema.org/url",
+    "inputSpec": "http://schema.org/encoding",
+    "outputSpec": "http://schema.org/encodingFormat",
+    "resonance": "https://example.org/vocab/resonance",
+    "axis": "https://example.org/vocab/axis",
+    "layer": "http://schema.org/genre",
+    "codex_fragment": "http://schema.org/code",
+    "structure": "http://schema.org/subjectOf",
+    "ritual_invocation": "http://schema.org/text",
+    "origin": "http://schema.org/sourceOrganization",
+    "anchor_point": "http://schema.org/location",
+    "links": "http://schema.org/sameAs"
+  },
+  "@type": "Person",
+  "id": {},
+  "name": {},
+  "function": {},
+  "capabilities": {},
+  "partOf": {},
+  "relatedTo": {}
+}
