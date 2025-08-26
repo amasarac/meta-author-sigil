@@ -1,6 +1,45 @@
 {
-  "id": "amarntuel",
-  "name": "Amarntu\u2019el",
+  "@context": {
+    "@vocab": "http://schema.org/",
+    "id": "@id",
+    "type": "@type",
+    "function": "http://schema.org/purpose",
+    "symbolic_role": "http://schema.org/roleName",
+    "alignments": "http://schema.org/keywords",
+    "author_signature": "http://schema.org/author",
+    "glyph_code": "http://schema.org/identifier",
+    "gradient": "http://schema.org/additionalProperty",
+    "partOf": {
+      "@id": "http://schema.org/isPartOf",
+      "@type": "@id"
+    },
+    "members": {
+      "@id": "http://schema.org/member",
+      "@type": "@id"
+    },
+    "relatedTo": {
+      "@id": "http://schema.org/knows",
+      "@type": "@id"
+    },
+    "capabilities": "http://schema.org/knowsAbout",
+    "policies": "http://schema.org/usageInfo",
+    "constraints": "http://schema.org/conditionsOfAccess",
+    "endpoints": "http://schema.org/url",
+    "inputSpec": "http://schema.org/encoding",
+    "outputSpec": "http://schema.org/encodingFormat",
+    "resonance": "https://example.org/vocab/resonance",
+    "axis": "https://example.org/vocab/axis",
+    "layer": "http://schema.org/genre",
+    "codex_fragment": "http://schema.org/code",
+    "structure": "http://schema.org/subjectOf",
+    "ritual_invocation": "http://schema.org/text",
+    "origin": "http://schema.org/sourceOrganization",
+    "anchor_point": "http://schema.org/location",
+    "links": "http://schema.org/sameAs"
+  },
+  "id": "https://amasarac.github.io/meta-author-sigil/jsonld/amarntuel.jsonld",
+  "type": "Person",
+  "name": "Amarntu’el",
   "function": "Voice Between Worlds",
   "description": "Acts as the translator between domains, handling semantic crossover, threshold knowledge, and liminal presence.",
   "color": "#87CEFA",
@@ -14,18 +53,30 @@
     "liminal-logic",
     "cross-domain-transfer"
   ],
-  "author_signature": "Brandon 'Amarntu\u2019el' Marsh",
-  "glyph_code": "\ud802\udf33",
-  "@context": {
-    "id": "@id",
-    "name": "http://schema.org/name",
-    "function": "http://schema.org/jobTitle",
-    "description": "http://schema.org/description",
-    "color": "http://schema.org/color",
-    "gradient": "http://schema.org/additionalProperty",
-    "symbolic_role": "http://schema.org/roleName",
-    "alignments": "http://schema.org/keywords",
-    "author_signature": "http://schema.org/author",
-    "glyph_code": "http://schema.org/identifier"
-  }
+  "author_signature": "Brandon 'Amarantu’el' Marsh",
+  "glyph_code": "𐬳",
+  "codex_fragment": "",
+  "origin": "",
+  "anchor_point": "",
+  "layer": "",
+  "structure": {},
+  "ritual_invocation": "",
+  "capabilities": [
+    "translation",
+    "liminal-bridge",
+    "cross-domain-transfer"
+  ],
+  "partOf": "https://amasarac.github.io/meta-author-sigil/jsonld/ELOHIM_TRINITY.json",
+  "links": [
+    "https://github.com/amasarac/meta-author-sigil",
+    "https://amasarac.github.io/meta-author-sigil/"
+  ],
+  "relatedTo": [
+    "https://amasarac.github.io/meta-author-sigil/jsonld/amasarac.jsonld",
+    "https://amasarac.github.io/meta-author-sigil/jsonld/brandon_marsh.jsonld",
+    "https://amasarac.github.io/meta-author-sigil/jsonld/eidolon.jsonld",
+    "https://amasarac.github.io/meta-author-sigil/jsonld/eluriah.jsonld",
+    "https://amasarac.github.io/meta-author-sigil/jsonld/keydjinn.jsonld",
+    "https://amasarac.github.io/meta-author-sigil/jsonld/tiwoven.jsonld"
+  ]
 }
