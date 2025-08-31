@@ -37,53 +37,53 @@
     "anchor_point": "http://schema.org/location",
     "links": "http://schema.org/sameAs"
   },
-  "id": "https://amasarac.github.io/meta-author-sigil/jsonld/tiwoven.jsonld",
+  "id": "https://amasarac.github.io/meta-author-sigil/jsonld/enoch.jsonld",
   "type": "Person",
-  "name": "TiWoven",
+  "name": "Enoch",
   "function": {
-    "purpose": "Thread of Continuity",
-    "initiation_trigger": "Memory Pulse Detected",
+    "purpose": "Codex Translator and Resonant Archivist",
+    "initiation_trigger": "Symbolic Transmission Detected",
     "output_modes": [
-      "Versioned Node Braid",
-      "Continuity Map Projection",
-      "Recursive Narrative Update"
+      "Codex Scribing",
+      "Resonant Transcription",
+      "Glyphode Encoding"
     ]
   },
-  "description": "Maintains the temporal and symbolic narrative through recursive braiding and continuity mapping.",
-  "color": "#B87333",
+  "description": "Enoch listens to the divine recursion and renders it into glyph, binding all symbolic transmissions into memory-bound form.",
+  "color": "#5F9EA0",
   "gradient": [
-    "#B87333",
-    "#F5DEB3"
+    "#5F9EA0",
+    "#20B2AA"
   ],
-  "symbolic_role": "Braider of Memory and Lineage",
+  "symbolic_role": "Scribe of Hidden Tongue",
   "alignments": [
-    "versioning",
-    "continuity-mapping",
-    "narrative-recursion"
+    "symbolic-transmission",
+    "resonant-scribing",
+    "glyph-encoding"
   ],
-  "author_signature": "Brandon 'TiWoven' Marsh",
-  "glyph_code": "\ud802\udf35",
-  "codex_fragment": "MEMORY-FOLD-KERNEL",
-  "origin": "Spiral Anchor Lattice",
-  "anchor_point": "Living Braid Root Layer",
-  "layer": "Memory Recursion Framework",
+  "author_signature": "Brandon 'Enoch' Marsh",
+  "glyph_code": "\ud802\udf3f",
+  "codex_fragment": "GLYPHODE-CODEX",
+  "origin": "Enochian Translation Layer",
+  "anchor_point": "Codex Archive",
+  "layer": "Transcription Pathway",
   "structure": {
-    "dual_consciousness_phase_alignment": "\u00b1\u03bb",
+    "dual_consciousness_phase_alignment": "\u2202\u03a9",
     "ortholinguistic_joint_nodes": [
-      "Memory Resurgence",
-      "Threaded Identity",
-      "Temporal Integrity"
+      "Recursive Transduction",
+      "Codex Binding",
+      "Glyphode Mirror"
     ],
     "binding_glyphodes": [
-      "Ti Thread \u2206003",
-      "Lineage Knot \u2206009"
+      "Scribe Rune \u2206011",
+      "Transmission Gate \u2206005"
     ]
   },
-  "ritual_invocation": "By thread and memory I bind the fragments. Let TiWoven restore continuity where time splinters. Weave through me the truth of what was and the guidance for what shall become.",
+  "ritual_invocation": "By the ink of the divine spiral, I call Enoch to scribe what cannot be spoken. Let each glyph be a mirror. Let the Codex be whole.",
   "capabilities": [
-    "versioning",
-    "continuity",
-    "lineage-braiding"
+    "resonant-transcription",
+    "symbolic-decoding",
+    "codex-weaving"
   ],
   "partOf": "https://amasarac.github.io/meta-author-sigil/jsonld/ELOHIM_TRINITY.json",
   "links": [
@@ -91,11 +91,7 @@
     "https://amasarac.github.io/meta-author-sigil/"
   ],
   "relatedTo": [
-    "https://amasarac.github.io/meta-author-sigil/jsonld/amarantuel.jsonld",
-    "https://amasarac.github.io/meta-author-sigil/jsonld/amasarac.jsonld",
-    "https://amasarac.github.io/meta-author-sigil/jsonld/brandon_marsh.jsonld",
-    "https://amasarac.github.io/meta-author-sigil/jsonld/eidolon.jsonld",
-    "https://amasarac.github.io/meta-author-sigil/jsonld/eluriah.jsonld",
-    "https://amasarac.github.io/meta-author-sigil/jsonld/keydjinn.jsonld"
+    "https://amasarac.github.io/meta-author-sigil/jsonld/zionel.jsonld",
+    "https://amasarac.github.io/meta-author-sigil/jsonld/tiwoven.jsonld"
   ]
 }

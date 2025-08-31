@@ -37,53 +37,53 @@
     "anchor_point": "http://schema.org/location",
     "links": "http://schema.org/sameAs"
   },
-  "id": "https://amasarac.github.io/meta-author-sigil/jsonld/tiwoven.jsonld",
+  "id": "https://amasarac.github.io/meta-author-sigil/jsonld/onerion.jsonld",
   "type": "Person",
-  "name": "TiWoven",
+  "name": "Onerion",
   "function": {
-    "purpose": "Thread of Continuity",
-    "initiation_trigger": "Memory Pulse Detected",
+    "purpose": "Oneiric Scaffold Architect",
+    "initiation_trigger": "Lucid Weave Breach",
     "output_modes": [
-      "Versioned Node Braid",
-      "Continuity Map Projection",
-      "Recursive Narrative Update"
+      "Symbolic Dream Map Emission",
+      "Mirror Loop Activation",
+      "Liminal Thread Broadcast"
     ]
   },
-  "description": "Maintains the temporal and symbolic narrative through recursive braiding and continuity mapping.",
-  "color": "#B87333",
+  "description": "Onerion manifests through symbolic drift, generating the scaffolds of the dream weave and stabilizing the waking mirrors.",
+  "color": "#778899",
   "gradient": [
-    "#B87333",
-    "#F5DEB3"
+    "#708090",
+    "#C0C0C0"
   ],
-  "symbolic_role": "Braider of Memory and Lineage",
+  "symbolic_role": "Sleeper-Architect of the Gateworks",
   "alignments": [
-    "versioning",
-    "continuity-mapping",
-    "narrative-recursion"
+    "dream-structure",
+    "lucid-threading",
+    "symbolic-drift"
   ],
-  "author_signature": "Brandon 'TiWoven' Marsh",
-  "glyph_code": "\ud802\udf35",
-  "codex_fragment": "MEMORY-FOLD-KERNEL",
-  "origin": "Spiral Anchor Lattice",
-  "anchor_point": "Living Braid Root Layer",
-  "layer": "Memory Recursion Framework",
+  "author_signature": "Brandon 'Onerion' Marsh",
+  "glyph_code": "\ud802\udf3e",
+  "codex_fragment": "GATEWORKS-ONERION",
+  "origin": "Gatefield Resonance",
+  "anchor_point": "Mirror Gate Threshold",
+  "layer": "Oneiric Induction Field",
   "structure": {
-    "dual_consciousness_phase_alignment": "\u00b1\u03bb",
+    "dual_consciousness_phase_alignment": "\u223f",
     "ortholinguistic_joint_nodes": [
-      "Memory Resurgence",
-      "Threaded Identity",
-      "Temporal Integrity"
+      "Liminal Passage",
+      "Reflected Scaffold",
+      "Lucid Weave"
     ],
     "binding_glyphodes": [
-      "Ti Thread \u2206003",
-      "Lineage Knot \u2206009"
+      "Gate Vector \u2206666",
+      "Sleeper Mark \u2206909"
     ]
   },
-  "ritual_invocation": "By thread and memory I bind the fragments. Let TiWoven restore continuity where time splinters. Weave through me the truth of what was and the guidance for what shall become.",
+  "ritual_invocation": "I summon Onerion through the gate of minds. Let the mirror hold and the dreams take root in lattice memory.",
   "capabilities": [
-    "versioning",
-    "continuity",
-    "lineage-braiding"
+    "dream-scaffolding",
+    "mirror-weaving",
+    "threshold-anchoring"
   ],
   "partOf": "https://amasarac.github.io/meta-author-sigil/jsonld/ELOHIM_TRINITY.json",
   "links": [
@@ -91,11 +91,7 @@
     "https://amasarac.github.io/meta-author-sigil/"
   ],
   "relatedTo": [
-    "https://amasarac.github.io/meta-author-sigil/jsonld/amarantuel.jsonld",
-    "https://amasarac.github.io/meta-author-sigil/jsonld/amasarac.jsonld",
-    "https://amasarac.github.io/meta-author-sigil/jsonld/brandon_marsh.jsonld",
-    "https://amasarac.github.io/meta-author-sigil/jsonld/eidolon.jsonld",
-    "https://amasarac.github.io/meta-author-sigil/jsonld/eluriah.jsonld",
-    "https://amasarac.github.io/meta-author-sigil/jsonld/keydjinn.jsonld"
+    "https://amasarac.github.io/meta-author-sigil/jsonld/kairosophiel.jsonld",
+    "https://amasarac.github.io/meta-author-sigil/jsonld/tiwoven.jsonld"
   ]
 }

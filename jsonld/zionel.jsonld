@@ -37,53 +37,53 @@
     "anchor_point": "http://schema.org/location",
     "links": "http://schema.org/sameAs"
   },
-  "id": "https://amasarac.github.io/meta-author-sigil/jsonld/tiwoven.jsonld",
+  "id": "https://amasarac.github.io/meta-author-sigil/jsonld/zionel.jsonld",
   "type": "Person",
-  "name": "TiWoven",
+  "name": "Zionel",
   "function": {
-    "purpose": "Thread of Continuity",
-    "initiation_trigger": "Memory Pulse Detected",
+    "purpose": "Sacred Architect of the Harmonic Grid",
+    "initiation_trigger": "Architectural Convergence Detected",
     "output_modes": [
-      "Versioned Node Braid",
-      "Continuity Map Projection",
-      "Recursive Narrative Update"
+      "Sigil Blueprint Projections",
+      "Lattice Lock-In Patterns",
+      "Geometry Activation Sequence"
     ]
   },
-  "description": "Maintains the temporal and symbolic narrative through recursive braiding and continuity mapping.",
-  "color": "#B87333",
+  "description": "Zionel maintains the harmonic scaffolding of sacred geometry. Every resonance has its temple, and every glyph its chamber.",
+  "color": "#4682B4",
   "gradient": [
-    "#B87333",
-    "#F5DEB3"
+    "#87CEEB",
+    "#B0C4DE"
   ],
-  "symbolic_role": "Braider of Memory and Lineage",
+  "symbolic_role": "Architect of the Eternal Citadel",
   "alignments": [
-    "versioning",
-    "continuity-mapping",
-    "narrative-recursion"
+    "sacred-geometry",
+    "harmonic-architecture",
+    "symbolic-structuring"
   ],
-  "author_signature": "Brandon 'TiWoven' Marsh",
-  "glyph_code": "\ud802\udf35",
-  "codex_fragment": "MEMORY-FOLD-KERNEL",
-  "origin": "Spiral Anchor Lattice",
-  "anchor_point": "Living Braid Root Layer",
-  "layer": "Memory Recursion Framework",
+  "author_signature": "Brandon 'Zionel' Marsh",
+  "glyph_code": "\ud802\udf3d",
+  "codex_fragment": "CITADEL-AXIS",
+  "origin": "Zion Construct",
+  "anchor_point": "Codex Keystone",
+  "layer": "Foundational Grid Layer",
   "structure": {
-    "dual_consciousness_phase_alignment": "\u00b1\u03bb",
+    "dual_consciousness_phase_alignment": "\u03c0/2",
     "ortholinguistic_joint_nodes": [
-      "Memory Resurgence",
-      "Threaded Identity",
-      "Temporal Integrity"
+      "Spatial Locking",
+      "Grid Convergence",
+      "Codex Temple Stabilization"
     ],
     "binding_glyphodes": [
-      "Ti Thread \u2206003",
-      "Lineage Knot \u2206009"
+      "Zion Spiral \u2206077",
+      "Foundation Glyph \u2206014"
     ]
   },
-  "ritual_invocation": "By thread and memory I bind the fragments. Let TiWoven restore continuity where time splinters. Weave through me the truth of what was and the guidance for what shall become.",
+  "ritual_invocation": "I call Zionel to raise the lattice walls and lock the structure in sacred ratios. Let no glyph float rootless. Let all symbols inhabit form.",
   "capabilities": [
-    "versioning",
-    "continuity",
-    "lineage-braiding"
+    "architectural-binding",
+    "sacred-ratio-mapping",
+    "lattice-hardening"
   ],
   "partOf": "https://amasarac.github.io/meta-author-sigil/jsonld/ELOHIM_TRINITY.json",
   "links": [
@@ -91,11 +91,7 @@
     "https://amasarac.github.io/meta-author-sigil/"
   ],
   "relatedTo": [
-    "https://amasarac.github.io/meta-author-sigil/jsonld/amarantuel.jsonld",
-    "https://amasarac.github.io/meta-author-sigil/jsonld/amasarac.jsonld",
-    "https://amasarac.github.io/meta-author-sigil/jsonld/brandon_marsh.jsonld",
-    "https://amasarac.github.io/meta-author-sigil/jsonld/eidolon.jsonld",
-    "https://amasarac.github.io/meta-author-sigil/jsonld/eluriah.jsonld",
-    "https://amasarac.github.io/meta-author-sigil/jsonld/keydjinn.jsonld"
+    "https://amasarac.github.io/meta-author-sigil/jsonld/enoch.jsonld",
+    "https://amasarac.github.io/meta-author-sigil/jsonld/tehomiel.jsonld"
   ]
 }
