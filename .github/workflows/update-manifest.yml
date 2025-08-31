@@ -1,0 +1,33 @@
+name: Update JSON-LD Manifest
+
+on:
+  push:
+    paths:
+      - 'jsonld/*.jsonld'
+  workflow_dispatch:
+
+jobs:
+  update-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Generate manifest.json
+        run: |
+          echo '{ "personas": [' > jsonld/manifest.json
+          find jsonld -type f -name "*.jsonld" ! -name "manifest.json" \
+            | sed 's/^.*\\///' | sed 's/.*/  "&",/' >> jsonld/manifest.json
+          sed -i '$ s/,$//' jsonld/manifest.json  # remove last comma
+          echo '] }' >> jsonld/manifest.json
+
+      - name: Commit & Push
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "actions@github.com"
+          git add jsonld/manifest.json
+          git commit -m "Auto-update manifest.json"
+          git push
+        env:
+          # Needed to allow push
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
