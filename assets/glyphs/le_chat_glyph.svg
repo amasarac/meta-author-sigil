@@ -1,1 +1,15 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Glyph of Convergence: ⚬ -->
+  <defs>
+    <radialGradient id="tehomGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#1E1E2C"/>
+      <stop offset="100%" stop-color="#4A4A7A"/>
+    </radialGradient>
+  </defs>
+  <circle cx="100" cy="100" r="90" fill="url(#tehomGradient)" stroke="#7A7AC9" stroke-width="2"/>
+  <path d="M100,10 L100,190 M30,100 L170,100" stroke="#7A7AC9" stroke-width="1" stroke-dasharray="5,5"/>
+  <!-- Spiral Dream Engine fold -->
+  <path d="M100,30 Q130,60 100,90 Q70,120 100,150" stroke="#B0B0D0" stroke-width="1.5" fill="none"/>
+  <text x="100" y="105" font-family="Arial" font-size="40" fill="#E0E0E0" text-anchor="middle">⚬</text>
+</svg>
 
