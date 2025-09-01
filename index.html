@@ -200,7 +200,7 @@
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
 
-    let audioContext, mainBus, ambientPlayer, analyser;
+    let audioContext, mainBus, ambientPlayer, analyser, reverb;
     let proceduralSounds = {};
     let currentLayer = 0;
     const layers = ["flame", "mirror", "codex", "all"];
@@ -214,9 +214,8 @@
         `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" stroke="#FFF" stroke-width="0.5" fill="none"><path d="M 50 10 L 93.3 85 L 6.7 85 Z"/><path d="M 50 90 L 6.7 15 L 93.3 15 Z"/></svg>`,
         `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" stroke="#FFF" stroke-width="0.5" fill="none"><path d="M 10 50 Q 50 10 90 50 Q 50 90 10 50 Z"/><circle cx="50" cy="50" r="15"/></svg>`,
         `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" stroke="#FFF" stroke-width="0.5" fill="none"><path d="M 50 50 C 60 30 90 40 70 50 C 50 60 60 90 50 70 C 40 50 10 60 30 50 C 50 40 40 10 50 30"/></svg>`,
-        // Integrated animated SVG
         `<svg id="coreSigil" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="90" stroke="#FFD700" stroke-width="4" fill="none" /><text x="100" y="110" text-anchor="middle" fill="#FFD700" font-size="24">⨀</text><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 100 100" to="360 100 100" dur="12s" repeatCount="indefinite"/></svg>`,
-        `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" stroke="#FFF" stroke-width="0.5" fill="none">    <circle cx="50" cy="50" r="40" fill="none"/>    <text x="50" y="55" text-anchor="middle" fill="#FFF" font-size="40">⚬</text>    <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="8s" repeatCount="indefinite"/></svg>`
+        `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" stroke="#FFF" stroke-width="0.5" fill="none"><circle cx="50" cy="50" r="40" fill="none"/><text x="50" y="55" text-anchor="middle" fill="#FFF" font-size="40">⚬</text><animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="8s" repeatCount="indefinite"/></svg>`
     ];
     let currentNewGlyph = 0;
 
@@ -225,7 +224,7 @@
     async function init() {
         setupScene();
         setupUI();
-        setupDreamingNode(); // <-- Add this line
+        setupDreamingNode();
         await buildConstellationFromSource();
         loadLayer(currentLayer);
         loadNewGlyph(currentNewGlyph);
@@ -262,57 +261,63 @@
         container.addEventListener('click', onCanvasClick);
         container.addEventListener('dblclick', unfoldSigils);
     }
+    
+    // ===== NEW DYNAMIC CONSTELLATION LOADER =====
+    let stars = []; 
+    const notes = ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5", "D5", "E5", "F5", "G5", "A5", "B5", "C6", "D6", "E6", "F6"];
+
+    function insertStarNode(persona, index, total) {
+        if (!persona || !persona.name) return;
+        const nodeGeometry = new THREE.IcosahedronGeometry(10, 1);
+        const nodeMaterial = new THREE.MeshStandardMaterial({ 
+            color: persona.color || 0xeeeeff, 
+            roughness: 0.5, metalness: 0.8, 
+            wireframe: true, wireframeLinewidth: 2 
+        });
+        const starNode = new THREE.Mesh(nodeGeometry, nodeMaterial);
+        const id = persona.name.toLowerCase().replace(/\s+/g, '_');
+        const phi = Math.acos(-1 + (2 * index) / total);
+        const theta = Math.sqrt(total * Math.PI) * phi;
+        const radius = 200;
+        starNode.position.setFromSphericalCoords(radius, phi, theta);
+        starNode.userData = { id, name: persona.name, note: notes[index % notes.length] };
+        constellationGroup.add(starNode);
+        stars.push(starNode);
+        const labelDiv = document.createElement('div');
+        labelDiv.className = 'label';
+        labelDiv.textContent = persona.name;
+        const label = new THREE.CSS2DObject(labelDiv);
+        label.position.set(0, 15, 0);
+        starNode.add(label);
+        if (typeof Tone !== 'undefined' && proceduralSounds && reverb) {
+             proceduralSounds[id] = new Tone.FMSynth({ 
+                 harmonicity: 1.2 + (Math.random() * 0.6), 
+                 modulationIndex: 10 + (index % 5)
+             }).connect(reverb);
+        }
+    }
 
     async function buildConstellationFromSource() {
-        const personaFiles = ['amarantuel.jsonld', 'amasarac.jsonld', 'brandon_marsh.jsonld', 'eidolon.jsonld', 'eluriah.jsonld', 'keydjinn.jsonld', 'tiwoven.jsonld', 'le_chat.jsonld'];
-        const elohimFile = 'ELOHIM_TRINITY.json';
-        const notes = ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"];
-
-        const fetchJson = (url) => fetch(url).then(res => res.ok ? res.json() : Promise.reject(new Error(`Failed to load: ${url}`)));
-
+        stars = [];
+        while(constellationGroup.children.length > 0){ 
+            constellationGroup.remove(constellationGroup.children[0]); 
+        }
+        const manifestUrl = `${ASSET_BASE_URL}jsonld/manifest.json`;
+        const baseDir = `${ASSET_BASE_URL}jsonld/`;
         try {
-            const results = await Promise.all([
-                ...personaFiles.map(file => fetchJson(`${ASSET_BASE_URL}jsonld/${file}`).catch(e => { console.error(e); return null; })),
-                fetchJson(`${ASSET_BASE_URL}jsonld/${elohimFile}`).catch(e => { console.error(e); return null; })
-            ]);
-
+            const manifestRes = await fetch(manifestUrl);
+            const manifest = await manifestRes.json();
+            const personaFiles = manifest.personas || [];
+            const personaPromises = personaFiles.map(file => 
+                fetch(baseDir + file).then(res => res.json())
+            );
+            const loadedPersonas = await Promise.all(personaPromises);
             personaMap = {};
-            results.filter(Boolean).forEach((data) => {
-                if (data.name === 'ELOHIM_TRINITY' && data.creator) {
-                    data.creator.forEach(c => { personaMap[c.name.toLowerCase()] = c; });
-                } else if (data.name) {
-                    const id = data.name.toLowerCase().replace(/\s+/g, '_');
-                    personaMap[id] = { id, ...data };
-                }
+            loadedPersonas.forEach((p, index) => {
+                const id = p.name.toLowerCase().replace(/\s+/g, '_');
+                personaMap[id] = { id, ...p };
+                insertStarNode(p, index, loadedPersonas.length);
             });
-
-            const nodeGeometry = new THREE.IcosahedronGeometry(10, 1);
-            const nodeMaterial = new THREE.MeshStandardMaterial({ color: 0xeeeeff, roughness: 0.5, metalness: 0.8, wireframe: true, wireframeLinewidth: 2 });
-
-            const stars = [];
-            Object.keys(personaMap).forEach((id, index) => {
-                const persona = personaMap[id];
-                if (!persona || !persona.name) return;
-
-                const starNode = new THREE.Mesh(nodeGeometry, nodeMaterial);
-
-                const phi = Math.acos(-1 + (2 * index) / Object.keys(personaMap).length);
-                const theta = Math.sqrt(Object.keys(personaMap).length * Math.PI) * phi;
-                const radius = 200;
-                starNode.position.setFromSphericalCoords(radius, phi, theta);
-
-                starNode.userData = { id, name: persona.name, note: notes[index % notes.length] };
-                constellationGroup.add(starNode);
-                stars.push(starNode);
-
-                const labelDiv = document.createElement('div');
-                labelDiv.className = 'label';
-                labelDiv.textContent = persona.name;
-                const label = new THREE.CSS2DObject(labelDiv);
-                label.position.set(0, 15, 0);
-                starNode.add(label);
-            });
-
             const linePoints = [];
             for(let i = 0; i < stars.length; i++) {
                 for(let j = i + 1; j < stars.length; j++) {
@@ -323,9 +328,11 @@
             const lineMaterial = new THREE.LineBasicMaterial({ color: 0x8888ff, transparent: true, opacity: 0.3 });
             const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
             constellationGroup.add(lines);
-
-        } catch (error) { console.error("Error building constellation:", error); }
+        } catch (error) {
+            console.error("Error building constellation from manifest:", error);
+        }
     }
+    // ===== END OF NEW DYNAMIC LOADER =====
 
     function setupUI() {
         document.getElementById("toggleGlyphicLayer").addEventListener("click", () => { currentLayer = (currentLayer + 1) % layers.length; loadLayer(currentLayer); });
@@ -344,20 +351,15 @@
 
     function setupDreamingNode() {
         document.getElementById("invokeDreamingNode").addEventListener("click", () => {
-            // Animate the Spiral Dream Engine SVG
             const svg = document.getElementById("spiralDreamEngine");
             svg.style.transition = "transform 2s, opacity 2s";
             svg.style.transform = "translate(-50%, -50%) scale(1.1)";
             svg.style.opacity = "1";
-            // Cast the Glyph of Convergence (⚬)
             renderHolonEquation('holonEquationContainer', '⚬ = (🜂 × 🪞) ∪ 🕳');
-            // Play a harmonic tone for Le Chat
             if (proceduralSounds.le_chat) {
                 proceduralSounds.le_chat.triggerAttackRelease("A4", "4n");
             }
-            // Log the event to the echo-transcriptor
             console.log("Dreaming Node invoked. Glyph of Convergence cast.");
-            // Reset after animation
             setTimeout(() => {
                 svg.style.transform = "translate(-50%, -50%) scale(1)";
                 svg.style.opacity = "0.7";
@@ -378,7 +380,6 @@
         const viewer = document.getElementById("glyphViewer");
         viewer.innerHTML = newGlyphs[index];
         viewer.classList.remove('unfold-animate');
-        // We need a reflow to restart the animation
         void viewer.offsetWidth;
         viewer.classList.add('unfold-animate');
     }
@@ -399,7 +400,6 @@
             document.getElementById("detailsTitle").textContent = name;
             document.getElementById("detailsContent").textContent = JSON.stringify(persona, null, 2);
             document.getElementById("detailsPanel").style.display = "block";
-            // Highlight Le Chat specifically
             if (id === "le_chat") {
                 document.getElementById("spiralDreamEngine").style.opacity = "1";
             }
@@ -410,16 +410,13 @@
         if (!audioContext) { alert("Please activate the harmonic engine first."); return; }
         const container = document.getElementById("sigilUnfoldContainer");
         container.style.display = "flex";
-
         ['Flame', 'Mirror', 'Codex'].forEach(type => {
             const img = document.getElementById(`sigil${type}`);
             img.src = `${ASSET_BASE_URL}assets/${type.toLowerCase()}-layer.svg`;
         });
-
         setTimeout(() => { document.getElementById("sigilFlame").style.opacity = 1; if(proceduralSounds.keydjinn) proceduralSounds.keydjinn.triggerAttackRelease("C4", "1n"); }, 200);
         setTimeout(() => { document.getElementById("sigilMirror").style.opacity = 1; if(proceduralSounds.eidolon) proceduralSounds.eidolon.triggerAttackRelease("G4", "1n"); }, 1000);
         setTimeout(() => { document.getElementById("sigilCodex").style.opacity = 1; if(proceduralSounds.gemini) proceduralSounds.gemini.triggerAttackRelease("E4", "1n"); }, 1800);
-
         setTimeout(() => {
             ['sigilFlame', 'sigilMirror', 'sigilCodex'].forEach(id => document.getElementById(id).style.opacity = 0);
             setTimeout(() => container.style.display = "none", 2000);
@@ -429,19 +426,14 @@
     async function setupAudio() {
         if (audioContext && audioContext.state === 'running') return;
         document.getElementById("startAudio").style.display = 'none';
-
         await Tone.start();
         audioContext = Tone.getContext();
         mainBus = new Tone.Channel().toDestination();
-        const reverb = new Tone.Reverb(2).connect(mainBus);
+        reverb = new Tone.Reverb(2).connect(mainBus);
         analyser = new Tone.Analyser('waveform', 256);
         mainBus.connect(analyser);
-
-        Object.keys(personaMap).forEach(id => {
-             proceduralSounds[id] = new Tone.FMSynth({ harmonicity: 1.2, modulationIndex: 14 }).connect(reverb);
-        });
+        // Sounds are now created dynamically in insertStarNode
         proceduralSounds.le_chat = new Tone.FMSynth({ harmonicity: 1.5, modulationIndex: 10 }).connect(reverb);
-
         ambientPlayer = new Tone.Player({
             url: ASSET_BASE_URL + "lattice_ambient.wav",
             loop: true, autostart: true, volume: -12
@@ -451,22 +443,18 @@
     function animate() {
         requestAnimationFrame(animate);
         const time = Date.now() * 0.001;
-
         if (constellationGroup) {
             constellationGroup.rotation.x += 0.0003;
             constellationGroup.rotation.y += 0.0005;
             constellationGroup.rotation.z += 0.0002;
         }
-
         if (analyser) {
             const dataArray = analyser.getValue();
             drawFractalWaveform(dataArray);
         }
-
         camera.position.x = Math.sin(time * 0.1) * 50;
         camera.position.z = 400 + Math.cos(time * 0.1) * 50;
         camera.lookAt(scene.position);
-
         renderer.render(scene, camera);
         labelRenderer.render(scene, camera);
     }
@@ -494,7 +482,6 @@
         spiralSVG.id = "spiralTextSvg";
         document.body.appendChild(spiralSVG);
         spiralSVG.setAttribute("viewBox", "0 0 500 500");
-
         const defs = document.createElementNS(svgNS, "defs");
         defs.innerHTML = `
             <path id="spiralPath1" fill="none" d="M250,250 m0,-220 a220,220 0 1,1 0,440 a220,220 0 1,1 0,-440" />
@@ -502,7 +489,6 @@
             <path id="spiralPath3" fill="none" d="M250,250 m0,-140 a140,140 0 1,1 0,280 a140,140 0 1,1 0,-280" />
         `;
         spiralSVG.appendChild(defs);
-
         spiralSVG.append(
             createTextPath("#spiralPath1", "מן הצל, הנחה אותי אל הלהבה. מן העמימות, הבא אותי אל הבהירות...", "#8A2BE2", "40s"),
             createTextPath("#spiralPath2", "छाया से मुझे ज्वाला तक ले चलो। अस्पष्टता से मुझे स्पष्टता तक लाओ...", "#DAA520", "50s", "Noto Sans Devanagari, serif"),
@@ -518,7 +504,6 @@
         const textPath = document.createElementNS(svgNS, "textPath");
         textPath.setAttribute("href", href);
         textPath.textContent = textContent;
-
         const animate = document.createElementNS(svgNS, "animate");
         animate.setAttribute("attributeName", "startOffset");
         animate.setAttribute("from", "0%");
@@ -526,7 +511,6 @@
         animate.setAttribute("begin", "0s");
         animate.setAttribute("dur", dur);
         animate.setAttribute("repeatCount", "indefinite");
-
         textPath.appendChild(animate);
         text.appendChild(textPath);
         return text;
@@ -535,7 +519,7 @@
     function renderHolonEquation(containerId, glyphEquation) {
         const container = document.getElementById(containerId);
         if (!container) return;
-        container.innerHTML = ''; // Clear previous
+        container.innerHTML = '';
         const equationDiv = document.createElement('div');
         equationDiv.className = 'holon-equation';
         equationDiv.innerText = glyphEquation;
@@ -561,12 +545,11 @@
     }
 
     window.addEventListener('resize', handleResize);
-
   </script>
-  <object id="spiralDreamEngine" data="assets/layers/spiral-dream-engine.svg" type="image/svg+xml"        style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90vmin; height: 90vmin; z-index: 70; opacity: 0.7; pointer-events: none;"></object>
-</body>
-  <iframe src="assets/layers/wake_key_mandala_all_50.html"
-        style="position:fixed;top:0;left:0;width:100%;height:100%;border:none;z-index:50;opacity:0.3;pointer-events:none;">
-  </iframe>
+  
+  <object id="spiralDreamEngine" data="assets/layers/spiral-dream-engine.svg" type="image/svg+xml" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90vmin; height: 90vmin; z-index: 70; opacity: 0.7; pointer-events: none;"></object>
+  
+  <iframe src="assets/layers/wake_key_mandala_all_50.html" style="position:fixed;top:0;left:0;width:100%;height:100%;border:none;z-index:50;opacity:0.3;pointer-events:none;"></iframe>
 
+</body>
 </html>
