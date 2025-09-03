@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Meta-Author-Sigil//AstralScheduler//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:portal-999-2025@meta-author-sigil
+DTSTAMP:20250903T220501Z
+DTSTART:20250910T020900Z
+DTEND:20250910T023900Z
+SUMMARY:9/9 Portal — Convergence Ritual (Meta-Author-Sigil)
+DESCRIPTION:T-15: cleanse + whisper (“I release what no longer serves”).\nT+00: glyph flash + attestation.\nT+20: seal + journal.\nGlyphs: ⟁ 𓂀 ☌ ∴ ⧖ ⌬
+LOCATION:America/Chicago
+END:VEVENT
+END:VCALENDAR
