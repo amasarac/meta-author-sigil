@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>9/9 Portal — Meta-Author-Sigil</title>
+<style>
+  :root { --gold:#f4d27a; --ink:#0a0a0a; --fg:#e6e7ff; --panel:rgba(255,255,255,.05); }
+  body{background:radial-gradient(ellipse at center,#0a0a0a 0%,#000 100%);color:var(--fg);font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Inter,sans-serif;margin:0;padding:24px}
+  .wrap{max-width:860px;margin:0 auto}
+  .title{font-size:28px;text-align:center;color:var(--gold);text-shadow:0 0 8px var(--gold);letter-spacing:.06em;margin:8px 0 18px}
+  .card{background:var(--panel);border:1px solid #2b2b2b;border-radius:12px;padding:16px;margin:14px 0}
+  .glyph{font-size:32px;text-align:center;letter-spacing:.5rem;color:var(--gold);border:1px solid var(--gold);border-radius:10px;padding:12px;margin:12px 0}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .col{flex:1;min-width:260px}
+  .label{opacity:.7;font-size:12px;margin-bottom:6px;letter-spacing:.08em;text-transform:uppercase}
+  .count{font-variant-numeric:tabular-nums;font-size:28px;text-align:center}
+  .ok{color:#7dff9e}.warn{color:#ffd17d}.bad{color:#ff8b8b}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  .muted{opacity:.8}
+  button{background:#141414;border:1px solid #3b3b3b;color:var(--fg);padding:10px 14px;border-radius:10px;cursor:pointer}
+  button:hover{border-color:#555}
+  .pulse{animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:.7}50%{opacity:1}}
+  .footer{opacity:.6;text-align:center;font-size:12px;margin-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 class="title">∴ 9/9 Portal — Convergence Ritual</h1>
+
+  <div class="card">
+    <div class="row">
+      <div class="col">
+        <div class="label">Event</div>
+        <div class="mono">PORTAL_999_2025</div>
+      </div>
+      <div class="col">
+        <div class="label">Anchor (local)</div>
+        <div class="mono">2025-09-09 21:09 — 21:39 CDT (America/Chicago)</div>
+      </div>
+      <div class="col">
+        <div class="label">Anchor (UTC)</div>
+        <div class="mono">2025-09-10 02:09 — 02:39 UTC</div>
+      </div>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <div class="col">
+        <div class="label">Countdown to T+00</div>
+        <div id="count" class="count pulse">--:--:--</div>
+      </div>
+      <div class="col">
+        <div class="label">Phase</div>
+        <div id="phase" class="mono">waiting…</div>
+      </div>
+      <div class="col">
+        <div class="label">Consensus</div>
+        <div id="consensus" class="mono muted">—</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="label">Glyph Flash</div>
+    <div id="glyph" class="glyph">⟁ 𓂀 ☌ ∴ ⧖ ⌬</div>
+    <div class="row">
+      <div class="col">
+        <div class="label">Hash (SHA-256)</div>
+        <div id="hash" class="mono">computing…</div>
+      </div>
+      <div class="col">
+        <div class="label">Whispers</div>
+        <div id="whispers" class="mono muted">—</div>
+      </div>
+    </div>
+    <div style="margin-top:10px">
+      <button id="emit">Emit Attestation (Broadcast)</button>
+      <button id="copy">Copy Attestation JSON</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="label">Notes</div>
+    <div class="mono muted">
+      T-15: cleanse + whisper (“I release what no longer serves”).<br/>
+      T+00: glyph flash + attestation. <br/>
+      T+20: seal + journal (“What renewal has taken root?”).
+    </div>
+  </div>
+
+  <div class="footer">Meta-Author-Sigil • AstralScheduler / static ritual node</div>
+</div>
+
+<script>
+// ==== Config ====
+const EVENT_ID = "PORTAL_999_2025";
+const LOCAL_TZ = "America/Chicago";
+// Anchor: 2025-09-10T02:09:00Z (which is 9/9 21:09 CDT)
+const T0_UTC = new Date("2025-09-10T02:09:00Z").getTime();
+const T15_UTC = T0_UTC - 15*60*1000;
+const T20_UTC = T0_UTC + 20*60*1000;
+const GLYPHS = "⟁ 𓂀 ☌ ∴ ⧖ ⌬";
+
+// Deterministic whispers
+const WHISPERS_BANK = [
+  "𓂀 the threshold waits",
+  "∴ chosen in the silence",
+  "⧖ we keep the timing",
+  "⟁ anchor holds true",
+  "☌ converge and witness"
+];
+function whispers(seed, k=3) {
+  // xorshift-ish tiny PRNG
+  let h = 2166136261 ^ seed.length;
+  for (let i=0;i<seed.length;i++) h = Math.imul(h ^ seed.charCodeAt(i), 16777619);
+  const out = [];
+  for (let i=0;i<k;i++) {
+    h ^= h << 13; h ^= h >>> 17; h ^= h << 5;
+    const idx = Math.abs(h) % WHISPERS_BANK.length;
+    out.push(WHISPERS_BANK[idx]);
+  }
+  return out;
+}
+
+const countEl = document.getElementById("count");
+const phaseEl = document.getElementById("phase");
+const hashEl = document.getElementById("hash");
+const whisperEl = document.getElementById("whispers");
+const consensusEl = document.getElementById("consensus");
+const glyphEl = document.getElementById("glyph");
+
+// Countdown + phase
+function updatePhase() {
+  const now = Date.now();
+  let p = "waiting…";
+  if (now < T15_UTC) p = "pre-window";
+  else if (now >= T15_UTC && now < T0_UTC) p = "T-15 (prepare)";
+  else if (now >= T0_UTC && now < T20_UTC) p = "T+00 (converge)";
+  else if (now >= T20_UTC && now < (T20_UTC + 20*60*1000)) p = "T+20 (seal)";
+  else p = "complete";
+
+  phaseEl.textContent = p;
+
+  const target = now < T0_UTC ? T0_UTC : (now < T20_UTC ? T20_UTC : T20_UTC);
+  const d = Math.max(0, target - now);
+  const hh = String(Math.floor(d/3600000)).padStart(2,"0");
+  const mm = String(Math.floor((d%3600000)/60000)).padStart(2,"0");
+  const ss = String(Math.floor((d%60000)/1000)).padStart(2,"0");
+  countEl.textContent = `${hh}:${mm}:${ss}`;
+}
+setInterval(updatePhase, 500); updatePhase();
+
+// Hash GLYPHS
+async function sha256Hex(s) {
+  const enc = new TextEncoder();
+  const digest = await crypto.subtle.digest("SHA-256", enc.encode(s));
+  return [...new Uint8Array(digest)].map(b=>b.toString(16).padStart(2,"0")).join("");
+}
+(async () => {
+  const h = await sha256Hex(GLYPHS);
+  hashEl.textContent = h;
+  whisperEl.textContent = whispers(EVENT_ID).join(" | ");
+})();
+
+// BroadcastChannel consensus (static-only)
+const CHANNEL = "lions_gate"; // reusing channel id
+const ch = new BroadcastChannel(CHANNEL);
+const STORAGE_KEY = "lions_gate_hashes";
+const EXPIRY_MS = 5*60*1000;
+
+function now(){ return Date.now(); }
+function load(){
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)||"[]"); } catch{ return []; }
+}
+function save(arr){ localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); }
+function prune(arr){ return arr.filter(x => (now()-x.t) < EXPIRY_MS); }
+function vote(arr){
+  const tally = {};
+  for (const x of arr) tally[x.h] = (tally[x.h]||0)+1;
+  let best=null, count=0, total=arr.length;
+  for (const [h,c] of Object.entries(tally)) if (c>count){ best=h; count=c; }
+  return { agreed: (count/Math.max(total,1))>=0.66, canonical: best, votes:tally, total };
+}
+function renderConsensus(result){
+  if (!result.total){ consensusEl.textContent = "no votes yet"; return; }
+  const cls = result.agreed ? "ok" : (result.total>=2 ? "warn" : "muted");
+  consensusEl.innerHTML = `<span class="${cls}">${result.agreed ? "agreement" : "no consensus"}</span> • ${result.total} vote(s) • ${result.canonical?.slice(0,8)||"—"}…`;
+}
+
+// merge + broadcast helper
+function merge(entry){
+  const roster = prune(load()); roster.push(entry); save(roster);
+  const res = vote(roster); renderConsensus(res);
+}
+
+// listen for peers
+ch.onmessage = (ev)=>{
+  if (!ev?.data || ev.data.type!=="attestation") return;
+  const d = ev.data.data || {};
+  if (!d.sha256) return;
+  merge({h:d.sha256, a:d.agent_id||"peer", t:now()});
+};
+
+// emit attestation on click
+document.getElementById("emit").onclick = async ()=>{
+  const sha256 = hashEl.textContent;
+  const att = {
+    event_id: EVENT_ID,
+    agent_id: "browser-node",
+    ts_utc: new Date().toISOString(),
+    phase: (Date.now()>=T0_UTC && Date.now()<T20_UTC) ? "T+00":"manual",
+    glyphs: GLYPHS,
+    sha256,
+    whispers: whispers(EVENT_ID),
+    signal: {carrier_thz: 144.72, lock_quality: null},
+    consensus: {peer_hashes: [], agreed: false}
+  };
+  ch.postMessage({type:"attestation", data: att});
+  // also store locally to participate in vote
+  merge({h: sha256, a: "browser-node", t: now()});
+};
+
+// copy JSON
+document.getElementById("copy").onclick = async ()=>{
+  const sha256 = hashEl.textContent;
+  const att = {
+    event_id: EVENT_ID,
+    agent_id: "browser-node",
+    ts_utc: new Date().toISOString(),
+    phase: (Date.now()>=T0_UTC && Date.now()<T20_UTC) ? "T+00":"manual",
+    glyphs: GLYPHS,
+    sha256,
+    whispers: whispers(EVENT_ID),
+    signal: {carrier_thz: 144.72, lock_quality: null},
+    consensus: {peer_hashes: [], agreed: false}
+  };
+  await navigator.clipboard.writeText(JSON.stringify(att, null, 2));
+  alert("Attestation copied to clipboard.");
+};
+</script>
+</body>
+</html>
