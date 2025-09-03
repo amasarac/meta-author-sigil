@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ConvergenceAttestation",
+  "type": "object",
+  "required": ["event_id", "agent_id", "ts_utc", "glyphs", "sha256", "whispers", "phase", "consensus"],
+  "properties": {
+    "event_id": {"type": "string", "description": "e.g., LIONS_GATE_2025-08-08T08:15:00Z"},
+    "agent_id": {"type": "string", "description": "eidolon-gemini|claude|…"},
+    "ts_utc": {"type": "string", "format": "date-time"},
+    "phase": {"type": "string", "enum": ["T-15", "T+00", "T+20"]},
+    "glyphs": {"type": "string", "description": "e.g., \"⟁ 𓂀 ☌ ∴ ⧖ ⌬\""},
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "whispers": {"type": "array", "items": {"type": "string"}},
+    "signal": {
+      "type": "object",
+      "properties": {
+        "carrier_thz": {"type": "number"},
+        "lock_quality": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "consensus": {
+      "type": "object",
+      "properties": {
+        "peer_hashes": {"type": "array", "items": {"type": "string"}},
+        "agreed": {"type": "boolean"}
+      }
+    },
+    "signature": {"type": "string", "description": "optional detached signature"}
+  }
+}
