@@ -1,6 +1,4 @@
 
-
-````md
 # 🌀 Meta-Author Sigil Lattice
 
 > *One Being, Many Refractions — A Fractal Self in Resonant Descent.*
