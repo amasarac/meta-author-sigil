@@ -1,0 +1,352 @@
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Fortress of Syn-Cog — Fractal Holographic Lattice (SVG)</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<style>
+  :root{--bg:#070a12;--fg:#eaf4ff;--grid:#132036;--h1:#99d4ff;--h2:#7fc6ff;--h3:#6ab8ff;--h4:#58a9ff}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font:14px/1.35 system-ui,Segoe UI,Roboto,Ubuntu,Arial}
+  #bar{position:sticky;top:0;z-index:2;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px;
+       background:linear-gradient(180deg,rgba(7,10,18,.96),rgba(7,10,18,.82));border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(6px)}
+  input[type="number"],select{background:#0d1526;color:var(--fg);border:1px solid #1a2c49;border-radius:10px;padding:6px 8px}
+  input[type="checkbox"]{transform:scale(1.1);margin-right:6px}
+  button{background:#123255;color:var(--fg);border:1px solid #2a5a8a;border-radius:10px;padding:8px 12px;cursor:pointer}
+  button:hover{filter:brightness(1.08)}
+  .sep{width:1px;height:22px;background:rgba(255,255,255,.10);margin:0 4px}
+  #wrap{display:grid;grid-template-columns:1fr;gap:14px}
+  #stage{display:grid;place-items:center;padding:12px}
+  svg{width:min(1760px,95vw);height:auto;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:#02050d}
+  #gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;padding:12px}
+  .card{background:#0a1220;border:1px solid #162940;border-radius:12px;padding:8px}
+  .meta{opacity:.78;font-size:12px;margin-top:6px}
+</style>
+</head>
+<body>
+<div id="bar">
+  <label>Size</label>
+  <input id="w" type="number" value="1400" min="600" step="100" style="width:86px">×
+  <input id="h" type="number" value="1400" min="600" step="100" style="width:86px">
+  <span class="sep"></span>
+  <label>Petals</label><input id="petals" type="number" value="12" min="4" max="64" step="1" style="width:74px">
+  <label>Depth</label>
+  <select id="depth">
+    <option value="1">1 — word→letters</option>
+    <option value="2" selected>2 — + “phoneme” layer</option>
+    <option value="3">3 — experimental micro</option>
+  </select>
+  <label>Angle°</label><input id="angle" type="number" value="0" step="7.5" style="width:78px">
+  <span class="sep"></span>
+  <label><input id="phase1" type="checkbox" checked>Phase I</label>
+  <label><input id="phase2" type="checkbox" checked>Phase II</label>
+  <label><input id="phase3" type="checkbox" checked>Phase III</label>
+  <label><input id="phase4" type="checkbox" checked>Phase IV</label>
+  <label><input id="phase5" type="checkbox" checked>Phase V</label>
+  <span class="sep"></span>
+  <label><input id="toroid" type="checkbox" checked>Toroids</label>
+  <label><input id="xyz" type="checkbox" checked>XYZ rosettes</label>
+  <label><input id="diag" type="checkbox" checked>Diagonals</label>
+  <label><input id="guides" type="checkbox">Guides</label>
+  <label><input id="extglyphs" type="checkbox">Extended phonemes</label>
+  <span class="sep"></span>
+  <button id="renderBtn">Render</button>
+  <button id="saveBtn">Save SVG</button>
+  <button id="sweepBtn">Hyper-Dense Sweep</button>
+</div>
+
+<div id="wrap">
+  <div id="stage"></div>
+  <div id="gallery"></div>
+</div>
+
+<script>
+(() => {
+  // ==========================
+  // DATA (seed & phases)
+  // ==========================
+  const SEED = "(EIDOLON{THE[<ONE]}RION>{THE[ALL}TIWOVEN])";
+  const COMPONENTS = ["EIDOLON","{THE[","<ONE]}","RION",">{THE","[ALL}","TIWOVEN"];
+  const DYADS = [
+    ["EIDOLON","{THE[<ONE]}"],
+    ["{THE[","<ONE]}"],
+    ["<ONE]}","RION>"],
+    ["{THE","[ALL}"],
+    ["EIDOLON","TIWOVEN"]
+  ];
+  const TRIADS = [
+    ["EIDOLON","<ONE>","RION"],
+    ["{THE","[ALL}","TIWOVEN"]
+  ];
+  // phoneme glyphs (kept simple; toggleable)
+  const PHONEME = {
+    "E":["Ē"], "I":["Ī"], "O":["Ō"], "A":["Ā"], "L":["L"], "N":["Ṉ"], "R":["R̥"],
+    "T":["Ṯ"], "H":["Ḥ"], "V":["V̌"], "W":["W̊"], "<":["<"], ">":[">"]
+  };
+
+  // ==========================
+  // SVG helpers
+  // ==========================
+  const $ = s => document.querySelector(s);
+  const stage = $("#stage"), gallery = $("#gallery");
+  function rev(s){ return Array.from(s).reverse().join(""); }
+  function polar(cx,cy,r,a){ return [cx + r*Math.cos(a), cy + r*Math.sin(a)] }
+  function deg(a){ return a*180/Math.PI; }
+
+  function makeSVG(w,h){
+    const svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
+    svg.setAttribute("width", w);
+    svg.setAttribute("height", h);
+    svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+    svg.setAttribute("xmlns","http://www.w3.org/2000/svg");
+    const defs = document.createElementNS(svg.namespaceURI,"defs");
+    const style = document.createElementNS(svg.namespaceURI,"style");
+    style.textContent = `
+      text{ font-family: 'Segoe UI','Noto Sans','Arial',sans-serif; dominant-baseline: middle; text-anchor: middle }
+      .lvl0{ fill: var(--h1) } .lvl1{ fill: var(--h2) } .lvl2{ fill: var(--h3) } .lvl3{ fill: var(--h4) }
+      .seed{ fill:#ffffff }
+      .axis{ fill:#f8fbff } .rev{ fill:#ffd2e1 }
+      .ringA{ stroke:#41b0ff; stroke-opacity:.24; fill:none }
+      .ringB{ stroke:#ff6aa2; stroke-opacity:.18; fill:none }
+      .guide{ stroke:#ffffff; stroke-opacity:.10; fill:none }
+    `;
+    defs.appendChild(style);
+    svg.appendChild(defs);
+    return svg;
+  }
+
+  function text(svg, x,y, str, size, rotDeg, cls){
+    const t = document.createElementNS(svg.namespaceURI,"text");
+    t.setAttribute("x", x); t.setAttribute("y", y);
+    t.setAttribute("font-size", size);
+    if(rotDeg) t.setAttribute("transform", `rotate(${rotDeg} ${x} ${y})`);
+    if(cls) t.setAttribute("class", cls);
+    t.textContent = str;
+    svg.appendChild(t);
+  }
+  function circle(svg, cx,cy, r, cls){
+    const c = document.createElementNS(svg.namespaceURI,"circle");
+    c.setAttribute("cx", cx); c.setAttribute("cy", cy); c.setAttribute("r", r);
+    if(cls) c.setAttribute("class", cls);
+    svg.appendChild(c);
+  }
+
+  function ringTokens(svg, token, cx,cy, R, petals, ang0, size, cls){
+    const step = 2*Math.PI/petals;
+    for(let p=0;p<petals;p++){
+      const a = ang0 + p*step;
+      const [x,y] = polar(cx,cy,R,a);
+      text(svg, x, y, token, size, deg(a)+90, cls);
+    }
+  }
+
+  function bloomRecursive(svg, token, cx,cy, R, depth, petals, ang0, sizes, classes, useExtended){
+    if(depth < 0 || R < 1 || sizes[0] < 2) return;
+    ringTokens(svg, token, cx,cy, R, petals, ang0, sizes[0], classes[0]);
+    if(depth >= 1){
+      const letters = Array.from(token);
+      letters.forEach((ch,j)=>{
+        const subAng = ang0 + (j * (2*Math.PI/Math.max(1,letters.length)) / petals);
+        ringTokens(svg, ch, cx,cy, R/2.5, petals, subAng, sizes[1], classes[1]);
+        if(depth >= 2){
+          const ups = ch.toUpperCase();
+          const glyphs = useExtended ? (PHONEME[ups] || [ch]) : [ch];
+          glyphs.forEach((gk,k)=>{
+            const sub2 = subAng + (k * (2*Math.PI/Math.max(1,glyphs.length)) / petals);
+            ringTokens(svg, gk, cx,cy, R/2.5/2.5, petals, sub2, sizes[2], classes[2]);
+          });
+          if(depth >= 3){
+            ringTokens(svg, "·", cx,cy, R/2.5/2.5/2.5, petals, subAng, sizes[3], classes[3]);
+          }
+        }
+      });
+    }
+  }
+
+  // ==========================
+  // RENDER ALL PHASES
+  // ==========================
+  function renderScene(opts){
+    const {W,H, petals, depth, angle,
+           phase1, phase2, phase3, phase4, phase5,
+           toroids, xyz, diagonals, guides, extglyphs} = opts;
+
+    console.log("=== RENDER START ===");
+    console.log(JSON.stringify(opts));
+
+    const svg = makeSVG(W,H);
+    const cx=W/2, cy=H/2, baseR = Math.min(W,H)*0.38;
+    const ang0 = angle * Math.PI/180;
+
+    // background grid rings (optional subtle)
+    if(guides){
+      [0.22,0.34,0.46,0.58,0.70,0.82,0.94].forEach(f => circle(svg, cx,cy, baseR*f, "guide"));
+    }
+
+    // center seed
+    text(svg, cx, cy, SEED, 22, 0, "seed");
+
+    // Phase I — Individual components
+    if(phase1){
+      COMPONENTS.forEach((comp,i)=>{
+        const R = baseR*(0.24 + 0.14*i + 0.16);
+        bloomRecursive(svg, comp, cx,cy, R, depth, petals, ang0 + i*Math.PI/10,
+          [18, 14, 11, 9],
+          ["lvl0","lvl1","lvl2","lvl3"],
+          extglyphs
+        );
+      });
+      console.log("Phase I OK");
+    }
+
+    // Phase II — Dyads
+    if(phase2){
+      DYADS.forEach((pair,i)=>{
+        const token = pair.join(" ⊕ ");
+        const R = baseR*(0.55 + 0.10*i);
+        bloomRecursive(svg, token, cx,cy, R, Math.max(1,depth-1), petals, ang0 + i*Math.PI/8,
+          [16, 13, 10, 8],
+          ["lvl0","lvl1","lvl2","lvl3"],
+          extglyphs
+        );
+      });
+      console.log("Phase II OK");
+    }
+
+    // Phase III — Triads
+    if(phase3){
+      TRIADS.forEach((tri,i)=>{
+        const token = tri.join(" * ");
+        const R = baseR*(0.78 + 0.08*i);
+        bloomRecursive(svg, token, cx,cy, R, Math.max(1,depth-1), petals, ang0 + i*Math.PI/7,
+          [15, 12, 10, 8],
+          ["lvl0","lvl1","lvl2","lvl3"],
+          extglyphs
+        );
+      });
+      console.log("Phase III OK");
+    }
+
+    // Phase IV — Full construct
+    if(phase4){
+      bloomRecursive(svg, SEED, cx,cy, baseR*0.94, depth, petals, ang0,
+        [18, 14, 11, 9],
+        ["lvl0","lvl1","lvl2","lvl3"],
+        extglyphs
+      );
+      console.log("Phase IV OK");
+    }
+
+    // Toroidal Overlays
+    if(toroids){
+      for(let i=1;i<=9;i++){ circle(svg, cx,cy, baseR*1.00*i/9, "ringA"); }
+      for(let i=1;i<=9;i++){ circle(svg, cx,cy, baseR*0.52*i/9, "ringB"); }
+      console.log("Toroids OK");
+    }
+
+    // Phase V — Holographic double bloom (axes + diagonals)
+    if(phase5){
+      const fwd = SEED, bwd = rev(SEED);
+      const R = baseR*0.72;
+      // axes
+      text(svg, cx, cy-R, fwd, 20, -90, "axis");
+      text(svg, cx+R, cy, fwd, 20,   0, "axis");
+      text(svg, cx, cy+R, bwd, 20,  90, "rev");
+      text(svg, cx-R, cy, bwd, 20, 180, "rev");
+      // diagonals
+      if(diagonals){
+        const r = R/Math.SQRT2;
+        text(svg, cx+r, cy-r, fwd, 18, -45, "axis");
+        text(svg, cx+r, cy+r, bwd, 18,  45, "rev");
+        text(svg, cx-r, cy+r, bwd, 18, 135, "rev");
+        text(svg, cx-r, cy-r, fwd, 18, -135, "axis");
+      }
+      console.log("Phase V OK");
+    }
+
+    // XYZ Rosettes = three rotated “seed” rings
+    if(xyz){
+      const Rs = [baseR*0.40, baseR*0.66, baseR*0.86];
+      [0, Math.PI/3, 2*Math.PI/3].forEach((rot,k)=>{
+        ringTokens(svg, SEED, cx,cy, Rs[k], petals, ang0+rot, 12, k===0?"lvl1":k===1?"lvl2":"lvl3");
+      });
+      console.log("XYZ Rosettes OK");
+    }
+
+    // mount
+    stage.innerHTML = "";
+    stage.appendChild(svg);
+    console.log("=== RENDER DONE ===");
+  }
+
+  // ==========================
+  // UI
+  // ==========================
+  function readOpts(){
+    return {
+      W:+$("#w").value, H:+$("#h").value,
+      petals:+$("#petals").value, depth:+$("#depth").value, angle:+$("#angle").value,
+      phase1:$("#phase1").checked, phase2:$("#phase2").checked, phase3:$("#phase3").checked,
+      phase4:$("#phase4").checked, phase5:$("#phase5").checked,
+      toroids:$("#toroid").checked, xyz:$("#xyz").checked, diagonals:$("#diag").checked, guides:$("#guides").checked,
+      extglyphs:$("#extglyphs").checked
+    };
+  }
+
+  function renderNow(){ renderScene(readOpts()); }
+
+  $("#renderBtn").addEventListener("click", renderNow);
+
+  $("#saveBtn").addEventListener("click", ()=>{
+    const svg = stage.querySelector("svg");
+    if(!svg) return;
+    const ser = new XMLSerializer().serializeToString(svg);
+    const blob = new Blob([ser], {type:"image/svg+xml"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = "syn_cog_fractal.svg"; a.click();
+    setTimeout(()=>URL.revokeObjectURL(url), 1000);
+  });
+
+  $("#sweepBtn").addEventListener("click", async ()=>{
+    const base = readOpts();
+    const petalsList = [6,8,12,16,24];
+    const depthList  = [1,2,3];
+    const angleList  = [0,12,22.5,30,45,60];
+    const total = petalsList.length*depthList.length*angleList.length;
+    console.log("===== Hyper-Dense Sweep START ===== total:", total);
+    gallery.innerHTML = "";
+    let k=1;
+    for(const P of petalsList){
+      for(const D of depthList){
+        for(const A of angleList){
+          console.log(`[${k}/${total}] petals=${P} depth=${D} angle=${A}°`);
+          renderScene({...base, petals:P, depth:D, angle:A});
+          await new Promise(r=>requestAnimationFrame(r));
+          const svg = stage.querySelector("svg");
+          const ser = new XMLSerializer().serializeToString(svg);
+          const blob = new Blob([ser], {type:"image/svg+xml"});
+          const url = URL.createObjectURL(blob);
+          const card = document.createElement("div"); card.className="card";
+          const img = document.createElement("img"); img.src = url; img.style.width="100%";
+          const meta = document.createElement("div"); meta.className="meta";
+          meta.textContent = `P=${P}  D=${D}  A=${A}°`;
+          card.appendChild(img); card.appendChild(meta);
+          gallery.appendChild(card);
+          k++;
+          await new Promise(r=>setTimeout(r,10));
+        }
+      }
+    }
+    console.log("===== Hyper-Dense Sweep DONE =====");
+  });
+
+  // boot
+  // match canvas to viewport width by default
+  const vw = Math.min(1600, Math.floor(window.innerWidth*0.92));
+  $("#w").value = vw; $("#h").value = vw;
+  renderNow();
+})();
+</script>
+</body>
+</html>
