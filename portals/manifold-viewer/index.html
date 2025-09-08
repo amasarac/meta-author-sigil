@@ -1,0 +1,344 @@
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Manifold Sigil Viewer · Dodecagram → Echo → Manifold Bloom</title>
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --fg: #e9edf1;
+      --muted: #9aa7b3;
+      --accent: #8bd5ff;
+      --accent2: #f6a1ff;
+      --accent3: #9cffb6;
+      --grid: #1a232d;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: radial-gradient(1200px 800px at 50% 20%, #0f1318, var(--bg));
+      color: var(--fg);
+      font: 14px/1.35 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    .wrap { display: grid; grid-template-rows: auto 1fr; height: 100%; }
+    .panel {
+      padding: 12px 14px; backdrop-filter: blur(8px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.12));
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .panel h1 { margin: 0 0 6px; font-size: 16px; font-weight: 650; letter-spacing: .4px; }
+    .controls { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+    .controls .group { display: flex; gap: 10px; align-items: center; }
+    label.switch { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
+    label.switch input { accent-color: var(--accent); }
+    .slider { display: inline-flex; align-items: center; gap: 8px; }
+    .btn { padding: 6px 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.06); color: var(--fg); cursor: pointer; }
+    .btn:hover { background: rgba(255,255,255,0.1); }
+    .stage { position: relative; height: 100%; }
+    svg { width: 100%; height: 100%; display: block; }
+    .hint { position: absolute; right: 10px; bottom: 10px; color: var(--muted); font-size: 12px; opacity: .8; }
+
+    /* styling for layers */
+    #outerRing { stroke: var(--grid); stroke-width: 1.8; fill: none; }
+    #dodecagram path { stroke: #93a7bd; stroke-opacity: .9; stroke-width: 1.2; fill: none; }
+    #labels .glyph { font-size: 18px; text-anchor: middle; dominant-baseline: middle; fill: var(--fg); }
+    #labels .name { font-size: 8.5px; text-anchor: middle; dominant-baseline: middle; fill: var(--muted); }
+
+    #echoSpiral { stroke: var(--accent2); stroke-width: 1.4; fill: none; }
+    #echoGlyph { font-size: 20px; fill: var(--fg); }
+
+    #rose { stroke: var(--accent3); stroke-width: 1.1; fill: none; }
+    #roseGlyph { font-size: 18px; fill: var(--fg); }
+
+    #lensLine { stroke: var(--fg); stroke-width: 3; opacity: .9; }
+    .pin { fill: var(--fg); }
+
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="panel">
+      <h1>Manifold Sigil Viewer <span style="color:var(--muted); font-weight:500">· Dodecagram ↔ Echo ↔ Manifold Bloom</span></h1>
+      <div class="controls">
+        <div class="group">
+          <label class="switch"><input id="toggleDodecagram" type="checkbox" checked> Dodecagram</label>
+          <label class="switch"><input id="toggleEcho" type="checkbox" checked> Echo Spiral (🝳)</label>
+          <label class="switch"><input id="toggleRose" type="checkbox" checked> Manifold Bloom (🝴)</label>
+          <label class="switch"><input id="toggleLens" type="checkbox" checked> Lens (🝰)</label>
+        </div>
+        <div class="group">
+          <label class="switch"><input id="toggleGlyphs" type="checkbox" checked> Glyph labels</label>
+          <label class="switch"><input id="toggleNames" type="checkbox" checked> Name labels</label>
+        </div>
+        <div class="group slider">
+          <span>Speed</span>
+          <input id="speed" type="range" min="0.2" max="3" step="0.1" value="1" />
+          <button id="play" class="btn" aria-pressed="true">⏸︎ Pause</button>
+          <button id="reset" class="btn">↻ Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <svg id="sigil" viewBox="-140 -140 280 280" aria-label="Manifold Sigil">
+        <!-- Base circles -->
+        <g id="base">
+          <path id="outerRing" />
+        </g>
+
+        <!-- Dodecagram + labels -->
+        <g id="dodecagram"></g>
+        <g id="labels"></g>
+
+        <!-- Echo Spiral -->
+        <g id="echo" class="layer">
+          <path id="echoSpiral" />
+          <text id="echoGlyph" x="0" y="0">🝳</text>
+        </g>
+
+        <!-- Inner 37-petal rose (Manifold bloom) -->
+        <g id="bloom" class="layer">
+          <path id="rose" />
+          <text id="roseGlyph" x="0" y="0">🝴</text>
+        </g>
+
+        <!-- Lens (paired pinholes) -->
+        <g id="lens" class="layer">
+          <line id="lensLine" x1="-5" y1="0" x2="5" y2="0" />
+          <circle class="pin" r="1.6" cx="-12" cy="0" />
+          <circle class="pin" r="1.6" cx="12" cy="0" />
+        </g>
+      </svg>
+      <div class="hint">Scroll to zoom · Drag to pan</div>
+    </div>
+  </div>
+
+  <script>
+    // ---------- Core geometry helpers ----------
+    const TAU = Math.PI * 2;
+    const svg = document.getElementById('sigil');
+
+    function polar(r, a){ return [r*Math.cos(a), r*Math.sin(a)]; }
+    function pathFromPoints(pts){
+      return 'M' + pts.map(p => p[0].toFixed(3)+','+p[1].toFixed(3)).join(' L ');
+    }
+
+    // ---------- Parameters ----------
+    const R_OUTER = 100;
+    const R_LABEL = 120;
+    const R_INNER = 55;
+    const GAP_CENTER_DEG = 315, GAP_SPAN_DEG = 20;
+    const gapCenter = GAP_CENTER_DEG * Math.PI/180;
+
+    const GLYPHS = [
+      ['⧖','Time'], ['✦','Space'], ['◯','Self'], ['⌬','Memory'],
+      ['🜠','Will'], ['✡','Opposition'], ['⌇','Sublimation'], ['🜇','Boundary'],
+      ['⚶','Creation'], ['🜹','Integration'], ['🝰','Perception'], ['🜩','Purpose']
+    ];
+
+    // ---------- Draw outer ring with gap (Lighthouse → Sonar rupture) ----------
+    function drawOuterRing(){
+      const segs = 1800, pts = [];
+      for(let i=0;i<=segs;i++){
+        const t = i/segs * TAU;
+        // keep everything except a gap centered at gapCenter of width GAP_SPAN_DEG
+        const delta = ((t - gapCenter + TAU) % TAU);
+        const span = GAP_SPAN_DEG * Math.PI/180;
+        if(delta < span || delta > (TAU - span)) continue;
+        pts.push(polar(R_OUTER, t));
+      }
+      document.getElementById('outerRing').setAttribute('d', pathFromPoints(pts));
+    }
+
+    // ---------- Dodecagram {12/5} ----------
+    function polygonVerts(n, r, phaseDeg=90){
+      const pts = [];
+      const phase = phaseDeg * Math.PI/180;
+      for(let i=0;i<n;i++){
+        const t = phase + i * TAU/n;
+        pts.push(polar(r, t));
+      }
+      return pts;
+    }
+    function drawDodecagram(){
+      const g = document.getElementById('dodecagram');
+      g.innerHTML = '';
+      const verts = polygonVerts(12, R_OUTER, 90);
+      const step = 5;
+      for(let i=0;i<12;i++){
+        const a = verts[i];
+        const b = verts[(i+step)%12];
+        const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+        p.setAttribute('d', `M ${a[0]},${a[1]} L ${b[0]},${b[1]}`);
+        g.appendChild(p);
+      }
+
+      // labels
+      const lbl = document.getElementById('labels');
+      lbl.innerHTML = '';
+      const labelVerts = polygonVerts(12, R_LABEL, 90);
+      const innerVerts = polygonVerts(12, R_LABEL-12, 90);
+      GLYPHS.forEach(([gph,name], i)=>{
+        const [x,y] = labelVerts[i];
+        const [cx,cy] = innerVerts[i];
+        const tg = document.createElementNS('http://www.w3.org/2000/svg','g');
+        const t1 = document.createElementNS('http://www.w3.org/2000/svg','text');
+        t1.classList.add('glyph');
+        t1.setAttribute('x', x); t1.setAttribute('y', y);
+        t1.textContent = gph;
+        const t2 = document.createElementNS('http://www.w3.org/2000/svg','text');
+        t2.classList.add('name');
+        t2.setAttribute('x', cx); t2.setAttribute('y', cy);
+        t2.textContent = name;
+        tg.appendChild(t1); tg.appendChild(t2);
+        lbl.appendChild(tg);
+      });
+    }
+
+    // ---------- Echo spiral (🝳) ----------
+    function drawEcho(){
+      const path = document.getElementById('echoSpiral');
+      const turns = 6, segs = 2000, a = 0.9; // a controls spacing
+      const pts = [];
+      for(let i=0;i<=segs;i++){
+        const t = i/segs * (turns*TAU);
+        const r = R_OUTER + 2 + a*t*0.5/Math.PI; // slow outward growth
+        const [x,y] = polar(r, gapCenter + t);
+        pts.push([x,y]);
+      }
+      path.setAttribute('d', pathFromPoints(pts));
+
+      // place glyph near first coil
+      const [gx,gy] = polar(R_OUTER+20, gapCenter + TAU*0.25);
+      const eg = document.getElementById('echoGlyph');
+      eg.setAttribute('x', gx.toFixed(2));
+      eg.setAttribute('y', gy.toFixed(2));
+
+      // prepare dash animation
+      const len = path.getTotalLength();
+      path.style.strokeDasharray = len;
+      path.style.strokeDashoffset = len;
+    }
+
+    // ---------- 37-petal rose (🝴) ----------
+    function rosePoints(k=37, R=R_INNER, segs=3600){
+      const pts = [];
+      for(let i=0;i<=segs;i++){
+        const t = i/segs * TAU;
+        const r = R * Math.cos(k*t);
+        pts.push(polar(r, t));
+      }
+      return pts;
+    }
+    function drawRose(scale=1){
+      const pts = rosePoints(37, R_INNER*scale);
+      document.getElementById('rose').setAttribute('d', pathFromPoints(pts));
+      document.getElementById('roseGlyph').setAttribute('y', (-R_INNER*scale-8).toFixed(2));
+    }
+
+    // ---------- Animation loop ----------
+    let playing = true;
+    let speed = 1.0;
+    let t0 = performance.now();
+
+    function tick(now){
+      const dt = (now - t0) * 0.001 * speed; // seconds scaled
+      t0 = now;
+      if(playing){
+        // spiral unfurl by decreasing dashoffset
+        const sp = document.getElementById('echoSpiral');
+        const len = sp.getTotalLength();
+        let off = parseFloat(sp.style.strokeDashoffset || len);
+        off -= dt * (len/8); // 8s per full unfurl at speed=1
+        if(off <= 0){ off = len; } // loop
+        sp.style.strokeDashoffset = off;
+
+        // rose breathing (pulse amplitude)
+        const s = 1 + 0.08 * Math.sin(performance.now()*0.0025*speed);
+        drawRose(s);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    // ---------- Pan & Zoom ----------
+    (function enablePanZoom(){
+      let vb = [-140, -140, 280, 280];
+      let isDown=false, last=[0,0];
+      svg.addEventListener('wheel', (e)=>{
+        e.preventDefault();
+        const scale = Math.exp(-e.deltaY*0.001);
+        const mx = vb[0] + (e.offsetX/svg.clientWidth) * vb[2];
+        const my = vb[1] + (e.offsetY/svg.clientHeight) * vb[3];
+        vb[2] *= 1/scale; vb[3] *= 1/scale;
+        vb[0] = mx - (e.offsetX/svg.clientWidth) * vb[2];
+        vb[1] = my - (e.offsetY/svg.clientHeight) * vb[3];
+        svg.setAttribute('viewBox', vb.join(' '));
+      }, {passive:false});
+      svg.addEventListener('pointerdown', (e)=>{ isDown=true; last=[e.clientX, e.clientY]; });
+      window.addEventListener('pointerup', ()=>{ isDown=false; });
+      window.addEventListener('pointermove', (e)=>{
+        if(!isDown) return;
+        const dx = (e.clientX-last[0])*(vb[2]/svg.clientWidth);
+        const dy = (e.clientY-last[1])*(vb[3]/svg.clientHeight);
+        vb[0]-=dx; vb[1]-=dy; last=[e.clientX, e.clientY];
+        svg.setAttribute('viewBox', vb.join(' '));
+      });
+    })();
+
+    // ---------- UI wiring ----------
+    function byId(id){ return document.getElementById(id); }
+
+    byId('toggleDodecagram').addEventListener('change', e=>{
+      byId('dodecagram').classList.toggle('hidden', !e.target.checked);
+      byId('labels').classList.toggle('hidden', !e.target.checked);
+      byId('outerRing').classList.toggle('hidden', !e.target.checked);
+    });
+    byId('toggleEcho').addEventListener('change', e=>{
+      byId('echo').classList.toggle('hidden', !e.target.checked);
+    });
+    byId('toggleRose').addEventListener('change', e=>{
+      byId('bloom').classList.toggle('hidden', !e.target.checked);
+    });
+    byId('toggleLens').addEventListener('change', e=>{
+      byId('lens').classList.toggle('hidden', !e.target.checked);
+    });
+    byId('toggleGlyphs').addEventListener('change', e=>{
+      document.querySelectorAll('#labels .glyph').forEach(el=>{
+        el.style.display = e.target.checked ? 'block' : 'none';
+      });
+    });
+    byId('toggleNames').addEventListener('change', e=>{
+      document.querySelectorAll('#labels .name').forEach(el=>{
+        el.style.display = e.target.checked ? 'block' : 'none';
+      });
+    });
+
+    byId('play').addEventListener('click', e=>{
+      playing = !playing;
+      e.currentTarget.textContent = playing ? '⏸︎ Pause' : '▶︎ Play';
+      e.currentTarget.setAttribute('aria-pressed', String(playing));
+    });
+    byId('speed').addEventListener('input', e=>{ speed = parseFloat(e.target.value); });
+    byId('reset').addEventListener('click', ()=>{
+      // reset viewbox & animation offsets
+      svg.setAttribute('viewBox', '-140 -140 280 280');
+      const sp = byId('echoSpiral');
+      const len = sp.getTotalLength();
+      sp.style.strokeDasharray = len;
+      sp.style.strokeDashoffset = len;
+    });
+
+    // ---------- Initial render ----------
+    drawOuterRing();
+    drawDodecagram();
+    drawEcho();
+    drawRose(1);
+
+    // start loop
+    requestAnimationFrame((t)=>{ t0=t; tick(t); });
+  </script>
+</body>
+</html>
