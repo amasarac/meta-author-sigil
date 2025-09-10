@@ -397,6 +397,13 @@ function createParticles() {
   });
 
   function drawQuantumHolon(container, levels, scale, x, y, phase = 0) {
+    const lensOuter = document.querySelector('#outerLens');
+    const lensCenter = () => ({
+      x: parseFloat(lensOuter.getAttribute('cx')) || 600,
+      y: parseFloat(lensOuter.getAttribute('cy')) || 340,
+      r: parseFloat(lensOuter.getAttribute('r')) || 140
+    });
+
     function recurse(parent, l, s, px, py, currentPhase) {
       const g = svgEl('g');
       const transform = `translate(${px},${py}) scale(${s}) rotate(${currentPhase * 57.3})`;
@@ -424,12 +431,18 @@ function createParticles() {
         const nextPhase = currentPhase + freq * 0.1;
         const offset = 80 * s;
         
-        recurse(parent, l-1, s*0.65, px + offset*Math.cos(nextPhase), py - offset*Math.sin(nextPhase), nextPhase);
-        recurse(parent, l-1, s*0.65, px - offset*Math.cos(nextPhase), py - offset*Math.sin(nextPhase), nextPhase);
+        const c1x = px + offset*Math.cos(nextPhase); const c1y = py - offset*Math.sin(nextPhase); const c2x = px - offset*Math.cos(nextPhase); const c2y = py - offset*Math.sin(nextPhase);
+        const lc = lensCenter();
+        if(Math.hypot(c1x - lc.x, c1y - lc.y) <= lc.r) recurse(parent, l-1, s*0.65, c1x, c1y, nextPhase);
+        else { /* outside lens: render minimal hint */ const hint1 = svgEl('circle',{cx:c1x,cy:c1y,r:2,fill:'#00ff88','fill-opacity':0.04}); parent.appendChild(hint1); }
+        if(Math.hypot(c2x - lc.x, c2y - lc.y) <= lc.r) recurse(parent, l-1, s*0.65, c2x, c2y, nextPhase);
+        else { const hint2 = svgEl('circle',{cx:c2x,cy:c2y,r:2,fill:'#00ff88','fill-opacity':0.04}); parent.appendChild(hint2); }
         
         if(l > 3 && coherence > 0.7) {
           // Additional branches in high coherence
-          recurse(parent, l-2, s*0.45, px, py - offset, nextPhase + Math.PI/2);
+          const c3x = px; const c3y = py - offset; const lc2 = lensCenter();
+          if(Math.hypot(c3x - lc2.x, c3y - lc2.y) <= lc2.r) recurse(parent, l-2, s*0.45, c3x, c3y, nextPhase + Math.PI/2);
+          else { const hint3 = svgEl('circle',{cx:c3x,cy:c3y,r:2,fill:'#00ff88','fill-opacity':0.04}); parent.appendChild(hint3); }
         }
       }
     }

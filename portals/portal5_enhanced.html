@@ -1,4 +1,92 @@
-    box-shadow:0 25px 70px rgba(0,0,0,0.9), 0 0 0 1px rgba(247,183,255,0.15);
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Portal V — Enhanced Fortress Veil (MASL) — Fixed</title>
+<style>
+  :root{
+    --bg:#0a0c14;--accent:#f7b7ff;--muted:#d6aef9;
+    --secondary:#ff6b9d;--tertiary:#7bdff9;--neural:#00ff88;
+    --deep:#000308;--bright:#ffffff;--void:#0a0010;
+  }
+  html,body{height:100%;margin:0;overflow-x:hidden}
+  body{
+    background:radial-gradient(ellipse at 30% 20%, #120b1a 0%, #0a0c14 40%, var(--void) 100%);
+    color:#f8ebff;font-family:Inter,system-ui,Segoe UI,Arial;padding:18px;
+    min-height:100vh;position:relative;
+  }
+  .ethereal-mist{
+    position:absolute;top:0;left:0;width:100%;height:100%;
+    background:radial-gradient(circle at 20% 30%, rgba(247,183,255,0.03) 0%, transparent 60%),
+               radial-gradient(circle at 80% 70%, rgba(199,125,255,0.02) 0%, transparent 50%);
+    animation:mist-drift 15s ease-in-out infinite;pointer-events:none;
+  }
+  @keyframes mist-drift{
+    0%,100%{transform:translateX(0) scale(1)}
+    33%{transform:translateX(20px) scale(1.05)}
+    66%{transform:translateX(-15px) scale(0.95)}
+  }
+  .wrap{max-width:1200px;margin:0 auto;position:relative;z-index:10}
+  .veil-status{
+    position:absolute;top:20px;right:20px;
+    width:220px;height:120px;border-radius:16px;
+    background:rgba(0,0,0,0.7);backdrop-filter:blur(25px);
+    border:1px solid rgba(247,183,255,0.2);padding:16px;
+    z-index:20;
+  }
+  .veil-status-title{
+    font-size:10px;color:#f7b7ff;margin-bottom:8px;
+    text-transform:uppercase;letter-spacing:1px;
+    text-shadow:0 0 8px currentColor;
+  }
+  .veil-strength-bar{
+    width:100%;height:8px;background:rgba(247,183,255,0.1);
+    border-radius:8px;overflow:hidden;margin-bottom:12px;
+  }
+  .veil-strength-fill{
+    height:100%;background:linear-gradient(90deg, #f7b7ff, #c77dff);
+    border-radius:8px;transition:width 0.3s ease;
+    box-shadow:0 0 10px rgba(247,183,255,0.5);
+  }
+  .veil-metrics{
+    display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px;
+  }
+  .veil-metric{
+    color:#d6aef9;
+  }
+  .veil-metric-value{
+    color:#f7b7ff;font-weight:600;
+    text-shadow:0 0 8px currentColor;
+  }
+  header{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:16px;padding:16px;border-radius:16px;
+    background:rgba(247,183,255,0.05);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(247,183,255,0.1);
+    position:relative;overflow:hidden;
+  }
+  header::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:100%;
+    background:linear-gradient(45deg, transparent 48%, rgba(247,183,255,0.1) 50%, transparent 52%);
+    animation:fortress-scan 6s linear infinite;
+  }
+  @keyframes fortress-scan{
+    0%{transform:translateX(-100%)}
+    100%{transform:translateX(200%)}
+  }
+  h1{
+    font-size:26px;margin:0;
+    background:linear-gradient(45deg, #f7b7ff, #c77dff, #ff6b9d);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    background-clip:text;text-shadow:0 0 40px rgba(247,183,255,0.6);
+  }
+  .card{
+    background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005));
+    border-radius:24px;padding:24px;position:relative;
+    /* fixed box-shadow */
+    box-shadow: 0 25px 70px rgba(0,0,0,0.9), 0 0 30px rgba(247,183,255,0.25), 0 0 0 1px rgba(247,183,255,0.15);
     backdrop-filter:blur(30px);overflow:hidden;
   }
   .card::after{
@@ -402,9 +490,9 @@ function svgEl(tag, attrs = {}) {
   
   // Status indicators
   const veilStrengthFill = document.getElementById('veilStrengthFill');
-  const veilOpacity = document.getElementById('veilOpacity');
+  const veilOpacityEl = document.getElementById('veilOpacity');
   const veilStability = document.getElementById('veilStability');
-  const breachCount = document.getElementById('breachCount');
+  const breachCountEl = document.getElementById('breachCount');
   const veilEnergy = document.getElementById('veilEnergy');
   
   // Analysis displays
@@ -413,7 +501,7 @@ function svgEl(tag, attrs = {}) {
   const dimensionalFlux = document.getElementById('dimensionalFlux');
   const breachRisk = document.getElementById('breachRisk');
   const energyReserves = document.getElementById('energyReserves');
-  const latticeNodes = document.getElementById('latticeNodes');
+  const latticeNodesEl = document.getElementById('latticeNodes');
   
   // Buttons
   const toggleVeilBtn = document.getElementById('toggleVeil');
@@ -480,218 +568,4 @@ function svgEl(tag, attrs = {}) {
           });
           latticeHidden.appendChild(connection);
         }
-      });
-    });
-  }
-
-  // Initialize dimensional sensors
-  function initSensorNetwork() {
-    sensorNetwork.innerHTML = '';
-    sensors = [];
-    
-    // Create sensor array around the perimeter
-    for (let i = 0; i < 12; i++) {
-      const angle = (i / 12) * 2 * Math.PI;
-      const x = 600 + Math.cos(angle) * 350;
-      const y = 350 + Math.sin(angle) * 250;
-      
-      const sensorGroup = svgEl('g', {transform: `translate(${x}, ${y})`});
-      
-      // Sensor core
-      const core = svgEl('circle', {
-        r: 4, fill: '#7bdff9',
-        'fill-opacity': 0.8,
-        stroke: '#00ff88',
-        'stroke-width': 1
-      });
-      
-      // Sensor field
-      const field = svgEl('circle', {
-        r: 15, fill: 'none',
-        stroke: '#7bdff9',
-        'stroke-width': 0.5,
-        'stroke-opacity': 0.3,
-        'stroke-dasharray': '2 3'
-      });
-      
-      sensorGroup.appendChild(field);
-      sensorGroup.appendChild(core);
-      sensorNetwork.appendChild(sensorGroup);
-      
-      sensors.push({
-        x, y, angle: angle * 180 / Math.PI,
-        element: sensorGroup,
-        core, field,
-        activity: Math.random(),
-        detecting: false
-      });
-      
-      // Animate sensor field
-      field.animate([
-        {r: 15, 'stroke-opacity': 0.3},
-        {r: 20, 'stroke-opacity': 0.1},
-        {r: 15, 'stroke-opacity': 0.3}
-      ], {
-        duration: 2000 + i * 200,
-        iterations: Infinity
-      });
-    }
-  }
-
-  // Create dimensional breach
-  function createBreach(x = null, y = null) {
-    const breachX = x || 400 + Math.random() * 400;
-    const breachY = y || 250 + Math.random() * 200;
-    const breachSize = 20 + Math.random() * 40;
-    
-    const breach = svgEl('g', {transform: `translate(${breachX}, ${breachY})`});
-    
-    // Breach core
-    const core = svgEl('circle', {
-      r: breachSize,
-      fill: 'url(#breachGrad)',
-      'fill-opacity': 0.6,
-      stroke: '#ff6b9d',
-      'stroke-width': 2,
-      'stroke-opacity': 0.8,
-      filter: 'url(#breachEffect)'
-    });
-    
-    // Breach distortion field
-    const distortion = svgEl('circle', {
-      r: breachSize * 1.5,
-      fill: 'none',
-      stroke: '#ff6b9d',
-      'stroke-width': 1,
-      'stroke-opacity': 0.4,
-      'stroke-dasharray': '3 6',
-      filter: 'url(#dimensionalDistort)'
-    });
-    
-    breach.appendChild(distortion);
-    breach.appendChild(core);
-    breachLayer.appendChild(breach);
-    
-    const breachData = {
-      x: breachX, y: breachY, size: breachSize,
-      element: breach, core, distortion,
-      energy: 1.0, expanding: true
-    };
-    
-    breaches.push(breachData);
-    
-    // Animate breach
-    core.animate([
-      {r: breachSize, 'fill-opacity': 0.6},
-      {r: breachSize * 1.2, 'fill-opacity': 0.8},
-      {r: breachSize, 'fill-opacity': 0.6}
-    ], {duration: 1500, iterations: Infinity});
-    
-    distortion.animate([
-      {transform: 'rotate(0deg)'},
-      {transform: 'rotate(360deg)'}
-    ], {duration: 8000, iterations: Infinity});
-    
-    // Check sensor detection
-    sensors.forEach(sensor => {
-      const distance = Math.sqrt(Math.pow(sensor.x - breachX, 2) + Math.pow(sensor.y - breachY, 2));
-      if (distance < 150) {
-        sensor.detecting = true;
-        sensor.core.setAttribute('fill', '#ff6b9d');
-        sensor.field.setAttribute('stroke', '#ff6b9d');
-      }
-    });
-    
-    updateBreachAnalysis();
-    log(`Dimensional breach detected at (${breachX.toFixed(0)}, ${breachY.toFixed(0)}) • Size: ${breachSize.toFixed(1)}px`);
-  }
-
-  // Seal breach
-  function sealBreach(<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Portal V — Enhanced Fortress Veil (MASL)</title>
-<style>
-  :root{
-    --bg:#0a0c14;--accent:#f7b7ff;--muted:#d6aef9;
-    --secondary:#ff6b9d;--tertiary:#7bdff9;--neural:#00ff88;
-    --deep:#000308;--bright:#ffffff;--void:#0a0010;
-  }
-  html,body{height:100%;margin:0;overflow-x:hidden}
-  body{
-    background:radial-gradient(ellipse at 30% 20%, #120b1a 0%, #0a0c14 40%, var(--void) 100%);
-    color:#f8ebff;font-family:Inter,system-ui,Segoe UI,Arial;padding:18px;
-    min-height:100vh;position:relative;
-  }
-  .ethereal-mist{
-    position:absolute;top:0;left:0;width:100%;height:100%;
-    background:radial-gradient(circle at 20% 30%, rgba(247,183,255,0.03) 0%, transparent 60%),
-               radial-gradient(circle at 80% 70%, rgba(199,125,255,0.02) 0%, transparent 50%);
-    animation:mist-drift 15s ease-in-out infinite;pointer-events:none;
-  }
-  @keyframes mist-drift{
-    0%,100%{transform:translateX(0) scale(1)}
-    33%{transform:translateX(20px) scale(1.05)}
-    66%{transform:translateX(-15px) scale(0.95)}
-  }
-  .wrap{max-width:1200px;margin:0 auto;position:relative;z-index:10}
-  .veil-status{
-    position:absolute;top:20px;right:20px;
-    width:220px;height:120px;border-radius:16px;
-    background:rgba(0,0,0,0.7);backdrop-filter:blur(25px);
-    border:1px solid rgba(247,183,255,0.2);padding:16px;
-    z-index:20;
-  }
-  .veil-status-title{
-    font-size:10px;color:#f7b7ff;margin-bottom:8px;
-    text-transform:uppercase;letter-spacing:1px;
-    text-shadow:0 0 8px currentColor;
-  }
-  .veil-strength-bar{
-    width:100%;height:8px;background:rgba(247,183,255,0.1);
-    border-radius:8px;overflow:hidden;margin-bottom:12px;
-  }
-  .veil-strength-fill{
-    height:100%;background:linear-gradient(90deg, #f7b7ff, #c77dff);
-    border-radius:8px;transition:width 0.3s ease;
-    box-shadow:0 0 10px rgba(247,183,255,0.5);
-  }
-  .veil-metrics{
-    display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px;
-  }
-  .veil-metric{
-    color:#d6aef9;
-  }
-  .veil-metric-value{
-    color:#f7b7ff;font-weight:600;
-    text-shadow:0 0 8px currentColor;
-  }
-  header{
-    display:flex;justify-content:space-between;align-items:center;
-    margin-bottom:16px;padding:16px;border-radius:16px;
-    background:rgba(247,183,255,0.05);
-    backdrop-filter:blur(20px);
-    border:1px solid rgba(247,183,255,0.1);
-    position:relative;overflow:hidden;
-  }
-  header::before{
-    content:'';position:absolute;top:0;left:0;right:0;height:100%;
-    background:linear-gradient(45deg, transparent 48%, rgba(247,183,255,0.1) 50%, transparent 52%);
-    animation:fortress-scan 6s linear infinite;
-  }
-  @keyframes fortress-scan{
-    0%{transform:translateX(-100%)}
-    100%{transform:translateX(200%)}
-  }
-  h1{
-    font-size:26px;margin:0;
-    background:linear-gradient(45deg, #f7b7ff, #c77dff, #ff6b9d);
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    background-clip:text;text-shadow:0 0 40px rgba(247,183,255,0.6);
-  }
-  .card{
-    background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005));
-    border-radius:24px;padding:24px;position:relative;
-    box-shadow
+------

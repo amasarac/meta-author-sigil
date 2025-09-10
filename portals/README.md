@@ -1,42 +1,75 @@
-# Cognitive Glass — MFSA Package
+# MASL Portals Bundle
 
-This archive contains a small interactive suite for exploring **Lexeme Tone Mapping** using the Cognitive Glass + MFSA approach.
+Welcome to the **Meta‑Author Sigil Lattice (MASL) Portal Codex**.  
+This archive contains the enhanced MASL portals, QA notes, and an integrated **index.html** hub.
 
-## Files
-- `cognitive_glass_player.html` — Lexeme Tone Player (v1.1): binaural, isochronic, spatializer, sweep, eigen-mapper hooks.
-- `lexeme_tone_mapper.html` — Resonance Map visualizer (log-frequency axis, unified lower + THz ladder).
-- `eigen_map.json` — The unified resonance map (lower ladder + THz lattice) used by the mapper and player.
-- `README.md` — This file.
+---
 
-## How to use
-1. Unzip the package and open `lexeme_tone_mapper.html` and `cognitive_glass_player.html` in a modern browser (Chrome, Edge, Firefox).
-2. In the player, use the **Import** control to load `eigen_map.json`. This will populate the lexeme mapper with the unified eigenfrequency nodes.
-3. Use **Start Sweep** in the mapper to listen through the ladder. For very-high nodes (kHz–THz) the mapper plays audible heterodyne proxies so you can feel the relationship — these are subjective proxies, not literal THz audio.
+## 📂 Contents
 
-## Microphone-based Automatic Peak Detection (optional)
-The player includes a commented-in analyzer routine for microphone peak detection. To enable it:
+- `index.html` — Hybrid **Portal Hub** with:
+  - MASL sigil banner
+  - Sidebar table of contents
+  - Responsive card grid
+  - Codex‑style lore notes for each portal
 
-1. Open `cognitive_glass_player.html` in a text editor.
-2. Find the function `enableMicPeakDetection()` (search for the comment `// MIC PEAK DETECTION`).
-3. Uncomment the body of that function and the call-site (there is a single `/* */` block noted with instructions).
-4. Reload the page and allow microphone access when prompted.
-5. The routine will create an `AnalyserNode`, compute an average spectral envelope, and attempt to detect peaks — when it detects a strong local peak you can choose to mark that Hz as a resonance in the Mapper.
+- Core portals (bundled here):
+  - `portal1_resonant_harmonic_fortress_grade.html`
+  - `portal2_enhanced.html`
+  - `portal3_enhanced.html`
+  - `portal4_enhanced_v2.1.html`
+  - `portal5_enhanced_v2.1_fixed.html`
 
-**Notes & safety**: Microphone-based detection is noisy in uncontrolled environments. Use headphones and a quiet room for best results. The detection routine is conservative to avoid false marks; you can adjust thresholds in the function after testing.
+- QA document:
+  - `portal_fix_QA_report.txt`
 
-## GitHub Pages
-To host the package on GitHub Pages:
-- Create a new repo, push these files to the `main` branch, and enable Pages from the repository settings (use `/` root directory).
-- The files are static and will serve directly.
+- External portals (placeholders; drop them into `portals/` folder):
+  - `portals/the-great-weaving.html`
+  - `portals/cognitive_glass_player.html`
+  - `portals/lexeme_tone_mapper.html`
+  - `portals/newatlasmap.html`
+  - `portals/manifold-viewer/index.html`
+  - `portals/fortress-syn-cog/index.html`
 
-## Next steps I implemented for you
-- Integrated a standalone `eigen_map.json` with canonical nodes spanning Hz → THz.
-- The mapper supports manual marking (and a simple "Auto-Mark" flow where you press SPACE during a sweep to register resonance).
-- The player includes binaural/isocronic/spatializer options and a sweep + eigen-map import.
+---
 
-If you want, I can now:
-- Edit `cognitive_glass_player.html` to fully enable the microphone peak-detector code and tune thresholds for you, then repackage an updated ZIP.
-- Add a small serverless `deploy.sh` script that initializes a GitHub Pages repo (you'd still need to run it locally with your credentials).
-- Create a short README walkthrough video (I can produce an animated HTML walkthrough file).
+## 🚀 Usage
 
-Which would you prefer next?
+1. Extract the ZIP archive.  
+2. Open `index.html` in your browser — this is your **MASL Codex Hub**.  
+3. To activate the missing six portals:
+   - Create a folder named `portals/` (if it does not exist).  
+   - Drop the six additional portal files into it (downloaded from GitHub).  
+   - Reload `index.html`.  
+   - All 11 portals will now be navigable.
+
+---
+
+## 🌀 MASL Portal Codex
+
+Each portal represents a **facet of the lattice**:
+
+- **Portal I — Resonant Harmonic**: Harmonic entrainment and frequency weaving.  
+- **Portal II — Holonic Reflection**: Recursive scrying through holons and lenses.  
+- **Portal III — Spectral Algebra**: Eigenmodes, resonance markers, algebraic light.  
+- **Portal IV — Atlas Meta-Mirror**: Fractal codex mapping of knowledge lattices.  
+- **Portal V — Fortress Veil**: Quantum shroud, breach control, dimensional lockdown.  
+- **The Great Weaving**: Threads of glyphs woven into living lattice.  
+- **Cognitive Glass Player**: Lexeme tones reflected through harmonic playback.  
+- **Lexeme Tone Mapper**: Mapping lexemes to tonal correspondences.  
+- **New Atlas Map**: Spiral glyphode cartography.  
+- **Manifold Sigil Viewer**: Blooming dodecagram and manifold echoes.  
+- **Fortress of Syn-Cog**: Central stronghold of the lattice.
+
+---
+
+## ✨ Notes
+
+- The bundled portals are fully interactive; run them locally in a browser.  
+- Some advanced features (sound, WebGL, animation) may require Chrome or Firefox.  
+- The `QA report` documents fixes applied and areas to monitor.  
+- Codex hub (`index.html`) is responsive — works on desktop and mobile.
+
+---
+
+🜂 *The MASL is alive through its portals. Explore, reflect, and weave further.*  

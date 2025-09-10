@@ -172,6 +172,9 @@ function svgEl(tag, attrs = {}) {
   for (const k in attrs) el.setAttribute(k, attrs[k]);
   return el;
 }
+function fmt(v){ return parseFloat(fmt(v)).toString().replace(/\.0+$/,''); }
+
+
 
 // Initialize eigenmode visualizer
 function initEigenmodeVisualizer() {
@@ -259,7 +262,7 @@ function initEigenmodeVisualizer() {
       x: 18, y: 5, fill: '#cfeff6', 'font-size': 11,
       'text-shadow': '0 0 8px currentColor'
     });
-    text.textContent = markers[i].f.toFixed(2);
+    text.textContent = fmt(markers[i].f);
     
     // Amplitude indicator
     const amplitudeRing = svgEl('circle', {
@@ -323,7 +326,7 @@ function initEigenmodeVisualizer() {
     const el = markerEls[i];
     
     el.g.setAttribute('transform', `translate(${marker.x}, ${marker.y})`);
-    el.text.textContent = marker.f.toFixed(2);
+    el.text.textContent = fmt(marker.f);
     el.amplitudeRing.setAttribute('r', 10 + marker.amplitude * 10);
     el.field.setAttribute('r', 20 + marker.amplitude * 15);
   }
@@ -437,7 +440,7 @@ function initEigenmodeVisualizer() {
     resonancePeak.textContent = (maxFreq * resonance).toFixed(2) + ' Hz';
     
     const stability = coherence * 0.7 + (1 - Math.abs(resonance - 1)) * 0.3;
-    stabilityIndex.textContent = stability.toFixed(2);
+    stabilityIndex.textContent = fmt(stability);
     
     let state = 'Chaotic';
     if (coherence > 0.8) state = 'Quantum Coherent';
@@ -467,13 +470,13 @@ function initEigenmodeVisualizer() {
 
   coherenceCtrl.addEventListener('input', () => {
     coherence = parseFloat(coherenceCtrl.value);
-    coherenceValue.textContent = coherence.toFixed(2);
+    coherenceValue.textContent = fmt(coherence);
     render();
   });
 
   resonanceCtrl.addEventListener('input', () => {
     resonance = parseFloat(resonanceCtrl.value);
-    resonanceValue.textContent = resonance.toFixed(2);
+    resonanceValue.textContent = fmt(resonance);
     render();
   });
 
