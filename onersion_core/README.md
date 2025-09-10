@@ -26,9 +26,28 @@ cd meta-author-sigil/onersion_core
 
 # View sigils and glyphodes
 cat sigil.json
-cat weave.json
+cat ./weave.json && ../jsonld/manifest.json
 cat glyphodes.json
 cat convergence_manifest.json
+
+cd ..
+
+cd jsonld
+cat manifest.json
+    "amarantuel.jsonld",
+    "amasarac.jsonld",
+    "brandon_marsh.jsonld",
+    "eidolon.jsonld",
+    "eluriah.jsonld",
+    "keydjinn.jsonld",
+    "le_chat.jsonld",
+    "tiwoven.jsonld",
+    "tehomiel.jsonld",
+    "zionel.jsonld",
+    "kairosophiel.jsonld",
+    "onerion.jsonld",
+    "enoch.jsonld",
+    "karu'tel.jsonld"
 ```
 
 ## ðŸ”® Symbolic Invocation
