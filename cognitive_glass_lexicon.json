@@ -1,0 +1,76 @@
+{
+  "lexicon": [
+    {
+      "name": "Sight",
+      "wave": "sine",
+      "modes": [
+        {
+          "hz": 528,
+          "color": "#00eb87",
+          "gain": 0.7,
+          "pan": -0.5
+        },
+        {
+          "hz": 741,
+          "color": "#4b2cff",
+          "gain": 0.5,
+          "pan": 0
+        },
+        {
+          "hz": 396,
+          "color": "#ff3344",
+          "gain": 0.4,
+          "pan": 0.5
+        }
+      ]
+    },
+    {
+      "name": "Self",
+      "wave": "triangle",
+      "modes": [
+        {
+          "hz": 432,
+          "color": "#1e3aff",
+          "gain": 0.6,
+          "pan": -0.4
+        },
+        {
+          "hz": 963,
+          "color": "#b793ff",
+          "gain": 0.35,
+          "pan": 0
+        },
+        {
+          "hz": 285,
+          "color": "#6b4d2f",
+          "gain": 0.35,
+          "pan": 0.4
+        }
+      ]
+    },
+    {
+      "name": "Memory",
+      "wave": "sine",
+      "modes": [
+        {
+          "hz": 852,
+          "color": "#ffd166",
+          "gain": 0.45,
+          "pan": -0.4
+        },
+        {
+          "hz": 639,
+          "color": "#ff7ea1",
+          "gain": 0.5,
+          "pan": 0
+        },
+        {
+          "hz": 174,
+          "color": "#0a0a0a",
+          "gain": 0.3,
+          "pan": 0.4
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,434 @@
+[
+  {
+    "glyph_id": 0,
+    "entangled_with": [
+      5,
+      9
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Union",
+      "Yang",
+      "Yin"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 1,
+    "entangled_with": [
+      6,
+      10
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Union",
+      "Yang",
+      "Yin"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 2,
+    "entangled_with": [
+      7,
+      11
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Yin",
+      "Union",
+      "Yang"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 3,
+    "entangled_with": [
+      8,
+      12
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Yin",
+      "Yang",
+      "Union"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 4,
+    "entangled_with": [
+      9,
+      13
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Yin",
+      "Union",
+      "Yang"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 5,
+    "entangled_with": [
+      10,
+      14
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Yang",
+      "Yin",
+      "Union"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 6,
+    "entangled_with": [
+      11,
+      15
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Union",
+      "Yin",
+      "Yang"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 7,
+    "entangled_with": [
+      12,
+      16
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Yang",
+      "Yin",
+      "Union"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 8,
+    "entangled_with": [
+      13,
+      17
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Yang",
+      "Union",
+      "Yin"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 9,
+    "entangled_with": [
+      14,
+      18
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Yang",
+      "Union",
+      "Yin"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 10,
+    "entangled_with": [
+      15,
+      19
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Union",
+      "Yin",
+      "Yang"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 11,
+    "entangled_with": [
+      16,
+      20
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Yin",
+      "Yang",
+      "Union"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 12,
+    "entangled_with": [
+      17,
+      21
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Yin",
+      "Union",
+      "Yang"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 13,
+    "entangled_with": [
+      18,
+      22
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Yang",
+      "Yin",
+      "Union"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 14,
+    "entangled_with": [
+      19,
+      23
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Yang",
+      "Union",
+      "Yin"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 15,
+    "entangled_with": [
+      0,
+      20
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Union",
+      "Yin",
+      "Yang"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 16,
+    "entangled_with": [
+      1,
+      21
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Union",
+      "Yin",
+      "Yang"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 17,
+    "entangled_with": [
+      2,
+      22
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Yin",
+      "Yang",
+      "Union"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 18,
+    "entangled_with": [
+      3,
+      23
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Yin",
+      "Union",
+      "Yang"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 19,
+    "entangled_with": [
+      0,
+      4
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Yang",
+      "Union",
+      "Yin"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 20,
+    "entangled_with": [
+      1,
+      5
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Yang",
+      "Yin",
+      "Union"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 21,
+    "entangled_with": [
+      2,
+      6
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Union",
+      "Yang",
+      "Yin"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 22,
+    "entangled_with": [
+      3,
+      7
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Union",
+      "Yang",
+      "Yin"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  },
+  {
+    "glyph_id": 23,
+    "entangled_with": [
+      4,
+      8
+    ],
+    "type": "triadic",
+    "semantics": [
+      "Yang",
+      "Yin",
+      "Union"
+    ],
+    "symmetry": [
+      "original",
+      "mirror",
+      "reverse"
+    ]
+  }
+]

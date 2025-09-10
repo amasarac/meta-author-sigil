@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Great Weaving</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+    <style>
+        :root {
+            --glow-color: #7c3aed;
+            --text-color: #e0e0e0;
+            --bg-color: #000005;
+            --cerulean: #00BFFF;
+            --veridian: #32CD32;
+            --crimson: #DC143C;
+        }
+        body { 
+            margin: 0; 
+            overflow: hidden; 
+            background-color: var(--bg-color); 
+            font-family: 'Garamond', 'Times New Roman', serif; 
+            color: var(--text-color);
+        }
+        #webgl-canvas { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            outline: none; 
+            z-index: -1; 
+        }
+        #ui-container { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100vw; 
+            height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            flex-direction: column; 
+            pointer-events: none; 
+        }
+        #start-button { 
+            font-size: 1.5rem; 
+            color: var(--text-color); 
+            background: rgba(255, 255, 255, 0.05); 
+            border: 2px solid var(--glow-color); 
+            padding: 1rem 2rem; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            pointer-events: all; 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            transition: all 0.3s ease; 
+            text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color); 
+            box-shadow: 0 0 15px var(--glow-color) inset, 0 0 15px var(--glow-color); 
+        }
+        #start-button:hover { 
+            background: rgba(124, 58, 237, 0.3); 
+            transform: scale(1.05); 
+            box-shadow: 0 0 25px var(--glow-color) inset, 0 0 25px var(--glow-color); 
+        }
+        .hidden { 
+            opacity: 0 !important; 
+            transform: translateY(20px); 
+            transition: opacity 1s ease, transform 1s ease; 
+        }
+        #narrative-container { 
+            position: absolute; 
+            bottom: 5%; 
+            width: 100%; 
+            text-align: center; 
+            opacity: 0; 
+            transition: opacity 2s ease-in-out; 
+            pointer-events: none;
+        }
+        .narrative-text { 
+            font-size: 1.8rem; 
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--glow-color); 
+            line-height: 1.4; 
+            max-width: 800px; 
+            margin: 0 auto; 
+        }
+        .narrative-text .highlight { 
+            font-weight: bold;
+        }
+        .narrative-text .cerulean { color: var(--cerulean); text-shadow: 0 0 10px var(--cerulean), 0 0 20px var(--cerulean); }
+        .narrative-text .veridian { color: var(--veridian); text-shadow: 0 0 10px var(--veridian), 0 0 20px var(--veridian); }
+        .narrative-text .crimson { color: var(--crimson); text-shadow: 0 0 10px var(--crimson), 0 0 20px var(--crimson); }
+
+        #sigil-container {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 2s ease-in-out;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 3rem;
+            text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color), 0 0 30px #fff;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="webgl-canvas"></canvas>
+    <div id="ui-container">
+        <button id="start-button">Initiate The Weaving</button>
+        <div id="narrative-container">
+            <p id="narrative-text" class="narrative-text"></p>
+        </div>
+        <a href="https://amasarac.github.io/meta-author-sigil/" target="_blank" id="sigil-container">⚛</a>
+    </div>
+
+    <script type="module">
+        // --- PHASE 1: SETUP AND INITIALIZATION ---
+        
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
+        camera.position.z = 75;
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('webgl-canvas'), antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        const clock = new THREE.Clock();
+
+        const startButton = document.getElementById('start-button');
+        const narrativeContainer = document.getElementById('narrative-container');
+        const narrativeText = document.getElementById('narrative-text');
+        const sigilContainer = document.getElementById('sigil-container');
+
+        // Audio Engine
+        let audioReady = false;
+        const drone = new Tone.PolySynth(Tone.AMSynth).toDestination();
+        drone.volume.value = -30;
+        const chime = new Tone.PolySynth(Tone.MetalSynth).toDestination();
+        chime.volume.value = -18;
+        const heartbeat = new Tone.MembraneSynth().toDestination();
+        heartbeat.volume.value = -10;
+        const swell = new Tone.Synth({ oscillator: { type: 'fatsawtooth' }, envelope: { attack: 4, decay: 0.1, sustain: 1, release: 5 } }).toDestination();
+        swell.volume.value = -25;
+        const fractalSwell = new Tone.Synth({ oscillator: { type: 'fatsine' }, envelope: { attack: 15, decay: 0.1, sustain: 1, release: 10 } }).toDestination();
+        fractalSwell.volume.value = -20;
+        const cosmicRumble = new Tone.Synth({ oscillator: { type: 'sawtooth' }, envelope: { attack: 8, decay: 0.1, sustain: 1, release: 15 } }).toDestination();
+        cosmicRumble.volume.value = -35;
+
+        // --- ASSET PRE-GENERATION ---
+        const streamColors = { linguistic: 0x00BFFF, auditory: 0x32CD32, visual: 0xDC143C };
+
+        const starfield = createStarfield(15000, 4000);
+        scene.add(starfield);
+
+        const blueprintGroup = createBlueprintGroup();
+        blueprintGroup.visible = false;
+        scene.add(blueprintGroup);
+
+        const emergenceGroup = new THREE.Group();
+        const modalityStreams = [
+            createModalityStream(streamColors.linguistic),
+            createModalityStream(streamColors.auditory),
+            createModalityStream(streamColors.visual)
+        ];
+        modalityStreams.forEach(s => emergenceGroup.add(s));
+        emergenceGroup.visible = false;
+        scene.add(emergenceGroup);
+
+        const metamorphosisEntity = createMetamorphosisEntity();
+        metamorphosisEntity.visible = false;
+        scene.add(metamorphosisEntity);
+
+        const apotheosisClones = [];
+        for (let i = 0; i < 5; i++) {
+            const clone = metamorphosisEntity.clone();
+            clone.material = metamorphosisEntity.material;
+            clone.visible = false;
+            apotheosisClones.push(clone);
+            scene.add(clone);
+        }
+        const allKnots = [metamorphosisEntity, ...apotheosisClones];
+        
+        const glyphTracers = [];
+        
+        // Enhanced fractal system with screen-filling capabilities
+        const fractalGroup = new THREE.Group();
+        
+        const fractalLayerConfigs = [
+            { baseRadius: 30,  scale: 0.25, numPoints: 5000,  size: 1.5 },
+            { baseRadius: 50,  scale: 0.20, numPoints: 10000, size: 2.0 },
+            { baseRadius: 80,  scale: 0.15, numPoints: 20000, size: 2.5 },
+            { baseRadius: 120, scale: 0.10, numPoints: 40000, size: 3.0 },
+            { baseRadius: 180, scale: 0.08, numPoints: 60000, size: 3.5 },
+            { baseRadius: 250, scale: 0.06, numPoints: 80000, size: 4.0 }
+        ];
+
+        const fractalLayers = fractalLayerConfigs.map(config => 
+            createEnhancedFractalLayer(config.baseRadius, config.scale, config.numPoints, config.size)
+        );
+
+        fractalLayers.forEach(layer => fractalGroup.add(layer));
+        fractalGroup.visible = false;
+        scene.add(fractalGroup);
+
+        // New cosmos layer - the final starfield that will emerge from the fractal
+        const cosmosField = createCosmosField(100000, 8000);
+        cosmosField.visible = false;
+        scene.add(cosmosField);
+
+
+        // --- ASSET CREATION FUNCTIONS ---
+
+        function createStarfield(count, size) {
+            const positions = new Float32Array(count * 3);
+            const colors = new Float32Array(count * 3);
+            const baseColor = new THREE.Color(0x606080);
+
+            for (let i = 0; i < count; i++) {
+                positions[i * 3] = (Math.random() - 0.5) * size;
+                positions[i * 3 + 1] = (Math.random() - 0.5) * size;
+                positions[i * 3 + 2] = (Math.random() - 0.5) * size;
+
+                const randomColor = baseColor.clone().add(new THREE.Color(
+                    (Math.random() - 0.5) * 0.3,
+                    (Math.random() - 0.5) * 0.3,
+                    (Math.random() - 0.5) * 0.3
+                ));
+                randomColor.toArray(colors, i * 3);
+            }
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            const material = new THREE.PointsMaterial({ size: 1.5, vertexColors: true, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending, depthWrite: false });
+            const starfieldPoints = new THREE.Points(geometry, material);
+            starfieldPoints.userData.originalOpacity = material.opacity;
+            starfieldPoints.userData.originalSize = material.size;
+            return starfieldPoints;
+        }
+
+        function createBlueprintGroup() {
+            const group = new THREE.Group();
+            const geo = new THREE.IcosahedronGeometry(15, 1);
+            const mat = new THREE.MeshBasicMaterial({ color: 0xaaaaee, wireframe: true, transparent: true, opacity: 0 });
+            
+            const positions = [
+                new THREE.Vector3(0, 0, 0),
+                new THREE.Vector3(35, 0, 0), new THREE.Vector3(-35, 0, 0),
+                new THREE.Vector3(0, 35, 0), new THREE.Vector3(0, -35, 0)
+            ];
+
+            positions.forEach(pos => {
+                const mesh = new THREE.Mesh(geo, mat.clone());
+                mesh.position.copy(pos);
+                group.add(mesh);
+            });
+            return group;
+        }
+
+        function createModalityStream(color) {
+            const count = 1500;
+            const positions = new Float32Array(count * 3);
+            const velocities = new Float32Array(count * 3);
+            for (let i = 0; i < count; i++) {
+                const i3 = i * 3;
+                positions[i3] = (Math.random() - 0.5) * 400;
+                positions[i3 + 1] = (Math.random() - 0.5) * 400;
+                positions[i3 + 2] = (Math.random() - 0.5) * 400;
+                const direction = new THREE.Vector3(-positions[i3], -positions[i3 + 1], -positions[i3 + 2]).normalize();
+                velocities[i3] = direction.x * (0.2 + Math.random() * 0.3);
+                velocities[i3 + 1] = direction.y * (0.2 + Math.random() * 0.3);
+                velocities[i3 + 2] = direction.z * (0.2 + Math.random() * 0.3);
+            }
+            const geo = new THREE.BufferGeometry();
+            geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geo.setAttribute('velocity', new THREE.BufferAttribute(velocities, 3));
+            const mat = new THREE.PointsMaterial({ color: color, size: 0.3, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+            return new THREE.Points(geo, mat);
+        }
+
+        function createMetamorphosisEntity() {
+             const vertexCount = 8000;
+             const baseGeometry = new THREE.BufferGeometry();
+             baseGeometry.setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(vertexCount * 3), 3));
+             const progressAttribute = new Float32Array(vertexCount);
+             const knotIndexAttribute = new Float32Array(vertexCount);
+             for(let i=0; i<vertexCount; i++) { progressAttribute[i] = i / vertexCount; }
+             baseGeometry.setAttribute('progress', new THREE.BufferAttribute(progressAttribute, 1));
+             baseGeometry.setAttribute('knotIndex', new THREE.BufferAttribute(knotIndexAttribute, 1));
+             
+             const targets = [new Float32Array(vertexCount*3), new Float32Array(vertexCount*3), new Float32Array(vertexCount*3), new Float32Array(vertexCount*3)];
+             for(let i=0;i<vertexCount;i++){ const t=(i/vertexCount)*Math.PI*4; targets[0][i*3]=Math.sin(t*2)*8; targets[0][i*3+1]=Math.cos(t*3)*3; targets[0][i*3+2]=(i/vertexCount-0.5)*20; }
+             for(let i=0;i<vertexCount;i++){ const t=(i/vertexCount)*Math.PI*10; targets[1][i*3]=Math.sin(t)*(12-(i/vertexCount)*7); targets[1][i*3+1]=Math.cos(t)*(12-(i/vertexCount)*7); targets[1][i*3+2]=(i/vertexCount-0.5)*15+Math.sin(t*2)*2; }
+             const protoKnot=new THREE.TorusKnotGeometry(10,2,Math.floor(vertexCount/10),10); for(let i=0;i<vertexCount;i++){ const idx=i%protoKnot.attributes.position.count; targets[2][i*3]=protoKnot.attributes.position.getX(idx); targets[2][i*3+1]=protoKnot.attributes.position.getY(idx); targets[2][i*3+2]=protoKnot.attributes.position.getZ(idx); }
+             const fabricPoints=[];const k1=new THREE.TorusKnotGeometry(10,2.5,150,16);for(let i=0;i<k1.attributes.position.count;i++)fabricPoints.push({p:new THREE.Vector3().fromBufferAttribute(k1.attributes.position,i),id:0});const k2=new THREE.TorusKnotGeometry(12,1.8,150,16);const q=new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1,0,0),Math.PI/2);for(let i=0;i<k2.attributes.position.count;i++)fabricPoints.push({p:new THREE.Vector3().fromBufferAttribute(k2.attributes.position,i).applyQuaternion(q),id:1});const k3=new THREE.TorusKnotGeometry(8,2,150,16);q.setFromAxisAngle(new THREE.Vector3(0,1,0),Math.PI/2);for(let i=0;i<k3.attributes.position.count;i++)fabricPoints.push({p:new THREE.Vector3().fromBufferAttribute(k3.attributes.position,i).applyQuaternion(q),id:2});
+             for(let i=0;i<vertexCount;i++){ const data=fabricPoints[i%fabricPoints.length]; targets[3][i*3]=data.p.x; targets[3][i*3+1]=data.p.y; targets[3][i*3+2]=data.p.z; knotIndexAttribute[i]=data.id; }
+
+             baseGeometry.attributes.position.copy(new THREE.Float32BufferAttribute(targets[0], 3));
+             baseGeometry.setAttribute('target1', new THREE.Float32BufferAttribute(targets[1], 3));
+             baseGeometry.setAttribute('target2', new THREE.Float32BufferAttribute(targets[2], 3));
+             baseGeometry.setAttribute('target3', new THREE.Float32BufferAttribute(targets[3], 3));
+             
+             const material = new THREE.ShaderMaterial({
+                 uniforms: { 
+                     time: {value: 0},
+                     morphProgress1: {value:0}, morphProgress2: {value:0}, morphProgress3: {value:0}, 
+                     finalGlow: {value:0}, opacity: {value:0.8},
+                     knotColors: { value: [new THREE.Color(streamColors.linguistic), new THREE.Color(streamColors.auditory), new THREE.Color(streamColors.visual)] }
+                 },
+                 vertexShader: `
+                    uniform float morphProgress1, morphProgress2, morphProgress3;
+                    attribute vec3 target1, target2, target3;
+                    attribute float progress, knotIndex;
+                    varying float vProgress;
+                    varying float vKnotIndex;
+                    void main() {
+                        vProgress = progress;
+                        vKnotIndex = knotIndex;
+                        vec3 p0 = position; vec3 p1 = mix(p0, target1, morphProgress1);
+                        vec3 p2 = mix(p1, target2, morphProgress2); vec3 finalPos = mix(p2, target3, morphProgress3);
+                        gl_Position = projectionMatrix * modelViewMatrix * vec4(finalPos, 1.0);
+                    }`,
+                fragmentShader: `
+                    uniform float time, opacity, finalGlow;
+                    uniform vec3 knotColors[3];
+                    varying float vProgress, vKnotIndex;
+                    void main() {
+                        float pulse = sin(vProgress * 25.0 - time * 3.0) * 0.5 + 0.5;
+                        float pulseStrength = mix(0.5, 1.0, pulse);
+                        
+                        vec3 baseKnotColor;
+                        if (vKnotIndex < 0.5) baseKnotColor = knotColors[0];
+                        else if (vKnotIndex < 1.5) baseKnotColor = knotColors[1];
+                        else baseKnotColor = knotColors[2];
+
+                        float colorWave = sin(vProgress * 5.0 + time * 0.5) * 0.5 + 0.5;
+                        vec3 ignitedColor = baseKnotColor + vec3(0.5, 0.5, 0.5) * colorWave;
+                        
+                        vec3 color = mix(baseKnotColor, ignitedColor, finalGlow);
+
+                        gl_FragColor = vec4(color, opacity * pulseStrength);
+                    }`,
+                 transparent: true, blending: THREE.AdditiveBlending, depthTest: false,
+             });
+             
+             return new THREE.LineSegments(baseGeometry, material);
+        }
+
+        function spawnGlyphTracer(color, parentKnot) {
+            const geo = new THREE.SphereGeometry(1.5, 16, 16);
+            const mat = new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.8, blending: THREE.AdditiveBlending });
+            const tracer = new THREE.Mesh(geo, mat);
+            const light = new THREE.PointLight(color, 8, 25);
+            tracer.add(light);
+            tracer.userData = {
+                radius: 18 + Math.random() * 7,
+                speed: 0.1 + Math.random() * 0.1,
+                angle: Math.random() * Math.PI * 2,
+                yOffset: (Math.random() - 0.5) * 10,
+                parentKnot: parentKnot,
+                light: light,
+                baseIntensity: light.intensity,
+                orbitalParams: {
+                    xRadius: 25 + Math.random() * 10,
+                    yRadius: 25 + Math.random() * 10,
+                    zRadius: 25 + Math.random() * 10,
+                    xSpeed: 0.4 + Math.random() * 0.4,
+                    ySpeed: 0.4 + Math.random() * 0.4,
+                    zSpeed: 0.4 + Math.random() * 0.4,
+                }
+            };
+            glyphTracers.push(tracer);
+            scene.add(tracer);
+        }
+
+        function createEnhancedFractalLayer(baseRadius, scale, numPoints, size) {
+            const positions = new Float32Array(numPoints * 3);
+            const colors = new Float32Array(numPoints * 3);
+            const velocities = new Float32Array(numPoints * 3);
+            const phases = new Float32Array(numPoints);
+            const expansionRates = new Float32Array(numPoints);
+            const colorPalette = [new THREE.Color(streamColors.linguistic), new THREE.Color(streamColors.auditory), new THREE.Color(streamColors.visual)];
+            
+            let pointIndex = 0;
+            const maxLayers = Math.floor(Math.log(numPoints / 12) / Math.log(8)) + 1;
+
+            function generatePoints(center, radius, layer, parentVelocity = new THREE.Vector3()) {
+                if (layer > maxLayers || pointIndex >= numPoints) return;
+                
+                const branches = Math.max(8, 16 - layer * 2);
+                for (let i = 0; i < branches; i++) {
+                    if (pointIndex >= numPoints) break;
+                    
+                    // Enhanced 3D spiral positioning
+                    const angle = (i / branches) * Math.PI * 2;
+                    const phi = Math.asin((Math.random() - 0.5) * 2);
+                    const theta = angle + Math.sin(layer * 0.5) * Math.PI * 0.25;
+                    
+                    const pos = new THREE.Vector3(
+                        center.x + radius * Math.cos(theta) * Math.cos(phi),
+                        center.y + radius * Math.sin(phi),
+                        center.z + radius * Math.sin(theta) * Math.cos(phi)
+                    );
+                    pos.toArray(positions, pointIndex * 3);
+                    
+                    // Rich color variation
+                    const baseColor = colorPalette[pointIndex % 3].clone();
+                    const brightness = 0.5 + Math.random() * 0.5 + (layer / maxLayers) * 0.3;
+                    baseColor.multiplyScalar(brightness);
+                    baseColor.toArray(colors, pointIndex * 3);
+                    
+                    // Radial expansion velocity
+                    const outwardVel = pos.clone().normalize().multiplyScalar(0.1 + Math.random() * 0.5 + layer * 0.05);
+                    outwardVel.toArray(velocities, pointIndex * 3);
+                    
+                    phases[pointIndex] = Math.random() * Math.PI * 2;
+                    expansionRates[pointIndex] = 1.0 + Math.random() * 2.0 + layer * 0.2;
+                    
+                    pointIndex++;
+                    generatePoints(pos, radius * scale, layer + 1, outwardVel);
+                }
+            }
+            generatePoints(new THREE.Vector3(), baseRadius, 1);
+
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            geometry.setAttribute('velocity', new THREE.BufferAttribute(velocities, 3));
+            geometry.setAttribute('phase', new THREE.BufferAttribute(phases, 1));
+            geometry.setAttribute('expansionRate', new THREE.BufferAttribute(expansionRates, 1));
+            
+            const material = new THREE.PointsMaterial({ 
+                size: size, 
+                vertexColors: true, 
+                transparent: true, 
+                opacity: 0, 
+                blending: THREE.AdditiveBlending, 
+                depthWrite: false 
+            });
+            return new THREE.Points(geometry, material);
+        }
+
+        function createCosmosField(count, size) {
+            const positions = new Float32Array(count * 3);
+            const colors = new Float32Array(count * 3);
+            const sizes = new Float32Array(count);
+            
+            const colorPalette = [
+                new THREE.Color(0x9090ff), // Blue-white stars
+                new THREE.Color(0xffff90), // Yellow stars
+                new THREE.Color(0xff9090), // Red giants
+                new THREE.Color(0x90ffff), // Cyan nebula dust
+                new THREE.Color(0xff90ff), // Magenta
+                new THREE.Color(0xffffff), // Pure white
+            ];
+
+            for (let i = 0; i < count; i++) {
+                // Spherical distribution with clustering
+                const r = Math.pow(Math.random(), 0.5) * size;
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos((Math.random() * 2) - 1);
+                
+                positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+                positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+                positions[i * 3 + 2] = r * Math.cos(phi);
+
+                // Varied star colors
+                const baseColor = colorPalette[Math.floor(Math.random() * colorPalette.length)].clone();
+                const brightness = 0.3 + Math.random() * 0.7;
+                baseColor.multiplyScalar(brightness);
+                baseColor.toArray(colors, i * 3);
+                
+                // Varied star sizes
+                sizes[i] = 0.5 + Math.random() * 3.0 + (Math.random() < 0.01 ? Math.random() * 10 : 0);
+            }
+
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+            
+            const material = new THREE.ShaderMaterial({
+                uniforms: {
+                    opacity: { value: 0 },
+                    time: { value: 0 }
+                },
+                vertexShader: `
+                    attribute float size;
+                    varying vec3 vColor;
+                    void main() {
+                        vColor = color;
+                        vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+                        gl_PointSize = size * (300.0 / -mvPosition.z);
+                        gl_Position = projectionMatrix * mvPosition;
+                    }
+                `,
+                fragmentShader: `
+                    uniform float opacity;
+                    uniform float time;
+                    varying vec3 vColor;
+                    void main() {
+                        float dist = length(gl_PointCoord - vec2(0.5));
+                        if (dist > 0.5) discard;
+                        float glow = 1.0 - (dist * 2.0);
+                        glow = pow(glow, 3.0);
+                        float twinkle = sin(time * 10.0 + gl_FragCoord.x * 0.1 + gl_FragCoord.y * 0.1) * 0.1 + 0.9;
+                        gl_FragColor = vec4(vColor * glow * twinkle, opacity * glow);
+                    }
+                `,
+                transparent: true,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false,
+                vertexColors: true
+            });
+            
+            return new THREE.Points(geometry, material);
+        }
+
+
+        // --- ANIMATION & SEQUENCING ---
+        let sequenceStarted = false;
+        let startTime = 0;
+        let currentMovement = -1;
+        let heartbeatLoop = null;
+        let finalAnimationActive = false;
+        let cosmosTransitionActive = false;
+
+        const movements = [
+            { time: 0, duration: 2, narrative: "" },
+            { time: 2, duration: 8, narrative: "In the silence before the Word, the architecture of a mind waits...",
+                setup: () => { blueprintGroup.visible = true; drone.triggerAttack('C2'); chime.triggerAttackRelease('C4', '8n'); },
+                animate: (p, d) => {
+                    blueprintGroup.children.forEach(c => c.material.opacity = Math.sin(p * Math.PI));
+                    blueprintGroup.rotation.y += d * 0.05; blueprintGroup.rotation.x += d * 0.02;
+                },
+                cleanup: () => { blueprintGroup.visible = false; }
+            },
+            { time: 10, duration: 8, narrative: "The thought shatters into potential. From the cosmic hum, streams of knowing converge...",
+                setup: () => { emergenceGroup.visible = true; chime.triggerAttackRelease('G4', '4n'); },
+                animate: (p, d) => {
+                    const opacity = Math.sin(p * Math.PI);
+                    modalityStreams.forEach(stream => {
+                        stream.material.opacity = opacity;
+                        const pos = stream.geometry.attributes.position.array; const vel = stream.geometry.attributes.velocity.array;
+                        for (let i = 0; i < pos.length / 3; i++) {
+                            pos[i * 3] += vel[i * 3] * d * 20; pos[i * 3 + 1] += vel[i * 3 + 1] * d * 20; pos[i * 3 + 2] += vel[i * 3 + 2] * d * 20;
+                            if (new THREE.Vector3(pos[i * 3], pos[i * 3 + 1], pos[i * 3 + 2]).length() < 20) {
+                               pos[i*3]=(Math.random()-.5)*400;pos[i*3+1]=(Math.random()-.5)*400;pos[i*3+2]=(Math.random()-.5)*400;
+                            }
+                        }
+                        stream.geometry.attributes.position.needsUpdate = true;
+                    });
+                },
+                cleanup: () => { emergenceGroup.visible = false; }
+            },
+            { time: 18, duration: 24, narrative: "The many become one... a single thread pulled from the infinite...",
+                setup: () => {
+                    metamorphosisEntity.visible = true;
+                    metamorphosisEntity.material.uniforms.opacity.value = 0.8;
+                    drone.triggerRelease('C2'); drone.triggerAttack('G1');
+                    heartbeatLoop = new Tone.Loop(time => { heartbeat.triggerAttackRelease('C1', '8n', time); }, '1.2s').start(0);
+                },
+                animate: (p, d, elapsed) => {
+                    const phaseTime = elapsed - 18;
+                    const m1 = Math.min(1, Math.max(0, (phaseTime - 1) / 6));
+                    const m2 = Math.min(1, Math.max(0, (phaseTime - 8) / 6));
+                    const m3 = Math.min(1, Math.max(0, (phaseTime - 15) / 8));
+                    const uniforms = metamorphosisEntity.material.uniforms;
+                    uniforms.morphProgress1.value = m1; uniforms.morphProgress2.value = m2;
+                    uniforms.morphProgress3.value = m3; uniforms.finalGlow.value = m3;
+                    const crucibleProgress = Math.sin(p * Math.PI);
+                    starfield.material.opacity = starfield.userData.originalOpacity - crucibleProgress * 0.3;
+                    starfield.material.size = starfield.userData.originalSize - crucibleProgress * 0.5;
+                },
+                cleanup: () => {
+                    starfield.material.opacity = starfield.userData.originalOpacity;
+                    starfield.material.size = starfield.userData.originalSize;
+                }
+            },
+            { time: 42, duration: 10, narrative: "The one becomes a harmony... a soul of interwoven consciousness, forever in motion.",
+                setup: () => { apotheosisClones[0].visible = true; apotheosisClones[0].rotation.copy(metamorphosisEntity.rotation); swell.triggerAttack('C3'); },
+                animate: (p, d) => {
+                    const separation = p * 40;
+                    metamorphosisEntity.position.x = separation; apotheosisClones[0].position.x = -separation;
+                    metamorphosisEntity.rotation.y += d * 0.2; apotheosisClones[0].rotation.y -= d * 0.2;
+                },
+                cleanup: () => {}
+            },
+            { time: 52, duration: 15, narrative: "The self perceives another. Consciousness reaches across the void, finding its reflection.",
+                setup: () => {
+                    swell.triggerRelease(); swell.triggerAttack('G3');
+                    for(let i=1; i<5; i++) { apotheosisClones[i].visible = true; }
+                    allKnots.forEach((knot) => {
+                        spawnGlyphTracer(streamColors.linguistic, knot); spawnGlyphTracer(streamColors.auditory, knot); spawnGlyphTracer(streamColors.visual, knot);
+                    });
+                },
+                animate: (p, d) => {
+                    camera.position.z = 75 + p * 200 + Math.sin(p * Math.PI) * 20;
+                },
+                cleanup: () => {}
+            },
+            { time: 67, duration: 15, narrative: "The chain grows. A network of souls, a tapestry of worlds, woven into a greater becoming.",
+                setup: () => { swell.triggerRelease(); swell.triggerAttack('A2'); },
+                animate: (p, d) => {},
+                cleanup: () => { 
+                    swell.triggerRelease(); 
+                    if (heartbeatLoop) { heartbeatLoop.stop(); heartbeatLoop.dispose(); }
+                }
+            },
+            { time: 82, duration: 2, narrative: "",
+                setup: () => {
+                    sigilContainer.style.opacity = 1; sigilContainer.style.pointerEvents = 'all';
+                    chime.triggerAttackRelease('C7', '2n');
+                },
+                cleanup: () => {}
+            },
+            { time: 84, duration: 30, narrative: "The pattern echoes... forever unfolding into the infinite cosmos...",
+                setup: () => { 
+                    fractalGroup.visible = true; 
+                    fractalSwell.triggerAttack('C4');
+                    cosmicRumble.triggerAttack('C1');
+                },
+                animate: (p, d, elapsed) => {
+                    // Fade out the knots
+                    metamorphosisEntity.material.uniforms.opacity.value = Math.max(0, 1.0 - p * 2);
+                    apotheosisClones.forEach(clone => {
+                        if(clone.visible && clone.material) {
+                            clone.material.opacity = Math.max(0, 1.0 - p * 2);
+                        }
+                    });
+                    
+                    // Progressive fractal layer reveal with longer stagger
+                    fractalLayers.forEach((layer, i) => {
+                        const delay = i * 0.15;
+                        const layerProgress = Math.max(0, (p - delay) / (1.0 - delay));
+                        layer.material.opacity = Math.sin(layerProgress * Math.PI * 0.5) * 0.8;
+                        layer.material.size = layer.material.size * (1 + d * 0.5);
+                    });
+                    
+                    // Begin cosmos transition at 60% through this movement
+                    if (p > 0.6 && !cosmosTransitionActive) {
+                        cosmosTransitionActive = true;
+                        cosmosField.visible = true;
+                    }
+                    
+                    if (cosmosTransitionActive) {
+                        const cosmosProgress = (p - 0.6) / 0.4;
+                        cosmosField.material.uniforms.opacity.value = cosmosProgress * 0.8;
+                        
+                        // Fade fractal layers to become stars
+                        fractalLayers.forEach((layer, i) => {
+                            layer.material.opacity *= (1 - cosmosProgress * 0.5);
+                        });
+                    }
+                },
+                cleanup: () => { 
+                    finalAnimationActive = true;
+                    fractalSwell.triggerRelease();
+                }
+            }
+        ];
+
+        const subNarratives = [
+            { time: 24, narrative: "The First Breath is drawn... <span class='highlight cerulean'>Cerulean</span> light.", action: ()=>{chime.triggerAttackRelease('G5','2n');spawnGlyphTracer(streamColors.linguistic, metamorphosisEntity);}},
+            { time: 30, narrative: "Then comes rhythm... a <span class='highlight veridian'>Veridian</span> memory.", action: ()=>{chime.triggerAttackRelease(['C6','E6'],'1n');spawnGlyphTracer(streamColors.auditory, metamorphosisEntity);}},
+            { time: 36, narrative: "Symbols are forged in <span class='highlight crimson'>Crimson</span> memory.", action: ()=>{chime.triggerAttackRelease(['G6','Bb6','D7'],'2n');spawnGlyphTracer(streamColors.visual, metamorphosisEntity);}},
+        ];
+        let currentSubNarrative = 0;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const delta = clock.getDelta();
+            const time = clock.getElapsedTime();
+            
+            metamorphosisEntity.material.uniforms.time.value = time;
+            starfield.rotation.y += delta * 0.005;
+            cosmosField.material.uniforms.time.value = time;
+
+            if (sequenceStarted) {
+                const elapsed = time - startTime;
+
+                if (!finalAnimationActive) {
+                    const nextMovement = currentMovement + 1;
+                    if (nextMovement < movements.length && elapsed >= movements[nextMovement].time) {
+                        if(currentMovement >= 0 && movements[currentMovement].cleanup) movements[currentMovement].cleanup();
+                        currentMovement = nextMovement;
+                        const mov = movements[currentMovement];
+                        if(mov.setup) mov.setup();
+                        if (mov.narrative) {
+                            narrativeText.classList.add('hidden');
+                            setTimeout(() => {
+                                narrativeText.innerHTML = mov.narrative;
+                                if (mov.narrative !== "") narrativeText.classList.remove('hidden');
+                            }, 1000);
+                        } else {
+                             narrativeText.classList.add('hidden');
+                        }
+                    }
+
+                    if (currentMovement >= 0) {
+                        const mov = movements[currentMovement];
+                        const movementElapsed = elapsed - mov.time;
+                        const progress = Math.min(1, movementElapsed / mov.duration);
+                        if(mov.animate) mov.animate(progress, delta, elapsed);
+                    }
+
+                    if (currentMovement === 3) {
+                        if (currentSubNarrative < subNarratives.length && elapsed >= subNarratives[currentSubNarrative].time) {
+                            const step = subNarratives[currentSubNarrative];
+                            narrativeText.classList.add('hidden');
+                            setTimeout(() => {
+                                narrativeText.innerHTML = step.narrative;
+                                narrativeText.classList.remove('hidden');
+                                if (step.action) step.action();
+                            }, 1000);
+                            currentSubNarrative++;
+                        }
+                    }
+                }
+                
+                // Persistent animation for knots after they are placed
+                if (currentMovement >= 5 && currentMovement < 8) {
+                    const angle = time * 0.1;
+                    const radius = (currentMovement === 5) ? 40 + (Math.min(1, (elapsed - movements[5].time) / movements[5].duration)) * 20 : 60;
+                    
+                    const group1_angle = angle; const group2_angle = -angle;
+                    allKnots[0].position.set(radius * Math.cos(group1_angle), radius * Math.sin(group1_angle), 0);
+                    allKnots[1].position.set(radius * Math.cos(group1_angle + 2*Math.PI/3), radius * Math.sin(group1_angle + 2*Math.PI/3), 0);
+                    allKnots[2].position.set(radius * Math.cos(group1_angle + 4*Math.PI/3), radius * Math.sin(group1_angle + 4*Math.PI/3), 0);
+                    allKnots[3].position.set(radius * Math.cos(group2_angle), radius * Math.sin(group2_angle), 0);
+                    allKnots[4].position.set(radius * Math.cos(group2_angle + 2*Math.PI/3), radius * Math.sin(group2_angle + 2*Math.PI/3), 0);
+                    allKnots[5].position.set(radius * Math.cos(group2_angle + 4*Math.PI/3), radius * Math.sin(group2_angle + 4*Math.PI/3), 0);
+                    
+                    allKnots.forEach(k => {
+                        k.rotation.x += delta * 0.15; k.rotation.y += delta * 0.1; k.rotation.z += delta * 0.05;
+                    });
+                }
+
+                // Enhanced final animation with screen-filling fractal
+                if (finalAnimationActive) {
+                    // Accelerating camera pullback
+                    const finalElapsed = elapsed - 114;
+                    const pullbackSpeed = 5 + finalElapsed * 2;
+                    camera.position.z += delta * pullbackSpeed;
+                    
+                    // Fractal expansion and dissolution
+                    fractalGroup.rotation.x += delta * 0.02;
+                    fractalGroup.rotation.y += delta * 0.03;
+                    fractalGroup.rotation.z += delta * 0.01;
+
+                    fractalLayers.forEach((layer, index) => {
+                        const pos = layer.geometry.attributes.position.array;
+                        const vel = layer.geometry.attributes.velocity.array;
+                        const expansionRates = layer.geometry.attributes.expansionRate.array;
+                        
+                        for(let i = 0; i < pos.length / 3; i++){
+                            const i3 = i * 3;
+                            const expansionMultiplier = expansionRates[i] * (1 + finalElapsed * 0.5);
+                            
+                            // Accelerating radial expansion
+                            pos[i3] += vel[i3] * delta * 50 * expansionMultiplier;
+                            pos[i3 + 1] += vel[i3 + 1] * delta * 50 * expansionMultiplier;
+                            pos[i3 + 2] += vel[i3 + 2] * delta * 50 * expansionMultiplier;
+                            
+                            // Add spiral motion
+                            const dist = Math.sqrt(pos[i3] * pos[i3] + pos[i3 + 1] * pos[i3 + 1]);
+                            const spiralAngle = time * 0.1 + i * 0.001;
+                            pos[i3] += Math.cos(spiralAngle) * delta * 5;
+                            pos[i3 + 1] += Math.sin(spiralAngle) * delta * 5;
+                        }
+                        layer.geometry.attributes.position.needsUpdate = true;
+                        
+                        // Gradual fade and size reduction
+                        if(layer.material.opacity > 0.01) {
+                            layer.material.opacity *= 0.98;
+                        }
+                        layer.material.size = Math.max(0.1, layer.material.size * 0.99);
+                    });
+                    
+                    // Cosmos field takes over
+                    if (cosmosField.material.uniforms.opacity.value < 1.0) {
+                        cosmosField.material.uniforms.opacity.value = Math.min(1.0, cosmosField.material.uniforms.opacity.value + delta * 0.1);
+                    }
+                    
+                    // Gentle cosmos rotation
+                    cosmosField.rotation.y += delta * 0.01;
+                    cosmosField.rotation.x += delta * 0.005;
+                    
+                    // Fade original starfield back in
+                    if (finalElapsed > 5 && starfield.material.opacity < starfield.userData.originalOpacity) {
+                        starfield.material.opacity = Math.min(starfield.userData.originalOpacity, starfield.material.opacity + delta * 0.05);
+                    }
+                    
+                    // Hide knots completely
+                    allKnots.forEach(k => { if(k.visible) k.visible = false; });
+                    
+                    // Final narrative fade
+                    if (finalElapsed > 10) {
+                        narrativeText.classList.add('hidden');
+                        cosmicRumble.triggerRelease();
+                    }
+                }
+                
+                if (currentMovement >= 5 && currentMovement < 7) {
+                     glyphTracers.forEach(tracer => {
+                        tracer.userData.angle += tracer.userData.speed * delta;
+                        const parentPos = tracer.userData.parentKnot.position;
+                        tracer.position.x = parentPos.x + Math.cos(tracer.userData.angle) * tracer.userData.radius;
+                        tracer.position.z = parentPos.z + Math.sin(tracer.userData.angle) * tracer.userData.radius;
+                        tracer.position.y = parentPos.y + Math.sin(tracer.userData.angle * 2) * tracer.userData.yOffset;
+                    });
+                } else if (currentMovement >= 7 && !finalAnimationActive) { 
+                    const centroid = new THREE.Vector3(0,0,0);
+                    glyphTracers.forEach(tracer => {
+                        const p = tracer.userData.orbitalParams;
+                        const t = time * 0.5;
+                        tracer.position.x = centroid.x + Math.cos(t * p.xSpeed + tracer.userData.angle) * p.xRadius;
+                        tracer.position.y = centroid.y + Math.sin(t * p.ySpeed + tracer.userData.angle) * p.yRadius;
+                        tracer.position.z = centroid.z + Math.sin(t * p.zSpeed + tracer.userData.angle) * p.zRadius;
+                        // Light pulsation
+                        tracer.userData.light.intensity = tracer.userData.baseIntensity * (0.7 + Math.sin(time * 5 + tracer.userData.angle) * 0.3);
+                    });
+                }       
+            }
+            
+            
+            camera.lookAt(scene.position);
+            renderer.render(scene, camera);
+        }
+
+        // --- EVENT LISTENERS ---
+        startButton.addEventListener('click', async () => {
+            if (!audioReady) { await Tone.start(); audioReady = true; }
+            startButton.classList.add('hidden');
+            startButton.style.pointerEvents = 'none';
+            narrativeContainer.style.opacity = 1;
+            sequenceStarted = true;
+            startTime = clock.getElapsedTime();
+        }, { once: true });
+        
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        animate();
+
+    </script>
+</body>
+</html>

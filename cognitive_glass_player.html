@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Cognitive Glass · MFSA Lexeme Tone Player (v1.1 - enhanced)</title>
+<style>
+  body{background:#07101a;color:#e6f3ff;font-family:system-ui,Segoe UI,Roboto,Arial;padding:18px}
+  h1{font-size:18px;margin-bottom:6px}
+  .panel{max-width:980px}
+  .small{color:#9bb0c6}
+  pre{background:#041023;padding:8px;border-radius:8px;overflow:auto}
+  button{padding:8px 10px;border-radius:8px;border:0;background:#2d5fe6;color:white;cursor:pointer}
+  input,select{padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:#071826;color:white}
+  .row{display:flex;gap:8px;align-items:center;margin-top:10px}
+</style>
+</head>
+<body>
+  <div class="panel">
+    <h1>🔮 Cognitive Glass · MFSA Lexeme Tone Player — Enhanced</h1>
+    <div class="small">Now with microphone peak-detection enabled (opt-in), auto-load of <code>eigen_map.json</code>, and a guided walkthrough.</div>
+
+    <div style="margin-top:12px">
+      <button id="btnInit">Initialize Audio</button>
+      <button id="btnLoadMap">Load eigen_map.json (auto)</button>
+      <button id="btnEnableMic">Enable Mic Peak Detection</button>
+      <button id="btnWalk">Open Walkthrough</button>
+      <a id="downloadMap" href="eigen_map.json" download style="margin-left:8px;color:#9fd1ff">Download eigen_map.json</a>
+    </div>
+
+    <section style="margin-top:14px">
+      <h3 class="small">Status</h3>
+      <div id="status" class="small">idle</div>
+    </section>
+
+    <section style="margin-top:14px">
+      <h3 class="small">Mic Peak Detection (tuned defaults)</h3>
+      <div class="small">This routine analyzes microphone audio and marks strong spectral peaks as candidate resonances. It is conservative by default to avoid false positives in noisy rooms.</div>
+      <div style="margin-top:8px" class="row">
+        <label>Threshold: </label>
+        <input id="micThresh" type="number" value="0.45" step="0.01" style="width:100px" />
+        <label>Min Peak dB: </label>
+        <input id="micMinDb" type="number" value="-60" step="1" style="width:100px" />
+        <label>Min Hz: </label>
+        <input id="micMinHz" type="number" value="30" style="width:100px" />
+      </div>
+      <div style="margin-top:8px" class="row">
+        <button id="btnStartDetect">Start Detection</button>
+        <button id="btnStopDetect">Stop Detection</button>
+        <button id="btnApplyMarks">Apply Marks to Current Lexeme (Top 3)</button>
+      </div>
+      <div style="margin-top:8px">
+        <div class="small">Detected marks:</div>
+        <div id="marks" class="small">none</div>
+      </div>
+    </section>
+
+    <section style="margin-top:14px">
+      <h3 class="small">Notes</h3>
+      <ul class="small">
+        <li>Auto-load will attempt to fetch <code>eigen_map.json</code> from the same folder. If you host files on GitHub Pages, this will load automatically.</li>
+        <li>Mic detection requires HTTPS or file:// with user permission in most browsers. Allow microphone access when prompted.</li>
+        <li>Detected marks are conservative — you can review and apply them to lexemes in the Mapper.</li>
+      </ul>
+    </section>
+  </div>
+
+<script>
+// Minimal player scaffold for enabling features requested (the full player UI exists on the canvas; this file is an enhanced local copy).
+// Auto-load eigen_map.json, implement mic peak detection, and expose file-level controls for convenience.
+
+let AC = null, master=null;
+function ensureAudio(){ if(!AC){ AC = new (window.AudioContext || window.webkitAudioContext)(); master = AC.createGain(); master.gain.value = 0.6; master.connect(AC.destination); status('Audio initialized'); } }
+
+function status(s){ document.getElementById('status').textContent = s; console.log('[status]',s); }
+
+document.getElementById('btnInit').addEventListener('click', ()=>{ ensureAudio(); });
+document.getElementById('btnLoadMap').addEventListener('click', ()=>{ loadEigenMap(); });
+document.getElementById('btnWalk').addEventListener('click', ()=>{ window.open('walkthrough.html','_blank'); });
+
+// Auto-load eigen_map.json (attempt silently, but button allows manual load)
+async function loadEigenMap(){
+  try{
+    const res = await fetch('eigen_map.json');
+    if(!res.ok) throw new Error('Not found');
+    const map = await res.json();
+    window.EIGEN_MAP = map;
+    status('Loaded eigen_map.json (' + map.length + ' nodes)');
+    document.getElementById('downloadMap').style.display='inline-block';
+  }catch(err){
+    status('Failed to auto-load eigen_map.json: ' + err.message);
+  }
+}
+// try auto-load on start (non-blocking)
+loadEigenMap();
+
+// ---------------- MIC PEAK DETECTION ----------------
+// Conservative tuned defaults; exposes simple UI controls for Threshold and Min dB.
+// Approach:
+// - getUserMedia -> AnalyserNode (FFT size 2048)
+// - compute normalized spectral envelope, look for local peaks above threshold and min dB
+// - when a stable peak is seen for a short hold window, register it as a mark
+let micStream = null, micAnalyzer = null, micData = null, micInterval = null;
+const detectedMarks = [];
+
+async function enableMic(){
+  if(micStream) return status('Mic already enabled');
+  try{
+    const st = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+    micStream = st;
+    const src = (AC||new (window.AudioContext || window.webkitAudioContext)()).createMediaStreamSource(st);
+    if(!AC) ensureAudio();
+    micAnalyzer = AC.createAnalyser();
+    micAnalyzer.fftSize = 4096;
+    src.connect(micAnalyzer);
+    micData = new Float32Array(micAnalyzer.frequencyBinCount);
+    status('Mic enabled — ready for detection');
+  }catch(e){ status('Mic permission denied or error: ' + e.message); }
+}
+
+document.getElementById('btnEnableMic').addEventListener('click', enableMic);
+
+function hzFromIndex(index){ const nyq = AC.sampleRate/2; const binCount = micAnalyzer.frequencyBinCount; return index * (nyq/binCount); }
+
+function analyzeOnce(){
+  micAnalyzer.getFloatFrequencyData(micData);
+  // convert to linear scale and find peaks
+  const minDb = parseFloat(document.getElementById('micMinDb').value);
+  const threshold = parseFloat(document.getElementById('micThresh').value);
+  const minHz = parseFloat(document.getElementById('micMinHz').value);
+  let peaks = [];
+  for(let i=1;i<micData.length-1;i++){
+    const v = micData[i];
+    if(v < minDb) continue;
+    if(v > micData[i-1] && v >= micData[i+1]){
+      const hz = hzFromIndex(i);
+      if(hz < minHz) continue;
+      // normalized strength 0..1 relative to -100..0 dB
+      const strength = Math.min(1, (v - minDb) / (0 - minDb));
+      if(strength >= threshold){
+        peaks.push({ index:i, hz:hz, db:v, strength: strength });
+      }
+    }
+  }
+  // compress peaks (group nearby)
+  const grouped = [];
+  peaks.forEach(p=>{
+    const near = grouped.find(g=> Math.abs(g.hz - p.hz) < 6 ); // group within 6 Hz
+    if(near){ if(p.strength > near.strength){ near.hz = p.hz; near.db = p.db; near.strength = p.strength; } }
+    else grouped.push(Object.assign({},p));
+  });
+  return grouped;
+}
+
+document.getElementById('btnStartDetect').addEventListener('click', ()=>{
+  if(!micAnalyzer){ status('Mic not enabled — enabling now...'); enableMic().then(()=>{ startDetectLoop(); }); return; }
+  startDetectLoop();
+});
+function startDetectLoop(){
+  if(micInterval) return status('Detection already running');
+  status('Starting detection loop — listen quietly and hum or play tones to test');
+  micInterval = setInterval(()=>{
+    const peaks = analyzeOnce();
+    if(peaks.length){
+      peaks.forEach(p=>{
+        // register mark if not similar to previous
+        const exists = detectedMarks.find(m=>Math.abs(m.hz - p.hz) < 3);
+        if(!exists){
+          detectedMarks.push(p);
+          updateMarksUI();
+          console.log('Detected peak', p);
+        }
+      });
+    }
+  }, 400); // run ~2.5x/sec
+}
+
+document.getElementById('btnStopDetect').addEventListener('click', ()=>{ if(micInterval){ clearInterval(micInterval); micInterval=null; status('Detection stopped'); } else status('Detection not running'); });
+
+function updateMarksUI(){ document.getElementById('marks').textContent = detectedMarks.map(m=>Math.round(m.hz)+'Hz ('+m.db.toFixed(1)+'dB)').join(', '); }
+
+// Apply marks to current lexeme (this page is mostly a control center; the mapper app will pick these up if placed into eigen_map.json or passed in memory)
+// For convenience we write a simple file-like object in window for the mapper to read if both pages are open on the same origin.
+document.getElementById('btnApplyMarks').addEventListener('click', ()=>{
+  if(detectedMarks.length===0) return status('No marks to apply');
+  // create a lightweight map and expose it
+  window.__DETECTED_MARKS = detectedMarks.map(m=>({ hz: Math.round(m.hz), strength: m.strength }));
+  status('Applied ' + detectedMarks.length + ' marks to window.__DETECTED_MARKS (available to mapper on same origin)');
+});
+
+// If you want the player to automatically export the detected marks into the eigen_map.json file, that requires user download/confirmation due to browser security.
+// We provide a helper to export marks as a JSON file for manual import into the mapper.
+function exportDetectedMarks(){
+  if(!detectedMarks.length) return status('No marks to export');
+  const data = detectedMarks.map(m=>({ hz: Math.round(m.hz), db: m.db, strength: m.strength }));
+  const blob = new Blob([JSON.stringify({version:'1.1-auto-marks', marks: data}, null, 2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'detected_marks.json'; a.click(); URL.revokeObjectURL(a.href);
+  status('Exported detected_marks.json (' + data.length + ' marks)');
+}
+
+// small helper to load eigen_map into window if present
+async function tryAutoLoadEigen(){
+  try{
+    const r = await fetch('eigen_map.json');
+    if(!r.ok) return;
+    const m = await r.json();
+    window.EIGEN_MAP = m;
+    status('eigen_map.json auto-loaded (' + (m.length||0) + ' nodes)');
+  }catch(e){ console.warn('auto-load eigen_map failed', e); }
+}
+// attempt auto-load on page open (non-blocking)
+tryAutoLoadEigen();
+
+</script>
+</body>
+</html>
