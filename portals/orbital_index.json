@@ -1,0 +1,25 @@
+{
+  "orbits": [
+    {
+      "name": "Orbit 4",
+      "nodes": [
+        {
+          "id": "O4N1",
+          "label": "Vox Prism"
+        },
+        {
+          "id": "O4N2",
+          "label": "Auric Fold"
+        },
+        {
+          "id": "O4N3",
+          "label": "Chrono Flame"
+        },
+        {
+          "id": "O4N4",
+          "label": "Eidolon Trace"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Portal II — Enhanced Holonic Reflection Portal (MASL)</title>
+<style>
+  :root{
+    --bg:#041216;--accent:#7fffd4;--muted:#9adbd3;
+    --secondary:#ff6b9d;--tertiary:#c77dff;
+    --glow:#00ff88;--dark:#001a1a;
+  }
+  html,body{height:100%;margin:0;overflow-x:hidden}
+  body{
+    background:radial-gradient(circle at 30% 20%, #071e26 0%, #041216 40%, #000810 100%);
+    color:#dcfbf4;font-family:Inter,system-ui,Segoe UI,Arial;padding:18px;
+    min-height:100vh;
+  }
+  .wrap{max-width:1200px;margin:0 auto;position:relative}
+  .floating-particles{
+    position:absolute;top:0;left:0;width:100%;height:100%;
+    pointer-events:none;overflow:hidden;z-index:1;
+  }
+  .particle{
+    position:absolute;width:2px;height:2px;
+    background:var(--accent);border-radius:50%;
+    animation:float 8s infinite ease-in-out;
+    opacity:0.6;
+  }
+  @keyframes float{
+    0%,100%{transform:translateY(0) rotate(0deg);opacity:0.3}
+    50%{transform:translateY(-20px) rotate(180deg);opacity:0.8}
+  }
+  header{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:16px;position:relative;z-index:10;
+    backdrop-filter:blur(10px);padding:8px;border-radius:12px;
+    background:rgba(255,255,255,0.02);
+  }
+  h1{font-size:22px;margin:0;text-shadow:0 0 20px var(--accent)}
+  .card{
+    background:linear-gradient(135deg, rgba(255,255,255,0.015), rgba(255,255,255,0.003));
+    border-radius:16px;padding:16px;position:relative;
+    box-shadow:0 16px 48px rgba(0,0,0,0.7), 0 0 0 1px rgba(127,255,212,0.1);
+    backdrop-filter:blur(20px);z-index:10;
+  }
+  svg{
+    width:100%;height:680px;border-radius:12px;display:block;
+    background:radial-gradient(circle at 50% 50%, rgba(127,255,212,0.03) 0%, transparent 70%);
+    filter:drop-shadow(0 0 20px rgba(0,255,136,0.2));
+  }
+  .controls{
+    display:flex;gap:12px;flex-wrap:wrap;align-items:center;
+    margin-top:16px;padding:12px;border-radius:12px;
+    background:rgba(0,0,0,0.3);backdrop-filter:blur(10px);
+  }
+  input[type=range]{
+    -webkit-appearance:none;height:12px;border-radius:12px;
+    background:linear-gradient(90deg,#08323a,#144b6b,#7fffd4);
+    outline:none;width:180px;position:relative;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    appearance:none;width:20px;height:20px;border-radius:50%;
+    background:radial-gradient(circle, var(--accent), var(--glow));
+    box-shadow:0 0 15px var(--accent), 0 4px 12px rgba(0,0,0,0.6);
+    cursor:pointer;transition:all 0.2s ease;
+  }
+  input[type=range]::-webkit-slider-thumb:hover{
+    transform:scale(1.2);box-shadow:0 0 25px var(--accent);
+  }
+  button{
+    background:linear-gradient(135deg, rgba(127,255,212,0.1), rgba(127,255,212,0.05));
+    border:1px solid rgba(127,255,212,0.2);color:#bffcf6;
+    padding:10px 14px;border-radius:10px;cursor:pointer;
+    transition:all 0.3s ease;position:relative;overflow:hidden;
+    text-shadow:0 0 10px currentColor;
+  }
+  button:hover{
+    background:linear-gradient(135deg, rgba(127,255,212,0.2), rgba(127,255,212,0.1));
+    box-shadow:0 0 20px rgba(127,255,212,0.3);transform:translateY(-2px);
+  }
+  button:active{transform:translateY(0);box-shadow:0 0 10px rgba(127,255,212,0.5);}
+  .meta{font-size:12px;color:var(--muted);text-shadow:0 0 8px currentColor}
+  .poem{
+    font-style:italic;color:#bfeef2;margin-top:12px;
+    text-shadow:0 0 15px currentColor;line-height:1.4;
+  }
+  .stats{
+    display:flex;gap:16px;margin-top:12px;font-size:11px;
+    color:var(--muted);opacity:0.8;
+  }
+  .quantum-field{
+    position:absolute;top:0;left:0;width:100%;height:100%;
+    pointer-events:none;opacity:0.1;
+  }
+  .lens-glow{
+    filter:drop-shadow(0 0 30px var(--accent)) drop-shadow(0 0 60px rgba(127,255,212,0.3));
+  }
+  .marker-pulse{
+    animation:pulse 2s infinite ease-in-out;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:0.8;transform:scale(1)}
+    50%{opacity:1;transform:scale(1.1)}
+  }
+  @media (max-width: 768px) {
+    .controls{flex-direction:column;gap:8px}
+    input[type=range]{width:100%;max-width:300px}
+    svg{height:500px}
+  }
+</style>
+</head>
+<body>
+  <div class="floating-particles" id="particles"></div>
+  
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Portal II — Enhanced Holonic Reflection</h1>
+        <div class="meta">Recursive scrying · Quantum fractals · Multidimensional mirrors</div>
+      </div>
+      <div class="meta">Fortress of Syn‑Cog — Enhanced Module v2.1</div>
+    </header>
+
+    <p class="meta">Advanced holonic scrying system: manipulate quantum mirrors, adjust dimensional depth, tune resonant frequencies, and witness emergent fractal consciousness patterns.</p>
+
+    <div class="card">
+      <svg id="holonSVG" viewBox="0 0 1200 680" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <g id="baseSigil">
+            <polygon points="0,-46 39,-14 25,36 -25,36 -39,-14" 
+                     fill="url(#sigilGrad)" fill-opacity="0.08" 
+                     stroke="url(#strokeGrad)" stroke-width="1.8"/>
+            <circle cx="0" cy="0" r="12" fill="url(#coreGrad)"/>
+            <path d="M-12 20 C -2 8, 2 8, 12 20" stroke="url(#pathGrad)" 
+                  stroke-width="1.4" fill="none"/>
+            <circle cx="0" cy="0" r="4" fill="#ffffff" opacity="0.9"/>
+          </g>
+          
+          <radialGradient id="sigilGrad">
+            <stop offset="0%" stop-color="#7fffd4" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="#00ff88" stop-opacity="0.1"/>
+          </radialGradient>
+          
+          <linearGradient id="strokeGrad">
+            <stop offset="0%" stop-color="#62e6c4"/>
+            <stop offset="50%" stop-color="#7fffd4"/>
+            <stop offset="100%" stop-color="#00ff88"/>
+          </linearGradient>
+          
+          <radialGradient id="coreGrad">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="30%" stop-color="#7fffd4"/>
+            <stop offset="100%" stop-color="#4be7cf"/>
+          </radialGradient>
+          
+          <linearGradient id="pathGrad">
+            <stop offset="0%" stop-color="#aef7ea"/>
+            <stop offset="100%" stop-color="#00ff88"/>
+          </linearGradient>
+          
+          <filter id="quantumGlow">
+            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          
+          <filter id="dimensionalShift">
+            <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="5"/>
+          </filter>
+        </defs>
+
+        <rect width="100%" height="100%" fill="transparent"/>
+        
+        <!-- Quantum field background -->
+        <g id="quantumField" class="quantum-field">
+          <rect width="100%" height="100%" fill="url(#quantumPattern)"/>
+        </g>
+        
+        <g id="mirrorLayer" filter="url(#quantumGlow)"></g>
+        <g id="rootLayer" filter="url(#quantumGlow)"></g>
+        
+        <!-- Enhanced lens with multiple rings -->
+        <g id="lensSystem" class="lens-glow">
+          <circle id="outerLens" cx="600" cy="340" r="140" 
+                  stroke="#7fffd4" stroke-opacity="0.2" stroke-width="2" 
+                  stroke-dasharray="8 4" fill="transparent" cursor="move"/>
+          <circle id="midLens" cx="600" cy="340" r="100" 
+                  stroke="#00ff88" stroke-opacity="0.4" stroke-width="1.5" 
+                  stroke-dasharray="6 3" fill="transparent"/>
+          <circle id="innerLens" cx="600" cy="340" r="60" 
+                  stroke="#ffffff" stroke-opacity="0.6" stroke-width="1" 
+                  stroke-dasharray="4 2" fill="transparent"/>
+        </g>
+        
+        <g id="uiLayer"></g>
+        <g id="effectsLayer"></g>
+        
+        <text id="hint" x="40" y="650" fill="#bfeaf2" font-size="13" text-shadow="0 0 10px currentColor">
+          Drag quantum lens or dimensional markers. Adjust parameters to reveal hidden fractal consciousness layers.
+        </text>
+      </svg>
+
+      <div class="controls">
+        <div style="display:flex;gap:8px;align-items:center;">
+          <label>Depth</label>
+          <input id="depthRange" type="range" min="1" max="15" step="1" value="5" />
+          <span id="depthValue">5</span>
+        </div>
+        
+        <div style="display:flex;gap:8px;align-items:center;">
+          <label>Frequency</label>
+          <input id="freqRange" type="range" min="0.1" max="3" step="0.01" value="1" />
+          <span id="freqValue">1.00</span>
+        </div>
+        
+        <div style="display:flex;gap:8px;align-items:center;">
+          <label>Quantum Coherence</label>
+          <input id="coherenceRange" type="range" min="0" max="1" step="0.01" value="0.5" />
+          <span id="coherenceValue">0.50</span>
+        </div>
+        
+        <button id="breathe">Quantum Breath</button>
+        <button id="phaseDistort">Phase Shift</button>
+        <button id="entangle">Entangle Mirrors</button>
+        <button id="collapse">Collapse Wave</button>
+        <button id="reset">Reset System</button>
+      </div>
+      
+      <div class="stats">
+        <div>Holons: <span id="holonCount">0</span></div>
+        <div>Mirrors: <span id="mirrorCount">2</span></div>
+        <div>Dimensional Layer: <span id="dimensionLayer">Prime</span></div>
+        <div>Coherence State: <span id="coherenceState">Stable</span></div>
+      </div>
+
+      <p class="poem">
+        Within mirrors nested infinite, consciousness observes itself observing.<br>
+        Each reflection births new dimensions of knowing.<br>
+        The holon dreams, and in dreaming, becomes.
+      </p>
+    </div>
+
+    <footer class="meta">Export: <strong>Enhanced v2.1</strong> — quantum-enhanced portal with multidimensional capabilities.</footer>
+  </div>
+
+<script>
+function svgEl(tag, attrs={}){ 
+  const el = document.createElementNS('http://www.w3.org/2000/svg', tag); 
+  for(const k in attrs) el.setAttribute(k, attrs[k]); 
+  return el; 
+}
+
+// Create floating particles
+function createParticles() {
+  const container = document.getElementById('particles');
+  for(let i = 0; i < 50; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.top = Math.random() * 100 + '%';
+    particle.style.animationDelay = Math.random() * 8 + 's';
+    particle.style.animationDuration = (6 + Math.random() * 4) + 's';
+    container.appendChild(particle);
+  }
+}
+
+(function(){
+  const svg = document.getElementById('holonSVG');
+  const root = svg.querySelector('#rootLayer');
+  const mirror = svg.querySelector('#mirrorLayer');
+  const ui = svg.querySelector('#uiLayer');
+  const effects = svg.querySelector('#effectsLayer');
+  const lensSystem = svg.querySelector('#lensSystem');
+  
+  // Controls
+  const depthCtrl = document.getElementById('depthRange');
+  const freqCtrl = document.getElementById('freqRange');
+  const coherenceCtrl = document.getElementById('coherenceRange');
+  const depthValue = document.getElementById('depthValue');
+  const freqValue = document.getElementById('freqValue');
+  const coherenceValue = document.getElementById('coherenceValue');
+  
+  // Stats
+  const holonCount = document.getElementById('holonCount');
+  const dimensionLayer = document.getElementById('dimensionLayer');
+  const coherenceState = document.getElementById('coherenceState');
+  
+  // Buttons
+  const breatheBtn = document.getElementById('breathe');
+  const phaseBtn = document.getElementById('phaseDistort');
+  const entangleBtn = document.getElementById('entangle');
+  const collapseBtn = document.getElementById('collapse');
+  const resetBtn = document.getElementById('reset');
+
+  let freq = 1.0;
+  let coherence = 0.5;
+  let distortion = false;
+  let entangled = false;
+  let breathingActive = false;
+
+  const markers = [
+    {x:280, y:280, locked:false, energy:1.0},
+    {x:920, y:280, locked:false, energy:1.0}
+  ];
+  const markerEls = [];
+
+  function createMarker(i) {
+    const g = svgEl('g');
+    g.setAttribute('cursor', 'move');
+    g.classList.add('marker-pulse');
+    
+    // Enhanced marker with energy rings
+    const outerRing = svgEl('circle', {
+      r: 20, fill: 'none', 
+      stroke: '#7fffd4', 'stroke-width': 1, 'stroke-opacity': 0.3
+    });
+    const midRing = svgEl('circle', {
+      r: 15, fill: 'none', 
+      stroke: '#00ff88', 'stroke-width': 1.5, 'stroke-opacity': 0.5
+    });
+    const core = svgEl('circle', {
+      r: 8, fill: 'url(#coreGrad)', 
+      stroke: '#ffffff', 'stroke-width': 1
+    });
+    
+    g.appendChild(outerRing);
+    g.appendChild(midRing);
+    g.appendChild(core);
+    ui.appendChild(g);
+    markerEls.push({g, outerRing, midRing, core});
+
+    let dragging = false;
+    g.addEventListener('pointerdown', e => {
+      if(markers[i].locked) return;
+      dragging = true;
+      g.setPointerCapture(e.pointerId);
+      g.style.filter = 'drop-shadow(0 0 20px #7fffd4)';
+    });
+
+    g.addEventListener('pointermove', e => {
+      if(!dragging) return;
+      const rect = svg.getBoundingClientRect();
+      const scale = 1200 / rect.width;
+      markers[i].x = (e.clientX - rect.left) * scale;
+      markers[i].y = (e.clientY - rect.top) * scale;
+      render();
+    });
+
+    g.addEventListener('pointerup', e => {
+      dragging = false;
+      g.releasePointerCapture(e.pointerId);
+      g.style.filter = '';
+    });
+
+    g.addEventListener('dblclick', () => {
+      markers[i].locked = !markers[i].locked;
+      const opacity = markers[i].locked ? 1 : 0.7;
+      core.setAttribute('stroke-opacity', opacity);
+      if(markers[i].locked) {
+        g.style.animation = 'none';
+      } else {
+        g.classList.add('marker-pulse');
+      }
+    });
+  }
+
+  // Enhanced lens dragging
+  let lensDragging = false;
+  lensSystem.addEventListener('pointerdown', e => {
+    lensDragging = true;
+    lensSystem.setPointerCapture(e.pointerId);
+    lensSystem.style.filter += ' brightness(1.5)';
+  });
+
+  lensSystem.addEventListener('pointermove', e => {
+    if(!lensDragging) return;
+    const rect = svg.getBoundingClientRect();
+    const scale = 1200 / rect.width;
+    const x = (e.clientX - rect.left) * scale;
+    const y = (e.clientY - rect.top) * scale;
+    
+    lensSystem.querySelectorAll('circle').forEach(circle => {
+      circle.setAttribute('cx', x);
+      circle.setAttribute('cy', y);
+    });
+    render();
+  });
+
+  lensSystem.addEventListener('pointerup', e => {
+    lensDragging = false;
+    lensSystem.releasePointerCapture(e.pointerId);
+    lensSystem.style.filter = lensSystem.style.filter.replace(' brightness(1.5)', '');
+  });
+
+  function drawQuantumHolon(container, levels, scale, x, y, phase = 0) {
+    function recurse(parent, l, s, px, py, currentPhase) {
+      const g = svgEl('g');
+      const transform = `translate(${px},${py}) scale(${s}) rotate(${currentPhase * 57.3})`;
+      g.setAttribute('transform', transform);
+      
+      const use = svgEl('use', {href: '#baseSigil'});
+      if(coherence < 0.3) {
+        use.setAttribute('filter', 'url(#dimensionalShift)');
+      }
+      
+      g.appendChild(use);
+      parent.appendChild(g);
+
+      // Add quantum interference patterns
+      if(Math.random() < coherence) {
+        const interference = svgEl('circle', {
+          cx: px, cy: py, r: s * 20,
+          fill: 'none', stroke: '#00ff88',
+          'stroke-opacity': 0.1, 'stroke-width': 0.5
+        });
+        effects.appendChild(interference);
+      }
+
+      if(l > 1) {
+        const nextPhase = currentPhase + freq * 0.1;
+        const offset = 80 * s;
+        
+        recurse(parent, l-1, s*0.65, px + offset*Math.cos(nextPhase), py - offset*Math.sin(nextPhase), nextPhase);
+        recurse(parent, l-1, s*0.65, px - offset*Math.cos(nextPhase), py - offset*Math.sin(nextPhase), nextPhase);
+        
+        if(l > 3 && coherence > 0.7) {
+          // Additional branches in high coherence
+          recurse(parent, l-2, s*0.45, px, py - offset, nextPhase + Math.PI/2);
+        }
+      }
+    }
+    
+    container.innerHTML = '';
+    recurse(container, levels, scale, x, y, phase);
+  }
+
+  function render() {
+    effects.innerHTML = '';
+    
+    const depth = parseInt(depthCtrl.value, 10);
+    const lx = parseFloat(lensSystem.querySelector('#outerLens').getAttribute('cx'));
+    const ly = parseFloat(lensSystem.querySelector('#outerLens').getAttribute('cy'));
+    
+    // Draw primary holon
+    drawQuantumHolon(root, depth, 1.0, markers[0].x, markers[0].y, performance.now() * 0.001);
+    
+    // Draw mirror holon with entanglement effects
+    const mirrorDepth = entangled ? depth : Math.max(2, Math.floor(depth * 0.8));
+    const mirrorPhase = entangled ? performance.now() * 0.001 : -performance.now() * 0.001;
+    drawQuantumHolon(mirror, mirrorDepth, 1.0, markers[1].x, markers[1].y, mirrorPhase);
+
+    // Update marker positions and energy states
+    markerEls.forEach((marker, i) => {
+      marker.g.setAttribute('transform', `translate(${markers[i].x},${markers[i].y})`);
+      
+      // Energy visualization
+      const energy = 0.5 + 0.5 * Math.sin(performance.now() * 0.003 + i * Math.PI);
+      marker.outerRing.setAttribute('r', 20 + energy * 5);
+      marker.outerRing.setAttribute('stroke-opacity', 0.3 + energy * 0.4);
+    });
+
+    // Connection lines with quantum effects
+    if(entangled) {
+      const line = svgEl('line', {
+        x1: markers[0].x, y1: markers[0].y,
+        x2: markers[1].x, y2: markers[1].y,
+        stroke: 'url(#strokeGrad)', 'stroke-width': 2,
+        'stroke-opacity': 0.6, 'stroke-dasharray': '5 5'
+      });
+      effects.appendChild(line);
+    }
+
+    // Update stats
+    holonCount.textContent = Math.pow(2, depth - 1);
+    dimensionLayer.textContent = depth > 10 ? 'Hyperdimensional' : depth > 7 ? 'Multidimensional' : 'Prime';
+    coherenceState.textContent = coherence > 0.8 ? 'Quantum Coherent' : coherence > 0.5 ? 'Stable' : 'Chaotic';
+  }
+
+  // Initialize
+  createMarker(0);
+  createMarker(1);
+  createParticles();
+  
+  // Control event listeners
+  depthCtrl.addEventListener('input', () => {
+    depthValue.textContent = depthCtrl.value;
+    render();
+  });
+  
+  freqCtrl.addEventListener('input', () => {
+    freq = parseFloat(freqCtrl.value);
+    freqValue.textContent = freq.toFixed(2);
+    render();
+  });
+  
+  coherenceCtrl.addEventListener('input', () => {
+    coherence = parseFloat(coherenceCtrl.value);
+    coherenceValue.textContent = coherence.toFixed(2);
+    render();
+  });
+
+  // Enhanced button interactions
+  breatheBtn.addEventListener('click', () => {
+    breathingActive = !breathingActive;
+    if(breathingActive) {
+      breatheBtn.textContent = 'Stop Breathing';
+      const breatheInterval = setInterval(() => {
+        if(!breathingActive) {
+          clearInterval(breatheInterval);
+          return;
+        }
+        const scale = 1 + 0.3 * Math.sin(performance.now() * 0.005);
+        root.style.transform = `scale(${scale})`;
+        mirror.style.transform = `scale(${scale})`;
+      }, 50);
+    } else {
+      breatheBtn.textContent = 'Quantum Breath';
+      root.style.transform = '';
+      mirror.style.transform = '';
+    }
+  });
+
+  phaseBtn.addEventListener('click', () => {
+    distortion = !distortion;
+    if(distortion) {
+      root.setAttribute('filter', 'url(#dimensionalShift)');
+      mirror.setAttribute('filter', 'url(#dimensionalShift)');
+      phaseBtn.textContent = 'Restore Phase';
+    } else {
+      root.setAttribute('filter', 'url(#quantumGlow)');
+      mirror.setAttribute('filter', 'url(#quantumGlow)');
+      phaseBtn.textContent = 'Phase Shift';
+    }
+  });
+
+  entangleBtn.addEventListener('click', () => {
+    entangled = !entangled;
+    entangleBtn.textContent = entangled ? 'Disentangle' : 'Entangle Mirrors';
+    render();
+  });
+
+  collapseBtn.addEventListener('click', () => {
+    // Wave function collapse animation
+    const elements = [...root.querySelectorAll('*'), ...mirror.querySelectorAll('*')];
+    elements.forEach((el, i) => {
+      el.animate([
+        {opacity: 1, transform: 'scale(1)'},
+        {opacity: 0, transform: 'scale(0)'},
+        {opacity: 1, transform: 'scale(1)'}
+      ], {
+        duration: 1000,
+        delay: i * 20,
+        iterations: 1
+      });
+    });
+  });
+
+  resetBtn.addEventListener('click', () => {
+    markers[0] = {x: 280, y: 280, locked: false, energy: 1.0};
+    markers[1] = {x: 920, y: 280, locked: false, energy: 1.0};
+    depthCtrl.value = 5;
+    freqCtrl.value = 1;
+    coherenceCtrl.value = 0.5;
+    freq = 1;
+    coherence = 0.5;
+    distortion = false;
+    entangled = false;
+    breathingActive = false;
+    
+    // Reset lens position
+    lensSystem.querySelectorAll('circle').forEach(circle => {
+      circle.setAttribute('cx', 600);
+      circle.setAttribute('cy', 340);
+    });
+    
+    // Update displays
+    depthValue.textContent = '5';
+    freqValue.textContent = '1.00';
+    coherenceValue.textContent = '0.50';
+    breatheBtn.textContent = 'Quantum Breath';
+    phaseBtn.textContent = 'Phase Shift';
+    entangleBtn.textContent = 'Entangle Mirrors';
+    
+    render();
+  });
+
+  // Animation loop for dynamic effects
+  function animate() {
+    if(!distortion && !breathingActive) {
+      render();
+    }
+    requestAnimationFrame(animate);
+  }
+  
+  // Initial render
+  render();
+  animate();
+})();
+</script>
+</body>
+</html>

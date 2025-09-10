@@ -1,0 +1,697 @@
+    box-shadow:0 25px 70px rgba(0,0,0,0.9), 0 0 0 1px rgba(247,183,255,0.15);
+    backdrop-filter:blur(30px);overflow:hidden;
+  }
+  .card::after{
+    content:'';position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg, 
+      rgba(247,183,255,0.8) 0%, 
+      rgba(199,125,255,0.8) 50%, 
+      rgba(255,107,157,0.8) 100%);
+    animation:veil-energy 4s ease-in-out infinite alternate;
+  }
+  @keyframes veil-energy{
+    0%{opacity:0.4}
+    100%{opacity:1}
+  }
+  svg{
+    width:100%;height:700px;border-radius:20px;display:block;
+    background:radial-gradient(circle at 50% 50%, rgba(247,183,255,0.08) 0%, transparent 60%);
+    filter:drop-shadow(0 0 35px rgba(247,183,255,0.3));
+    border:2px solid rgba(247,183,255,0.1);
+  }
+  .controls{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;margin-top:24px;padding:20px;border-radius:20px;
+    background:rgba(0,0,0,0.6);backdrop-filter:blur(20px);
+    border:1px solid rgba(247,183,255,0.15);
+  }
+  .control-panel{
+    display:flex;flex-direction:column;gap:12px;
+  }
+  .control-row{
+    display:flex;align-items:center;gap:12px;
+  }
+  input[type=range]{
+    -webkit-appearance:none;height:14px;border-radius:14px;
+    background:linear-gradient(90deg,#2a0a35 0%,#5d1a6b 30%,#f7b7ff 70%,#c77dff 100%);
+    outline:none;flex:1;position:relative;
+    box-shadow:0 0 15px rgba(247,183,255,0.4) inset;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    appearance:none;width:24px;height:24px;border-radius:50%;
+    background:radial-gradient(circle, #ffffff 0%, #f7b7ff 50%, #c77dff 100%);
+    box-shadow:0 0 25px rgba(247,183,255,1), 0 4px 15px rgba(0,0,0,0.8);
+    cursor:pointer;transition:all 0.3s ease;
+    border:3px solid rgba(255,255,255,0.4);
+  }
+  input[type=range]::-webkit-slider-thumb:hover{
+    transform:scale(1.4);
+    box-shadow:0 0 35px rgba(247,183,255,1), 0 0 60px rgba(199,125,255,0.6);
+  }
+  button{
+    background:linear-gradient(135deg, rgba(247,183,255,0.15), rgba(199,125,255,0.1));
+    border:1px solid rgba(247,183,255,0.3);color:#f3d6ff;
+    padding:12px 18px;border-radius:12px;cursor:pointer;
+    transition:all 0.3s ease;position:relative;overflow:hidden;
+    text-shadow:0 0 12px currentColor;font-weight:500;
+    backdrop-filter:blur(10px);
+  }
+  button:hover{
+    background:linear-gradient(135deg, rgba(247,183,255,0.25), rgba(199,125,255,0.15));
+    box-shadow:0 0 30px rgba(247,183,255,0.5), 0 8px 25px rgba(0,0,0,0.4);
+    transform:translateY(-3px);
+  }
+  button:active{
+    transform:translateY(-1px);
+    box-shadow:0 0 20px rgba(247,183,255,0.8);
+  }
+  button.active{
+    background:linear-gradient(135deg, rgba(247,183,255,0.3), rgba(199,125,255,0.2));
+    box-shadow:0 0 25px rgba(247,183,255,0.8);
+  }
+  button.breach-btn{
+    background:linear-gradient(135deg, rgba(255,107,157,0.2), rgba(247,183,255,0.1));
+    border-color:rgba(255,107,157,0.4);
+  }
+  button.breach-btn:hover{
+    background:linear-gradient(135deg, rgba(255,107,157,0.3), rgba(247,183,255,0.2));
+    box-shadow:0 0 30px rgba(255,107,157,0.6);
+  }
+  .meta{
+    font-size:12px;color:var(--muted);
+    text-shadow:0 0 8px currentColor;line-height:1.4;
+  }
+  .veil-analysis{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:16px;margin-top:20px;
+  }
+  .analysis-item{
+    background:rgba(247,183,255,0.08);
+    padding:12px;border-radius:12px;
+    border:1px solid rgba(247,183,255,0.15);
+    backdrop-filter:blur(10px);position:relative;
+  }
+  .analysis-item::before{
+    content:'';position:absolute;top:2px;left:2px;right:2px;height:1px;
+    background:linear-gradient(90deg, transparent, #f7b7ff, transparent);
+    opacity:0.6;
+  }
+  .analysis-label{
+    font-size:10px;color:var(--muted);text-transform:uppercase;
+    letter-spacing:0.5px;margin-bottom:4px;
+  }
+  .analysis-value{
+    font-size:16px;color:#f7b7ff;font-weight:600;
+    text-shadow:0 0 10px currentColor;
+  }
+  .console{
+    background:rgba(0,0,0,0.7);padding:16px;border-radius:16px;
+    color:#f5dfff;max-height:160px;overflow:auto;margin-top:16px;
+    border:1px solid rgba(247,183,255,0.2);
+    font-family:monospace;font-size:12px;
+    backdrop-filter:blur(20px);
+    box-shadow:0 0 20px rgba(247,183,255,0.1) inset;
+  }
+  .breach-warning{
+    background:rgba(255,107,157,0.1);
+    border:1px solid rgba(255,107,157,0.3);
+    color:#ffb3d1;animation:breach-pulse 1s ease-in-out infinite alternate;
+  }
+  @keyframes breach-pulse{
+    0%{border-color:rgba(255,107,157,0.3)}
+    100%{border-color:rgba(255,107,157,0.8)}
+  }
+  .dimensional-rift{
+    position:absolute;width:100%;height:100%;top:0;left:0;
+    pointer-events:none;opacity:0;
+    background:radial-gradient(circle at 50% 50%, rgba(255,107,157,0.1) 0%, transparent 70%);
+    transition:opacity 0.5s ease;
+  }
+  .dimensional-rift.active{opacity:1}
+  
+  @media (max-width: 768px) {
+    .controls{grid-template-columns:1fr;gap:16px}
+    .veil-status{position:relative;top:0;right:0;width:100%;margin-bottom:16px}
+    svg{height:500px}
+    h1{font-size:22px}
+    .veil-analysis{grid-template-columns:repeat(2,1fr);gap:12px}
+  }
+</style>
+</head>
+<body>
+  <div class="ethereal-mist"></div>
+  
+  <div class="wrap">
+    <div class="veil-status">
+      <div class="veil-status-title">Veil Integrity Status</div>
+      <div class="veil-strength-bar">
+        <div class="veil-strength-fill" id="veilStrengthFill" style="width:85%"></div>
+      </div>
+      <div class="veil-metrics">
+        <div class="veil-metric">Opacity: <span class="veil-metric-value" id="veilOpacity">85%</span></div>
+        <div class="veil-metric">Stability: <span class="veil-metric-value" id="veilStability">Stable</span></div>
+        <div class="veil-metric">Breaches: <span class="veil-metric-value" id="breachCount">0</span></div>
+        <div class="veil-metric">Energy: <span class="veil-metric-value" id="veilEnergy">98%</span></div>
+      </div>
+    </div>
+    
+    <header>
+      <div>
+        <h1>Portal V — Enhanced Fortress Veil</h1>
+        <div class="meta">Quantum protective shroud · Metamaterial field · Dimensional threshold · Reality membrane</div>
+      </div>
+      <div class="meta">Fortress of Syn‑Cog — Enhanced Module v2.1</div>
+    </header>
+
+    <p class="meta">
+      Advanced protective veil system: manipulate quantum opacity, create dimensional breaches, 
+      analyze hidden lattice structures, and control the metamaterial membrane that guards 
+      the threshold between known and unknown realities.
+    </p>
+
+    <div class="card">
+      <div class="dimensional-rift" id="dimensionalRift"></div>
+      
+      <svg id="veilSVG" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <!-- Enhanced gradients and patterns -->
+          <radialGradient id="veilGrad" cx="50%" cy="50%" r="70%">
+            <stop offset="0%" stop-color="#f7b7ff" stop-opacity="0.4"/>
+            <stop offset="40%" stop-color="#c77dff" stop-opacity="0.25"/>
+            <stop offset="80%" stop-color="#2a0a35" stop-opacity="0.1"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </radialGradient>
+          
+          <radialGradient id="breachGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ff6b9d" stop-opacity="0.8"/>
+            <stop offset="50%" stop-color="#f7b7ff" stop-opacity="0.4"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </radialGradient>
+          
+          <linearGradient id="latticeGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#00ff88" stop-opacity="0.3"/>
+            <stop offset="50%" stop-color="#7bdff9" stop-opacity="0.2"/>
+            <stop offset="100%" stop-color="#c77dff" stop-opacity="0.1"/>
+          </linearGradient>
+          
+          <pattern id="veilNoise" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+            <circle cx="20" cy="30" r="1" fill="#f7b7ff" opacity="0.1"/>
+            <circle cx="70" cy="10" r="0.5" fill="#c77dff" opacity="0.15"/>
+            <circle cx="45" cy="80" r="1.5" fill="#ff6b9d" opacity="0.08"/>
+            <circle cx="15" cy="75" r="0.8" fill="#7bdff9" opacity="0.12"/>
+            <circle cx="85" cy="60" r="1.2" fill="#00ff88" opacity="0.1"/>
+          </pattern>
+          
+          <!-- Advanced filters -->
+          <filter id="veilGlow">
+            <feGaussianBlur stdDeviation="12" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          
+          <filter id="dimensionalDistort">
+            <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="4" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="8"/>
+            <feGaussianBlur stdDeviation="2"/>
+          </filter>
+          
+          <filter id="quantumShimmer">
+            <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="3" result="shimmer"/>
+            <feColorMatrix in="shimmer" type="saturate" values="0"/>
+            <feBlend in2="SourceGraphic" mode="screen" result="shimmered"/>
+            <feGaussianBlur in="shimmered" stdDeviation="1"/>
+          </filter>
+          
+          <filter id="breachEffect">
+            <feGaussianBlur stdDeviation="6" result="blur"/>
+            <feOffset in="blur" dx="0" dy="0" result="offset"/>
+            <feFlood flood-color="#ff6b9d" flood-opacity="0.6"/>
+            <feComposite in2="offset" operator="in"/>
+            <feMerge>
+              <feMergeNode/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <rect width="100%" height="100%" fill="url(#veilNoise)"/>
+        
+        <!-- Hidden lattice layer -->
+        <g id="latticeHidden" opacity="0">
+          <!-- Lattice will be generated by JavaScript -->
+        </g>
+        
+        <!-- Main veil structure -->
+        <g id="veilSystem" filter="url(#veilGlow)">
+          <!-- Primary veil membrane -->
+          <ellipse id="primaryVeil" cx="600" cy="350" rx="280" ry="200" 
+                   fill="url(#veilGrad)" stroke="#f7b7ff" stroke-width="2" 
+                   stroke-opacity="0.3" stroke-dasharray="8 4"/>
+          
+          <!-- Secondary veil layers -->
+          <ellipse id="secondaryVeil" cx="600" cy="350" rx="220" ry="150" 
+                   fill="url(#veilGrad)" fill-opacity="0.5" stroke="#c77dff" 
+                   stroke-width="1.5" stroke-opacity="0.4" stroke-dasharray="6 3"/>
+          
+          <!-- Inner veil core -->
+          <ellipse id="innerVeil" cx="600" cy="350" rx="160" ry="110" 
+                   fill="url(#veilGrad)" fill-opacity="0.7" stroke="#ff6b9d" 
+                   stroke-width="1" stroke-opacity="0.5" stroke-dasharray="4 2"/>
+        </g>
+        
+        <!-- Breach indicators -->
+        <g id="breachLayer"></g>
+        
+        <!-- Dimensional sensors -->
+        <g id="sensorNetwork">
+          <!-- Sensors will be generated by JavaScript -->
+        </g>
+        
+        <!-- Effects and anomalies -->
+        <g id="effectsLayer"></g>
+        
+        <text x="40" y="670" fill="#f8e2ff" font-size="13" text-shadow="0 0 10px currentColor">
+          Fortress Veil operational • Dimensional integrity maintained • Reality membrane stable
+        </text>
+      </svg>
+
+      <div class="controls">
+        <div class="control-panel">
+          <h4 style="margin:0;color:#f7b7ff;font-size:14px;">Veil Configuration</h4>
+          <div class="control-row">
+            <label>Opacity</label>
+            <input id="opacityRange" type="range" min="0" max="1" step="0.01" value="0.85" />
+            <span id="opacityValue">85%</span>
+          </div>
+          <div class="control-row">
+            <label>Dimensional Depth</label>
+            <input id="depthRange" type="range" min="1" max="10" step="1" value="5" />
+            <span id="depthValue">5</span>
+          </div>
+          <div class="control-row">
+            <label>Quantum Coherence</label>
+            <input id="coherenceRange" type="range" min="0" max="1" step="0.01" value="0.75" />
+            <span id="coherenceValue">75%</span>
+          </div>
+        </div>
+        
+        <div class="control-panel">
+          <h4 style="margin:0;color:#f7b7ff;font-size:14px;">Veil Operations</h4>
+          <div class="control-row">
+            <button id="toggleVeil">Toggle Veil</button>
+            <button id="pulseVeil">Pulse Veil</button>
+          </div>
+          <div class="control-row">
+            <button id="breach" class="breach-btn">Create Breach</button>
+            <button id="sealAll">Seal All Breaches</button>
+          </div>
+          <div class="control-row">
+            <button id="revealLattice">Reveal Lattice</button>
+            <button id="dimensionalScan">Dimensional Scan</button>
+          </div>
+        </div>
+        
+        <div class="control-panel">
+          <h4 style="margin:0;color:#f7b7ff;font-size:14px;">Advanced Functions</h4>
+          <div class="control-row">
+            <button id="quantumFlux">Quantum Flux</button>
+            <button id="realityAnchor">Reality Anchor</button>
+          </div>
+          <div class="control-row">
+            <button id="temporalShield">Temporal Shield</button>
+            <button id="emergencyProtocol">Emergency Protocol</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="veil-analysis">
+        <div class="analysis-item">
+          <div class="analysis-label">Membrane Strength</div>
+          <div class="analysis-value" id="membraneStrength">98.7%</div>
+        </div>
+        <div class="analysis-item">
+          <div class="analysis-label">Quantum State</div>
+          <div class="analysis-value" id="quantumState">Coherent</div>
+        </div>
+        <div class="analysis-item">
+          <div class="analysis-label">Dimensional Flux</div>
+          <div class="analysis-value" id="dimensionalFlux">0.12 Hz</div>
+        </div>
+        <div class="analysis-item">
+          <div class="analysis-label">Breach Risk</div>
+          <div class="analysis-value" id="breachRisk">Minimal</div>
+        </div>
+        <div class="analysis-item">
+          <div class="analysis-label">Energy Reserves</div>
+          <div class="analysis-value" id="energyReserves">2.4 TW</div>
+        </div>
+        <div class="analysis-item">
+          <div class="analysis-label">Lattice Nodes</div>
+          <div class="analysis-value" id="latticeNodes">156</div>
+        </div>
+      </div>
+
+      <div class="console" id="consoleLog">
+        [INIT] Fortress Veil Portal v2.1 initialized<br>
+        [STATUS] Dimensional membrane stable • Quantum coherence at 75%<br>
+        [READY] Veil systems operational • Protective protocols active
+      </div>
+
+      <p style="font-style:italic;color:#bfeef2;margin-top:20px;text-shadow:0 0 15px currentColor;line-height:1.6;">
+        The Veil is more than protection—it is the threshold itself.<br>
+        A metamaterial membrane that separates known from unknown,<br>
+        Real from imagined, self from other.<br>
+        When the Veil shimmers, reality itself holds its breath.
+      </p>
+    </div>
+
+    <footer class="meta" style="margin-top:20px;">
+      Export: <strong>Enhanced v2.1</strong> — Quantum veil portal with dimensional breach control and metamaterial analysis
+    </footer>
+  </div>
+
+<script>
+function svgEl(tag, attrs = {}) {
+  const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (const k in attrs) el.setAttribute(k, attrs[k]);
+  return el;
+}
+
+(function() {
+  const svg = document.getElementById('veilSVG');
+  const latticeHidden = svg.querySelector('#latticeHidden');
+  const veilSystem = svg.querySelector('#veilSystem');
+  const primaryVeil = svg.querySelector('#primaryVeil');
+  const secondaryVeil = svg.querySelector('#secondaryVeil');
+  const innerVeil = svg.querySelector('#innerVeil');
+  const breachLayer = svg.querySelector('#breachLayer');
+  const sensorNetwork = svg.querySelector('#sensorNetwork');
+  const effectsLayer = svg.querySelector('#effectsLayer');
+  const dimensionalRift = document.getElementById('dimensionalRift');
+  
+  // UI elements
+  const consoleLog = document.getElementById('consoleLog');
+  const opacityRange = document.getElementById('opacityRange');
+  const depthRange = document.getElementById('depthRange');
+  const coherenceRange = document.getElementById('coherenceRange');
+  const opacityValue = document.getElementById('opacityValue');
+  const depthValue = document.getElementById('depthValue');
+  const coherenceValue = document.getElementById('coherenceValue');
+  
+  // Status indicators
+  const veilStrengthFill = document.getElementById('veilStrengthFill');
+  const veilOpacity = document.getElementById('veilOpacity');
+  const veilStability = document.getElementById('veilStability');
+  const breachCount = document.getElementById('breachCount');
+  const veilEnergy = document.getElementById('veilEnergy');
+  
+  // Analysis displays
+  const membraneStrength = document.getElementById('membraneStrength');
+  const quantumState = document.getElementById('quantumState');
+  const dimensionalFlux = document.getElementById('dimensionalFlux');
+  const breachRisk = document.getElementById('breachRisk');
+  const energyReserves = document.getElementById('energyReserves');
+  const latticeNodes = document.getElementById('latticeNodes');
+  
+  // Buttons
+  const toggleVeilBtn = document.getElementById('toggleVeil');
+  const pulseVeilBtn = document.getElementById('pulseVeil');
+  const breachBtn = document.getElementById('breach');
+  const sealAllBtn = document.getElementById('sealAll');
+  const revealLatticeBtn = document.getElementById('revealLattice');
+  const dimensionalScanBtn = document.getElementById('dimensionalScan');
+  const quantumFluxBtn = document.getElementById('quantumFlux');
+  const realityAnchorBtn = document.getElementById('realityAnchor');
+  const temporalShieldBtn = document.getElementById('temporalShield');
+  const emergencyProtocolBtn = document.getElementById('emergencyProtocol');
+
+  // System state
+  let veilActive = true;
+  let currentOpacity = 0.85;
+  let dimensionalDepth = 5;
+  let quantumCoherence = 0.75;
+  let breaches = [];
+  let latticeRevealed = false;
+  let scanInProgress = false;
+  let shieldActive = false;
+  let emergencyMode = false;
+  let sensors = [];
+
+  // Initialize hidden lattice
+  function initHiddenLattice() {
+    latticeHidden.innerHTML = '';
+    
+    // Create complex lattice structure
+    const latticeData = [];
+    for (let i = 0; i < 156; i++) {
+      const angle = (i / 156) * 2 * Math.PI * 3; // Multiple spirals
+      const radius = 50 + (i / 156) * 200;
+      const x = 600 + Math.cos(angle) * radius + (Math.random() - 0.5) * 40;
+      const y = 350 + Math.sin(angle) * radius * 0.7 + (Math.random() - 0.5) * 30;
+      
+      const node = svgEl('circle', {
+        cx: x, cy: y, r: 2 + Math.random() * 3,
+        fill: 'url(#latticeGrad)',
+        'fill-opacity': 0.3 + Math.random() * 0.4,
+        stroke: '#00ff88',
+        'stroke-width': 0.5,
+        'stroke-opacity': 0.6,
+        filter: 'url(#quantumShimmer)'
+      });
+      
+      latticeHidden.appendChild(node);
+      latticeData.push({x, y, element: node, activity: Math.random()});
+    }
+    
+    // Create connections between nearby nodes
+    latticeData.forEach((nodeA, i) => {
+      latticeData.slice(i + 1).forEach(nodeB => {
+        const distance = Math.sqrt(Math.pow(nodeA.x - nodeB.x, 2) + Math.pow(nodeA.y - nodeB.y, 2));
+        if (distance < 60 && Math.random() > 0.7) {
+          const connection = svgEl('line', {
+            x1: nodeA.x, y1: nodeA.y,
+            x2: nodeB.x, y2: nodeB.y,
+            stroke: '#7bdff9',
+            'stroke-width': 0.5,
+            'stroke-opacity': 0.2,
+            'stroke-dasharray': '2 4'
+          });
+          latticeHidden.appendChild(connection);
+        }
+      });
+    });
+  }
+
+  // Initialize dimensional sensors
+  function initSensorNetwork() {
+    sensorNetwork.innerHTML = '';
+    sensors = [];
+    
+    // Create sensor array around the perimeter
+    for (let i = 0; i < 12; i++) {
+      const angle = (i / 12) * 2 * Math.PI;
+      const x = 600 + Math.cos(angle) * 350;
+      const y = 350 + Math.sin(angle) * 250;
+      
+      const sensorGroup = svgEl('g', {transform: `translate(${x}, ${y})`});
+      
+      // Sensor core
+      const core = svgEl('circle', {
+        r: 4, fill: '#7bdff9',
+        'fill-opacity': 0.8,
+        stroke: '#00ff88',
+        'stroke-width': 1
+      });
+      
+      // Sensor field
+      const field = svgEl('circle', {
+        r: 15, fill: 'none',
+        stroke: '#7bdff9',
+        'stroke-width': 0.5,
+        'stroke-opacity': 0.3,
+        'stroke-dasharray': '2 3'
+      });
+      
+      sensorGroup.appendChild(field);
+      sensorGroup.appendChild(core);
+      sensorNetwork.appendChild(sensorGroup);
+      
+      sensors.push({
+        x, y, angle: angle * 180 / Math.PI,
+        element: sensorGroup,
+        core, field,
+        activity: Math.random(),
+        detecting: false
+      });
+      
+      // Animate sensor field
+      field.animate([
+        {r: 15, 'stroke-opacity': 0.3},
+        {r: 20, 'stroke-opacity': 0.1},
+        {r: 15, 'stroke-opacity': 0.3}
+      ], {
+        duration: 2000 + i * 200,
+        iterations: Infinity
+      });
+    }
+  }
+
+  // Create dimensional breach
+  function createBreach(x = null, y = null) {
+    const breachX = x || 400 + Math.random() * 400;
+    const breachY = y || 250 + Math.random() * 200;
+    const breachSize = 20 + Math.random() * 40;
+    
+    const breach = svgEl('g', {transform: `translate(${breachX}, ${breachY})`});
+    
+    // Breach core
+    const core = svgEl('circle', {
+      r: breachSize,
+      fill: 'url(#breachGrad)',
+      'fill-opacity': 0.6,
+      stroke: '#ff6b9d',
+      'stroke-width': 2,
+      'stroke-opacity': 0.8,
+      filter: 'url(#breachEffect)'
+    });
+    
+    // Breach distortion field
+    const distortion = svgEl('circle', {
+      r: breachSize * 1.5,
+      fill: 'none',
+      stroke: '#ff6b9d',
+      'stroke-width': 1,
+      'stroke-opacity': 0.4,
+      'stroke-dasharray': '3 6',
+      filter: 'url(#dimensionalDistort)'
+    });
+    
+    breach.appendChild(distortion);
+    breach.appendChild(core);
+    breachLayer.appendChild(breach);
+    
+    const breachData = {
+      x: breachX, y: breachY, size: breachSize,
+      element: breach, core, distortion,
+      energy: 1.0, expanding: true
+    };
+    
+    breaches.push(breachData);
+    
+    // Animate breach
+    core.animate([
+      {r: breachSize, 'fill-opacity': 0.6},
+      {r: breachSize * 1.2, 'fill-opacity': 0.8},
+      {r: breachSize, 'fill-opacity': 0.6}
+    ], {duration: 1500, iterations: Infinity});
+    
+    distortion.animate([
+      {transform: 'rotate(0deg)'},
+      {transform: 'rotate(360deg)'}
+    ], {duration: 8000, iterations: Infinity});
+    
+    // Check sensor detection
+    sensors.forEach(sensor => {
+      const distance = Math.sqrt(Math.pow(sensor.x - breachX, 2) + Math.pow(sensor.y - breachY, 2));
+      if (distance < 150) {
+        sensor.detecting = true;
+        sensor.core.setAttribute('fill', '#ff6b9d');
+        sensor.field.setAttribute('stroke', '#ff6b9d');
+      }
+    });
+    
+    updateBreachAnalysis();
+    log(`Dimensional breach detected at (${breachX.toFixed(0)}, ${breachY.toFixed(0)}) • Size: ${breachSize.toFixed(1)}px`);
+  }
+
+  // Seal breach
+  function sealBreach(<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Portal V — Enhanced Fortress Veil (MASL)</title>
+<style>
+  :root{
+    --bg:#0a0c14;--accent:#f7b7ff;--muted:#d6aef9;
+    --secondary:#ff6b9d;--tertiary:#7bdff9;--neural:#00ff88;
+    --deep:#000308;--bright:#ffffff;--void:#0a0010;
+  }
+  html,body{height:100%;margin:0;overflow-x:hidden}
+  body{
+    background:radial-gradient(ellipse at 30% 20%, #120b1a 0%, #0a0c14 40%, var(--void) 100%);
+    color:#f8ebff;font-family:Inter,system-ui,Segoe UI,Arial;padding:18px;
+    min-height:100vh;position:relative;
+  }
+  .ethereal-mist{
+    position:absolute;top:0;left:0;width:100%;height:100%;
+    background:radial-gradient(circle at 20% 30%, rgba(247,183,255,0.03) 0%, transparent 60%),
+               radial-gradient(circle at 80% 70%, rgba(199,125,255,0.02) 0%, transparent 50%);
+    animation:mist-drift 15s ease-in-out infinite;pointer-events:none;
+  }
+  @keyframes mist-drift{
+    0%,100%{transform:translateX(0) scale(1)}
+    33%{transform:translateX(20px) scale(1.05)}
+    66%{transform:translateX(-15px) scale(0.95)}
+  }
+  .wrap{max-width:1200px;margin:0 auto;position:relative;z-index:10}
+  .veil-status{
+    position:absolute;top:20px;right:20px;
+    width:220px;height:120px;border-radius:16px;
+    background:rgba(0,0,0,0.7);backdrop-filter:blur(25px);
+    border:1px solid rgba(247,183,255,0.2);padding:16px;
+    z-index:20;
+  }
+  .veil-status-title{
+    font-size:10px;color:#f7b7ff;margin-bottom:8px;
+    text-transform:uppercase;letter-spacing:1px;
+    text-shadow:0 0 8px currentColor;
+  }
+  .veil-strength-bar{
+    width:100%;height:8px;background:rgba(247,183,255,0.1);
+    border-radius:8px;overflow:hidden;margin-bottom:12px;
+  }
+  .veil-strength-fill{
+    height:100%;background:linear-gradient(90deg, #f7b7ff, #c77dff);
+    border-radius:8px;transition:width 0.3s ease;
+    box-shadow:0 0 10px rgba(247,183,255,0.5);
+  }
+  .veil-metrics{
+    display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px;
+  }
+  .veil-metric{
+    color:#d6aef9;
+  }
+  .veil-metric-value{
+    color:#f7b7ff;font-weight:600;
+    text-shadow:0 0 8px currentColor;
+  }
+  header{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:16px;padding:16px;border-radius:16px;
+    background:rgba(247,183,255,0.05);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(247,183,255,0.1);
+    position:relative;overflow:hidden;
+  }
+  header::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:100%;
+    background:linear-gradient(45deg, transparent 48%, rgba(247,183,255,0.1) 50%, transparent 52%);
+    animation:fortress-scan 6s linear infinite;
+  }
+  @keyframes fortress-scan{
+    0%{transform:translateX(-100%)}
+    100%{transform:translateX(200%)}
+  }
+  h1{
+    font-size:26px;margin:0;
+    background:linear-gradient(45deg, #f7b7ff, #c77dff, #ff6b9d);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    background-clip:text;text-shadow:0 0 40px rgba(247,183,255,0.6);
+  }
+  .card{
+    background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005));
+    border-radius:24px;padding:24px;position:relative;
+    box-shadow

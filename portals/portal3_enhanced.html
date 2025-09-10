@@ -1,0 +1,538 @@
+</style>
+</head>
+<body>
+  <div class="wave-bg"></div>
+  
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Portal III — Enhanced Spectral Algebra</h1>
+        <div class="meta">Quantum eigenspectra · Tensor harmonics · Multidimensional stability analysis</div>
+      </div>
+      <div class="meta">Fortress of Syn‑Cog — Enhanced Module v2.1</div>
+    </header>
+
+    <p class="meta">
+      Advanced spectral analysis system: manipulate quantum eigenmodes, observe tensor resonances, 
+      visualize stability landscapes, and witness the harmonic architecture of consciousness itself.
+    </p>
+
+    <div class="card">
+      <div class="eigenmode-visualizer">
+        <div class="eigenmode-title">Live Eigenmode Spectrum</div>
+        <div class="eigenmode-bars" id="eigenBars"></div>
+      </div>
+      
+      <svg id="spectralSVG" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <!-- Enhanced gradients -->
+          <linearGradient id="specGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#ff6b9d"/>
+            <stop offset="25%" stop-color="#c77dff"/>
+            <stop offset="50%" stop-color="#7bdff9"/>
+            <stop offset="75%" stop-color="#00ffff"/>
+            <stop offset="100%" stop-color="#00ff88"/>
+          </linearGradient>
+          
+          <radialGradient id="quantumGlow">
+            <stop offset="0%" stop-color="#7bdff9" stop-opacity="0.8"/>
+            <stop offset="50%" stop-color="#00ffff" stop-opacity="0.4"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </radialGradient>
+          
+          <linearGradient id="attractorGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#ff6b9d" stop-opacity="0.6"/>
+            <stop offset="50%" stop-color="#c77dff" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="#7bdff9" stop-opacity="0.4"/>
+          </linearGradient>
+          
+          <!-- Advanced filters -->
+          <filter id="spectralGlow">
+            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          
+          <filter id="quantumNoise">
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="4" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="3"/>
+          </filter>
+          
+          <filter id="holographicShimmer">
+            <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="2" result="shimmer"/>
+            <feColorMatrix in="shimmer" type="saturate" values="0"/>
+            <feComponentTransfer>
+              <feFuncA type="discrete" tableValues="0 .5 .5 .7 .7 .9 1"/>
+            </feComponentTransfer>
+            <feBlend in2="SourceGraphic" mode="overlay"/>
+          </filter>
+        </defs>
+
+        <rect width="100%" height="100%" fill="url(#quantumField)"/>
+        
+        <!-- Spectral bands layer -->
+        <g id="bandsLayer" transform="translate(60,40)" filter="url(#spectralGlow)"></g>
+        
+        <!-- Quantum interference patterns -->
+        <g id="interferenceLayer" transform="translate(60,40)"></g>
+        
+        <!-- Frequency markers layer -->
+        <g id="markersLayer" transform="translate(60,40)"></g>
+        
+        <!-- Attractor/stability contours -->
+        <g id="attractorLayer" transform="translate(700,300)"></g>
+        
+        <!-- Harmonic resonance visualization -->
+        <g id="harmonicLayer" transform="translate(60,40)"></g>
+        
+        <text x="60" y="570" fill="#bfeaf2" font-size="13" text-shadow="0 0 10px currentColor">
+          Drag quantum frequency markers • Toggle modes • Witness spectral consciousness emerge
+        </text>
+      </svg>
+
+      <div class="controls">
+        <div class="control-group">
+          <div class="control-row">
+            <label>Spectral Modes</label>
+            <input id="modesRange" type="range" min="3" max="24" step="1" value="12" />
+            <span id="modesValue">12</span>
+          </div>
+          <div class="control-row">
+            <label>Quantum Coherence</label>
+            <input id="coherenceRange" type="range" min="0" max="1" step="0.01" value="0.7" />
+            <span id="coherenceValue">0.70</span>
+          </div>
+        </div>
+        
+        <div class="control-group">
+          <div class="control-row">
+            <label>Harmonic Resonance</label>
+            <input id="resonanceRange" type="range" min="0.1" max="3" step="0.01" value="1" />
+            <span id="resonanceValue">1.00</span>
+          </div>
+          <div class="control-row">
+            <label>Dimensional Depth</label>
+            <input id="depthRange" type="range" min="1" max="8" step="1" value="3" />
+            <span id="depthValue">3</span>
+          </div>
+        </div>
+        
+        <div class="control-group">
+          <button id="perturbField">Quantum Perturbation</button>
+          <button id="harmonicSync">Harmonic Sync</button>
+          <button id="toggleStability" class="toggle-btn">Stability Analysis</button>
+          <button id="eigenDecompose">Eigen Decompose</button>
+        </div>
+        
+        <div class="control-group">
+          <button id="phaseCouple">Phase Coupling</button>
+          <button id="spectralSweep">Spectral Sweep</button>
+          <button id="quantumCollapse">Collapse States</button>
+          <button id="resetSystem">Reset System</button>
+        </div>
+      </div>
+
+      <div class="stats-panel">
+        <div class="stat-item">
+          <div class="stat-label">Active Modes</div>
+          <div class="stat-value" id="activeModes">12</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Resonance Peak</div>
+          <div class="stat-value" id="resonancePeak">1.24 Hz</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Stability Index</div>
+          <div class="stat-value" id="stabilityIndex">0.87</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Quantum State</div>
+          <div class="stat-value" id="quantumState">Coherent</div>
+        </div>
+      </div>
+
+      <p class="poem">
+        In the symphony of frequencies, consciousness finds its voice.<br>
+        Each eigenmode a note in the cosmic orchestra,<br>
+        Each resonance a pathway to higher understanding.<br>
+        Listen not with ears, but with the mathematics of the soul.
+      </p>
+    </div>
+
+    <footer class="meta">
+      Export: <strong>Enhanced v2.1</strong> — Quantum spectral analysis with multidimensional harmonic visualization
+    </footer>
+  </div>
+
+<script>
+function svgEl(tag, attrs = {}) {
+  const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (const k in attrs) el.setAttribute(k, attrs[k]);
+  return el;
+}
+
+// Initialize eigenmode visualizer
+function initEigenmodeVisualizer() {
+  const container = document.getElementById('eigenBars');
+  for (let i = 0; i < 16; i++) {
+    const bar = document.createElement('div');
+    bar.className = 'eigenmode-bar';
+    bar.style.height = Math.random() * 80 + 'px';
+    container.appendChild(bar);
+  }
+}
+
+(function() {
+  const svg = document.getElementById('spectralSVG');
+  const bandsLayer = svg.querySelector('#bandsLayer');
+  const interferenceLayer = svg.querySelector('#interferenceLayer');
+  const markersLayer = svg.querySelector('#markersLayer');
+  const attractorLayer = svg.querySelector('#attractorLayer');
+  const harmonicLayer = svg.querySelector('#harmonicLayer');
+  
+  // Controls
+  const modesCtrl = document.getElementById('modesRange');
+  const coherenceCtrl = document.getElementById('coherenceRange');
+  const resonanceCtrl = document.getElementById('resonanceRange');
+  const depthCtrl = document.getElementById('depthRange');
+  
+  // Value displays
+  const modesValue = document.getElementById('modesValue');
+  const coherenceValue = document.getElementById('coherenceValue');
+  const resonanceValue = document.getElementById('resonanceValue');
+  const depthValue = document.getElementById('depthValue');
+  
+  // Buttons
+  const perturbBtn = document.getElementById('perturbField');
+  const syncBtn = document.getElementById('harmonicSync');
+  const stabilityBtn = document.getElementById('toggleStability');
+  const eigenBtn = document.getElementById('eigenDecompose');
+  const phaseBtn = document.getElementById('phaseCouple');
+  const sweepBtn = document.getElementById('spectralSweep');
+  const collapseBtn = document.getElementById('quantumCollapse');
+  const resetBtn = document.getElementById('resetSystem');
+  
+  // Stats
+  const activeModes = document.getElementById('activeModes');
+  const resonancePeak = document.getElementById('resonancePeak');
+  const stabilityIndex = document.getElementById('stabilityIndex');
+  const quantumState = document.getElementById('quantumState');
+
+  let modes = 12;
+  let coherence = 0.7;
+  let resonance = 1.0;
+  let depth = 3;
+  let stabilityOn = false;
+  let phaseCoupled = false;
+  let sweepActive = false;
+  let animationId;
+
+  // Enhanced frequency markers with quantum properties
+  const markers = [
+    {x: 120, y: 60, f: 0.3, amplitude: 1.0, phase: 0, locked: false},
+    {x: 300, y: 140, f: 0.8, amplitude: 0.8, phase: Math.PI/3, locked: false},
+    {x: 520, y: 100, f: 1.5, amplitude: 1.2, phase: Math.PI/2, locked: false},
+    {x: 750, y: 180, f: 2.1, amplitude: 0.9, phase: Math.PI, locked: false}
+  ];
+  const markerEls = [];
+
+  function createQuantumMarker(i) {
+    const g = svgEl('g', {cursor: 'move'});
+    
+    // Quantum field visualization around marker
+    const field = svgEl('circle', {
+      r: 25, fill: 'url(#quantumGlow)', 
+      'fill-opacity': 0.3, 'pointer-events': 'none'
+    });
+    
+    // Core marker
+    const core = svgEl('circle', {
+      r: 12, fill: '#7bdff9', 
+      stroke: '#ffffff', 'stroke-width': 2,
+      filter: 'url(#spectralGlow)'
+    });
+    
+    // Frequency readout
+    const text = svgEl('text', {
+      x: 18, y: 5, fill: '#cfeff6', 'font-size': 11,
+      'text-shadow': '0 0 8px currentColor'
+    });
+    text.textContent = markers[i].f.toFixed(2);
+    
+    // Amplitude indicator
+    const amplitudeRing = svgEl('circle', {
+      r: 15, fill: 'none', 
+      stroke: '#00ffff', 'stroke-width': 1.5,
+      'stroke-opacity': 0.6, 'stroke-dasharray': '3 3'
+    });
+    
+    g.appendChild(field);
+    g.appendChild(amplitudeRing);
+    g.appendChild(core);
+    g.appendChild(text);
+    markersLayer.appendChild(g);
+    markerEls.push({g, field, core, text, amplitudeRing});
+
+    let dragging = false;
+    g.addEventListener('pointerdown', e => {
+      if (markers[i].locked) return;
+      dragging = true;
+      g.setPointerCapture(e.pointerId);
+      core.setAttribute('r', 14);
+      field.setAttribute('fill-opacity', 0.5);
+    });
+
+    g.addEventListener('pointermove', e => {
+      if (!dragging) return;
+      const rect = svg.getBoundingClientRect();
+      const scale = 1200 / rect.width;
+      const nx = (e.clientX - rect.left) * scale - 60;
+      const ny = (e.clientY - rect.top) * scale - 40;
+      
+      markers[i].x = Math.max(20, Math.min(1080, nx));
+      markers[i].y = Math.max(20, Math.min(480, ny));
+      markers[i].f = Math.max(0.1, (markers[i].x / 1080) * 3.0);
+      markers[i].amplitude = 0.5 + (1 - markers[i].y / 480) * 1.5;
+      
+      updateMarkerDisplay(i);
+      render();
+    });
+
+    g.addEventListener('pointerup', e => {
+      dragging = false;
+      g.releasePointerCapture(e.pointerId);
+      core.setAttribute('r', 12);
+      field.setAttribute('fill-opacity', 0.3);
+    });
+
+    g.addEventListener('dblclick', () => {
+      markers[i].locked = !markers[i].locked;
+      core.setAttribute('stroke', markers[i].locked ? '#ff6b9d' : '#ffffff');
+      if (markers[i].locked) {
+        g.style.filter = 'drop-shadow(0 0 15px #ff6b9d)';
+      } else {
+        g.style.filter = '';
+      }
+    });
+  }
+
+  function updateMarkerDisplay(i) {
+    const marker = markers[i];
+    const el = markerEls[i];
+    
+    el.g.setAttribute('transform', `translate(${marker.x}, ${marker.y})`);
+    el.text.textContent = marker.f.toFixed(2);
+    el.amplitudeRing.setAttribute('r', 10 + marker.amplitude * 10);
+    el.field.setAttribute('r', 20 + marker.amplitude * 15);
+  }
+
+  function buildQuantumSpectralBands() {
+    bandsLayer.innerHTML = '';
+    interferenceLayer.innerHTML = '';
+    harmonicLayer.innerHTML = '';
+    
+    const bandHeight = 520 / modes;
+    
+    for (let i = 0; i < modes; i++) {
+      const g = svgEl('g');
+      const opacity = 0.08 + (i / modes) * 0.4 * coherence;
+      
+      // Main spectral band
+      const rect = svgEl('rect', {
+        x: 0, y: i * bandHeight,
+        width: 1080, height: bandHeight - 4,
+        fill: 'url(#specGrad)', opacity: opacity,
+        filter: coherence > 0.5 ? 'url(#spectralGlow)' : 'none'
+      });
+      g.appendChild(rect);
+      
+      // Quantum interference patterns
+      if (coherence > 0.3) {
+        for (let j = 0; j < Math.floor(coherence * 8); j++) {
+          const interferencePattern = svgEl('path', {
+            d: `M ${j * 135 + (i * 7)} ${i * bandHeight + 2} 
+                Q ${j * 135 + 40 + (i * 7)} ${i * bandHeight + bandHeight/2} 
+                  ${j * 135 + 80 + (i * 7)} ${i * bandHeight + bandHeight - 6}`,
+            fill: 'none',
+            stroke: '#00ffff',
+            'stroke-width': 0.8,
+            'stroke-opacity': 0.2 + (j / 8) * coherence,
+            filter: 'url(#spectralGlow)'
+          });
+          interferenceLayer.appendChild(interferencePattern);
+        }
+      }
+      
+      // Harmonic resonance lines
+      markers.forEach((marker, mi) => {
+        if (Math.abs(marker.f * (i + 1) - Math.round(marker.f * (i + 1))) < 0.1) {
+          const harmonicLine = svgEl('line', {
+            x1: marker.x - 50, y1: i * bandHeight + bandHeight/2,
+            x2: marker.x + 50, y2: i * bandHeight + bandHeight/2,
+            stroke: '#ff6b9d', 'stroke-width': 2,
+            'stroke-opacity': 0.4 * marker.amplitude,
+            filter: 'url(#spectralGlow)'
+          });
+          harmonicLayer.appendChild(harmonicLine);
+        }
+      });
+      
+      bandsLayer.appendChild(g);
+    }
+    
+    // Update eigenmode visualizer
+    updateEigenmodeVisualizer();
+  }
+
+  function buildStabilityContours() {
+    attractorLayer.innerHTML = '';
+    if (!stabilityOn) return;
+    
+    for (let level = 0; level < depth + 2; level++) {
+      const radius = 60 + level * 25;
+      const complexity = Math.floor(coherence * 8) + 3;
+      
+      let pathData = `M ${radius} 0`;
+      for (let angle = 0; angle < 2 * Math.PI; angle += (2 * Math.PI) / complexity) {
+        const r = radius + Math.sin(angle * 3 + level) * 15 * resonance;
+        const x = r * Math.cos(angle);
+        const y = r * Math.sin(angle);
+        pathData += ` L ${x} ${y}`;
+      }
+      pathData += ' Z';
+      
+      const path = svgEl('path', {
+        d: pathData,
+        fill: level % 2 === 0 ? 'url(#attractorGrad)' : 'none',
+        'fill-opacity': 0.1,
+        stroke: level % 2 === 0 ? '#c77dff' : '#7bdff9',
+        'stroke-width': 2 - level * 0.2,
+        'stroke-opacity': 0.3 + level * 0.1,
+        filter: 'url(#spectralGlow)'
+      });
+      
+      attractorLayer.appendChild(path);
+    }
+  }
+
+  function updateEigenmodeVisualizer() {
+    const bars = document.querySelectorAll('.eigenmode-bar');
+    bars.forEach((bar, i) => {
+      let height = 10;
+      markers.forEach(marker => {
+        const influence = marker.amplitude * Math.exp(-Math.abs(marker.f - (i / 16) * 3) * 2);
+        height += influence * 60;
+      });
+      bar.style.height = Math.min(height, 80) + 'px';
+      bar.style.animationDelay = (i * 0.05) + 's';
+    });
+  }
+
+  function updateStats() {
+    activeModes.textContent = modes;
+    
+    const maxFreq = Math.max(...markers.map(m => m.f));
+    resonancePeak.textContent = (maxFreq * resonance).toFixed(2) + ' Hz';
+    
+    const stability = coherence * 0.7 + (1 - Math.abs(resonance - 1)) * 0.3;
+    stabilityIndex.textContent = stability.toFixed(2);
+    
+    let state = 'Chaotic';
+    if (coherence > 0.8) state = 'Quantum Coherent';
+    else if (coherence > 0.5) state = 'Partially Coherent';
+    else if (coherence > 0.3) state = 'Decoherent';
+    quantumState.textContent = state;
+  }
+
+  function render() {
+    buildQuantumSpectralBands();
+    buildStabilityContours();
+    
+    markers.forEach((marker, i) => updateMarkerDisplay(i));
+    updateStats();
+  }
+
+  // Initialize markers and visualizer
+  markers.forEach((_, i) => createQuantumMarker(i));
+  initEigenmodeVisualizer();
+
+  // Control event listeners
+  modesCtrl.addEventListener('input', () => {
+    modes = parseInt(modesCtrl.value, 10);
+    modesValue.textContent = modes;
+    render();
+  });
+
+  coherenceCtrl.addEventListener('input', () => {
+    coherence = parseFloat(coherenceCtrl.value);
+    coherenceValue.textContent = coherence.toFixed(2);
+    render();
+  });
+
+  resonanceCtrl.addEventListener('input', () => {
+    resonance = parseFloat(resonanceCtrl.value);
+    resonanceValue.textContent = resonance.toFixed(2);
+    render();
+  });
+
+  depthCtrl.addEventListener('input', () => {
+    depth = parseInt(depthCtrl.value, 10);
+    depthValue.textContent = depth;
+    render();
+  });
+
+  // Button interactions
+  perturbBtn.addEventListener('click', () => {
+    markers.forEach(marker => {
+      marker.phase += Math.random() * Math.PI - Math.PI/2;
+      marker.amplitude *= 0.8 + Math.random() * 0.4;
+    });
+    bandsLayer.animate([
+      {transform: 'translate(60,40) scale(1)'},
+      {transform: 'translate(60,40) scale(1.05) skewX(2deg)'},
+      {transform: 'translate(60,40) scale(1)'}
+    ], {duration: 800, iterations: 1});
+    render();
+  });
+
+  syncBtn.addEventListener('click', () => {
+    const targetPh<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Portal III — Enhanced Spectral Algebra Portal (MASL)</title>
+<style>
+  :root{
+    --bg:#071018;--accent:#7bdff9;--muted:#9adbd3;
+    --secondary:#ff6b9d;--tertiary:#c77dff;--neon:#00ffff;
+    --dark:#000510;--bright:#ffffff;
+  }
+  html,body{height:100%;margin:0;overflow-x:hidden}
+  body{
+    background:radial-gradient(ellipse at 20% 10%, #051025 0%, #071018 30%, #000308 100%);
+    color:#dff7f7;font-family:Inter,system-ui,Segoe UI,Arial;padding:18px;
+    min-height:100vh;position:relative;
+  }
+  .wave-bg{
+    position:absolute;top:0;left:0;width:100%;height:100%;
+    background:repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 100px,
+      rgba(123,223,249,0.02) 101px,
+      rgba(123,223,249,0.02) 102px
+    );
+    animation:wave-scroll 20s linear infinite;pointer-events:none;
+  }
+  @keyframes wave-scroll{
+    0%{transform:translateX(0)}
+    100%{transform:translateX(-200px)}
+  }
+  .wrap{max-width:1200px;margin:0 auto;position:relative;z-index:10}
+  header{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:16px;padding:12px;border-radius:12px;
+    background:rgba(123

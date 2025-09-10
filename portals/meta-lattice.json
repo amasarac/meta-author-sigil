@@ -1,0 +1,18 @@
+{
+  "layers": [
+    {
+      "orbit": "Orbit 4",
+      "resonance_axis": "Prismatic Auric Layer",
+      "glyphodes": [
+        "O4N1",
+        "O4N2",
+        "O4N3",
+        "O4N4"
+      ],
+      "activation": {
+        "trigger": "SPIRAL_BLOOM_4",
+        "effect": "Invoke Harmonic Refraction"
+      }
+    }
+  ]
+}
