@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔮 Cognitive Glass · Unified Interface</title>
+<style>
+  /* --- General & Layout --- */
+  :root {
+    --bg: #07101a; --fg: #e6f3ff; --muted: #9bb0c6; --accent: #2d5fe6;
+    --panel-bg: #041023; --border-color: rgba(255,255,255,0.04);
+  }
+  body{background:var(--bg);color:var(--fg);font-family:system-ui,Segoe UI,Roboto,Arial;padding:18px; margin: 0;}
+  h1{font-size:18px;margin-bottom:6px}
+  h2, h3 { margin-top: 1.5em; margin-bottom: 0.5em; }
+  .app-panel{max-width:980px; margin: 0 auto;}
+  .small{color:var(--muted); font-size: 0.9em;}
+  pre{background:var(--panel-bg);padding:8px;border-radius:8px;overflow:auto}
+  button{padding:8px 10px;border-radius:8px;border:0;background:var(--accent);color:white;cursor:pointer; transition: background-color 0.2s;}
+  button:hover { background: #4a75f5; }
+  button.ghost { background: transparent; border: 1px solid var(--accent); }
+  button.danger { background: #c23; }
+  input,select{padding:8px;border-radius:8px;border:1px solid var(--border-color);background:#071826;color:white}
+  .row{display:flex;gap:8px;align-items:center;margin-top:10px; flex-wrap: wrap;}
+  .grid{display:grid;gap:8px;align-items:center;margin-top:10px}
+  .cols-2{grid-template-columns:repeat(2,1fr)}
+  .cols-3{grid-template-columns:repeat(3,1fr)}
+  .cols-4{grid-template-columns:repeat(4,1fr)}
+  label { font-size: 0.8em; color: var(--muted); display: block; margin-bottom: 4px; }
+
+  /* --- Tab Styles --- */
+  .tabs { display: flex; border-bottom: 1px solid var(--border-color); overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+  .tab { padding: 10px 18px; cursor: pointer; background: transparent; color: var(--muted); border-bottom: 2px solid transparent; transition: all 0.3s ease; }
+  .tab.active { color: var(--fg); font-weight: bold; border-bottom-color: var(--accent); }
+  .tab-content-wrapper { position: relative; }
+  .tab-content { padding: 20px 0; opacity: 1; transition: opacity 0.4s ease-in-out; }
+  .tab-content.hidden { display: none; opacity: 0; position: absolute; }
+  
+  /* --- Player Specific Styles --- */
+  .list { display: flex; flex-direction: column; gap: 6px; max-height: 250px; overflow-y: auto; background: var(--panel-bg); padding: 8px; border-radius: 8px; }
+  .item { display: flex; gap: 12px; align-items: center; padding: 8px; border-radius: 6px; background: #071826; cursor: pointer; border: 1px solid transparent; }
+  .item:hover { background: #0c2033; }
+  .item.selected { border-color: var(--accent); }
+  .chip { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+  #glass { position: relative; height: 200px; background: radial-gradient(circle, #0c2033, #041023); border-radius: 10px; overflow: hidden; }
+  .breath { position: absolute; inset: 0; display: grid; place-items: center; }
+  .breath > div { width: 100px; height: 100px; border: 1px solid rgba(122, 162, 255, 0.2); border-radius: 10px; animation: pulse 8s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { transform: scale(0.88); opacity: 0.5; } 50% { transform: scale(1.06); opacity: 1; } }
+  .overlay { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; }
+  @keyframes float0 { 0%,100%{transform:translate(-50%,-4px)} 50%{transform:translate(-50%,6px)} }
+  @keyframes float1 { 0%,100%{transform:translate(-50%,6px)} 50%{transform:translate(-50%,-8px)} }
+  @keyframes float2 { 0%,100%{transform:translate(-50%,-6px)} 50%{transform:translate(-50%,8px)} }
+  dialog { background:#0b1120; color:var(--fg); border:1px solid #223154; border-radius:14px; padding:16px; width:min(680px, 92vw); }
+  dialog::backdrop { background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); }
+  dialog ol { padding-left: 20px; }
+
+  /* --- Mapper Specific Styles --- */
+  #svgVis { width:100%; height:auto; max-height: 60vh; border-radius:10px; background:linear-gradient(180deg, rgba(122,162,255,0.03), rgba(101,214,173,0.02)); margin-top: 1em; }
+
+  /* --- Walkthrough Specific Styles --- */
+  .step{background:#041825;padding:12px;border-radius:8px;margin:8px 0}
+  .step h3 { margin-top: 0; }
+  .step a { color: #9fd1ff; }
+</style>
+</head>
+<body>
+
+<div class="app-panel">
+  <div class="tabs">
+    <div class="tab" data-tab="player">🎚️ Player</div>
+    <div class="tab" data-tab="mic">🎤 Mic Detection</div>
+    <div class="tab" data-tab="mapper">🎼 Tone Mapper</div>
+    <div class="tab" data-tab="walkthrough">📖 Walkthrough</div>
+  </div>
+
+  <div class="tab-content-wrapper">
+    <div id="player" class="tab-content hidden">
+      <!-- Full Lexeme Player UI -->
+      <div class="grid cols-2">
+        <section>
+          <h2>Lexeme Library</h2>
+          <div class="list" id="lexList"></div>
+          <div class="row" style="margin-top:12px">
+            <button id="btnExport" class="ghost">Export Lexicon</button>
+            <input type="file" id="fileImport" accept="application/json" style="display:none;" />
+            <button id="btnImport" class="ghost">Import Lexicon</button>
+          </div>
+
+          <h2 style="margin-top:14px">Add / Edit Lexeme</h2>
+          <div class="grid cols-2">
+            <div>
+              <label>Lexeme</label>
+              <input id="lexName" placeholder="e.g., Sight" />
+            </div>
+            <div>
+              <label>Waveform</label>
+              <select id="lexWave">
+                <option value="sine">sine</option>
+                <option value="triangle">triangle</option>
+                <option value="square">square</option>
+                <option value="sawtooth">sawtooth</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid cols-4" style="margin-top:6px">
+            <div><label>Mode ψ₁ Hz</label><input type="number" id="hz1" value="528" /></div>
+            <div><label>ψ₁ Color</label><input type="color" id="c1" value="#00eb87" /></div>
+            <div><label>Level</label><input type="range" id="g1" min="0" max="1" step="0.01" value="0.7" /></div>
+            <div><label>Pan</label><input type="range" id="p1" min="-1" max="1" step="0.01" value="-0.5" /></div>
+          </div>
+          <div class="grid cols-4">
+            <div><label>Mode ψ₂ Hz</label><input type="number" id="hz2" value="741" /></div>
+            <div><label>ψ₂ Color</label><input type="color" id="c2" value="#4b2cff" /></div>
+            <div><label>Level</label><input type="range" id="g2" min="0" max="1" step="0.01" value="0.5" /></div>
+            <div><label>Pan</label><input type="range" id="p2" min="-1" max="1" step="0.01" value="0" /></div>
+          </div>
+          <div class="grid cols-4">
+            <div><label>Mode ψ₃ Hz</label><input type="number" id="hz3" value="396" /></div>
+            <div><label>ψ₃ Color</label><input type="color" id="c3" value="#ff3344" /></div>
+            <div><label>Level</label><input type="range" id="g3" min="0" max="1" step="0.01" value="0.4" /></div>
+            <div><label>Pan</label><input type="range" id="p3" min="-1" max="1" step="0.01" value="0.5" /></div>
+          </div>
+          <div class="row" style="margin-top:10px">
+            <button id="btnSave">Save Lexeme</button>
+            <button id="btnPlayLex" class="ghost">Play Selected</button>
+            <button id="btnDelete" class="danger">Delete</button>
+          </div>
+        </section>
+
+        <section>
+          <h2>Glass Visualizer + Synthesis</h2>
+          <div id="glass">
+            <div class="breath" id="breath"><div></div></div>
+          </div>
+          <div class="grid cols-3" style="margin-top:12px">
+            <div>
+              <label>Master Gain</label>
+              <input type="range" id="gain" min="0" max="1" step="0.01" value="0.6" />
+            </div>
+            <div>
+              <label>Tone Duration (s)</label>
+              <input type="number" id="dur" value="6" />
+            </div>
+            <div>
+              <label>Breath (box) seconds</label>
+              <input type="number" id="breathSec" value="4" />
+            </div>
+          </div>
+          <h2 style="margin-top:12px">Binaural / Isochronic</h2>
+          <div class="grid cols-3">
+            <div>
+              <label><input type="checkbox" id="optBinaural" /> Binaural beats</label>
+              <label>Beat Δ (Hz)</label>
+              <input type="number" id="binauralBeat" value="7" step="0.1" />
+            </div>
+            <div>
+              <label><input type="checkbox" id="optIso" /> Isochronic (AM)</label>
+              <label>Pulse Rate (Hz)</label>
+              <input type="number" id="isoRate" value="7" step="0.1" />
+            </div>
+            <div>
+              <label>Iso Wave</label>
+              <select id="isoWave"><option value="square">square</option><option value="sine">sine</option></select>
+              <label>Duty (0–1)</label>
+              <input type="number" id="isoDuty" value="0.5" step="0.05" min="0.05" max="0.95" />
+            </div>
+          </div>
+        </section>
+      </div>
+      <hr style="border-color: var(--border-color); margin: 2em 0;">
+      <section>
+        <h3>System Controls</h3>
+        <a id="downloadMap" href="eigen_map.json" download style="display:none; color:#9fd1ff; margin-bottom: 10px; display: inline-block;">Download eigen_map.json</a>
+        <div class="row"><button id="btnInit">Initialize Audio</button><button id="btnStopAll" class="danger">Stop All Audio</button></div>
+        <div id="status" class="small" style="margin-top: 1em;">idle</div>
+      </section>
+    </div>
+
+    <div id="mic" class="tab-content hidden">
+      <!-- Mic Detection from cognitive_glass_player.html -->
+      <h1>🎤 Mic Peak Detection</h1>
+      <div class="small">This routine analyzes microphone audio and marks strong spectral peaks as candidate resonances. It is conservative by default to avoid false positives in noisy rooms.</div>
+      <div class="row">
+        <button id="btnEnableMic">Enable Mic</button>
+      </div>
+      <div class="row">
+        <label>Threshold: </label>
+        <input id="micThresh" type="number" value="0.45" step="0.01" style="width:100px" />
+        <label>Min Peak dB: </label>
+        <input id="micMinDb" type="number" value="-60" step="1" style="width:100px" />
+        <label>Min Hz: </label>
+        <input id="micMinHz" type="number" value="30" style="width:100px" />
+      </div>
+      <div class="row">
+        <button id="btnStartDetect">Start Detection</button>
+        <button id="btnStopDetect">Stop Detection</button>
+        <button id="btnApplyMarks" class="ghost">Apply Marks to Lexeme (Top 3)</button>
+      </div>
+      <div style="margin-top:8px">
+        <div class="small">Detected marks:</div>
+        <div id="marks" class="small">none</div>
+      </div>
+    </div>
+
+    <div id="mapper" class="tab-content hidden">
+      <!-- Content from lexeme_tone_mapper.html -->
+      <h1>🎼 Lexeme Tone Mapper</h1>
+      <div class="small">Unified Resonance Map — Lower Harmonics ↔ THz Lattice. Click nodes to play.</div>
+       <div class="row">
+        <button id="btnLoadMap">Load eigen_map.json (auto)</button>
+        <button id="btnPlayNode" class="ghost">Play Selected Node</button>
+      </div>
+      <label for="mapView" style="margin-top: 1em; display: block;">Map View</label>
+      <select id="mapView">
+        <option value="unified">Unified Ladder (recommended)</option>
+        <option value="lower">Lower Harmonics (Hz–kHz)</option>
+        <option value="upper">Upper Lattice (kHz–THz)</option>
+      </select>
+      <div id="nodeInfo" class="small" style="margin-top: 1em; min-height: 1.2em;">none</div>
+      <svg id="svgVis" viewBox="0 0 1400 700" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+
+    <div id="walkthrough" class="tab-content hidden">
+      <!-- Content from walkthrough.html -->
+      <h1>📖 Guided Walkthrough — Cognitive Glass</h1>
+      <p class="small">Follow these steps in a quiet room with headphones for best results.</p>
+      <div class="step">
+        <h3>1) Initialize Audio</h3>
+        <p>Go to the <b>Player</b> tab and click <b>Initialize Audio</b>. Your browser may prompt for permissions.</p>
+      </div>
+      <div class="step">
+        <h3>2) Load the Map</h3>
+        <p>Go to the <b>Tone Mapper</b> tab. The `eigen_map.json` should load automatically. If not, click the load button. You will see the resonance nodes appear in the visualizer.</p>
+      </div>
+      <div class="step">
+        <h3>3) Explore Tones</h3>
+        <p>In the <b>Tone Mapper</b>, click on any node to play its corresponding tone. Notice the different qualities of the lower and upper bands.</p>
+      </div>
+      <div class="step">
+        <h3>4) Use Mic Peak Detection</h3>
+        <p>Go to the <b>Mic Detection</b> tab. Click <b>Enable Mic</b>, then <b>Start Detection</b>. Hum or sing along with tones to help the detector find peaks. Detected frequencies will appear below.</p>
+      </div>
+      <div class="step">
+        <h3>5) Apply & Iterate</h3>
+        <p>Once you have some detected marks, you can apply them to the mapper. This is a feature to be expanded, allowing you to create custom lexemes from your own resonant frequencies.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // --- SHARED STATE & CORE LOGIC ---
+  const AppState = {
+    AC: null,
+    master: null,
+    micStream: null,
+    micAnalyzer: null,
+    micData: null,
+    micInterval: null,
+    detectedMarks: [],
+    eigenMap: [],
+    selectedNode: null,
+    activeTab: 'player',
+    lexicon: [],
+    selectedIndex: 0,
+    activeAudioNodes: [],
+    sequence: [],
+  };
+
+  function status(s) {
+    const statusEl = document.getElementById('status');
+    if (statusEl) {
+      statusEl.textContent = s;
+    }
+    console.log('[status]', s);
+  }
+
+  function ensureAudio() {
+    if (!AppState.AC) {
+      try {
+        AppState.AC = new(window.AudioContext || window.webkitAudioContext)();
+        AppState.master = AppState.AC.createGain(); // Create master gain
+        AppState.master.gain.value = 0.6;
+        AppState.master.connect(AppState.AC.destination);
+        status('Audio initialized');
+      } catch (e) {
+        status('Error initializing Audio Context: ' + e.message);
+        console.error(e);
+      }
+    }
+  }
+
+  function stopAllAudio() {
+    if(AppState.AC) {
+        AppState.AC.close().then(() => {
+            AppState.AC = null;
+            AppState.master = null;
+            status('Audio stopped and context closed.');
+        });
+    }
+  }
+
+  // --- UI: TAB MANAGEMENT ---
+  const tabs = document.querySelectorAll('.tab');
+  const contents = document.querySelectorAll('.tab-content');
+  const tabWrapper = document.querySelector('.tab-content-wrapper');
+
+  function switchTab(tabId) {
+    tabs.forEach(t => {
+      t.classList.toggle('active', t.dataset.tab === tabId);
+    });
+    contents.forEach(c => {
+      c.classList.toggle('hidden', c.id !== tabId);
+    });
+    localStorage.setItem('cognitiveGlassActiveTab', tabId);
+    AppState.activeTab = tabId;
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+  });
+
+  // --- MODULE: EIGENMAP & TONE MAPPER ---
+  async function loadEigenMap() {
+    try {
+      const res = await fetch('eigen_map.json');
+      if (!res.ok) throw new Error(`Network response was not ok (${res.status})`);
+      const map = await res.json();
+      AppState.eigenMap = map;
+      window.EIGEN_MAP = map; // For compatibility if other scripts expect it
+      status(`Loaded eigen_map.json (${map.length} nodes)`);
+      document.getElementById('downloadMap').style.display = 'inline-block';
+      renderToneMap();
+    } catch (err) {
+      status('Failed to auto-load eigen_map.json: ' + err.message);
+      console.error(err);
+    }
+  }
+
+  function renderToneMap() {
+    const svg = document.getElementById('svgVis');
+    if (!svg || !AppState.eigenMap.length) return;
+    
+    svg.innerHTML = ''; // Clear previous
+    const view = document.getElementById('mapView').value;
+    const nodesToRender = AppState.eigenMap.filter(n => view === 'unified' || n.band === view);
+
+    const freqs = nodesToRender.map(n => n.hz).filter(f => f > 0);
+    if (freqs.length === 0) return;
+    
+    const minLogHz = Math.log10(Math.min(...freqs));
+    const maxLogHz = Math.log10(Math.max(...freqs));
+
+    nodesToRender.forEach((node, i) => {
+        if (node.hz <= 0) return;
+        const logHz = Math.log10(node.hz);
+        const y = 50 + 600 * (1 - (logHz - minLogHz) / (maxLogHz - minLogHz));
+        const x = (i % 2 === 0) ? 400 : 1000;
+
+        const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        g.style.cursor = 'pointer';
+        g.onclick = () => {
+            AppState.selectedNode = node;
+            document.getElementById('nodeInfo').textContent = `Selected: ${node.label} (${node.desc})`;
+            playNode(node);
+        };
+
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', x);
+        circle.setAttribute('cy', y);
+        circle.setAttribute('r', 12);
+        circle.setAttribute('fill', node.band === 'lower' ? '#7aa2ff' : '#ffb86c');
+        
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', x + (i % 2 === 0 ? -20 : 20));
+        text.setAttribute('y', y + 5);
+        text.setAttribute('fill', '#e6f3ff');
+        text.setAttribute('text-anchor', i % 2 === 0 ? 'end' : 'start');
+        text.textContent = node.label;
+
+        g.appendChild(circle);
+        g.appendChild(text);
+        svg.appendChild(g);
+    });
+  }
+
+  function playNode(node, duration = 2) {
+    ensureAudio();
+    if (!node || !AppState.AC) return;
+    const now = AppState.AC.currentTime;
+    const osc = AppState.AC.createOscillator();
+    const gainNode = AppState.AC.createGain();
+    
+    osc.frequency.setValueAtTime(node.hz, now);
+    osc.type = 'sine';
+    
+    gainNode.gain.setValueAtTime(0, now);
+    gainNode.gain.linearRampToValueAtTime(0.5, now + 0.1);
+    gainNode.gain.linearRampToValueAtTime(0, now + duration - 0.1);
+
+    osc.connect(gainNode).connect(AppState.master);
+    osc.start(now);
+    osc.stop(now + duration);
+    status(`Playing ${node.label}`);
+  }
+
+  // --- MODULE: LEXEME PLAYER ---
+  const seedLexicon = [
+    { name: "Sight", wave: "sine", modes: [ { hz: 528, color: "#00eb87", gain: 0.7, pan:-0.5 }, { hz: 741, color: "#4b2cff", gain: 0.5, pan:0.0 }, { hz: 396, color: "#ff3344", gain: 0.4, pan:0.5 } ] },
+    { name: "Self", wave: "triangle", modes: [ { hz: 432, color: "#1e3aff", gain: 0.6, pan:-0.4 }, { hz: 963, color: "#b793ff", gain: 0.35, pan:0.0 }, { hz: 285, color: "#6b4d2f", gain: 0.35, pan:0.4 } ] },
+    { name: "Memory", wave: "sine", modes: [ { hz: 852, color: "#ffd166", gain: 0.45, pan:-0.4 }, { hz: 639, color: "#ff7ea1", gain: 0.50, pan:0.0 }, { hz: 174, color: "#0a0a0a", gain: 0.30, pan:0.4 } ] },
+  ];
+
+  function rampParam(param, to, t){
+    if (!param) return;
+    param.cancelScheduledValues(t);
+    param.setValueAtTime(param.value, t);
+    param.linearRampToValueAtTime(to, t + 0.12);
+  }
+
+  function applyIsochronic(gainNode, start, end) {
+    const rate = parseFloat(document.getElementById('isoRate').value);
+    const wave = document.getElementById('isoWave').value;
+    const duty = Math.min(0.95, Math.max(0.05, parseFloat(document.getElementById('isoDuty').value)));
+    if (!document.getElementById('optIso').checked || rate <= 0) return;
+
+    let t = start;
+    const originalGain = gainNode.gain.value;
+
+    while (t < end) {
+      const period = 1 / rate;
+      if (wave === 'square') {
+        gainNode.gain.setValueAtTime(originalGain, t);
+        gainNode.gain.setValueAtTime(originalGain, t + duty * period - 0.001);
+        gainNode.gain.setValueAtTime(0.0001, t + duty * period);
+        gainNode.gain.setValueAtTime(0.0001, t + period - 0.001);
+      } else { // sine
+        const lfo = AppState.AC.createOscillator();
+        lfo.type = 'sine';
+        lfo.frequency.value = rate;
+        const lfoGain = AppState.AC.createGain();
+        lfoGain.gain.value = originalGain / 2;
+        lfo.connect(lfoGain).connect(gainNode.gain);
+        lfo.start(t);
+        lfo.stop(end);
+      }
+      t += period;
+    }
+  }
+
+  function playLexeme(lex, seconds){
+    ensureAudio();
+    const visual = startVisual(lex);
+    const baseWave = lex.wave || 'sine';
+    
+    lex.modes.forEach(mode => {
+        playMode(baseWave, mode, seconds);
+    });
+
+    setTimeout(() => stopVisual(visual), seconds * 1000 + 40);
+  }
+
+  function playMode(baseWave, mode, seconds) {
+    if (!AppState.AC) return;
+    const now = AppState.AC.currentTime;
+    const stopAt = now + seconds;
+
+    const makeCarrier = (freq, panVal, gainVal) => {
+        const osc = AppState.AC.createOscillator();
+        osc.type = baseWave;
+        osc.frequency.value = freq;
+
+        const g = AppState.AC.createGain();
+        g.gain.value = 0.0001;
+
+        const p = AppState.AC.createStereoPanner();
+        p.pan.value = panVal;
+
+        osc.connect(g).connect(p).connect(AppState.master);
+        osc.start(now);
+        rampParam(g.gain, gainVal, now);
+
+        if (document.getElementById('optIso').checked) {
+          applyIsochronic(g, now, stopAt);
+        }
+
+        rampParam(g.gain, 0.0001, stopAt - 0.18);
+        osc.stop(stopAt);
+        return {osc, g, p};
+    };
+
+    const level = (mode.gain ?? 0.4) * parseFloat(document.getElementById('gain').value);
+
+    if(document.getElementById('optBinaural').checked){
+        const beat = Math.max(0.1, parseFloat(document.getElementById('binauralBeat').value)||7);
+        makeCarrier(mode.hz - beat/2, -1, level*0.6);
+        makeCarrier(mode.hz + beat/2,  1, level*0.6);
+    } else {
+        makeCarrier(mode.hz, (mode.pan ?? 0), level);
+    }
+  }
+
+  function renderLexicon() {
+    const listEl = document.getElementById('lexList');
+    listEl.innerHTML = '';
+    AppState.lexicon.forEach((l, i) => {
+        const item = document.createElement('div');
+        item.className = 'item';
+        if (i === AppState.selectedIndex) item.classList.add('selected');
+        item.onclick = () => selectLexeme(i);
+        const chips = l.modes.map(m => `<span class="chip" style="background:${m.color}"></span>`).join('');
+        item.innerHTML = `
+            <div style="display:flex; gap:8px; align-items:center">${chips}</div>
+            <div style="flex:1 1 auto">
+                <div style="font-weight:600">${l.name}</div>
+                <div class="small">${l.wave} · ${l.modes.map(m=>m.hz+"Hz").join(" · ")}</div>
+            </div>
+        `;
+        listEl.appendChild(item);
+    });
+  }
+
+  function selectLexeme(i) {
+    AppState.selectedIndex = i;
+    fillEditor(AppState.lexicon[i]);
+    renderLexicon();
+  }
+
+  function fillEditor(l) {
+    if (!l) return;
+    document.getElementById('lexName').value = l.name;
+    document.getElementById('lexWave').value = l.wave || 'sine';
+    for (let i = 0; i < 3; i++) {
+        const mode = l.modes[i] || { hz: 440, color: '#ffffff', gain: 0.5, pan: 0 };
+        document.getElementById(`hz${i+1}`).value = mode.hz;
+        document.getElementById(`c${i+1}`).value = mode.color;
+        document.getElementById(`g${i+1}`).value = mode.gain;
+        document.getElementById(`p${i+1}`).value = mode.pan;
+    }
+  }
+
+  function saveCurrentLexeme() {
+    const l = {
+        name: document.getElementById('lexName').value.trim() || 'Untitled',
+        wave: document.getElementById('lexWave').value,
+        modes: [
+            { hz: parseFloat(document.getElementById('hz1').value), color: document.getElementById('c1').value, gain: parseFloat(document.getElementById('g1').value), pan: parseFloat(document.getElementById('p1').value) },
+            { hz: parseFloat(document.getElementById('hz2').value), color: document.getElementById('c2').value, gain: parseFloat(document.getElementById('g2').value), pan: parseFloat(document.getElementById('p2').value) },
+            { hz: parseFloat(document.getElementById('hz3').value), color: document.getElementById('c3').value, gain: parseFloat(document.getElementById('g3').value), pan: parseFloat(document.getElementById('p3').value) },
+        ]
+    };
+    if (AppState.selectedIndex >= 0 && AppState.selectedIndex < AppState.lexicon.length) {
+        AppState.lexicon[AppState.selectedIndex] = l;
+    } else {
+        AppState.lexicon.push(l);
+        AppState.selectedIndex = AppState.lexicon.length - 1;
+    }
+    persistLexicon();
+    renderLexicon();
+  }
+
+  function deleteCurrentLexeme() {
+    if (AppState.lexicon.length === 0) return;
+    AppState.lexicon.splice(AppState.selectedIndex, 1);
+    AppState.selectedIndex = Math.max(0, AppState.selectedIndex - 1);
+    persistLexicon();
+    renderLexicon();
+    fillEditor(AppState.lexicon[AppState.selectedIndex] || seedLexicon[0]);
+  }
+
+  function persistLexicon() {
+    localStorage.setItem('cognitiveGlassLexicon', JSON.stringify(AppState.lexicon));
+  }
+
+  function exportLexicon() {
+    const blob = new Blob([JSON.stringify({ lexicon: AppState.lexicon }, null, 2)], {type:'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'cognitive_glass_lexicon.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  function importLexicon(file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+        try {
+            const data = JSON.parse(reader.result);
+            if (Array.isArray(data.lexicon)) {
+                AppState.lexicon = data.lexicon;
+                persistLexicon();
+                selectLexeme(0);
+                status('Lexicon imported successfully.');
+            } else {
+                status('Invalid lexicon format.');
+            }
+        } catch (e) {
+            status('Failed to parse JSON: ' + e.message);
+        }
+    };
+    reader.readAsText(file);
+  }
+
+  // --- MODULE: VISUALS ---
+  function startVisual(lex) {
+    const host = document.getElementById('glass');
+    const overlay = document.createElement('div');
+    overlay.className = 'overlay';
+    host.appendChild(overlay);
+
+    lex.modes.forEach((m, i) => {
+        const orb = document.createElement('div');
+        const size = 80 + i * 26;
+        const pan = Math.max(-1, Math.min(1, m.pan ?? 0));
+        const leftPct = 50 + pan * 35;
+        Object.assign(orb.style, {
+            position: 'absolute', width: size + 'px', height: size + 'px', borderRadius: '50%',
+            background: `radial-gradient(circle at 50% 40%, ${m.color}ff, ${m.color}22, transparent)`,
+            filter: 'blur(0.5px)', left: `${leftPct}%`, top: `${30 + i * 10}%`, opacity: .88,
+            transform: 'translateX(-50%)', animation: `float${i} ${6 + i * 2}s ease-in-out infinite`
+        });
+        overlay.appendChild(orb);
+    });
+    
+    let raf;
+    function animate() {
+        // Simple animation placeholder, can be expanded
+        raf = requestAnimationFrame(animate);
+    }
+    raf = requestAnimationFrame(animate);
+    overlay._stop = () => cancelAnimationFrame(raf);
+    return overlay;
+  }
+
+  function stopVisual(overlay) {
+    if (overlay) {
+        overlay._stop?.();
+        overlay.remove();
+    }
+  }
+
+  function updateBreath() {
+    const s = Math.max(2, parseFloat(document.getElementById('breathSec').value) || 4);
+    const style = document.getElementById('breathStyle') || document.createElement('style');
+    style.id = 'breathStyle';
+    style.textContent = `.breath > div { animation-duration: ${s * 2}s; }`;
+    if (!style.parentNode) {
+      document.head.appendChild(style);
+    }
+  }
+
+  // --- MODULE: SEQUENCE BUILDER ---
+  const seqDialog = document.getElementById('seqDialog');
+  function populateSeqPicker() {
+    const seqPick = document.getElementById('seqPick');
+    seqPick.innerHTML = AppState.lexicon.map((l, i) => `<option value="${i}">${l.name}</option>`).join('');
+  }
+  function renderSeq() {
+    const seqList = document.getElementById('seqList');
+    seqList.innerHTML = AppState.sequence.map((lexIndex, i) => `<li>${i + 1}. ${AppState.lexicon[lexIndex]?.name || '?'}</li>`).join('');
+  }
+  async function runSequence() {
+    const d = parseFloat(document.getElementById('dur').value);
+    for (const lexIndex of AppState.sequence) {
+      const l = AppState.lexicon[lexIndex];
+      if (l) { playLexeme(l, d); await new Promise(r => setTimeout(r, d * 1000 + 160)); }
+    }
+  }
+
+  // --- MODULE: MIC DETECTION ---
+  async function enableMic() {
+    if (AppState.micStream) return status('Mic already enabled');
+    ensureAudio();
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+      AppState.micStream = stream;
+      const source = AppState.AC.createMediaStreamSource(stream);
+      AppState.micAnalyzer = AppState.AC.createAnalyser();
+      AppState.micAnalyzer.fftSize = 4096;
+      source.connect(AppState.micAnalyzer);
+      AppState.micData = new Float32Array(AppState.micAnalyzer.frequencyBinCount);
+      status('Mic enabled — ready for detection');
+    } catch (e) {
+      status('Mic permission denied or error: ' + e.message);
+      console.error(e);
+    }
+  }
+
+  function hzFromIndex(index) {
+    if (!AppState.AC) return 0;
+    const nyquist = AppState.AC.sampleRate / 2;
+    const binCount = AppState.micAnalyzer.frequencyBinCount;
+    return index * (nyquist / binCount);
+  }
+
+  function analyzeOnce() {
+    if (!AppState.micAnalyzer) return [];
+    AppState.micAnalyzer.getFloatFrequencyData(AppState.micData);
+    
+    const minDb = parseFloat(document.getElementById('micMinDb').value);
+    const threshold = parseFloat(document.getElementById('micThresh').value);
+    const minHz = parseFloat(document.getElementById('micMinHz').value);
+    let peaks = [];
+
+    for (let i = 1; i < AppState.micData.length - 1; i++) {
+      const v = AppState.micData[i];
+      if (v < minDb) continue;
+      if (v > AppState.micData[i - 1] && v >= AppState.micData[i + 1]) {
+        const hz = hzFromIndex(i);
+        if (hz < minHz) continue;
+        const strength = Math.min(1, (v - minDb) / (0 - minDb));
+        if (strength >= threshold) {
+          peaks.push({ index: i, hz: hz, db: v, strength: strength });
+        }
+      }
+    }
+    return peaks;
+  }
+
+  function startDetectLoop() {
+    if (AppState.micInterval) return status('Detection already running');
+    if (!AppState.micAnalyzer) {
+        status('Mic not enabled. Enabling now...');
+        enableMic().then(() => {
+            if(AppState.micAnalyzer) startDetectLoop();
+        });
+        return;
+    }
+    status('Starting detection loop — listen quietly and hum or play tones to test');
+    AppState.micInterval = setInterval(() => {
+      const peaks = analyzeOnce();
+      if (peaks.length) {
+        peaks.forEach(p => {
+          const exists = AppState.detectedMarks.find(m => Math.abs(m.hz - p.hz) < 3);
+          if (!exists) {
+            AppState.detectedMarks.push(p);
+            updateMarksUI();
+            console.log('Detected peak', p);
+          }
+        });
+      }
+    }, 400);
+  }
+
+  function stopDetectLoop() {
+    if (AppState.micInterval) {
+      clearInterval(AppState.micInterval);
+      AppState.micInterval = null;
+      status('Detection stopped');
+    } else {
+      status('Detection not running');
+    }
+  }
+
+  function updateMarksUI() {
+    const marksEl = document.getElementById('marks');
+    if (marksEl) {
+        if (AppState.detectedMarks.length === 0) {
+            marksEl.textContent = 'none';
+        } else {
+            marksEl.textContent = AppState.detectedMarks
+                .map(m => `${Math.round(m.hz)}Hz (${m.db.toFixed(1)}dB)`)
+                .join(', ');
+        }
+    }
+  }
+
+  function applyMicMarksToLexeme() {
+    if (!AppState.lexicon[AppState.selectedIndex]) return status('No lexeme selected.');
+    if (AppState.detectedMarks.length === 0) return status('No marks detected yet.');
+    
+    const sorted = [...AppState.detectedMarks].sort((a,b) => b.strength - a.strength);
+    const top = sorted.slice(0,3);
+    const l = AppState.lexicon[AppState.selectedIndex];
+    l.modes = top.map((m,i) => ({ hz: Math.round(m.hz), color: l.modes[i]?.color || '#7aa2ff', gain: l.modes[i]?.gain ?? 0.5, pan: l.modes[i]?.pan ?? (i===0?-0.5:i===1?0:0.5) }));
+    persistLexicon();
+    fillEditor(l);
+    renderLexicon();
+    status(`Applied top ${top.length} marks to "${l.name}".`);
+  }
+
+  // --- EVENT LISTENERS ---
+  document.addEventListener('DOMContentLoaded', () => {
+    // Core Controls
+    document.getElementById('btnInit').addEventListener('click', ensureAudio);
+    document.getElementById('btnStopAll').addEventListener('click', stopAllAudio);
+    document.getElementById('gain').addEventListener('input', (e) => { if(AppState.master) AppState.master.gain.value = parseFloat(e.target.value); });
+
+    // Lexeme Player Tab
+    document.getElementById('btnSave').addEventListener('click', saveCurrentLexeme);
+    document.getElementById('btnDelete').addEventListener('click', deleteCurrentLexeme);
+    document.getElementById('btnPlayLex').addEventListener('click', () => {
+        const lex = AppState.lexicon[AppState.selectedIndex];
+        if (lex) playLexeme(lex, parseFloat(document.getElementById('dur').value));
+    });
+    document.getElementById('btnExport').addEventListener('click', exportLexicon);
+    const fileImport = document.getElementById('fileImport');
+    document.getElementById('btnImport').addEventListener('click', () => fileImport.click());
+    fileImport.addEventListener('change', (e) => {
+        const file = e.target.files?.[0];
+        if (file) importLexicon(file);
+    });
+    document.getElementById('breathSec').addEventListener('input', updateBreath);
+
+    // Sequence Builder Listeners
+    document.getElementById('btnSequence').addEventListener('click', () => { seqDialog.showModal(); populateSeqPicker(); renderSeq(); });
+    document.getElementById('seqAdd').addEventListener('click', () => { AppState.sequence.push(parseInt(document.getElementById('seqPick').value)); renderSeq(); });
+    document.getElementById('seqClear').addEventListener('click', () => { AppState.sequence = []; renderSeq(); });
+    document.getElementById('seqRun').addEventListener('click', () => { runSequence(); seqDialog.close(); });
+    document.getElementById('seqClose').addEventListener('click', () => seqDialog.close());
+
+    // Mic Detection Tab
+    document.getElementById('btnEnableMic').addEventListener('click', enableMic);
+    document.getElementById('btnStartDetect').addEventListener('click', startDetectLoop);
+    document.getElementById('btnStopDetect').addEventListener('click', stopDetectLoop);
+    document.getElementById('btnApplyMarks').addEventListener('click', applyMicMarksToLexeme);
+
+    // Tone Mapper Tab
+    document.getElementById('btnLoadMap').addEventListener('click', loadEigenMap);
+    document.getElementById('mapView').addEventListener('change', renderToneMap);
+    document.getElementById('btnPlayNode').addEventListener('click', () => {
+        if (AppState.selectedNode) {
+            playNode(AppState.selectedNode);
+        } else {
+            status('No node selected in the mapper.');
+        }
+    });
+
+    // --- INITIALIZATION ---
+    // Restore last active tab from localStorage
+    const lastTab = localStorage.getItem('cognitiveGlassActiveTab') || 'player';
+    switchTab(lastTab);
+
+    // Load lexicon from localStorage or use seed data
+    AppState.lexicon = JSON.parse(localStorage.getItem('cognitiveGlassLexicon') || 'null') || seedLexicon;
+    selectLexeme(0); // Select the first lexeme
+    updateBreath(); // Set initial breath pacer speed
+
+    // Auto-load the eigenmap on start
+    loadEigenMap();
+  });
+
+</script>
+
+</body>
+</html>

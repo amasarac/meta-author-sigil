@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas Repair Tool</title>
+    <style>
+        :root {
+            --bg: #0d0f1c; --panel-bg: #181c2a; --fg: #e6f3ff; --muted: #9bb0c6;
+            --accent: #3498db; --danger: #e74c3c; --success: #2ecc71; --warn: #f39c12;
+        }
+        body { background: var(--bg); color: var(--fg); font-family: 'Segoe UI', sans-serif; padding: 20px; }
+        .container { max-width: 960px; margin: 0 auto; }
+        h1, h2 { color: var(--accent); border-bottom: 1px solid #34495e; padding-bottom: 8px; }
+        .panel { background: var(--panel-bg); border-radius: 8px; padding: 15px; margin-bottom: 20px; }
+        button { background: var(--accent); border: none; color: #fff; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 14px; transition: background-color 0.2s; }
+        button:hover { background: #2980b9; }
+        button.danger { background: var(--danger); }
+        button.danger:hover { background: #c0392b; }
+        button:disabled { opacity: .5; cursor: not-allowed; }
+        #fileInput { display: block; margin-bottom: 15px; }
+        .issue-list { list-style-type: none; padding: 0; }
+        .issue-item { background: #2c3e50; padding: 10px; border-radius: 4px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .issue-item code { background: #1c2030; padding: 2px 6px; border-radius: 3px; }
+        .issue-item .actions { display: flex; gap: 8px; align-items: center; }
+        .issue-item .actions input, .issue-item .actions select { padding: 4px; font-size: 12px; }
+        #status { font-style: italic; color: var(--muted); }
+        .hidden { display: none; }
+        .info { color: var(--warn); font-size: 12px; margin-top: 5px; width: 100%;}
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Atlas Repair Tool</h1>
+
+    <div class="panel">
+        <h2>1. Load Atlas File</h2>
+        <p>Select your `unified-spiral-glyphode_final.json` file to begin.</p>
+        <input type="file" id="fileInput" accept="application/json">
+        <button id="loadBtn">Load & Validate</button>
+    </div>
+
+    <div class="panel">
+        <h2>2. Validation Results</h2>
+        <p id="status">Please load a file to see validation results.</p>
+        
+        <div id="duplicatesPanel" style="display:none;">
+            <h3>Duplicate Nodes <button id="fixAllDuplicates" class="danger">Fix All Duplicates</button></h3>
+            <ul id="duplicatesList" class="issue-list"></ul>
+        </div>
+
+        <div id="edgesPanel" style="display:none;">
+            <h3>Invalid Edges <button id="fixAllEdges" class="danger">Fix All Invalid Edges</button></h3>
+            <ul id="edgesList" class="issue-list"></ul>
+        </div>
+
+        <div id="similarNodesPanel" style="display:none;">
+            <h3>Potentially Similar Nodes <button id="mergeAllSimilar" class="danger">Merge All</button></h3>
+            <ul id="similarNodesList" class="issue-list"></ul>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h2>3. Save Repaired Atlas</h2>
+        <button id="saveBtn" disabled>Save Repaired JSON</button> <button id="exportInvalidBtn" class="danger" disabled>Export Invalid Edges JSON</button>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const fileInput = document.getElementById('fileInput');
+    const loadBtn = document.getElementById('loadBtn');
+    const saveBtn = document.getElementById('saveBtn');
+    const exportInvalidBtn = document.getElementById('exportInvalidBtn');
+    const statusEl = document.getElementById('status');
+
+    const duplicatesPanel = document.getElementById('duplicatesPanel');
+    const duplicatesList = document.getElementById('duplicatesList');
+    const fixAllDuplicatesBtn = document.getElementById('fixAllDuplicates');
+
+    const edgesPanel = document.getElementById('edgesPanel');
+    const edgesList = document.getElementById('edgesList');
+    const fixAllEdgesBtn = document.getElementById('fixAllEdges');
+
+    const similarNodesPanel = document.getElementById('similarNodesPanel');
+    const similarNodesList = document.getElementById('similarNodesList');
+    const mergeAllSimilarBtn = document.getElementById('mergeAllSimilar');
+
+    let originalFilename = 'atlas_repaired.json';
+    let jsonData = null;
+
+    loadBtn.addEventListener('click', () => {
+        const file = fileInput.files[0];
+        if (!file) {
+            statusEl.textContent = 'Please select a file first.';
+            return;
+        }
+        originalFilename = file.name.replace('.json', '_repaired.json');
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            try {
+                jsonData = JSON.parse(event.target.result);
+                statusEl.textContent = `File "${file.name}" loaded. Running validation...`;
+                validateAndDisplay();
+            } catch (e) {
+                statusEl.textContent = `Error parsing JSON: ${e.message}`;
+            }
+        };
+        reader.readAsText(file);
+    });
+
+    function validateAndDisplay() {
+        if (!jsonData) return;
+
+        const duplicateIssues = findDuplicates(jsonData.rawData);
+        const edgeIssues = findInvalidEdges(jsonData.rawData, jsonData.unifiedEdgeList);
+        const similarNodeIssues = findSimilarNodes(jsonData.rawData);
+
+        renderDuplicates(duplicateIssues);
+        renderInvalidEdges(edgeIssues);
+        renderSimilarNodes(similarNodeIssues);
+
+        if (duplicateIssues.length === 0 && edgeIssues.length === 0 && similarNodeIssues.length === 0) {
+            statusEl.textContent = '✅ No integrity issues found!';
+        } else {
+            statusEl.textContent = `Found ${duplicateIssues.length} duplicate groups, ${edgeIssues.length} invalid edges, and ${similarNodeIssues.length} sets of similar nodes.`;
+        }
+        exportInvalidBtn.disabled = edgeIssues.length === 0;
+        saveBtn.disabled = false;
+    }
+
+    function findDuplicates(rawData) {
+        const issues = [];
+        for (const [group, nodes] of Object.entries(rawData)) {
+            if (!Array.isArray(nodes)) continue;
+            const seen = new Set();
+            const duplicatesInGroup = nodes.filter(node => {
+                if (seen.has(node)) return true;
+                seen.add(node);
+                return false;
+            });
+            if (duplicatesInGroup.length > 0) {
+                issues.push({ group, duplicates: [...new Set(duplicatesInGroup)] });
+            }
+        }
+        return issues;
+    }
+
+    function findInvalidEdges(rawData, edgeList) {
+        const definedNodes = new Set(Object.values(rawData).flat());
+        const issues = [];
+        (edgeList || []).forEach((edge, index) => {
+            if (!Array.isArray(edge) || edge.length < 2 || edge[0] === null || edge[1] === null) {
+                issues.push({ edge: edge || ['null', 'null'], index, reason: 'Malformed edge.' });
+                return;
+            }
+            const [from, to] = edge;
+            let issueFound = false;
+            if (!definedNodes.has(from)) {
+                issues.push({ edge, index, reason: `Source node "${from}" not defined.`, missingNode: from });
+                issueFound = true;
+            }
+            if (!definedNodes.has(to)) {
+                // Avoid double-reporting if both are missing
+                if (!issueFound || from !== to) {
+                    issues.push({ edge, index, reason: `Target node "${to}" not defined.`, missingNode: to });
+                }
+            }
+        });
+        return issues;
+    }
+
+    function findSimilarNodes(rawData) {
+        const allNodes = Object.values(rawData).flat();
+        const normalize = str => str.toLowerCase().replace(/[\s_-]/g, '');
+        const normalizedMap = new Map();
+        allNodes.forEach(node => {
+            const norm = normalize(node);
+            if (!normalizedMap.has(norm)) normalizedMap.set(norm, []);
+            normalizedMap.get(norm).push(node);
+        });
+        const issues = [];
+        normalizedMap.forEach(nodes => {
+            if (nodes.length > 1) {
+                issues.push({ nodes });
+            }
+        });
+        return issues;
+    }
+
+    function renderDuplicates(issues) {
+        duplicatesList.innerHTML = '';
+        if (issues.length === 0) {
+            duplicatesPanel.style.display = 'none';
+            return;
+        }
+        duplicatesPanel.style.display = 'block';
+        issues.forEach(({ group, duplicates }) => {
+            const li = document.createElement('li');
+            li.className = 'issue-item';
+            li.innerHTML = `
+                <span>Group <code>${group}</code> has duplicate nodes: <code>${duplicates.join(', ')}</code></span>
+                <div class="actions"><button class="danger fix-duplicate" data-group="${group}">Fix</button></div>
+            `;
+            duplicatesList.appendChild(li);
+        });
+    }
+
+    function renderInvalidEdges(issues) {
+        edgesList.innerHTML = '';
+        if (issues.length === 0) {
+            edgesPanel.style.display = 'none';
+            return;
+        }
+        edgesPanel.style.display = 'block';
+        const groupOptions = Object.keys(jsonData.rawData).map(g => `<option value="${g}">${g}</option>`).join('');
+
+        issues.forEach(({ edge, index, reason, missingNode }) => {
+            const li = document.createElement('li');
+            li.className = 'issue-item';
+            li.innerHTML = `
+                <span>Edge #${index} <code>["${edge[0]}", "${edge[1]}"]</code>: ${reason}</span>
+                <div class="actions-container">
+                    <div class="actions">
+                        <button class="danger delete-edge" data-index="${index}">Delete Edge</button>
+                        ${missingNode ? `
+                            <button class="warn add-node" data-node-name="${missingNode}">Add Node</button>
+                            <select class="add-node-group hidden">${groupOptions}</select>
+                            <button class="warn rename-occurrences" data-node-name="${missingNode}">Rename Occurrences</button>
+                        ` : ''}
+                    </div>
+                    <div class="rename-controls hidden">
+                        <input type="text" class="rename-input" value="${missingNode || ''}" placeholder="Enter correct name...">
+                        <button class="success confirm-rename">Replace All</button>
+                    </div>
+                </div>
+            `;
+            edgesList.appendChild(li);
+        });
+    }
+
+    function renderSimilarNodes(issues) {
+        similarNodesList.innerHTML = '';
+        if (issues.length === 0) {
+            similarNodesPanel.style.display = 'none';
+            return;
+        }
+        similarNodesPanel.style.display = 'block';
+        issues.forEach(({ nodes }, i) => {
+            const li = document.createElement('li');
+            li.className = 'issue-item';
+            const options = nodes.map(n => `<option value="${n}">${n}</option>`).join('');
+            li.innerHTML = `
+                <div>
+                    <span>Potential duplicates found: <code>${nodes.join('</code>, <code>')}</code></span>
+                    <div class="info">Choose canonical name and click Merge. Others will be removed and their edges retargeted.</div>
+                </div>
+                <div class="actions">
+                    <select id="merge-select-${i}">${options}</select>
+                    <button class="danger merge-nodes" 
+                            data-canonical-select="merge-select-${i}" 
+                            data-others="${nodes.join(',')}"
+                    >Merge</button>
+                </div>
+            `;
+            similarNodesList.appendChild(li);
+        });
+    }
+
+    // --- FIX LOGIC ---
+
+    duplicatesList.addEventListener('click', (e) => {
+        if (e.target.classList.contains('fix-duplicate')) {
+            const group = e.target.dataset.group;
+            fixDuplicateGroup(group);
+            e.target.closest('.issue-item').remove();
+            if (duplicatesList.children.length === 0) duplicatesPanel.style.display = 'none';
+        }
+    });
+
+    fixAllDuplicatesBtn.addEventListener('click', () => {
+        const groupsToFix = [...duplicatesList.querySelectorAll('.fix-duplicate')].map(btn => btn.dataset.group);
+        groupsToFix.forEach(fixDuplicateGroup);
+        duplicatesList.innerHTML = '';
+        duplicatesPanel.style.display = 'none';
+    });
+
+    function fixDuplicateGroup(group) {
+        if (jsonData && jsonData.rawData[group]) {
+            jsonData.rawData[group] = [...new Set(jsonData.rawData[group])];
+            statusEl.textContent = `Removed duplicates from group "${group}".`;
+        }
+    }
+
+    edgesList.addEventListener('click', (e) => {
+        if (e.target.classList.contains('delete-edge')) {
+            const index = parseInt(e.target.dataset.index, 10);
+            fixInvalidEdge(index);
+            e.target.closest('.issue-item').remove();
+            if (edgesList.children.length === 0) edgesPanel.style.display = 'none';
+        }
+        if (e.target.classList.contains('rename-occurrences')) {
+            const renameControls = e.target.closest('.actions-container').querySelector('.rename-controls');
+            renameControls.classList.toggle('hidden');
+        }
+        if (e.target.classList.contains('confirm-rename')) {
+            const container = e.target.closest('.actions-container');
+            const oldName = container.querySelector('.rename-occurrences').dataset.nodeName;
+            const newName = container.querySelector('.rename-input').value;
+            if (oldName && newName && oldName !== newName) {
+                replaceAllOccurrences(oldName, newName);
+                statusEl.textContent = `Replaced all instances of "${oldName}" with "${newName}". Re-validating...`;
+                validateAndDisplay();
+            } else {
+                statusEl.textContent = 'Rename cancelled: no change detected.';
+                container.querySelector('.rename-controls').classList.add('hidden');
+            }
+        }
+        if (e.target.classList.contains('add-node')) {
+            const select = e.target.nextElementSibling;
+            select.classList.toggle('hidden');
+            select.onchange = () => {
+                const nodeName = e.target.dataset.nodeName;
+                const group = select.value;
+                jsonData.rawData[group].push(nodeName);
+                statusEl.textContent = `Added node "${nodeName}" to group "${group}". Re-validating...`;
+                validateAndDisplay(); // Re-run validation to clear the fixed issues
+            };
+        }
+    });
+
+    fixAllEdgesBtn.addEventListener('click', () => {
+        if (jsonData) {
+            const definedNodes = new Set(Object.values(jsonData.rawData).flat());
+            const validEdges = jsonData.unifiedEdgeList.filter(edge => {
+                return Array.isArray(edge) && edge.length >= 2 && edge[0] && edge[1] && definedNodes.has(edge[0]) && definedNodes.has(edge[1]);
+            });
+            const removedCount = jsonData.unifiedEdgeList.length - validEdges.length;
+            jsonData.unifiedEdgeList = validEdges;
+            edgesList.innerHTML = '';
+            edgesPanel.style.display = 'none';
+            statusEl.textContent = `Removed ${removedCount} invalid edges.`;
+        }
+    });
+
+    function fixInvalidEdge(index) {
+        if (jsonData && jsonData.unifiedEdgeList[index]) {
+            // Mark for removal by setting to null, then filter on save.
+            // This avoids index shifting issues if removing one-by-one.
+            jsonData.unifiedEdgeList[index] = null;
+            statusEl.textContent = `Marked edge #${index} for removal.`;
+        }
+    }
+
+    function replaceAllOccurrences(oldName, newName) {
+        if (!jsonData || !jsonData.unifiedEdgeList) return;
+        jsonData.unifiedEdgeList.forEach(edge => {
+            if (edge && edge[0] === oldName) edge[0] = newName;
+            if (edge && edge[1] === oldName) edge[1] = newName;
+        });
+    }
+
+    similarNodesList.addEventListener('click', (e) => {
+        if (e.target.classList.contains('merge-nodes')) {
+            const selectEl = document.getElementById(e.target.dataset.canonicalSelect);
+            const canonicalName = selectEl.value;
+            const allSimilar = e.target.dataset.others.split(',');
+            const toRemove = allSimilar.filter(n => n !== canonicalName);
+            
+            mergeNodes(canonicalName, toRemove);
+            e.target.closest('.issue-item').remove();
+            if (similarNodesList.children.length === 0) similarNodesPanel.style.display = 'none';
+        }
+    });
+
+    mergeAllSimilarBtn.addEventListener('click', () => {
+        const items = [...similarNodesList.querySelectorAll('.issue-item')];
+        items.forEach(item => {
+            const mergeBtn = item.querySelector('.merge-nodes');
+            mergeBtn.click();
+        });
+    });
+
+    function mergeNodes(canonicalName, nodesToRemove) {
+        if (!jsonData) return;
+
+        // 1. Retarget edges
+        jsonData.unifiedEdgeList.forEach(edge => {
+            if (nodesToRemove.includes(edge[0])) edge[0] = canonicalName;
+            if (nodesToRemove.includes(edge[1])) edge[1] = canonicalName;
+        });
+
+        // 2. Remove non-canonical nodes from rawData
+        for (const group in jsonData.rawData) {
+            jsonData.rawData[group] = jsonData.rawData[group].filter(node => !nodesToRemove.includes(node));
+        }
+
+        statusEl.textContent = `Merged ${nodesToRemove.join(', ')} into ${canonicalName}.`;
+    }
+
+    // --- SAVE LOGIC ---
+
+    saveBtn.addEventListener('click', () => {
+        if (!jsonData) {
+            statusEl.textContent = 'No data to save.';
+            return;
+        }
+
+        // Final cleanup of edges marked for removal
+        jsonData.unifiedEdgeList = jsonData.unifiedEdgeList.filter(edge => edge !== null);
+
+        const blob = new Blob([JSON.stringify(jsonData, null, 2)], { type: 'application/json' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = originalFilename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(a.href);
+        statusEl.textContent = `Saved cleaned file as "${originalFilename}".`;
+    });
+
+    exportInvalidBtn.addEventListener('click', () => {
+        if (!jsonData) return;
+        const edgeIssues = findInvalidEdges(jsonData.rawData, jsonData.unifiedEdgeList);
+        const invalidEdges = edgeIssues.map(issue => issue.edge);
+
+        const blob = new Blob([JSON.stringify(invalidEdges, null, 2)], { type: 'application/json' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'invalid_edges.json';
+        a.click();
+        URL.revokeObjectURL(a.href);
+        statusEl.textContent = `Exported ${invalidEdges.length} invalid edges.`;
+    });
+});
+</script>
+
+</body>
+</html>

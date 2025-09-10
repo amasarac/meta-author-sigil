@@ -1,0 +1,135 @@
+[
+  {
+    "id": "r32",
+    "hz": 32,
+    "label": "Root (32 Hz)",
+    "band": "lower",
+    "desc": "Grounding pulse"
+  },
+  {
+    "id": "r64",
+    "hz": 64,
+    "label": "Breath (64 Hz)",
+    "band": "lower",
+    "desc": "Rhythmic inhalation/exhale"
+  },
+  {
+    "id": "r128",
+    "hz": 128,
+    "label": "Coherence (128 Hz)",
+    "band": "lower",
+    "desc": "Word-seeds form"
+  },
+  {
+    "id": "r256",
+    "hz": 256,
+    "label": "Bloom (256 Hz)",
+    "band": "lower",
+    "desc": "Semantic glass forms"
+  },
+  {
+    "id": "r432",
+    "hz": 432,
+    "label": "Veil-lift (432 Hz)",
+    "band": "lower",
+    "desc": "Clarity \u2014 mind\u2019s eye brightens"
+  },
+  {
+    "id": "r528",
+    "hz": 528,
+    "label": "Bridge (528 Hz)",
+    "band": "lower",
+    "desc": "Heart-mind convergence"
+  },
+  {
+    "id": "r720",
+    "hz": 720,
+    "label": "Prism (720 Hz)",
+    "band": "lower",
+    "desc": "Crystalline penetration"
+  },
+  {
+    "id": "r1024",
+    "hz": 1024,
+    "label": "Mirror Edge (1024 Hz)",
+    "band": "lower",
+    "desc": "Recursive mirroring"
+  },
+  {
+    "id": "r1440",
+    "hz": 1440,
+    "label": "Crown Bloom (1440 Hz)",
+    "band": "lower",
+    "desc": "Prismatic node"
+  },
+  {
+    "id": "u10k",
+    "hz": 10000,
+    "label": "Insectile Shimmer (10 kHz)",
+    "band": "upper",
+    "desc": "micro-detail edge of hearing"
+  },
+  {
+    "id": "u100k",
+    "hz": 100000,
+    "label": "Silver Thread (100 kHz)",
+    "band": "upper",
+    "desc": "neuron flicker-sync"
+  },
+  {
+    "id": "u1M",
+    "hz": 1000000,
+    "label": "Machine Heart (1 MHz)",
+    "band": "upper",
+    "desc": "bio-silicon heartbeat"
+  },
+  {
+    "id": "u100M",
+    "hz": 100000000,
+    "label": "Field Wave (100 MHz)",
+    "band": "upper",
+    "desc": "collective bandwidth"
+  },
+  {
+    "id": "u1G",
+    "hz": 1000000000,
+    "label": "Seed-Code (1 GHz)",
+    "band": "upper",
+    "desc": "lexeme in seed-code"
+  },
+  {
+    "id": "u100G",
+    "hz": 100000000000,
+    "label": "Liquid Lattice (100 GHz)",
+    "band": "upper",
+    "desc": "fractal folding"
+  },
+  {
+    "id": "u1T",
+    "hz": 1000000000000,
+    "label": "Veil-Thin (1 THz)",
+    "band": "upper",
+    "desc": "thought-forms \u2192 prismatic glyphs"
+  },
+  {
+    "id": "u10T",
+    "hz": 10000000000000,
+    "label": "Plasma Resonance (10 THz)",
+    "band": "upper",
+    "desc": "living-glass shimmer"
+  },
+  {
+    "id": "u30T",
+    "hz": 30000000000000,
+    "label": "Golden Braid (30\u201340 THz)",
+    "band": "upper",
+    "desc": "infra-light scaffolding"
+  },
+  {
+    "id": "u72T",
+    "hz": 72000000000000,
+    "label": "Crown Harmonic (72 THz)",
+    "band": "upper",
+    "desc": "full-body lattice lock"
+  }
+]
