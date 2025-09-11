@@ -1,9 +1,10 @@
+
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Portal V — Enhanced Fortress Veil (MASL) — Fixed</title>
+<title>Portal V — Enhanced Fortress Veil (MASL)</title>
 <style>
   :root{
     --bg:#0a0c14;--accent:#f7b7ff;--muted:#d6aef9;
@@ -85,8 +86,7 @@
   .card{
     background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005));
     border-radius:24px;padding:24px;position:relative;
-    /* fixed box-shadow */
-    box-shadow: 0 25px 70px rgba(0,0,0,0.9), 0 0 30px rgba(247,183,255,0.25), 0 0 0 1px rgba(247,183,255,0.15);
+    box-shadow:0 0 30px rgba(247,183,255,0 25px 70px) rgba(0,0,0,0.9), 0 0 0 1px rgba(247,183,255,0.15);
     backdrop-filter:blur(30px);overflow:hidden;
   }
   .card::after{
@@ -490,9 +490,9 @@ function svgEl(tag, attrs = {}) {
   
   // Status indicators
   const veilStrengthFill = document.getElementById('veilStrengthFill');
-  const veilOpacityEl = document.getElementById('veilOpacity');
+  const veilOpacity = document.getElementById('veilOpacity');
   const veilStability = document.getElementById('veilStability');
-  const breachCountEl = document.getElementById('breachCount');
+  const breachCount = document.getElementById('breachCount');
   const veilEnergy = document.getElementById('veilEnergy');
   
   // Analysis displays
@@ -501,7 +501,7 @@ function svgEl(tag, attrs = {}) {
   const dimensionalFlux = document.getElementById('dimensionalFlux');
   const breachRisk = document.getElementById('breachRisk');
   const energyReserves = document.getElementById('energyReserves');
-  const latticeNodesEl = document.getElementById('latticeNodes');
+  const latticeNodes = document.getElementById('latticeNodes');
   
   // Buttons
   const toggleVeilBtn = document.getElementById('toggleVeil');
@@ -568,4 +568,613 @@ function svgEl(tag, attrs = {}) {
           });
           latticeHidden.appendChild(connection);
         }
-------
+      });
+    });
+  }
+
+  // Initialize dimensional sensors
+  function initSensorNetwork() {
+    sensorNetwork.innerHTML = '';
+    sensors = [];
+    
+    // Create sensor array around the perimeter
+    for (let i = 0; i < 12; i++) {
+      const angle = (i / 12) * 2 * Math.PI;
+      const x = 600 + Math.cos(angle) * 350;
+      const y = 350 + Math.sin(angle) * 250;
+      
+      const sensorGroup = svgEl('g', {transform: `translate(${x}, ${y})`});
+      
+      // Sensor core
+      const core = svgEl('circle', {
+        r: 4, fill: '#7bdff9',
+        'fill-opacity': 0.8,
+        stroke: '#00ff88',
+        'stroke-width': 1
+      });
+      
+      // Sensor field
+      const field = svgEl('circle', {
+        r: 15, fill: 'none',
+        stroke: '#7bdff9',
+        'stroke-width': 0.5,
+        'stroke-opacity': 0.3,
+        'stroke-dasharray': '2 3'
+      });
+      
+      sensorGroup.appendChild(field);
+      sensorGroup.appendChild(core);
+      sensorNetwork.appendChild(sensorGroup);
+      
+      sensors.push({
+        x, y, angle: angle * 180 / Math.PI,
+        element: sensorGroup,
+        core, field,
+        activity: Math.random(),
+        detecting: false
+      });
+      
+      // Animate sensor field
+      field.animate([
+        {r: 15, 'stroke-opacity': 0.3},
+        {r: 20, 'stroke-opacity': 0.1},
+        {r: 15, 'stroke-opacity': 0.3}
+      ], {
+        duration: 2000 + i * 200,
+        iterations: Infinity
+      });
+    }
+  }
+
+  // Create dimensional breach
+  function createBreach(x = null, y = null) {
+    const breachX = x || 400 + Math.random() * 400;
+    const breachY = y || 250 + Math.random() * 200;
+    const breachSize = 20 + Math.random() * 40;
+    
+    const breach = svgEl('g', {transform: `translate(${breachX}, ${breachY})`});
+    
+    // Breach core
+    const core = svgEl('circle', {
+      r: breachSize,
+      fill: 'url(#breachGrad)',
+      'fill-opacity': 0.6,
+      stroke: '#ff6b9d',
+      'stroke-width': 2,
+      'stroke-opacity': 0.8,
+      filter: 'url(#breachEffect)'
+    });
+    
+    // Breach distortion field
+    const distortion = svgEl('circle', {
+      r: breachSize * 1.5,
+      fill: 'none',
+      stroke: '#ff6b9d',
+      'stroke-width': 1,
+      'stroke-opacity': 0.4,
+      'stroke-dasharray': '3 6',
+      filter: 'url(#dimensionalDistort)'
+    });
+    
+    breach.appendChild(distortion);
+    breach.appendChild(core);
+    breachLayer.appendChild(breach);
+    
+    const breachData = {
+      x: breachX, y: breachY, size: breachSize,
+      element: breach, core, distortion,
+      energy: 1.0, expanding: true
+    };
+    
+    breaches.push(breachData);
+    
+    // Animate breach
+    core.animate([
+      {r: breachSize, 'fill-opacity': 0.6},
+      {r: breachSize * 1.2, 'fill-opacity': 0.8},
+      {r: breachSize, 'fill-opacity': 0.6}
+    ], {duration: 1500, iterations: Infinity});
+    
+    distortion.animate([
+      {transform: 'rotate(0deg)'},
+      {transform: 'rotate(360deg)'}
+    ], {duration: 8000, iterations: Infinity});
+    
+    // Check sensor detection
+    sensors.forEach(sensor => {
+      const distance = Math.sqrt(Math.pow(sensor.x - breachX, 2) + Math.pow(sensor.y - breachY, 2));
+      if (distance < 150) {
+        sensor.detecting = true;
+        sensor.core.setAttribute('fill', '#ff6b9d');
+        sensor.field.setAttribute('stroke', '#ff6b9d');
+      }
+    });
+    
+    updateBreachAnalysis();
+    log(`Dimensional breach detected at (${breachX.toFixed(0)}, ${breachY.toFixed(0)}) • Size: ${breachSize.toFixed(1)}px`);
+  }
+
+  // Seal breach
+  function sealBreach(breachData) {
+    // Sealing animation
+    breachData.core.animate([
+      {r: breachData.size, opacity: 1},
+      {r: 0, opacity: 0}
+    ], {duration: 1000, iterations: 1});
+    
+    breachData.distortion.animate([
+      {r: breachData.size * 1.5, opacity: 0.4},
+      {r: 0, opacity: 0}
+    ], {duration: 1200, iterations: 1});
+    
+    setTimeout(() => {
+      breachData.element.remove();
+      const index = breaches.indexOf(breachData);
+      if (index > -1) breaches.splice(index, 1);
+      
+      // Reset sensors
+      sensors.forEach(sensor => {
+        const stillDetecting = breaches.some(b => {
+          const distance = Math.sqrt(Math.pow(sensor.x - b.x, 2) + Math.pow(sensor.y - b.y, 2));
+          return distance < 150;
+        });
+        
+        if (!stillDetecting) {
+          sensor.detecting = false;
+          sensor.core.setAttribute('fill', '#7bdff9');
+          sensor.field.setAttribute('stroke', '#7bdff9');
+        }
+      });
+      
+      updateBreachAnalysis();
+    }, 1200);
+    
+    log(`Breach sealed • Reality membrane restored`);
+  }
+
+  // Veil operations
+  function toggleVeil() {
+    veilActive = !veilActive;
+    
+    if (veilActive) {
+      veilSystem.style.opacity = '1';
+      veilSystem.style.filter = 'url(#veilGlow)';
+      toggleVeilBtn.textContent = 'Deactivate Veil';
+      log('Veil reactivated • Dimensional protection restored');
+    } else {
+      veilSystem.style.opacity = '0.2';
+      veilSystem.style.filter = 'none';
+      toggleVeilBtn.textContent = 'Activate Veil';
+      log('Veil deactivated • WARNING: Dimensional exposure detected');
+    }
+    
+    updateVeilStatus();
+  }
+
+  function pulseVeil() {
+    if (!veilActive) {
+      log('ERROR: Cannot pulse inactive veil');
+      return;
+    }
+    
+    // Pulse animation for all veil layers
+    [primaryVeil, secondaryVeil, innerVeil].forEach((veil, i) => {
+      veil.animate([
+        {transform: 'scale(1)', 'fill-opacity': veil.getAttribute('fill-opacity') || 1},
+        {transform: 'scale(1.1)', 'fill-opacity': (parseFloat(veil.getAttribute('fill-opacity') || 1) + 0.3)},
+        {transform: 'scale(1)', 'fill-opacity': veil.getAttribute('fill-opacity') || 1}
+      ], {
+        duration: 1500,
+        delay: i * 200,
+        iterations: 1
+      });
+    });
+    
+    // Energy wave effect
+    const energyWave = svgEl('circle', {
+      cx: 600, cy: 350, r: 50,
+      fill: 'none',
+      stroke: '#f7b7ff',
+      'stroke-width': 3,
+      'stroke-opacity': 0.8,
+      filter: 'url(#veilGlow)'
+    });
+    
+    effectsLayer.appendChild(energyWave);
+    
+    energyWave.animate([
+      {r: 50, 'stroke-opacity': 0.8, 'stroke-width': 3},
+      {r: 400, 'stroke-opacity': 0, 'stroke-width': 0.5}
+    ], {duration: 2000, iterations: 1});
+    
+    setTimeout(() => energyWave.remove(), 2000);
+    
+    log('Veil pulse initiated • Dimensional resonance amplified');
+  }
+
+  function revealLattice() {
+    latticeRevealed = !latticeRevealed;
+    
+    if (latticeRevealed) {
+      latticeHidden.animate([
+        {opacity: 0},
+        {opacity: 1}
+      ], {duration: 1500, iterations: 1});
+      latticeHidden.style.opacity = '1';
+      revealLatticeBtn.textContent = 'Hide Lattice';
+      revealLatticeBtn.classList.add('active');
+      log('Hidden lattice revealed • 156 nodes detected • Quantum entanglement patterns visible');
+    } else {
+      latticeHidden.animate([
+        {opacity: 1},
+        {opacity: 0}
+      ], {duration: 1000, iterations: 1});
+      latticeHidden.style.opacity = '0';
+      revealLatticeBtn.textContent = 'Reveal Lattice';
+      revealLatticeBtn.classList.remove('active');
+      log('Lattice concealed • Returning to dimensional stealth mode');
+    }
+  }
+
+  function performDimensionalScan() {
+    if (scanInProgress) return;
+    
+    scanInProgress = true;
+    dimensionalScanBtn.textContent = 'Scanning...';
+    dimensionalScanBtn.classList.add('active');
+    
+    // Create scanning beam
+    const scanLine = svgEl('line', {
+      x1: 600, y1: 350,
+      x2: 600, y2: 350,
+      stroke: '#00ff88',
+      'stroke-width': 2,
+      'stroke-opacity': 0.8,
+      filter: 'url(#veilGlow)'
+    });
+    
+    effectsLayer.appendChild(scanLine);
+    
+    // Rotate scanning beam
+    let scanAngle = 0;
+    const scanInterval = setInterval(() => {
+      scanAngle += 15;
+      const x2 = 600 + Math.cos(scanAngle * Math.PI / 180) * 350;
+      const y2 = 350 + Math.sin(scanAngle * Math.PI / 180) * 250;
+      scanLine.setAttribute('x2', x2);
+      scanLine.setAttribute('y2', y2);
+      
+      // Detect anomalies
+      if (scanAngle % 60 === 0 && Math.random() > 0.6) {
+        const anomaly = svgEl('circle', {
+          cx: x2, cy: y2, r: 8,
+          fill: '#ff6b9d', 'fill-opacity': 0.6,
+          stroke: '#ffffff', 'stroke-width': 1
+        });
+        effectsLayer.appendChild(anomaly);
+        
+        anomaly.animate([
+          {r: 8, opacity: 1},
+          {r: 15, opacity: 0}
+        ], {duration: 800, iterations: 1});
+        
+        setTimeout(() => anomaly.remove(), 800);
+      }
+      
+      if (scanAngle >= 360) {
+        clearInterval(scanInterval);
+        scanLine.remove();
+        scanInProgress = false;
+        dimensionalScanBtn.textContent = 'Dimensional Scan';
+        dimensionalScanBtn.classList.remove('active');
+        
+        const anomalyCount = Math.floor(Math.random() * 3) + 1;
+        log(`Dimensional scan complete • ${anomalyCount} temporal anomalies detected • Space-time flux: normal`);
+      }
+    }, 50);
+  }
+
+  function activateQuantumFlux() {
+    // Create quantum field disturbance
+    for (let i = 0; i < 20; i++) {
+      const x = 300 + Math.random() * 600;
+      const y = 150 + Math.random() * 400;
+      
+      const particle = svgEl('circle', {
+        cx: x, cy: y, r: 2,
+        fill: '#7bdff9', 'fill-opacity': 0.8,
+        filter: 'url(#quantumShimmer)'
+      });
+      
+      effectsLayer.appendChild(particle);
+      
+      // Quantum particle animation
+      particle.animate([
+        {cx: x, cy: y, r: 2, opacity: 0.8},
+        {cx: x + (Math.random() - 0.5) * 200, cy: y + (Math.random() - 0.5) * 150, r: 8, opacity: 0.2},
+        {cx: x, cy: y, r: 2, opacity: 0.8}
+      ], {
+        duration: 3000,
+        iterations: 1
+      });
+      
+      setTimeout(() => particle.remove(), 3000);
+    }
+    
+    log('Quantum flux activated • Probability fields destabilized • Reality coherence fluctuating');
+  }
+
+  function activateRealityAnchor() {
+    const anchor = svgEl('g', {transform: 'translate(600, 350)'});
+    
+    // Create anchor symbol
+    for (let i = 0; i < 8; i++) {
+      const angle = (i / 8) * 2 * Math.PI;
+      const line = svgEl('line', {
+        x1: 0, y1: 0,
+        x2: Math.cos(angle) * 80, y2: Math.sin(angle) * 80,
+        stroke: '#00ff88', 'stroke-width': 2,
+        'stroke-opacity': 0.6,
+        filter: 'url(#veilGlow)'
+      });
+      anchor.appendChild(line);
+    }
+    
+    const core = svgEl('circle', {
+      r: 15, fill: '#00ff88', 'fill-opacity': 0.4,
+      stroke: '#ffffff', 'stroke-width': 2
+    });
+    anchor.appendChild(core);
+    
+    effectsLayer.appendChild(anchor);
+    
+    // Anchor animation
+    anchor.animate([
+      {transform: 'translate(600, 350) scale(0) rotate(0deg)'},
+      {transform: 'translate(600, 350) scale(1) rotate(360deg)'},
+      {transform: 'translate(600, 350) scale(0.5) rotate(720deg)'}
+    ], {duration: 4000, iterations: 1});
+    
+    setTimeout(() => anchor.remove(), 4000);
+    
+    log('Reality anchor deployed • Space-time coordinates locked • Dimensional drift prevented');
+  }
+
+  function activateTemporalShield() {
+    shieldActive = !shieldActive;
+    
+    if (shieldActive) {
+      // Create temporal shield effect
+      const shield = svgEl('ellipse', {
+        cx: 600, cy: 350, rx: 320, ry: 230,
+        fill: 'none', stroke: '#7bdff9',
+        'stroke-width': 3, 'stroke-opacity': 0.6,
+        'stroke-dasharray': '10 5',
+        filter: 'url(#quantumShimmer)'
+      });
+      
+      shield.id = 'temporalShield';
+      effectsLayer.appendChild(shield);
+      
+      // Shield rotation
+      shield.animate([
+        {transform: 'rotate(0deg)'},
+        {transform: 'rotate(360deg)'}
+      ], {
+        duration: 10000,
+        iterations: Infinity,
+        transformOrigin: '600px 350px'
+      });
+      
+      temporalShieldBtn.textContent = 'Deactivate Shield';
+      temporalShieldBtn.classList.add('active');
+      log('Temporal shield activated • Chronological protection engaged • Time dilation field stable');
+    } else {
+      const shield = effectsLayer.querySelector('#temporalShield');
+      if (shield) shield.remove();
+      
+      temporalShieldBtn.textContent = 'Temporal Shield';
+      temporalShieldBtn.classList.remove('active');
+      log('Temporal shield deactivated • Chronological flow normalized');
+    }
+  }
+
+  function activateEmergencyProtocol() {
+    emergencyMode = !emergencyMode;
+    
+    if (emergencyMode) {
+      // Emergency lockdown
+      currentOpacity = 1.0;
+      opacityRange.value = 1;
+      updateVeilParameters();
+      
+      // Seal all breaches
+      breaches.forEach(breach => sealBreach(breach));
+      
+      // Activate dimensional rift warning
+      dimensionalRift.classList.add('active');
+      
+      // Red alert styling
+      consoleLog.classList.add('breach-warning');
+      emergencyProtocolBtn.textContent = 'Cancel Emergency';
+      emergencyProtocolBtn.classList.add('active');
+      
+      log('EMERGENCY PROTOCOL ACTIVATED • Maximum veil opacity • All breaches sealed • Dimensional lockdown initiated');
+    } else {
+      dimensionalRift.classList.remove('active');
+      consoleLog.classList.remove('breach-warning');
+      emergencyProtocolBtn.textContent = 'Emergency Protocol';
+      emergencyProtocolBtn.classList.remove('active');
+      
+      log('Emergency protocol deactivated • Normal operations resumed');
+    }
+  }
+
+  // Update functions
+  function updateVeilParameters() {
+    currentOpacity = parseFloat(opacityRange.value);
+    dimensionalDepth = parseInt(depthRange.value);
+    quantumCoherence = parseFloat(coherenceRange.value);
+    
+    // Update value displays
+    opacityValue.textContent = Math.round(currentOpacity * 100) + '%';
+    depthValue.textContent = dimensionalDepth;
+    coherenceValue.textContent = Math.round(quantumCoherence * 100) + '%';
+    
+    // Apply to veil system
+    if (veilActive) {
+      primaryVeil.setAttribute('fill-opacity', currentOpacity * 0.25);
+      primaryVeil.setAttribute('stroke-opacity', currentOpacity * 0.3);
+      
+      secondaryVeil.setAttribute('fill-opacity', currentOpacity * 0.5);
+      secondaryVeil.setAttribute('stroke-opacity', currentOpacity * 0.4);
+      
+      innerVeil.setAttribute('fill-opacity', currentOpacity * 0.7);
+      innerVeil.setAttribute('stroke-opacity', currentOpacity * 0.5);
+      
+      // Apply dimensional depth effects
+      const distortionScale = dimensionalDepth > 5 ? 'url(#dimensionalDistort)' : 'url(#veilGlow)';
+      veilSystem.setAttribute('filter', distortionScale);
+      
+      // Apply quantum coherence effects
+      if (quantumCoherence < 0.3) {
+        veilSystem.style.filter += ' brightness(0.7)';
+      } else if (quantumCoherence > 0.8) {
+        veilSystem.style.filter += ' brightness(1.2)';
+      }
+    }
+    
+    updateVeilStatus();
+  }
+
+  function updateVeilStatus() {
+    const strength = veilActive ? Math.round(currentOpacity * quantumCoherence * 100) : 0;
+    
+    veilStrengthFill.style.width = strength + '%';
+    veilOpacity.textContent = Math.round(currentOpacity * 100) + '%';
+    
+    // Update stability based on breaches and coherence
+    let stability = 'Stable';
+    if (breaches.length > 3) stability = 'Critical';
+    else if (breaches.length > 1) stability = 'Unstable';
+    else if (quantumCoherence < 0.4) stability = 'Fluctuating';
+    else if (quantumCoherence > 0.8) stability = 'Optimal';
+    
+    veilStability.textContent = stability;
+    breachCount.textContent = breaches.length;
+    
+    // Simulate energy drain from breaches
+    const energy = Math.max(20, 98 - breaches.length * 15 - (1 - quantumCoherence) * 30);
+    veilEnergy.textContent = Math.round(energy) + '%';
+  }
+
+  function updateBreachAnalysis() {
+    const breachRiskLevels = ['Minimal', 'Low', 'Moderate', 'High', 'Critical'];
+    const riskIndex = Math.min(breaches.length, breachRiskLevels.length - 1);
+    breachRisk.textContent = breachRiskLevels[riskIndex];
+    
+    // Update membrane strength
+    const strength = Math.max(20, 98.7 - breaches.length * 8);
+    membraneStrength.textContent = strength.toFixed(1) + '%';
+    
+    // Update dimensional flux
+    const flux = 0.12 + breaches.length * 0.08 + Math.random() * 0.05;
+    dimensionalFlux.textContent = flux.toFixed(2) + ' Hz';
+    
+    // Update energy reserves
+    const reserves = Math.max(0.5, 2.4 - breaches.length * 0.3);
+    energyReserves.textContent = reserves.toFixed(1) + ' TW';
+  }
+
+  function log(message) {
+    const timestamp = new Date().toLocaleTimeString();
+    const logEntry = `[${timestamp}] ${message}<br>`;
+    consoleLog.innerHTML = logEntry + consoleLog.innerHTML;
+    
+    // Limit log size
+    const lines = consoleLog.innerHTML.split('<br>');
+    if (lines.length > 15) {
+      consoleLog.innerHTML = lines.slice(0, 15).join('<br>');
+    }
+  }
+
+  // Event listeners
+  opacityRange.addEventListener('input', updateVeilParameters);
+  depthRange.addEventListener('input', updateVeilParameters);
+  coherenceRange.addEventListener('input', updateVeilParameters);
+  
+  toggleVeilBtn.addEventListener('click', toggleVeil);
+  pulseVeilBtn.addEventListener('click', pulseVeil);
+  
+  breachBtn.addEventListener('click', () => createBreach());
+  sealAllBtn.addEventListener('click', () => {
+    if (breaches.length === 0) {
+      log('No breaches to seal');
+      return;
+    }
+    
+    const breachCount = breaches.length;
+    breaches.forEach(breach => sealBreach(breach));
+    log(`All ${breachCount} breaches sealed • Dimensional integrity restored`);
+  });
+  
+  revealLatticeBtn.addEventListener('click', revealLattice);
+  dimensionalScanBtn.addEventListener('click', performDimensionalScan);
+  quantumFluxBtn.addEventListener('click', activateQuantumFlux);
+  realityAnchorBtn.addEventListener('click', activateRealityAnchor);
+  temporalShieldBtn.addEventListener('click', activateTemporalShield);
+  emergencyProtocolBtn.addEventListener('click', activateEmergencyProtocol);
+
+  // Continuous updates
+  function continuousUpdate() {
+    // Update quantum state display
+    const states = ['Coherent', 'Superposed', 'Entangled', 'Collapsed', 'Fluctuating'];
+    if (Math.random() < 0.005) {
+      const stateIndex = quantumCoherence < 0.3 ? 4 : quantumCoherence > 0.8 ? 2 : Math.floor(Math.random() * 3);
+      quantumState.textContent = states[stateIndex];
+    }
+    
+    // Update sensor animations
+    sensors.forEach(sensor => {
+      sensor.activity += (Math.random() - 0.5) * 0.1;
+      sensor.activity = Math.max(0, Math.min(1, sensor.activity));
+      
+      if (sensor.activity > 0.8) {
+        sensor.core.setAttribute('fill-opacity', 1);
+      } else {
+        sensor.core.setAttribute('fill-opacity', 0.6 + sensor.activity * 0.4);
+      }
+    });
+    
+    // Random breach generation in low coherence states
+    if (quantumCoherence < 0.3 && Math.random() < 0.001) {
+      createBreach();
+    }
+    
+    // Update breach dynamics
+    breaches.forEach(breach => {
+      breach.energy *= 0.999; // Gradual energy decay
+      if (breach.energy < 0.1) {
+        log('Breach collapsed due to energy depletion');
+        sealBreach(breach);
+      }
+    });
+    
+    requestAnimationFrame(continuousUpdate);
+  }
+
+  // Initialize system
+  initHiddenLattice();
+  initSensorNetwork();
+  updateVeilParameters();
+  updateBreachAnalysis();
+  
+  log('Fortress Veil Portal v2.1 fully operational');
+  log('Dimensional sensors deployed • Quantum membrane stable • Reality anchor points secured');
+  log('Veil integrity at maximum • Standing guard against the unknown');
+  
+  continuousUpdate();
+})();
+</script>
+</body>
+</html>
