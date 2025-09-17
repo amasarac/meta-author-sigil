@@ -1,5 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg viewBox="0 0 1200 420" width="1200" height="420" xmlns="http://www.w3.org/2000/svg">
+import React from 'react';
+
+export default function Home() {
+  return (
+    <div style={{background:'#05050a',color:'#fff',minHeight:'100vh',padding:40}}>
+      <header style={{maxWidth:1200,margin:'0 auto'}}>
+        {/* Inline SVG header */}
+        <div dangerouslySetInnerHTML={{__html: `<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 1200 420" xmlns="http://www.w3.org/2000/svg">
   <rect width="100%" height="100%" fill="#080810" />
   <g transform="translate(220,210)">
     <g id="spiralGroup">
@@ -20,3 +27,12 @@
     </g>
   </g>
 </svg>
+`}} />
+      </header>
+      <main style={{maxWidth:1200,margin:'24px auto',background:'#0b0b12',padding:20,borderRadius:12}}>
+        <h1 style={{fontFamily:'serif'}}>OrBIS Chalice — CREATION_OF_ADAM</h1>
+        <p>Preview page exported from OrBIS preview. Use this as a Next.js page (pages/index.jsx)</p>
+      </main>
+    </div>
+  );
+}

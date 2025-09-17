@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg viewBox="0 0 1200 420" width="1200" height="420" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1200 420" width="200" height="70" xmlns="http://www.w3.org/2000/svg">
   <rect width="100%" height="100%" fill="#080810" />
   <g transform="translate(220,210)">
     <g id="spiralGroup">

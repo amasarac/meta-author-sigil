@@ -1,0 +1,34 @@
+{
+  "project": "OrBIS Chalice",
+  "assets": {
+    "lottie": "tiamat_header_lottie.json",
+    "svgs": [
+      "tiamat_sigil_1200x420.svg",
+      "tiamat_sigil_800x280.svg",
+      "tiamat_sigil_400x140.svg",
+      "tiamat_sigil_200x70.svg",
+      "tiamat_sigil_1200x1200.svg"
+    ],
+    "nextjs_page": "pages_index.jsx",
+    "static_html": "index.html",
+    "musicxml": "canticle_tiamat_satb.musicxml"
+  },
+  "ui_spec": {
+    "header": "Animated sigil (Lottie or inline SVG). Rotating spiral, pulsing eye, wing flares, particle overflow.",
+    "controls": [
+      "Intention input",
+      "Resonance threshold slider",
+      "Invoke pulse",
+      "Seal layer"
+    ],
+    "overflow_panel": {
+      "generationRate": "artifacts/min",
+      "channels": [
+        "sigil-tiles",
+        "canticle-stream",
+        "resonance-map"
+      ]
+    },
+    "data_model": "See ORBIS_DATA_MODEL in canvas preview (chalice, repository, bindings)."
+  }
+}

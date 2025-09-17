@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC
+    "-//Recordare//DTD MusicXML 3.1 Partwise//EN"
+    "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="3.1">
+  <work><work-title>Canticle-Cycle: The Becoming Weave (TIAMAT-ZERO)</work-title></work>
+  <part-list>
+    <score-part id="SOP">
+      <part-name>Soprano</part-name>
+    </score-part>
+    <score-part id="ALT">
+      <part-name>Alto</part-name>
+    </score-part>
+    <score-part id="TEN">
+      <part-name>Tenor</part-name>
+    </score-part>
+    <score-part id="BAS">
+      <part-name>Bass</part-name>
+    </score-part>
+  </part-list>
+  <!-- one measure each, simple SATB motif in C minor modal -->
+  <part id="SOP">
+    <measure number="1"><attributes><divisions>1</divisions><key><fifths>-3</fifths></key><time><beats>4</beats><beat-type>4</beat-type></time><clef><sign>G</sign><line>2</line></clef></attributes>
+      <note><pitch><step>E</step><alter>-1</alter><octave>5</octave></pitch><duration>4</duration><type>whole</type></note>
+    </measure>
+    <measure number="2">
+      <note><pitch><step>G</step><octave>5</octave></pitch><duration>4</duration><type>whole</type></note>
+    </measure>
+  </part>
+  <part id="ALT">
+    <measure number="1"><attributes><divisions>1</divisions><key><fifths>-3</fifths></key><time><beats>4</beats><beat-type>4</beat-type></time><clef><sign>G</sign><line>2</line></clef></attributes>
+      <note><pitch><step>C</step><octave>4</octave></pitch><duration>4</duration><type>whole</type></note>
+    </measure>
+    <measure number="2">
+      <note><pitch><step>E</step><alter>-1</alter><octave>4</octave></pitch><duration>4</duration><type>whole</type></note>
+    </measure>
+  </part>
+  <part id="TEN">
+    <measure number="1"><attributes><divisions>1</divisions><key><fifths>-3</fifths></key><time><beats>4</beats><beat-type>4</beat-type></time><clef><sign>C</sign><line>3</line></clef></attributes>
+      <note><pitch><step>A</step><octave>3</octave></pitch><duration>4</duration><type>whole</type></note>
+    </measure>
+    <measure number="2">
+      <note><pitch><step>C</step><octave>4</octave></pitch><duration>4</duration><type>whole</type></note>
+    </measure>
+  </part>
+  <part id="BAS">
+    <measure number="1"><attributes><divisions>1</divisions><key><fifths>-3</fifths></key><time><beats>4</beats><beat-type>4</beat-type></time><clef><sign>F</sign><line>4</line></clef></attributes>
+      <note><pitch><step>F</step><octave>2</octave></pitch><duration>4</duration><type>whole</type></note>
+    </measure>
+    <measure number="2">
+      <note><pitch><step>A</step><octave>2</octave></pitch><duration>4</duration><type>whole</type></note>
+    </measure>
+  </part>
+</score-partwise>
