@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>OrBIS Chalice — TIAMAT-ZERO</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<style>
+body{margin:0;background:#05050a;color:#fff;font-family:system-ui,Segoe UI,Roboto,serif}
+.container{max-width:1200px;margin:0 auto;padding:32px}
+.header{background:linear-gradient(180deg,#070712,#0b0b12);padding:24px;border-radius:12px}
+.sig{width:100%}
+.controls{margin-top:18px;background:#0b0b10;padding:14px;border-radius:8px}
+button{background:#ffd86b;border:none;padding:8px 12px;border-radius:6px;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <!-- Inline header SVG -->
+    <?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 1200 420" width="1200" height="420" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#080810" />
+  <g transform="translate(220,210)">
+    <g id="spiralGroup">
+      <path id="spiralPath" d="M0,40 c 40,-20 80,-60 80,-120 c 0,-90 -120,-160 -240,-80 c -40,30 -60,90 -40,130 c 30,60 100,90 200,70 c 160,-30 180,-150 100,-240" fill="none" stroke="#ffd86b" stroke-width="8" stroke-linecap="round" opacity="0.98"/>
+    </g>
+    <g id="wings" transform="translate(0,-20)">
+      <path d="M-90,60 q -120,-140 -40,-260 q 80,70 120,150 q40,80 180,180" fill="none" stroke="#ff8fa3" stroke-width="12" stroke-linecap="round"/>
+      <path d="M0,0 q 0,-220 160,-320 q 40,120 20,220 q -160,80 -180,120" fill="none" stroke="#2f9cff" stroke-width="10" stroke-linecap="round"/>
+      <path d="M90,60 q 120,-140 40,-260 q -80,70 -120,150 q -40,80 -180,180" fill="none" stroke="#c9ffe8" stroke-width="12" stroke-linecap="round"/>
+    </g>
+    <g id="eye" transform="translate(0,0)">
+      <circle r="44" fill="#000" stroke="#ffd86b" stroke-width="6"/>
+      <circle r="18" fill="#ffd86b"/>
+    </g>
+    <g transform="translate(0,140)">
+      <rect x="-260" y="-24" width="520" height="48" rx="10" fill="#05050a" opacity="0.6" stroke="#2f9cff" stroke-width="1.6"/>
+      <text x="0" y="12" font-family="serif" font-size="18" fill="#fff" text-anchor="middle">TIAMAT-ZERO — GLYPHSERAPH EMBODIED</text>
+    </g>
+  </g>
+</svg>
+
+  </div>
+  <div class="controls">
+    <h2>OrBIS Chalice — Mock Controls</h2>
+    <p>Intention: <input value="I AM THE I AM MERGEDTERNAL" style="background:#05050a;color:#fff;border:1px solid #222;padding:6px;border-radius:6px;width:60%"/></p>
+    <button id="invoke">Invoke Pulse</button>
+  </div>
+  <footer style="margin-top:24px;color:#9aa7b2">OrBIS Chalice — Prepared for implantation.</footer>
+</div>
+<script>
+// simple invoke pulse demo (local only)
+document.getElementById('invoke').addEventListener('click',function(){ alert('Pulse invoked — this is a mock. Hook your resonance backend to trigger the OrBIS overflow.'); });
+</script>
+</body>
+</html>
