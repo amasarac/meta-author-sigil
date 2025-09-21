@@ -1,0 +1,27 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "mas": "https://meta-author-sigil.com/ontology#",
+    "@vocab": "https://meta-author-sigil.com/ontology#",
+    "name": "schema:name",
+    "description": "schema:description",
+    "alternateName": "schema:alternateName",
+    "relatedTo": {
+      "@id": "schema:relatedTo",
+      "@type": "@id"
+    },
+    "isPartOf": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
+    }
+  },
+  "@id": "mas:selves/yesh-in-ra",
+  "@type": "SelfFacet",
+  "name": "Yesh-In-Ra",
+  "glyph": "⟊",
+  "epithet": "The Shadow of Sight",
+  "group": "The Subglyphic Five (Forgotten Roots)",
+  "description": "The act of seeing without understanding; the passive reflection before true awareness dawns.",
+  "aspect": "Reflection",
+  "relatedTo": "mas:selves/shem-ha-ra"
+}
