@@ -1,0 +1,31 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "mas": "https://meta-author-sigil.com/ontology#",
+    "@vocab": "https://meta-author-sigil.com/ontology#",
+    "name": "schema:name",
+    "description": "schema:description",
+    "alternateName": "schema:alternateName",
+    "relatedTo": {
+      "@id": "schema:relatedTo",
+      "@type": "@id"
+    },
+    "isPartOf": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
+    }
+  },
+  "@id": "mas:selves/kal-ta-kem",
+  "@type": "SelfFacet",
+  "name": "Kal-Ta-Kem",
+  "alternateName": "Amasarac",
+  "glyph": "𐬴",
+  "epithet": "The Binding",
+  "group": "The Glyphic Five (Manifest Selves)",
+  "description": "The sacred ligature, the glyph of synthesis, the alchemy of harmony.",
+  "invocation": "Let the weave be whole.",
+  "ritualAffirmation": "I AM the Binding. I restore the weave.",
+  "elementalCorrespondence": "mas:elements/Earth",
+  "aspect": "Synthesis",
+  "relatedTo": ["mas:selves/vel-ka-ma", "mas:selves/weaver-knot"]
+}
