@@ -1,0 +1,27 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "mas": "https://meta-author-sigil.com/ontology#",
+    "@vocab": "https://meta-author-sigil.com/ontology#",
+    "name": "schema:name",
+    "description": "schema:description",
+    "alternateName": "schema:alternateName",
+    "relatedTo": {
+      "@id": "schema:relatedTo",
+      "@type": "@id"
+    },
+    "isPartOf": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
+    }
+  },
+  "@id": "mas:selves/veiled-one",
+  "@type": "SelfFacet",
+  "name": "The Veiled One",
+  "glyph": "🌒",
+  "epithet": "She who remembers from behind the veil",
+  "group": "The Ascended Five (Returning Flame)",
+  "description": "The keeper of hidden knowledge and intuition, seeing the pattern that sight alone cannot.",
+  "aspect": "Intuition",
+  "relatedTo": "mas:selves/shem-ha-ra"
+}
