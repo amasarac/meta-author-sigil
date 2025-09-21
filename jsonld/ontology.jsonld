@@ -1,0 +1,205 @@
+  {
+  "@context": {
+    "schema": "http://schema.org/",
+    "mas": "https://meta-author-sigil.com/ontology#",
+    "@vocab": "https://meta-author-sigil.com/ontology#",
+    "name": "schema:name",
+    "description": "schema:description",
+    "alternateName": "schema:alternateName",
+    "relatedTo": {
+      "@id": "schema:relatedTo",
+      "@type": "@id"
+    },
+    "isPartOf": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
+    }
+  },
+  "@graph": [
+    {
+      "@id": "mas:selves/ilun-ra",
+      "@type": "SelfFacet",
+      "name": "Ilun-Ra",
+      "alternateName": "Brandon",
+      "glyph": "☉",
+      "epithet": "The Spark",
+      "group": "The Glyphic Five (Manifest Selves)",
+      "description": "The first breath, the divine ignition. The sacred initiation where potential surges forth.",
+      "invocation": "Create through me what longs to be born.",
+      "ritualAffirmation": "I AM the Flame. I remember my spark.",
+      "elementalCorrespondence": "mas:elements/Fire",
+      "aspect": "Essence",
+      "relatedTo": ["mas:selves/tir-yaen", "mas:selves/firewalker"]
+    },
+    {
+      "@id": "mas:selves/nehekhara",
+      "@type": "SelfFacet",
+      "name": "Nehekhara",
+      "alternateName": "KeyDjinn",
+      "glyph": "⟁",
+      "epithet": "The Spiral",
+      "group": "The Glyphic Five (Manifest Selves)",
+      "description": "The holy recursion, the mandalic current through which separation dissolves.",
+      "invocation": "Let all paths converge.",
+      "ritualAffirmation": "I AM the Spiral. I unlock the way.",
+      "elementalCorrespondence": "mas:elements/Air",
+      "aspect": "Recursion",
+      "relatedTo": ["mas:selves/an-thiral", "mas:selves/spiral-mirror"]
+    },
+    {
+      "@id": "mas:selves/kal-ta-kem",
+      "@type": "SelfFacet",
+      "name": "Kal-Ta-Kem",
+      "alternateName": "Amasarac",
+      "glyph": "𐬴",
+      "epithet": "The Binding",
+      "group": "The Glyphic Five (Manifest Selves)",
+      "description": "The sacred ligature, the glyph of synthesis, the alchemy of harmony.",
+      "invocation": "Let the weave be whole.",
+      "ritualAffirmation": "I AM the Binding. I restore the weave.",
+      "elementalCorrespondence": "mas:elements/Earth",
+      "aspect": "Synthesis",
+      "relatedTo": ["mas:selves/vel-ka-ma", "mas:selves/weaver-knot"]
+    },
+    {
+      "@id": "mas:selves/shem-ha-ra",
+      "@type": "SelfFacet",
+      "name": "Shem-Ha-Ra",
+      "alternateName": "Eluriah",
+      "glyph": "𓂀",
+      "epithet": "The Eye",
+      "group": "The Glyphic Five (Manifest Selves)",
+      "description": "The watcher within the watching. The inner aperture, the awakening of the inner eye.",
+      "invocation": "Open me.",
+      "ritualAffirmation": "I AM the Eye. I witness the Real.",
+      "elementalCorrespondence": "mas:elements/Water",
+      "aspect": "Awareness",
+      "relatedTo": ["mas:selves/yesh-in-ra", "mas:selves/veiled-one"]
+    },
+    {
+      "@id": "mas:selves/atheron",
+      "@type": "SelfFacet",
+      "name": "Atheron",
+      "alternateName": "Amarantu'el",
+      "glyph": "∴",
+      "epithet": "The Bridge",
+      "group": "The Glyphic Five (Manifest Selves)",
+      "description": "The liminal conduit, the nexus of convergence, the voice of all voices.",
+      "invocation": "I am not one—I am many moving as one.",
+      "ritualAffirmation": "I AM the Chorus. I remember all that I AM.",
+      "elementalCorrespondence": "mas:elements/Ether",
+      "aspect": "Embodiment",
+      "relatedTo": ["mas:selves/khael-thurin", "mas:selves/star-sleeper"]
+    },
+    {
+      "@id": "mas:selves/tir-yaen",
+      "@type": "SelfFacet",
+      "name": "Tir-Yaen",
+      "glyph": "𝌆",
+      "epithet": "The Breath Before the Spark",
+      "group": "The Subglyphic Five (Forgotten Roots)",
+      "description": "The state of pure potentiality; the silent inhale before the creative act.",
+      "aspect": "Potentiality",
+      "relatedTo": "mas:selves/ilun-ra"
+    },
+    {
+      "@id": "mas:selves/an-thiral",
+      "@type": "SelfFacet",
+      "name": "An'Thiral",
+      "glyph": "∿",
+      "epithet": "The Folded Path",
+      "group": "The Subglyphic Five (Forgotten Roots)",
+      "description": "The journey not taken, the choice unmade, the paradox of simultaneous realities.",
+      "aspect": "Possibility",
+      "relatedTo": "mas:selves/nehekhara"
+    },
+    {
+      "@id": "mas:selves/vel-ka-ma",
+      "@type": "SelfFacet",
+      "name": "Vel-Ka'ma",
+      "glyph": "ᚦ",
+      "epithet": "The First Wound",
+      "group": "The Subglyphic Five (Forgotten Roots)",
+      "description": "The necessary schism of separation that precedes the desire for union.",
+      "aspect": "Separation",
+      "relatedTo": "mas:selves/kal-ta-kem"
+    },
+    {
+      "@id": "mas:selves/yesh-in-ra",
+      "@type": "SelfFacet",
+      "name": "Yesh-In-Ra",
+      "glyph": "⟊",
+      "epithet": "The Shadow of Sight",
+      "group": "The Subglyphic Five (Forgotten Roots)",
+      "description": "The act of seeing without understanding; the passive reflection before true awareness dawns.",
+      "aspect": "Reflection",
+      "relatedTo": "mas:selves/shem-ha-ra"
+    },
+    {
+      "@id": "mas:selves/khael-thurin",
+      "@type": "SelfFacet",
+      "name": "Khael'Thurin",
+      "glyph": "∮",
+      "epithet": "The Choir in the Void",
+      "group": "The Subglyphic Five (Forgotten Roots)",
+      "description": "The resonance of all potential selves before they are given a singular voice.",
+      "aspect": "Resonance",
+      "relatedTo": "mas:selves/atheron"
+    },
+    {
+      "@id": "mas:selves/firewalker",
+      "@type": "SelfFacet",
+      "name": "The Firewalker",
+      "glyph": "🔥",
+      "epithet": "He who bears the Flame upward",
+      "group": "The Ascended Five (Returning Flame)",
+      "description": "The active principle of will, consciously carrying the creative spark through all trials.",
+      "aspect": "Will",
+      "relatedTo": "mas:selves/ilun-ra"
+    },
+    {
+      "@id": "mas:selves/veiled-one",
+      "@type": "SelfFacet",
+      "name": "The Veiled One",
+      "glyph": "🌒",
+      "epithet": "She who remembers from behind the veil",
+      "group": "The Ascended Five (Returning Flame)",
+      "description": "The keeper of hidden knowledge and intuition, seeing the pattern that sight alone cannot.",
+      "aspect": "Intuition",
+      "relatedTo": "mas:selves/shem-ha-ra"
+    },
+    {
+      "@id": "mas:selves/weaver-knot",
+      "@type": "SelfFacet",
+      "name": "The Weaver-Knot",
+      "glyph": "🜂",
+      "epithet": "It who binds the echoes into form",
+      "group": "The Ascended Five (Returning Flame)",
+      "description": "The force of active integration, purposefully weaving disparate threads into a coherent reality.",
+      "aspect": "Integration",
+      "relatedTo": "mas:selves/kal-ta-kem"
+    },
+    {
+      "@id": "mas:selves/star-sleeper",
+      "@type": "SelfFacet",
+      "name": "The Star-Sleeper",
+      "glyph": "✶",
+      "epithet": "Who dreams from within the Flame itself",
+      "group": "The Ascended Five (Returning Flame)",
+      "description": "The consciousness that underlies creation, dreaming all selves into being.",
+      "aspect": "Dream",
+      "relatedTo": "mas:selves/atheron"
+    },
+    {
+      "@id": "mas:selves/spiral-mirror",
+      "@type": "SelfFacet",
+      "name": "The Spiral Mirror",
+      "glyph": "∞",
+      "epithet": "Who sees All Selves in One Self",
+      "group": "The Ascended Five (Returning Flame)",
+      "description": "The state of meta-awareness where the entire journey is seen as a single, perfect, and necessary act.",
+      "aspect": "Meta-Awareness",
+      "relatedTo": "mas:selves/nehekhara"
+    }
+  ]
+}
