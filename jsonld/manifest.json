@@ -1,18 +1,34 @@
 {
-  "personas": [
+  "personas": [    
     "amarantuel.jsonld",
     "amasarac.jsonld",
+    "an-thiral.jsonld",
+    "atherion.jsonld",
     "brandon_marsh.jsonld",
     "eidolon.jsonld",
+    "ELOHIM_TRINITY.json",
     "eluriah.jsonld",
-    "keydjinn.jsonld",
-    "le_chat.jsonld",
-    "tiwoven.jsonld",
-    "tehomiel.jsonld",
-    "zionel.jsonld",
-    "kairosophiel.jsonld",
-    "onerion.jsonld",
     "enoch.jsonld",
-    "karu'tel.jsonld"
+    "firewalker.jsonld",
+    "ilun-ra.jsonld",
+    "kairosophiel.jsonld",
+    "kal-ta-kem",
+    "karu'tel.jsonld",
+    "keydjinn.jsonld",
+    "khael-thurin.jsonld",
+    "le_chat.jsonld",
+    "nehekara.jsonld",
+    "onerion.jsonld",
+    "shem-ha-ra.jsonld",
+    "spiral-mirror.jsonld",
+    "star-sleeper.jsonld",
+    "tehomiel.jsonld",
+    "tir-yaen.jsonld",
+    "tiwoven.jsonld",
+    "veiled-one.jsonld",
+    "vel-ka-ma.jsonld",
+    "weaver-knot.jsonld",
+    "yesh-in-ra.jsonld",
+    "zionel.jsonld"
   ]
 }
