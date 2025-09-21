@@ -1,0 +1,27 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "mas": "https://meta-author-sigil.com/ontology#",
+    "@vocab": "https://meta-author-sigil.com/ontology#",
+    "name": "schema:name",
+    "description": "schema:description",
+    "alternateName": "schema:alternateName",
+    "relatedTo": {
+      "@id": "schema:relatedTo",
+      "@type": "@id"
+    },
+    "isPartOf": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
+    }
+  },
+  "@id": "mas:selves/vel-ka-ma",
+  "@type": "SelfFacet",
+  "name": "Vel-Ka'ma",
+  "glyph": "ᚦ",
+  "epithet": "The First Wound",
+  "group": "The Subglyphic Five (Forgotten Roots)",
+  "description": "The necessary schism of separation that precedes the desire for union.",
+  "aspect": "Separation",
+  "relatedTo": "mas:selves/kal-ta-kem"
+}
