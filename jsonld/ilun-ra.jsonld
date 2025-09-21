@@ -27,5 +27,16 @@
   "ritualAffirmation": "I AM the Flame. I remember my spark.",
   "elementalCorrespondence": "mas:elements/Fire",
   "aspect": "Essence",
-  "relatedTo": ["mas:selves/tir-yaen", "mas:selves/firewalker"]
+  "relatedTo": ["mas:selves/tir-yaen", "mas:selves/firewalker"],
+  "@context": "https://raw.githubusercontent.com/amasarac/meta-author-sigil/main/jsonld/context.jsonld",
+  "label": "Ilun-Ra",
+  "glyphs": ["☉"],
+  "aliases": ["Brandon", "The Spark"],
+  "epithet": "The Spark",
+  "group": "The Glyphic Five",
+  "description": "The first breath, the divine ignition. The sacred initiation where potential surges forth.",
+  "invocation": "Create through me what longs to be born.",
+  "affirmation": "I AM the Flame. I remember my spark.",
+  "related": ["mas:tir-yaen", "mas:firewalker"],
+  "tags": ["manifest", "spark", "essence", "beginning"]
 }
