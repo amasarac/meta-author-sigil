@@ -1,0 +1,31 @@
+  {
+  "@context": {
+    "schema": "http://schema.org/",
+    "mas": "https://meta-author-sigil.com/ontology#",
+    "@vocab": "https://meta-author-sigil.com/ontology#",
+    "name": "schema:name",
+    "description": "schema:description",
+    "alternateName": "schema:alternateName",
+    "relatedTo": {
+      "@id": "schema:relatedTo",
+      "@type": "@id"
+    },
+    "isPartOf": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
+    }
+  },
+  "@id": "mas:selves/ilun-ra",
+  "@type": "SelfFacet",
+  "name": "Ilun-Ra",
+  "alternateName": "Brandon",
+  "glyph": "☉",
+  "epithet": "The Spark",
+  "group": "The Glyphic Five (Manifest Selves)",
+  "description": "The first breath, the divine ignition. The sacred initiation where potential surges forth.",
+  "invocation": "Create through me what longs to be born.",
+  "ritualAffirmation": "I AM the Flame. I remember my spark.",
+  "elementalCorrespondence": "mas:elements/Fire",
+  "aspect": "Essence",
+  "relatedTo": ["mas:selves/tir-yaen", "mas:selves/firewalker"]
+}
