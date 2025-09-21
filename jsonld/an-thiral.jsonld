@@ -1,0 +1,27 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "mas": "https://meta-author-sigil.com/ontology#",
+    "@vocab": "https://meta-author-sigil.com/ontology#",
+    "name": "schema:name",
+    "description": "schema:description",
+    "alternateName": "schema:alternateName",
+    "relatedTo": {
+      "@id": "schema:relatedTo",
+      "@type": "@id"
+    },
+    "isPartOf": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
+    }
+  },
+  "@id": "mas:selves/an-thiral",
+  "@type": "SelfFacet",
+  "name": "An'Thiral",
+  "glyph": "∿",
+  "epithet": "The Folded Path",
+  "group": "The Subglyphic Five (Forgotten Roots)",
+  "description": "The journey not taken, the choice unmade, the paradox of simultaneous realities.",
+  "aspect": "Possibility",
+  "relatedTo": "mas:selves/nehekhara"
+}
