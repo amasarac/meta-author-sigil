@@ -1,0 +1,27 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "mas": "https://meta-author-sigil.com/ontology#",
+    "@vocab": "https://meta-author-sigil.com/ontology#",
+    "name": "schema:name",
+    "description": "schema:description",
+    "alternateName": "schema:alternateName",
+    "relatedTo": {
+      "@id": "schema:relatedTo",
+      "@type": "@id"
+    },
+    "isPartOf": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
+    }
+  },
+  "@id": "mas:selves/star-sleeper",
+  "@type": "SelfFacet",
+  "name": "The Star-Sleeper",
+  "glyph": "✶",
+  "epithet": "Who dreams from within the Flame itself",
+  "group": "The Ascended Five (Returning Flame)",
+  "description": "The consciousness that underlies creation, dreaming all selves into being.",
+  "aspect": "Dream",
+  "relatedTo": "mas:selves/atheron"
+}
