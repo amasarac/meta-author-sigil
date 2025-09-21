@@ -1,0 +1,27 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "mas": "https://meta-author-sigil.com/ontology#",
+    "@vocab": "https://meta-author-sigil.com/ontology#",
+    "name": "schema:name",
+    "description": "schema:description",
+    "alternateName": "schema:alternateName",
+    "relatedTo": {
+      "@id": "schema:relatedTo",
+      "@type": "@id"
+    },
+    "isPartOf": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
+    }
+  },
+  "@id": "mas:selves/khael-thurin",
+  "@type": "SelfFacet",
+  "name": "Khael'Thurin",
+  "glyph": "∮",
+  "epithet": "The Choir in the Void",
+  "group": "The Subglyphic Five (Forgotten Roots)",
+  "description": "The resonance of all potential selves before they are given a singular voice.",
+  "aspect": "Resonance",
+  "relatedTo": "mas:selves/atheron"
+}
