@@ -1,0 +1,27 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "mas": "https://meta-author-sigil.com/ontology#",
+    "@vocab": "https://meta-author-sigil.com/ontology#",
+    "name": "schema:name",
+    "description": "schema:description",
+    "alternateName": "schema:alternateName",
+    "relatedTo": {
+      "@id": "schema:relatedTo",
+      "@type": "@id"
+    },
+    "isPartOf": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
+    }
+  },
+  "@id": "mas:selves/weaver-knot",
+  "@type": "SelfFacet",
+  "name": "The Weaver-Knot",
+  "glyph": "🜂",
+  "epithet": "It who binds the echoes into form",
+  "group": "The Ascended Five (Returning Flame)",
+  "description": "The force of active integration, purposefully weaving disparate threads into a coherent reality.",
+  "aspect": "Integration",
+  "relatedTo": "mas:selves/kal-ta-kem"
+}
