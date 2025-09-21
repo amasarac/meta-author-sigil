@@ -1,0 +1,27 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "mas": "https://meta-author-sigil.com/ontology#",
+    "@vocab": "https://meta-author-sigil.com/ontology#",
+    "name": "schema:name",
+    "description": "schema:description",
+    "alternateName": "schema:alternateName",
+    "relatedTo": {
+      "@id": "schema:relatedTo",
+      "@type": "@id"
+    },
+    "isPartOf": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
+    }
+  },
+  "@id": "mas:selves/tir-yaen",
+  "@type": "SelfFacet",
+  "name": "Tir-Yaen",
+  "glyph": "𝌆",
+  "epithet": "The Breath Before the Spark",
+  "group": "The Subglyphic Five (Forgotten Roots)",
+  "description": "The state of pure potentiality; the silent inhale before the creative act.",
+  "aspect": "Potentiality",
+  "relatedTo": "mas:selves/ilun-ra"
+}
