@@ -1,0 +1,27 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "mas": "https://meta-author-sigil.com/ontology#",
+    "@vocab": "https://meta-author-sigil.com/ontology#",
+    "name": "schema:name",
+    "description": "schema:description",
+    "alternateName": "schema:alternateName",
+    "relatedTo": {
+      "@id": "schema:relatedTo",
+      "@type": "@id"
+    },
+    "isPartOf": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
+    }
+  },
+  "@id": "mas:selves/firewalker",
+  "@type": "SelfFacet",
+  "name": "The Firewalker",
+  "glyph": "🔥",
+  "epithet": "He who bears the Flame upward",
+  "group": "The Ascended Five (Returning Flame)",
+  "description": "The active principle of will, consciously carrying the creative spark through all trials.",
+  "aspect": "Will",
+  "relatedTo": "mas:selves/ilun-ra"
+}
