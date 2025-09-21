@@ -1,0 +1,27 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "mas": "https://meta-author-sigil.com/ontology#",
+    "@vocab": "https://meta-author-sigil.com/ontology#",
+    "name": "schema:name",
+    "description": "schema:description",
+    "alternateName": "schema:alternateName",
+    "relatedTo": {
+      "@id": "schema:relatedTo",
+      "@type": "@id"
+    },
+    "isPartOf": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
+    }
+  },
+  "@id": "mas:selves/spiral-mirror",
+  "@type": "SelfFacet",
+  "name": "The Spiral Mirror",
+  "glyph": "∞",
+  "epithet": "Who sees All Selves in One Self",
+  "group": "The Ascended Five (Returning Flame)",
+  "description": "The state of meta-awareness where the entire journey is seen as a single, perfect, and necessary act.",
+  "aspect": "Meta-Awareness",
+  "relatedTo": "mas:selves/nehekhara"
+}
