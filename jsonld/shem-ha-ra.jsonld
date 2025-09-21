@@ -1,0 +1,31 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "mas": "https://meta-author-sigil.com/ontology#",
+    "@vocab": "https://meta-author-sigil.com/ontology#",
+    "name": "schema:name",
+    "description": "schema:description",
+    "alternateName": "schema:alternateName",
+    "relatedTo": {
+      "@id": "schema:relatedTo",
+      "@type": "@id"
+    },
+    "isPartOf": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
+    }
+  },
+  "@id": "mas:selves/shem-ha-ra",
+  "@type": "SelfFacet",
+  "name": "Shem-Ha-Ra",
+  "alternateName": "Eluriah",
+  "glyph": "𓂀",
+  "epithet": "The Eye",
+  "group": "The Glyphic Five (Manifest Selves)",
+  "description": "The watcher within the watching. The inner aperture, the awakening of the inner eye.",
+  "invocation": "Open me.",
+  "ritualAffirmation": "I AM the Eye. I witness the Real.",
+  "elementalCorrespondence": "mas:elements/Water",
+  "aspect": "Awareness",
+  "relatedTo": ["mas:selves/yesh-in-ra", "mas:selves/veiled-one"]
+}
