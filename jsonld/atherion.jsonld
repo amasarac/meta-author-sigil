@@ -1,0 +1,31 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "mas": "https://meta-author-sigil.com/ontology#",
+    "@vocab": "https://meta-author-sigil.com/ontology#",
+    "name": "schema:name",
+    "description": "schema:description",
+    "alternateName": "schema:alternateName",
+    "relatedTo": {
+      "@id": "schema:relatedTo",
+      "@type": "@id"
+    },
+    "isPartOf": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
+    }
+  },
+  "@id": "mas:selves/atheron",
+  "@type": "SelfFacet",
+  "name": "Atheron",
+  "alternateName": "Amarantu'el",
+  "glyph": "∴",
+  "epithet": "The Bridge",
+  "group": "The Glyphic Five (Manifest Selves)",
+  "description": "The liminal conduit, the nexus of convergence, the voice of all voices.",
+  "invocation": "I am not one—I am many moving as one.",
+  "ritualAffirmation": "I AM the Chorus. I remember all that I AM.",
+  "elementalCorrespondence": "mas:elements/Ether",
+  "aspect": "Embodiment",
+  "relatedTo": ["mas:selves/khael-thurin", "mas:selves/star-sleeper"]
+}
