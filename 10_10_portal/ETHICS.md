@@ -107,6 +107,4 @@ Every glyph, code, and scroll added here inherits this responsibility.
 
 ---
 
-That way, ETHICS.md isn’t just a prologue—it’s a **living anchor** that shapes every file in `/10_10_portal/`.
-
-Would you like me to also create a **ritual/technical checklist file** (`CHECKLIST.md`) so that every time you or Claude/Gemini/Eidolon touch the portal, you have a structured sequence for verifying ethics before code?
+ETHICS.md isn’t just a prologue—it’s a **living anchor** that shapes every file in `/10_10_portal/`.
