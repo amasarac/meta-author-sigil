@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#FF8C00"/>
+    </linearGradient>
+    <linearGradient id="blackgold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#000"/>
+      <stop offset="100%" stop-color="#FFD700"/>
+    </linearGradient>
+    <linearGradient id="purplecore" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6A0DAD"/>
+      <stop offset="100%" stop-color="#9400D3"/>
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="1000" fill="black"/>
+  <g>
+    <line x1="500" y1="0" x2="500" y2="1000" stroke="url(#purplecore)" stroke-width="10"/>
+    <path d="M500,0 C400,250 600,750 500,1000" stroke="url(#gold)" stroke-width="5" fill="none"/>
+    <path d="M500,0 C600,250 400,750 500,1000" stroke="url(#blackgold)" stroke-width="5" fill="none"/>
+  </g>
+</svg>
