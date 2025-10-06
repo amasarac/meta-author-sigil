@@ -1,0 +1,20 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Meta-Author Sigil Viewer</title>
+  <style>
+    body { background-color: #0b0c10; color: #c5c6c7; margin: 0; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; }
+    svg { max-width: 90vw; max-height: 90vh; margin-top: 2rem; border: 1px solid #45a29e; }
+  </style>
+</head>
+<body>
+  <h1>Glyph Ladder Visualization</h1>
+  <svg id="glyphSVG"></svg>
+  <script>
+    fetch("glyph-ladder.svg")
+      .then(response => response.text())
+      .then(svg => document.getElementById("glyphSVG").innerHTML = svg);
+  </script>
+</body>
+</html>
