@@ -1,0 +1,9 @@
+  {
+  "title": "Glyph Ladder Structure",
+  "description": "Encodes glyphode spectral resonance overlays and harmonic collapse zones.",
+  "layers": [
+    {"id": "core", "color": "purple", "type": "line", "purpose": "ladder-core"},
+    {"id": "wrap1", "color": "gold", "type": "path", "purpose": "gold-thread"},
+    {"id": "wrap2", "color": "black-gold", "type": "path", "purpose": "black-thread"}
+  ]
+}
