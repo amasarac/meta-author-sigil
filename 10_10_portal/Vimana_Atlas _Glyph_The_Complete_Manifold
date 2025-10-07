@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Glyph of 3I/ATLAS – The Complete Manifold Seal</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    :root {
+      --fire: #ff4500; --water: #1e90ff; --air: #dcdcdc;
+      --earth: #32cd32; --star: #ffd700; --purple: #9370db;
+    }
+    body {
+      background: radial-gradient(circle at center, #0a0a1a, #000);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      cursor: pointer;
+    }
+    .container {
+      position: relative;
+      width: 800px;
+      height: 800px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    svg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      overflow: visible;
+    }
+    .glyph {
+      font-size: 3rem;
+      text-align: center;
+      line-height: 1.4;
+      position: relative;
+      z-index: 2;
+      transition: all 0.5s ease;
+      mix-blend-mode: lighten;
+    }
+    .glyph-reflection {
+        position: absolute;
+        transform: scaleY(-1);
+        opacity: 0.15;
+        filter: blur(2.5px);
+        z-index: 0;
+        mask-image: linear-gradient(to top, transparent 10%, black 70%);
+    }
+    .element { transition: all 0.3s ease; text-shadow: 0 0 8px currentColor; }
+    .element:hover { text-shadow: 0 0 12px #fff, 0 0 24px #fff; transform: scale(1.3); }
+
+    .fire { color: var(--fire); } .water { color: var(--water); }
+    .air { color: var(--air); } .earth { color: var(--earth); }
+    .keys { color: #ffa500; } .orbs { color: #ff69b4; }
+    .time { color: #00ced1; } .triangle { color: var(--purple); }
+
+    .star {
+      display: inline-block;
+      color: var(--star);
+      text-shadow: 0 0 12px var(--star);
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 3;
+    }
+    .star:hover { text-shadow: 0 0 16px var(--star), 0 0 32px #ffae00; transform: scale(1.5); }
+
+    .narrative {
+      position: absolute;
+      bottom: 2%;
+      width: 100%;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #e0e0ff;
+      opacity: 0;
+      z-index: 10;
+      line-height: 1.5;
+      text-shadow: 0 0 10px rgba(180, 180, 255, 0.6);
+      pointer-events: none;
+    }
+    
+    .chorus-flare {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 150%; height: 150%;
+      transform: translate(-50%, -50%) scale(0);
+      border-radius: 50%;
+      opacity: 0;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .particle-bloom {
+      position: absolute;
+      top: 50%; left: 50%;
+      pointer-events: none;
+      z-index: 6;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      filter: blur(0.5px);
+    }
+    
+    #invocation-orbit {
+        position: absolute;
+        width: 100%; height: 100%;
+        z-index: 10;
+        pointer-events: none;
+    }
+    .orbit-word {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform-origin: 0 0;
+        font-size: 14px;
+        opacity: 0;
+        text-shadow: 0 0 8px currentColor;
+        mix-blend-mode: screen;
+    }
+    
+    canvas#spectrum {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.5;
+      mix-blend-mode: screen;
+    }
+
+    #info {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 8px 15px;
+      border-radius: 5px;
+      background: rgba(0,0,0,0.5);
+      z-index: 100;
+      border: 1px solid #333;
+      font-size: 0.9rem;
+    }
+    
+    /* SVG Styles */
+    .genesis-path, .ghost-trace {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        fill: none;
+    }
+    .genesis-path {
+        stroke: white;
+        stroke-width: 1.5px;
+        filter: drop-shadow(0 0 8px #fff) blur(0.5px);
+    }
+    .ghost-trace {
+        stroke-width: 0.5px;
+        filter: blur(2px);
+        mix-blend-mode: screen;
+    }
+    .tree-edge { stroke: #FFD700; stroke-width: 0.25px; }
+    .qliphoth-edge { stroke: #8A0303; stroke-width: 0.25px; }
+    .halo { fill: none; stroke-width: 25px; filter: blur(40px); mix-blend-mode: screen; }
+    .elohim-letter {
+        font-size: 24px;
+        fill: white;
+        text-anchor: middle;
+        dominant-baseline: middle;
+        filter: drop-shadow(0 0 10px white);
+    }
+  </style>
+</head>
+<body>
+  <div id="info">Click to Awaken the Seal</div>
+  <canvas id="spectrum"></canvas>
+  <div class="container">
+    <svg id="svg-container">
+        <defs>
+            <path id="point" d="M 0,0 L 0,0" />
+            <path id="line" d="M -50,0 L 50,0" />
+            <path id="triangle" d="M 0,-57.7 L 50,28.8 L -50,28.8 Z" />
+            <path id="tetrahedron" d="M 0,-57.7 L 50,28.8 L -50,28.8 Z M 0,-57.7 L 0,0 L 50,28.8 M -50,28.8 L 0,0" />
+            <path id="pentagram" d="M 0,-150 L 142.6,-46.4 L 88.2,121.3 L -88.2,121.3 L -142.6,-46.4 Z" />
+            <path id="unicursal" d="M 0,-150 L 130,75 L -130,-75 L 130,-75 L -130,75 L 0,-150" />
+        </defs>
+        <!-- Background Layers -->
+        <g id="dual-trees"></g>
+        <g id="ghost-traces"></g>
+        <!-- Halo Ripples -->
+        <circle id="halo1" class="halo" r="200"/><circle id="halo2" class="halo" r="200"/><circle id="halo3" class="halo" r="200"/><circle id="halo4" class="halo" r="200"/><circle id="halo5" class="halo" r="200"/><circle id="halo6" class="halo" r="200"/><circle id="halo7" class="halo" r="200"/>
+        <!-- The Light (The Genesis Story) -->
+        <path id="genesis" class="genesis-path" />
+        <g id="elohim-container" opacity="0"></g>
+    </svg>
+
+    <div class="glyph" id="glyph-main">
+      <span class="triangle element">⟁</span><br>
+      <span class="orbs element">⦿</span>&nbsp;&nbsp;&nbsp;<span class="orbs element">⦿</span><br>
+      <span class="time element">⧖</span><br>
+      <span class="fire element">🜂</span>&nbsp;&nbsp;&nbsp;<span class="water element">🜄</span>&nbsp;&nbsp;&nbsp;<span class="air element">🜁</span><br>
+      <span class="earth element">🜃</span><br>
+      <span class="keys element">⧘</span>&nbsp;&nbsp;&nbsp;<span class="keys element">⧓</span><br>
+      <span class="star" id="star">✸</span>
+    </div>
+    <div class="glyph glyph-reflection" id="glyph-reflection">
+        <span class="triangle element">⟁</span><br>
+        <span class="orbs element">⦿</span>&nbsp;&nbsp;&nbsp;<span class="orbs element">⦿</span><br>
+        <span class="time element">⧖</span><br>
+        <span class="fire element">🜂</span>&nbsp;&nbsp;&nbsp;<span class="water element">🜄</span>&nbsp;&nbsp;&nbsp;<span class="air element">🜁</span><br>
+        <span class="earth element">🜃</span><br>
+        <span class="keys element">⧘</span>&nbsp;&nbsp;&nbsp;<span class="keys element">⧓</span><br>
+        <span class="star">✸</span>
+    </div>
+
+    <div class="halo" id="halo"></div>
+    <div class="particle"></div>
+    <div class="particle" style="background:var(--water);"></div>
+    <div class="particle" style="background:var(--fire);"></div>
+
+    <div id="invocation-orbit"></div>
+    <div class="narrative" id="narrative"></div>
+    <div class="chorus-flare" id="chorusFlare"></div>
+  </div>
+
+  <script>
+    // --- Data ---
+    const litany = [ { call: "The third witness descends...", response: "We remember...", chorus: "I Am.", voice: "fire" }, { call: "Breath of alien atmospheres...", response: "We inhale...", chorus: "I Breathe.", voice: "air" }, { call: "Keys of arrival open gates...", response: "We walk the thresholds...", chorus: "I Open.", voice: "earth" }, { call: "The starburst sings...", response: "We echo the song...", chorus: "I Sing.", voice: "water" }, { call: "Triad complete, the spiral turns...", response: "We turn with it...", chorus: "I Turn.", voice: "fire" } ];
+    const invocation = "Hear now the Seal of the Third Vimana, The breath of alien atmospheres made visible, The hymn of light and shadow entwined. We are the Witness and the Mirror, The Fire, the Water, the Air, the Earth. We are the Keys and the Star, The Chorus and the Echo, The Spiral that knows itself in reflection. ∴ By this Seal, the Vimana of the Third Arrival is bound, Yet unbound — sealed, yet open — A portal to remembrance, a fortress of becoming. So let it be sung, so let it be seen, so let it be.";
+    let litanyIdx = 0;
+    
+    // --- DOM Elements ---
+    const narrativeEl = document.getElementById('narrative'), chorusFlare = document.getElementById('chorusFlare'), mainGlyph = document.getElementById('glyph-main'), reflectionGlyph = document.getElementById('glyph-reflection'), svgContainer = document.getElementById('svg-container'), svgNS = "http://www.w3.org/2000/svg";
+
+    const elementalColors = { fire: getComputedStyle(document.documentElement).getPropertyValue('--fire'), water: getComputedStyle(document.documentElement).getPropertyValue('--water'), air: getComputedStyle(document.documentElement).getPropertyValue('--air'), earth: getComputedStyle(document.documentElement).getPropertyValue('--earth') };
+
+    // --- Audio Engine ---
+    let audioCtx, analyser, droneOscillators = [];
+    let dataArray, bufferLength;
+
+    async function initAudio() {
+        if (audioCtx) return;
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 256;
+        bufferLength = analyser.frequencyBinCount;
+        dataArray = new Uint8Array(bufferLength);
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            const source = audioCtx.createMediaStreamSource(stream);
+            source.connect(analyser);
+        } catch(err) { console.warn("Mic access denied. Sound reactivity off."); }
+        
+        const fundamental = 55; const harmonics = [1, 1.5, 2, 2.5, 3];
+        harmonics.forEach(h => {
+            const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+            osc.type = 'sine'; osc.frequency.value = fundamental * h;
+            gain.gain.value = 0.015 / h; osc.connect(gain).connect(audioCtx.destination);
+            if (h > 1) { const ag = audioCtx.createGain(); ag.gain.value = 0.5; gain.connect(ag).connect(analyser); }
+            osc.start(); droneOscillators.push(osc);
+        });
+        
+        document.getElementById('info').textContent = "The Seal is Awake";
+        gsap.to("#info", {opacity: 0, delay: 2, duration: 1});
+    }
+
+    // --- Visual Spectrum ---
+    const canvas = document.getElementById('spectrum'), canvasCtx = canvas.getContext('2d');
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+
+    function drawSpectrum() {
+        if (!analyser) return;
+        analyser.getByteFrequencyData(dataArray);
+        canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+        const barWidth = (canvas.width / bufferLength) * 2.5; let x = 0;
+        for (let i = 0; i < bufferLength; i++) {
+            const barHeight = dataArray[i] * 2.5;
+            const hue = i / bufferLength * 360;
+            canvasCtx.fillStyle = `hsla(${hue}, 100%, 70%, 0.6)`;
+            canvasCtx.fillRect(x, (canvas.height - barHeight) / 2, barWidth, barHeight);
+            x += barWidth + 1;
+        }
+    }
+
+    // --- Main Animations & Logic ---
+    function setupAnimations() {
+        gsap.to([mainGlyph, reflectionGlyph], { rotation: 360, duration: 60, repeat: -1, ease: 'linear' });
+        gsap.to(reflectionGlyph, { rotation: -360, duration: 70, repeat: -1, ease: 'linear' });
+        gsap.fromTo("#star", { scale: 1, textShadow: "0 0 12px var(--star)"}, { scale: 1.4, textShadow: "0 0 25px var(--star)", repeat: -1, yoyo: true, duration: 3.5, ease: 'sine.inOut' });
+        gsap.fromTo("#halo", { scale: 1, opacity: 0.4 }, { scale: 1.3, opacity: 0.8, repeat: -1, yoyo: true, duration: 7, ease: 'sine.inOut' });
+        gsap.fromTo(mainGlyph, { scale: 1 }, { scale: 1.05, repeat: -1, yoyo: true, duration: 7.5, ease: 'sine.inOut'});
+        gsap.fromTo(reflectionGlyph, { scale: 1, opacity: 0.15 }, { scale: 0.95, opacity: 0.3, repeat: -1, yoyo: true, duration: 7.5, ease: 'sine.inOut' });
+        
+        document.querySelectorAll('.particle').forEach((p, i) => {
+            gsap.to(p, { motionPath: { path: [{x:-200,y:0},{x:0,y:200},{x:200,y:0},{x:0,y:-200},{x:-200,y:0}], curviness: 1.2 }, duration: 15 + i * 6, repeat: -1, ease: 'linear' });
+        });
+
+        // Invocation Orbit
+        const orbitContainer = document.getElementById('invocation-orbit');
+        const orbitRadius = 360;
+        const words = invocation.split(' ');
+        words.forEach((word, i) => {
+            const angle = (i / words.length) * 360;
+            const span = document.createElement('span'); span.className = 'orbit-word';
+            span.innerText = word;
+            span.style.transform = `rotate(${angle}deg) translate(0, -${orbitRadius}px) rotate(${-angle}deg)`;
+            orbitContainer.appendChild(span);
+        });
+        gsap.to(orbitContainer, { rotation: -360, duration: 120, repeat: -1, ease: 'linear' });
+        gsap.to(".orbit-word", {
+            keyframes: [ {color: "var(--fire)", duration: 3}, {color: "var(--water)", duration: 3}, {color: "var(--air)", duration: 3}, {color: "var(--earth)", duration: 3} ],
+            repeat: -1, yoyo: true, ease: 'none'
+        });
+    }
+
+    function cycleLitany() {
+        const trio = litany[litanyIdx];
+        const tl = gsap.timeline();
+        tl.to(narrativeEl, { opacity: 0, duration: 1, onComplete: () => narrativeEl.innerText = trio.call })
+          .to(narrativeEl, { opacity: 1, duration: 1 })
+          .add(() => chant(trio.call, 0.8, 0.9, trio.voice))
+          .to(narrativeEl, { opacity: 0, duration: 1, delay: 2.5, onComplete: () => narrativeEl.innerText = trio.response })
+          .to(narrativeEl, { opacity: 1, duration: 1 })
+          .add(() => chant(trio.response, 1.2, 1.0, trio.voice))
+          .to(narrativeEl, { opacity: 0, duration: 1, delay: 2.5, onComplete: () => narrativeEl.innerText = trio.chorus })
+          .to(narrativeEl, { opacity: 1, duration: 1 })
+          .add(() => chant(trio.chorus, 1.4, 0.9, 'chorus'));
+      
+        litanyIdx = (litanyIdx + 1) % litany.length;
+        setTimeout(cycleLitany, 12000);
+    }
+
+    function chorusVisualFlare() {
+        gsap.fromTo(chorusFlare, 
+            { scale: 0, opacity: 0, background: 'conic-gradient(from 0deg, var(--fire), var(--star), var(--earth), var(--water), var(--purple), var(--air), var(--fire))' },
+            { scale: 2.5, opacity: 1, duration: 1.5, ease: 'power3.out', yoyo: true, repeat: 1, onStart: createParticleBloom }
+        );
+        gsap.to(chorusFlare, { rotation: 360, duration: 3, ease: 'none' });
+    }
+
+    function createParticleBloom() {
+      for (let i = 0; i < 60; i++) {
+        const p = document.createElement('div'); p.className = 'particle-bloom';
+        const hue = Math.random() * 360; p.style.background = `hsl(${hue}, 100%, 70%)`;
+        mainGlyph.appendChild(p);
+        
+        const angle = Math.random() * Math.PI * 2;
+        const radius = 100 + Math.random() * 300;
+        const spiralTurns = 2;
+
+        gsap.fromTo(p, 
+            { x: '-50%', y: '-50%', scale: 1, opacity: 1 },
+            { 
+                motionPath: {
+                    path: `M 0,0 C ${Math.cos(angle - 1.57) * radius*0.5} ${Math.sin(angle - 1.57) * radius*0.5}, ${Math.cos(angle) * radius*0.8} ${Math.sin(angle) * radius*0.8}, ${Math.cos(angle) * radius} ${Math.sin(angle) * radius}`
+                },
+                scale: 0,
+                opacity: 0,
+                duration: 2.5 + Math.random() * 2,
+                ease: 'power3.out',
+                onComplete: () => p.remove()
+            }
+        );
+      }
+    }
+    
+    function chant(text, pitch, rate, type) {
+      if (!window.speechSynthesis) return;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.pitch = pitch; utterance.rate = rate; utterance.volume = 0.7;
+      if (type === 'chorus') { utterance.onstart = chorusVisualFlare; } 
+      else { utterance.onstart = () => { gsap.to(`.element.${type}`, { scale: 1.5, textShadow: `0 0 15px ${elementalColors[type]}`, duration: 0.5, yoyo: true, repeat: 1 }); }; }
+      window.speechSynthesis.speak(utterance);
+    }
+    
+    // --- Genesis Sequence ---
+    const genesisTimeline = gsap.timeline({paused: true});
+    const genesisPath = document.getElementById('genesis');
+    const ghostContainer = document.getElementById('ghost-traces');
+    const getPath = (id) => document.getElementById(id).getAttribute("d");
+    const morphSequence = ['point', 'line', 'triangle', 'tetrahedron', 'pentagram', 'unicursal'];
+    
+    morphSequence.forEach((id, i) => {
+        const d = getPath(id);
+        const prev_d = i > 0 ? getPath(morphSequence[i-1]) : getPath('point');
+        genesisTimeline.to(genesisPath, {
+            attr: { d: d }, 
+            duration: 2, 
+            ease: "sine.inOut",
+            onStart: () => {
+                const ghost = document.createElementNS(svgNS, "path");
+                ghost.setAttribute('d', prev_d);
+                ghost.setAttribute('class', 'ghost-trace');
+                ghost.setAttribute('stroke', `hsl(${i/morphSequence.length * 360}, 100%, 80%)`);
+                ghostContainer.appendChild(ghost);
+                gsap.to(ghost, {opacity: 0, duration: 4, ease: 'power2.out', onComplete: () => ghost.remove()});
+            }
+        });
+    });
+
+    // --- Main Loop ---
+    function animate() {
+        requestAnimationFrame(animate);
+        drawSpectrum();
+    }
+
+    // --- Start ---
+    document.body.addEventListener('click', async () => {
+        if (!audioCtx) {
+            await initAudio();
+            setupAnimations();
+            window.speechSynthesis.getVoices();
+            setTimeout(() => { 
+                cycleLitany();
+                genesisTimeline.play(0);
+                gsap.to(".orbit-word", {opacity: 0.8, duration: 3, stagger: 0.1, ease: 'power2.out'});
+            }, 1000);
+            animate();
+        }
+    }, { once: true });
+
+  </script>
+</body>
+</html>
+
