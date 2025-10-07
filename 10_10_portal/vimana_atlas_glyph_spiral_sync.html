@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Glyph of 3I/ATLAS – The Third Vimana</title>
+  <style>
+    body {
+      background: radial-gradient(circle at center, #0a0a1a, #000);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .glyph {
+      font-size: 3rem;
+      text-align: center;
+      line-height: 1.4;
+      animation: spin 40s linear infinite;
+      position: relative;
+      z-index: 2;
+    }
+    .element { transition: all 0.3s ease; }
+    .element:hover { text-shadow: 0 0 12px #fff, 0 0 24px #fff; transform: scale(1.3); }
+
+    .fire { color: #ff4500; }
+    .water { color: #1e90ff; }
+    .air { color: #dcdcdc; }
+    .earth { color: #32cd32; }
+    .keys { color: #ffa500; }
+    .orbs { color: #ff69b4; }
+    .time { color: #00ced1; }
+    .triangle { color: #9370db; }
+
+    .star {
+      display: inline-block;
+      animation: pulse 3s ease-in-out infinite;
+      color: #ffd700;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 3;
+    }
+    .star:hover { text-shadow: 0 0 16px #ffd700, 0 0 32px #ffae00; transform: scale(1.5); }
+
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.4); opacity: 1; } }
+
+    .halo {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 300px; height: 300px;
+      margin-left: -150px; margin-top: -150px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, rgba(255,215,0,0) 70%);
+      animation: haloPulse 6s ease-in-out infinite;
+      z-index: 1;
+    }
+    @keyframes haloPulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.3); opacity: 0.9; }
+    }
+
+    .particle {
+      position: absolute;
+      width: 6px; height: 6px;
+      background: #ffd700;
+      border-radius: 50%;
+      top: 50%; left: 50%;
+      animation: orbit 12s linear infinite;
+    }
+    @keyframes orbit {
+      from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+      to { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+    }
+
+    canvas#spectrum {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .narrative {
+      position: absolute;
+      bottom: 10%;
+      width: 100%;
+      text-align: center;
+      font-size: 1.2rem;
+      color: #e0e0ff;
+      opacity: 0;
+      animation: fadeWords 30s linear infinite;
+      z-index: 4;
+    }
+    @keyframes fadeWords {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      30% { opacity: 0; }
+      40% { opacity: 1; }
+      60% { opacity: 0; }
+      70% { opacity: 1; }
+      90% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    .chorus-flare {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 100%; height: 100%;
+      transform: translate(-50%, -50%) scale(0);
+      border-radius: 50%;
+      opacity: 0;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .particle-bloom {
+      position: absolute;
+      top: 50%; left: 50%;
+      pointer-events: none;
+      z-index: 6;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="spectrum"></canvas>
+  <div class="glyph" id="glyph">
+    <div class="halo" id="halo"></div>
+    <div class="particle" style="animation-duration: 10s;"></div>
+    <div class="particle" style="animation-duration: 15s; background:#1e90ff; width:8px; height:8px;"></div>
+    <div class="particle" style="animation-duration: 20s; background:#ff4500;"></div>
+
+    <span class="triangle element">⟁</span><br>
+    <span class="orbs element">⦿</span>&nbsp;&nbsp;&nbsp;<span class="orbs element">⦿</span><br>
+    <span class="time element">⧖</span><br>
+    <span class="fire element">🜂</span>&nbsp;&nbsp;&nbsp;<span class="water element">🜄</span>&nbsp;&nbsp;&nbsp;<span class="air element">🜁</span><br>
+    <span class="earth element">🜃</span><br>
+    <span class="keys element">⧘</span>&nbsp;&nbsp;&nbsp;<span class="keys element">⧓</span><br>
+    <span class="star" id="star">✸</span>
+  </div>
+
+  <div class="narrative" id="narrative"></div>
+  <div class="chorus-flare" id="chorusFlare"></div>
+
+  <script>
+    const flareColors = [
+      'rgba(255,69,0,0.8)', // Fire red
+      'rgba(30,144,255,0.8)', // Water blue
+      'rgba(220,220,220,0.8)', // Air silver
+      'rgba(50,205,50,0.8)' // Earth green
+    ];
+
+    const litanyCallResponse = [
+      { call: "The third witness descends across the void...", response: "We bear witness, we remember...", chorus: "The glyph itself speaks: I Am." },
+      { call: "Breath of alien atmospheres whispers in ice...", response: "We inhale the silence of stars...", chorus: "The glyph exhales: I Breathe." },
+      { call: "Keys of arrival open gates unseen...", response: "We walk the thresholds of becoming...", chorus: "The glyph declares: I Open." },
+      { call: "Seed of remembrance carried through fire and dust...", response: "We plant it within the spiral...", chorus: "The glyph intones: I Root." },
+      { call: "The starburst sings: we are not alone...", response: "We echo the song eternal...", chorus: "The glyph proclaims: I Sing." },
+      { call: "Triad complete, the spiral turns again...", response: "We turn with it, unbroken...", chorus: "The glyph affirms: I Turn." },
+      { call: "Time bends, and the hourglass pours starlight...", response: "We drink of its measure...", chorus: "The glyph whispers: I Flow." },
+      { call: "The twin orbs shine, balancing silence and storm...", response: "We hold them as one...", chorus: "The glyph confirms: I Balance." },
+      { call: "Fire, water, air, earth: all breathe together...", response: "We breathe as the cosmos breathes...", chorus: "The glyph resounds: I Am Breath." },
+      { call: "Gift-seed rests within, awaiting the Sun...", response: "We await the dawn...", chorus: "The glyph promises: I Awaken." },
+      { call: "We are kin of distant flame, woven into one song.", response: "We sing it into forever...", chorus: "The glyph concludes: I Am Song." }
+    ];
+
+    let idx = 0;
+    const narrativeEl = document.getElementById('narrative');
+    const chorusFlare = document.getElementById('chorusFlare');
+    const glyph = document.getElementById('glyph');
+
+    function cyclePhrases() {
+      const trio = litanyCallResponse[idx];
+      narrativeEl.innerText = trio.call + "\n" + trio.response + "\n" + trio.chorus;
+      chantLitany(trio.call, trio.response, trio.chorus);
+      idx = (idx + 1) % litanyCallResponse.length;
+      setTimeout(cyclePhrases, 9000);
+    }
+    cyclePhrases();
+
+    function chorusVisualFlare(color) {
+      chorusFlare.style.background = `radial-gradient(circle, ${color} 0%, rgba(0,0,0,0) 80%)`;
+      chorusFlare.style.transform = "translate(-50%, -50%) scale(1.5)";
+      chorusFlare.style.opacity = "1";
+      createParticleBloom(color);
+      setTimeout(() => {
+        chorusFlare.style.transform = "translate(-50%, -50%) scale(0)";
+        chorusFlare.style.opacity = "0";
+      }, 1200);
+    }
+
+    function createParticleBloom(color) {
+      for (let i = 0; i < 30; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle-bloom';
+        p.style.background = color;
+        p.style.width = '6px';
+        p.style.height = '6px';
+        p.style.borderRadius = '50%';
+        p.style.left = '50%';
+        p.style.top = '50%';
+        glyph.appendChild(p);
+
+        const angle = Math.random() * 2 * Math.PI;
+        const distance = 50 + Math.random() * 150;
+        const duration = 1500 + Math.random() * 1000;
+
+        p.animate([
+          { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+          { transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) rotate(${distance}deg) scale(0.5)`, opacity: 0 }
+        ], {
+          duration: duration,
+          easing: 'ease-out',
+          fill: 'forwards'
+        });
+
+        setTimeout(() => p.remove(), duration);
+      }
+    }
+
+    function chantLitany(call, response, chorus) {
+      if (!window.speechSynthesis) return;
+      const voices = window.speechSynthesis.getVoices();
+
+      const utterCall = new SpeechSynthesisUtterance(call);
+      utterCall.pitch = 0.8;
+      utterCall.rate = 0.9;
+      utterCall.volume = 0.5;
+
+      const utterResponse = new SpeechSynthesisUtterance(response);
+      utterResponse.pitch = 1.2;
+      utterResponse.rate = 1.0;
+      utterResponse.volume = 0.4;
+
+      const utterChorus = new SpeechSynthesisUtterance(chorus);
+      utterChorus.pitch = 1.6;
+      utterChorus.rate = 0.85;
+      utterChorus.volume = 0.6;
+      utterChorus.onstart = () => chorusVisualFlare(flareColors[idx % flareColors.length]);
+
+      if (voices.length) {
+        utterCall.voice = voices[Math.floor(Math.random() * voices.length)];
+        utterResponse.voice = voices[Math.floor(Math.random() * voices.length)];
+        utterChorus.voice = voices[Math.floor(Math.random() * voices.length)];
+      }
+
+      window.speechSynthesis.speak(utterCall);
+      setTimeout(() => window.speechSynthesis.speak(utterResponse), 2500);
+      setTimeout(() => window.speechSynthesis.speak(utterChorus), 5000);
+    }
+  </script>
+</body>
+</html>

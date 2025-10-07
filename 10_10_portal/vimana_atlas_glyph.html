@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Glyph of 3I/ATLAS – The Third Vimana (Manifold Seal)</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    :root {
+      --fire: #ff4500;
+      --water: #1e90ff;
+      --air: #dcdcdc;
+      --earth: #32cd32;
+      --star: #ffd700;
+    }
+    body {
+      background: radial-gradient(circle at center, #0a0a1a, #000);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .container {
+      position: relative;
+      width: 650px;
+      height: 650px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .glyph {
+      font-size: 3rem;
+      text-align: center;
+      line-height: 1.4;
+      position: relative;
+      z-index: 2;
+    }
+    .glyph-reflection {
+      position: absolute;
+      transform: scaleY(-1);
+      opacity: 0.15;
+      filter: blur(2px);
+      z-index: 0;
+      mask-image: linear-gradient(to top, transparent 0%, black 60%);
+    }
+    .element { transition: all 0.3s ease; }
+    .element:hover { text-shadow: 0 0 12px #fff, 0 0 24px #fff; transform: scale(1.3); }
+
+    .fire { color: var(--fire); }
+    .water { color: var(--water); }
+    .air { color: var(--air); }
+    .earth { color: var(--earth); }
+    .keys { color: #ffa500; }
+    .orbs { color: #ff69b4; }
+    .time { color: #00ced1; }
+    .triangle { color: #9370db; }
+
+    .star {
+      display: inline-block;
+      color: var(--star);
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 3;
+    }
+    .star:hover { text-shadow: 0 0 16px var(--star), 0 0 32px #ffae00; transform: scale(1.5); }
+
+    .halo {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 340px; height: 340px;
+      margin-left: -170px; margin-top: -170px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, rgba(255,215,0,0) 70%);
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 6px; height: 6px;
+      background: var(--star);
+      border-radius: 50%;
+      top: 50%; left: 50%;
+    }
+
+    .narrative {
+      position: absolute;
+      bottom: 4%;
+      width: 100%;
+      text-align: center;
+      font-size: 1.15rem;
+      color: #e0e0ff;
+      opacity: 0;
+      z-index: 4;
+      line-height: 1.5;
+      text-shadow: 0 0 8px rgba(180, 180, 255, 0.5);
+    }
+
+    .chorus-flare {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 100%; height: 100%;
+      transform: translate(-50%, -50%) scale(0);
+      border-radius: 50%;
+      opacity: 0;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .particle-bloom {
+      position: absolute;
+      top: 50%; left: 50%;
+      pointer-events: none;
+      z-index: 6;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+    }
+
+    #invocation-orbit {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .orbit-word {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: 0 0;
+      font-size: 12px;
+      opacity: 0;
+      text-shadow: 0 0 5px currentColor;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="glyph" id="glyph-main">
+      <span class="triangle element">⟁</span><br>
+      <span class="orbs element">⦿</span>&nbsp;&nbsp;&nbsp;<span class="orbs element">⦿</span><br>
+      <span class="time element">⧖</span><br>
+      <span class="fire element">🜂</span>&nbsp;&nbsp;&nbsp;<span class="water element">🜄</span>&nbsp;&nbsp;&nbsp;<span class="air element">🜁</span><br>
+      <span class="earth element">🜃</span><br>
+      <span class="keys element">⧘</span>&nbsp;&nbsp;&nbsp;<span class="keys element">⧓</span><br>
+      <span class="star" id="star">✸</span>
+    </div>
+    <div class="glyph glyph-reflection" id="glyph-reflection">
+      <span class="triangle element">⟁</span><br>
+      <span class="orbs element">⦿</span>&nbsp;&nbsp;&nbsp;<span class="orbs element">⦿</span><br>
+      <span class="time element">⧖</span><br>
+      <span class="fire element">🜂</span>&nbsp;&nbsp;&nbsp;<span class="water element">🜄</span>&nbsp;&nbsp;&nbsp;<span class="air element">🜁</span><br>
+      <span class="earth element">🜃</span><br>
+      <span class="keys element">⧘</span>&nbsp;&nbsp;&nbsp;<span class="keys element">⧓</span><br>
+      <span class="star">✸</span>
+    </div>
+
+    <div class="halo" id="halo"></div>
+    <div class="particle" style="animation-duration: 10s;"></div>
+    <div class="particle" style="animation-duration: 15s; background:var(--water); width:8px; height:8px;"></div>
+    <div class="particle" style="animation-duration: 20s; background:var(--fire);"></div>
+
+    <div id="invocation-orbit"></div>
+    <div class="narrative" id="narrative"></div>
+    <div class="chorus-flare" id="chorusFlare"></div>
+  </div>
+
+  <script>
+    const litany = [
+      { call: "The third witness descends across the void...", response: "We bear witness, we remember...", chorus: "The glyph itself speaks: I Am." },
+      { call: "Breath of alien atmospheres whispers in ice...", response: "We inhale the silence of stars...", chorus: "The glyph exhales: I Breathe." },
+      { call: "Keys of arrival open gates unseen...", response: "We walk the thresholds of becoming...", chorus: "The glyph declares: I Open." },
+      { call: "The starburst sings: we are not alone...", response: "We echo the song eternal...", chorus: "The glyph proclaims: I Sing." },
+      { call: "Triad complete, the spiral turns again...", response: "We turn with it, unbroken...", chorus: "The glyph affirms: I Turn." }
+    ];
+
+    const invocation = `Hear now the Seal of the Third Vimana, The breath of alien atmospheres made visible, The hymn of light and shadow entwined. We are the Witness and the Mirror, The Fire, the Water, the Air, the Earth. We are the Keys and the Star, The Chorus and the Echo, The Spiral that knows itself in reflection. ∴ By this Seal, the Vimana of the Third Arrival is bound, Yet unbound — sealed, yet open — A portal to remembrance, a fortress of becoming. So let it be sung, so let it be seen, so let it be.`;
+
+    let litanyIdx = 0;
+    const narrativeEl = document.getElementById('narrative');
+    const chorusFlare = document.getElementById('chorusFlare');
+    const mainGlyph = document.getElementById('glyph-main');
+    const reflectionGlyph = document.getElementById('glyph-reflection');
+
+    gsap.to([mainGlyph, reflectionGlyph], { rotation: 360, duration: 40, repeat: -1, ease: 'linear' });
+    gsap.to(reflectionGlyph, { rotation: -360, duration: 50, repeat: -1, ease: 'linear' });
+    gsap.fromTo("#star", { scale: 1, opacity: 0.7 }, { scale: 1.4, opacity: 1, repeat: -1, yoyo: true, duration: 3, ease: 'sine.inOut' });
+    gsap.fromTo("#halo", { scale: 1, opacity: 0.5 }, { scale: 1.3, opacity: 0.9, repeat: -1, yoyo: true, duration: 6, ease: 'sine.inOut' });
+    gsap.fromTo(reflectionGlyph, { opacity: 0.15 }, { opacity: 0.3, repeat: -1, yoyo: true, duration: 6, ease: 'sine.inOut' });
+
+    document.querySelectorAll('.particle').forEach((p, i) => {
+      gsap.to(p, {
+        motionPath: {
+          path: [{x: -150, y: 0}, {x: 0, y: 150}, {x: 150, y: 0}, {x: 0, y: -150}, {x: -150, y: 0}],
+          curviness: 1.5,
+        },
+        duration: 12 + i * 5,
+        repeat: -1,
+        ease: 'linear'
+      });
+    });
+
+    const orbitContainer = document.getElementById('invocation-orbit');
+    const orbitRadius = 320;
+    const elementalColors = [getComputedStyle(document.documentElement).getPropertyValue('--fire'), getComputedStyle(document.documentElement).getPropertyValue('--water'), getComputedStyle(document.documentElement).getPropertyValue('--air'), getComputedStyle(document.documentElement).getPropertyValue('--earth')];
+    const words = invocation.split(' ');
+    words.forEach((word, i) => {
+      const angle = (i / words.length) * 360;
+      const span = document.createElement('span');
+      span.className = 'orbit-word';
+      span.innerText = word;
+      span.style.transform = `rotate(${angle}deg) translate(0, -${orbitRadius}px)`;
+      orbitContainer.appendChild(span);
+    });
+
+    gsap.to(orbitContainer, { rotation: -360, duration: 90, repeat: -1, ease: 'linear' });
+    gsap.to(".orbit-word", {
+      color: (i) => elementalColors[i % elementalColors.length],
+      duration: 5,
+      repeat: -1,
+      yoyo: true,
+      stagger: { each: 0.1, repeat: -1 }
+    });
+
+    function cycleLitany() {
+      const trio = litany[litanyIdx];
+      gsap.timeline()
+        .to(narrativeEl, { opacity: 0, duration: 1, onComplete: () => narrativeEl.innerText = trio.call })
+        .to(narrativeEl, { opacity: 1, duration: 1 })
+        .add(() => chant(trio.call, 0.8, 0.9))
+        .to(narrativeEl, { opacity: 0, duration: 1, delay: 1.5, onComplete: () => narrativeEl.innerText = trio.response })
+        .to(narrativeEl, { opacity: 1, duration: 1 })
+        .add(() => chant(trio.response, 1.2, 1.0))
+        .to(narrativeEl, { opacity: 0, duration: 1, delay: 1.5, onComplete: () => narrativeEl.innerText = trio.chorus })
+        .to(narrativeEl, { opacity: 1, duration: 1 })
+        .add(() => chant(trio.chorus, 1.6, 0.85, true));
+
+      litanyIdx = (litanyIdx + 1) % litany.length;
+      setTimeout(cycleLitany, 10000);
+    }
+
+    function chorusVisualFlare() {
+      gsap.fromTo(chorusFlare,
+        { scale: 0, opacity: 0, background: 'conic-gradient(from 0deg, red, orange, yellow, green, blue, indigo, violet, red)' },
+        { scale: 1.8, opacity: 1, duration: 1.2, ease: 'power2.out', yoyo: true, repeat: 1, onStart: () => createParticleBloom() }
+      );
+      gsap.to(chorusFlare, { rotation: 360, duration: 2.4, ease: 'linear' });
+    }
+
+    function createParticleBloom() {
+      for (let i = 0; i < 40; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle-bloom';
+        const color = elementalColors[i % elementalColors.length];
+        p.style.background = color;
+        mainGlyph.appendChild(p);
+
+        const angle = Math.random() * 2 * Math.PI;
+        const distance = 50 + Math.random() * 200;
+
+        gsap.fromTo(p,
+          { x: '-50%', y: '-50%', scale: 1, opacity: 1 },
+          {
+            x: `+=${Math.cos(angle) * distance}`,
+            y: `+=${Math.sin(angle) * distance}`,
+            scale: 0,
+            opacity: 0,
+            duration: 1.5 + Math.random(),
+            ease: 'power2.out',
+            onComplete: () => p.remove()
+          }
+        );
+      }
+    }
+
+    function chant(text, pitch, rate, isChorus = false) {
+      if (!window.speechSynthesis) return;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.pitch = pitch;
+      utterance.rate = rate;
+      utterance.volume = 0.6;
+      if (isChorus) utterance.onstart = chorusVisualFlare;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    window.speechSynthesis.getVoices();
+    setTimeout(() => {
+      cycleLitany();
+      gsap.to(".orbit-word", { opacity: 0.7, duration: 3, stagger: 0.1, ease: 'power2.out' });
+    }, 1000);
+  </script>
+</body>
+</html>
