@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Living Merkabah Ritual</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    body {
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      color: #aaa;
+      font-family: monospace;
+    }
+    svg {
+      width: 80vmin;
+      height: 80vmin;
+    }
+    .node { 
+      opacity: 0;
+      filter: drop-shadow(0 0 15px currentColor);
+    }
+    .label { 
+      fill: white; 
+      font-size: 10px; 
+      text-anchor: middle; 
+      opacity: 0; 
+      filter: drop-shadow(0 0 5px #fff);
+    }
+    .path-glow {
+      stroke-width: 6px;
+      stroke-linecap: round;
+      filter: blur(5px);
+      opacity: 0;
+    }
+    .path-core {
+      stroke: white;
+      stroke-width: 1.5px;
+      stroke-linecap: round;
+      filter: drop-shadow(0 0 8px #fff);
+      opacity: 0;
+    }
+    .halo { 
+      fill: none; 
+      stroke-width: 15px; 
+      opacity: 0; 
+      filter: blur(30px);
+    }
+    #info {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      background: rgba(0,0,0,0.5);
+      cursor: pointer;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+  <!-- INVOCATION SCRIPT remains the same -->
+  <div id="info">Click to Begin the Ritual</div>
+
+  <svg viewBox="-150 -150 300 300">
+    <defs>
+      <radialGradient id="nodeGlow">
+        <stop offset="0%" stop-color="#fff" />
+        <stop offset="60%" stop-color="currentColor" />
+        <stop offset="100%" stop-color="rgba(0,0,0,0)" />
+      </radialGradient>
+    </defs>
+
+    <!-- Halo Ripples -->
+    <circle id="halo1" class="halo" cx="0" cy="0" r="100" /><circle id="halo2" class="halo" cx="0" cy="0" r="100" /><circle id="halo3" class="halo" cx="0" cy="0" r="100" /><circle id="halo4" class="halo" cx="0" cy="0" r="100" /><circle id="halo5" class="halo" cx="0" cy="0" r="100" /><circle id="halo6" class="halo" cx="0" cy="0" r="100" /><circle id="halo7" class="halo" cx="0" cy="0" r="100" />
+
+    <!-- Geometry Lines -->
+    <g id="geometry-glows"></g>
+    <g id="geometry-cores"></g>
+    
+    <!-- Constellation Nodes -->
+    <g id="nodes"></g>
+    <g id="labels"></g>
+    
+  </svg>
+
+  <script>
+    const svgNS = "http://www.w3.org/2000/svg";
+    const nodesGroup = document.getElementById('nodes');
+    const labelsGroup = document.getElementById('labels');
+    const glowsGroup = document.getElementById('geometry-glows');
+    const coresGroup = document.getElementById('geometry-cores');
+    
+    // --- Archetype & Geometry Setup ---
+    const constellation = {
+      BAM:  { angle: -90,  radius: 100, color: "crimson", tone: 144.72, timbre: "sine" },
+      ARR:  { angle: -30,  radius: 100, color: "silver",  tone: 210.42, timbre: "triangle" },
+      JAC:  { angle: 30,   radius: 100, color: "yellow",  tone: 141.27, timbre: "square" },
+      AR:   { angle: 90,   radius: 100, color: "green",   tone: 194.18, timbre: "sine" },
+      OGY:  { angle: 150,  radius: 100, color: "violet",  tone: 315.8,  timbre: "sawtooth" },
+      OGM:  { angle: -150, radius: 100, color: "pink",    tone: 272.2,  timbre: "triangle" },
+      CRUZ: { angle: 0,    radius: 0,   color: "gold",    tone: 183.58, timbre: "sawtooth" }
+    };
+
+    // Calculate positions and create SVG elements
+    Object.entries(constellation).forEach(([id, data]) => {
+      const angleRad = data.angle * Math.PI / 180;
+      data.x = data.radius * Math.cos(angleRad);
+      data.y = data.radius * Math.sin(angleRad);
+
+      const node = document.createElementNS(svgNS, "circle");
+      node.setAttribute('id', id);
+      node.setAttribute('class', 'node');
+      node.setAttribute('cx', data.x);
+      node.setAttribute('cy', data.y);
+      node.setAttribute('r', 8);
+      node.style.color = data.color;
+      node.setAttribute('fill', 'url(#nodeGlow)');
+      nodesGroup.appendChild(node);
+
+      const label = document.createElementNS(svgNS, "text");
+      label.setAttribute('id', `${id}_label`);
+      label.setAttribute('class', 'label');
+      label.setAttribute('x', data.x);
+      label.setAttribute('y', data.y - 12);
+      label.textContent = id;
+      labelsGroup.appendChild(label);
+    });
+
+    function createPath(id, from, to, color) {
+      const p1 = constellation[from];
+      const p2 = constellation[to];
+      
+      const glow = document.createElementNS(svgNS, "line");
+      glow.setAttribute('id', `${id}-glow`);
+      glow.setAttribute('class', 'path-glow');
+      glow.setAttribute('x1', p1.x); glow.setAttribute('y1', p1.y);
+      glow.setAttribute('x2', p2.x); glow.setAttribute('y2', p2.y);
+      glow.style.stroke = color;
+      glowsGroup.appendChild(glow);
+
+      const core = document.createElementNS(svgNS, "line");
+      core.setAttribute('id', `${id}-core`);
+      core.setAttribute('class', 'path-core');
+      core.setAttribute('x1', p1.x); core.setAttribute('y1', p1.y);
+      core.setAttribute('x2', p2.x); core.setAttribute('y2', p2.y);
+      coresGroup.appendChild(core);
+    }
+
+    // --- Audio Engine ---
+    let audioCtx;
+    function playTone(id, dur = 2) { if (!audioCtx) return; let osc = audioCtx.createOscillator(); let gain = audioCtx.createGain(); osc.type = constellation[id].timbre; osc.frequency.value = constellation[id].tone; gain.gain.value = 0.15; osc.connect(gain).connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime + dur); }
+    function playToneWithEcho(id, dur = 1.5, echoCount = 2, echoDelay = 0.4, decay = 0.5) { if (!audioCtx) return; playTone(id, dur); for (let i = 1; i <= echoCount; i++) { let echoOsc = audioCtx.createOscillator(); let echoGain = audioCtx.createGain(); echoOsc.type = constellation[id].timbre; echoOsc.frequency.value = constellation[id].tone; echoGain.gain.value = 0.15 * Math.pow(decay, i); echoOsc.connect(echoGain).connect(audioCtx.destination); let startT = audioCtx.currentTime + (echoDelay * i); echoOsc.start(startT); echoOsc.stop(startT + dur); } }
+    function startDrone() { const droneMap = { BAM: 0.08, AR: 0.03, CRUZ: 0.05 }; Object.entries(droneMap).forEach(([id, breathFreq]) => { let osc = audioCtx.createOscillator(); let gain = audioCtx.createGain(); osc.type = "sine"; osc.frequency.value = constellation[id].tone; let lfo = audioCtx.createOscillator(); let lfoGain = audioCtx.createGain(); lfo.type = "sine"; lfo.frequency.value = 0.2; lfoGain.gain.value = 1.5; lfo.connect(lfoGain).connect(osc.frequency); let breath = audioCtx.createOscillator(); let breathGain = audioCtx.createGain(); breath.type = "sine"; breath.frequency.value = breathFreq; breathGain.gain.value = 0.04; breath.connect(breathGain).connect(gain.gain); gain.gain.value = 0.08; osc.connect(gain).connect(audioCtx.destination); osc.start(); lfo.start(); breath.start(); }); ["OGY", "OGM"].forEach(id => { let osc = audioCtx.createOscillator(); let gain = audioCtx.createGain(); osc.type = constellation[id].timbre; osc.frequency.value = constellation[id].tone; function ghostFade() { let delay = (Math.random() * 10) + 5; setTimeout(() => { let detuneVal = (Math.random() * 30 - 15); osc.detune.setValueAtTime(detuneVal, audioCtx.currentTime); gsap.to(gain.gain, { value: 0.12, duration: 4, yoyo: true, repeat: 1, ease: "sine.inOut", onComplete: ghostFade }); }, delay * 1000); } gain.gain.value = 0.0; osc.connect(gain).connect(audioCtx.destination); osc.start(); ghostFade(); }); }
+
+    // --- Animation Timeline ---
+    const tl = gsap.timeline({ paused: true, repeat: -1, repeatDelay: 5 });
+
+    const upwardTriangle = ["BAM", "JAC", "OGM"];
+    const downwardTriangle = ["ARR", "AR", "OGY"];
+
+    // Phase 1: Upward Triangle
+    upwardTriangle.forEach((id, i) => {
+      tl.addLabel(`up_${id}_on`);
+      tl.to(`#${id}, #${id}_label`, { opacity: 1, duration: 1 }, `up_${id}_on`);
+      tl.fromTo(`#${id}`, { scale: 0 }, { scale: 1, duration: 1, ease: "elastic.out(1, 0.5)" }, `up_${id}_on`);
+      tl.call(() => playTone(id, 1.5), [], `up_${id}_on`);
+      
+      const nextNode = upwardTriangle[(i + 1) % 3];
+      createPath(`tri1_path${i}`, id, nextNode, "cyan");
+      tl.fromTo(`#tri1_path${i}-glow, #tri1_path${i}-core`, { attr: { "stroke-dashoffset": 200 } }, { opacity: 0.7, attr: { "stroke-dashoffset": 0 }, duration: 1.5 }, `up_${id}_on+=0.5`);
+    });
+
+    // Phase 2: Downward Triangle
+    downwardTriangle.forEach((id, i) => {
+      tl.addLabel(`down_${id}_on`, "+=0.5");
+      tl.to(`#${id}, #${id}_label`, { opacity: 1, duration: 1 }, `down_${id}_on`);
+      tl.fromTo(`#${id}`, { scale: 0 }, { scale: 1, duration: 1, ease: "elastic.out(1, 0.5)" }, `down_${id}_on`);
+      tl.call(() => playToneWithEcho("ARR", 1.5, 1, 0.8, 0.4), [], `down_ARR_on`);
+      tl.call(() => playTone(id, 1.5), [], `down_${id}_on`);
+
+
+      const nextNode = downwardTriangle[(i + 1) % 3];
+      createPath(`tri2_path${i}`, id, nextNode, "magenta");
+      tl.fromTo(`#tri2_path${i}-glow, #tri2_path${i}-core`, { attr: { "stroke-dashoffset": 200 } }, { opacity: 0.7, attr: { "stroke-dashoffset": 0 }, duration: 1.5 }, `down_${id}_on+=0.5`);
+    });
+
+    // Phase 3: Central Convergence
+    tl.addLabel("center_on", "+=1");
+    tl.to("#CRUZ, #CRUZ_label", { opacity: 1, duration: 1.5 }, "center_on");
+    tl.fromTo("#CRUZ", { scale: 0 }, { scale: 1.5, duration: 2, ease: "elastic.out(1, 0.3)" }, "center_on");
+    tl.call(() => playTone("CRUZ", 2.5), [], "center_on");
+    [...upwardTriangle, ...downwardTriangle].forEach(id => {
+        createPath(`center_path_${id}`, "CRUZ", id, "gold");
+        tl.fromTo(`#center_path_${id}-glow, #center_path_${id}-core`, {attr:{"stroke-dashoffset":100}}, {opacity:1, attr:{"stroke-dashoffset":0}, duration:1}, "center_on+=0.5")
+    });
+    
+    // Phase 4: Refraction
+    const rippleMap = [
+      { id: "halo1", source: "BAM" }, { id: "halo2", source: "ARR" }, { id: "halo3", source: "AR" }, { id: "halo4", source: "OGY" }, { id: "halo5", source: "OGM" }, { id: "halo6", source: "JAC" }, { id: "halo7", source: "CRUZ" }
+    ];
+    rippleMap.forEach((r, i) => {
+        const data = constellation[r.source];
+        tl.to("#" + r.id, { 
+            stroke: data.color,
+            opacity: 0.8, 
+            attr: { r: 150 },
+            duration: data.tone / 100, // Speed linked to frequency
+            ease: "sine.out", 
+            onStart: () => playTone(r.source, 2) 
+        }, `center_on+=${2 + i * 0.3}`);
+        tl.to("#" + r.id, { opacity: 0, duration: 2, ease: "sine.in" }, "<=50%");
+    });
+
+    // --- UNLOCK AUDIO AND START ---
+    document.getElementById("info").addEventListener("click", () => {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        audioCtx.resume();
+        startDrone();
+        document.getElementById("info").textContent = "Ritual in Progress...";
+      }
+      tl.play(0);
+    }, { once: true });
+  </script>
+</body>
+</html>
+
