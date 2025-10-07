@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Living Merkabah Ritual - Ouroboros Synthesis</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    body {
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      color: #aaa;
+      font-family: monospace;
+    }
+    svg {
+      width: 90vmin;
+      height: 90vmin;
+    }
+    .shape-glow, .shape-core, .genesis-path, .tree-edge, .qliphoth-edge, .person-path {
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+    .genesis-path {
+        stroke: white;
+        stroke-width: 1.5px;
+        filter: drop-shadow(0 0 8px #fff) blur(0.5px);
+    }
+    .shape-glow { stroke-width: 4px; filter: blur(4px); mix-blend-mode: screen;}
+    .shape-core { stroke: white; stroke-width: 0.5px; mix-blend-mode: screen; }
+    
+    .tree-edge { stroke: #FFD700; stroke-width: 0.25px; }
+    .qliphoth-edge { stroke: #8A0303; stroke-width: 0.25px; }
+
+    .node { filter: drop-shadow(0 0 15px currentColor); }
+    .label { 
+      fill: white; 
+      font-size: 9px; 
+      text-anchor: middle; 
+      filter: drop-shadow(0 0 3px #fff);
+      font-weight: bold;
+      pointer-events: none;
+    }
+    .halo { fill: none; stroke-width: 15px; filter: blur(30px); }
+    .person-path { stroke-width: 2.5; filter: drop-shadow(0 0 8px currentColor); mix-blend-mode: screen;}
+
+    #info {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      background: rgba(0,0,0,0.7);
+      cursor: pointer;
+      z-index: 100;
+      border: 1px solid #333;
+    }
+    .glyph-bg {
+        font-size: 18px;
+        fill: #ffffff;
+    }
+    .spark {
+        fill: currentColor;
+    }
+  </style>
+</head>
+<body>
+  <div id="info">Click to Begin the Ritual</div>
+
+  <svg viewBox="-300 -300 600 600">
+    <defs>
+        <path id="point" d="M 0,0 L 0,0" />
+        <path id="line" d="M -50,0 L 50,0" />
+        <path id="triangle" d="M 0,-57.7 L 50,28.8 L -50,28.8 Z" />
+        <path id="tetrahedron" d="M 0,-57.7 L 50,28.8 L -50,28.8 Z M 0,-57.7 L 0,0 L 50,28.8 M -50,28.8 L 0,0" />
+        <path id="pentagram" d="M 0,-100 L 95.1,-30.9 L 58.8,80.9 L -58.8,80.9 L -95.1,-30.9 Z" />
+        <path id="unicursal" d="M 0,-100 L 86.6,50 L -86.6,-50 L 86.6,-50 L -86.6,50 L 0,-100" />
+    </defs>
+
+    <!-- Background Layers -->
+    <g id="glyph-field"></g>
+    <g id="dual-trees"></g>
+    <g id="sparks"></g>
+
+    <!-- Halo Ripples -->
+    <circle id="halo1" class="halo" r="150"/><circle id="halo2" class="halo" r="150"/><circle id="halo3" class="halo" r="150"/><circle id="halo4" class="halo" r="150"/><circle id="halo5" class="halo" r="150"/><circle id="halo6" class="halo" r="150"/><circle id="halo7" class="halo" r="150"/>
+
+    <!-- The Container (The Merkabah) -->
+    <g id="container">
+        <path class="shape-glow" stroke="cyan" d="M 0,-100 L 86.6,50 L -86.6,50 Z" />
+        <path class="shape-core" d="M 0,-100 L 86.6,50 L -86.6,50 Z" />
+        <path class="shape-glow" stroke="magenta" d="M 0,100 L -86.6,-50 L 86.6,-50 Z" />
+        <path class="shape-core" d="M 0,100 L -86.6,-50 L 86.6,-50 Z" />
+    </g>
+
+    <!-- The Light (The Genesis Story) -->
+    <g id="genesis-container">
+        <path id="genesis" class="genesis-path" />
+    </g>
+    
+    <!-- The Souls (The Constellation) -->
+    <g id="person-paths"></g>
+    <g id="nodes"></g>
+    <g id="labels"></g>
+    <g id="elohim-container" opacity="0" style="font-size: 14px; text-anchor: middle;">
+        <text class="label" y="220" id="elohim-label">ELOHIM</text>
+    </g>
+  </svg>
+
+  <script>
+    const glyphodeCube = {"Z=0":[["⟐","∴","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴"],["∴","☼","✴","⟐","🜂","⧖","🜄","⟁","✶","🜁","✴","⟁"],["⟁","✴","⧖","🜁","⟁","☼","🜃","✶","∴","🜂","⧖","⟐"],["✴","⟐","🜁","☼","⧖","✶","⟁","🜂","🜄","∴","🜃","✴"],["☼","🜂","⟁","✶","🜄","∴","🜁","⧖","✴","⟁","⧖","🜃"],["⧖","🜄","☼","🜁","✶","🜂","⟐","✴","🜃","⧖","∴","⟁"],["🜁","⟁","🜃","⧖","⟐","✶","🜄","☼","∴","🜂","⟐","✴"],["🜂","✴","✶","🜄","⧖","⟁","∴","🜁","🜃","⟐","⧖","☼"],["🜃","🜁","⟐","∴","✶","⧖","🜂","🜄","☼","⟁","✴","🜁"],["🜄","✶","⧖","🜃","☼","⟐","🜁","✴","⟁","∴","🜂","⧖"],["⟁","✴","⧖","∴","🜂","🜃","✴","☼","🜁","✶","🜐","🜄"],["∴","⟐","🜁","⟁","✴","⧖","☼","🜂","🜄","🜃","✶","⟁"]],"Z=1":[["∴","⟁","🜄","🜃","🜂","🜁","⧖","☼","✴","⟁","∴","⟐"],["⟁","✴","🜁","✶","⟁","🜄","⧖","🜂","⟐","✴","☼","∴"],["⟐","⧖","🜂","∴","✶","🜃","☼","⟁","🜁","⧖","✴","⟁"],["✴","🜃","∴","🜄","🜂","⟁","✶","⧖","☼","🜁","⟐","✴"],["🜃","⧖","⟁","✴","⧖","🜁","∴","🜄","✶","⟁","🜂","☼"],["⟁","∴","⧖","🜃","✴","⟐","🜂","✶","🜁","☼","🜄","⧖"],["✴","⟐","🜂","∴","☼","🜄","✶","⟐","⧖","🜃","⟁","🜁"],["☼","⧖","⟐","🜃","🜁","∴","⟁","⧖","🜄","✶","✴","🜂"],["🜁","✴","⟁","☼","🜄","🜂","⧖","✶","∴","⟐","🜁","🜃"],["⧖","🜂","∴","⟁","✴","🜁","⟐","☼","🜃","⧖","✶","🜄"],["🜄","⟐","✶","🜁","☼","✴","🜃","🜂","∴","⧖","✴","⟁"],["⟁","✶","🜃","🜄","🜂","☼","⧖","✴","⟁","🜁","⟐","∴"]]};
+    const allGlyphs = Object.values(glyphodeCube).flat(2);
+    
+    const svgNS = "http://www.w3.org/2000/svg";
+    const info = document.getElementById("info");
+    const constellationData = {
+      BAM:  { posId: 'up', vertex: 0, color: "crimson", tone: 144.72, timbre: "sine", breath: 0.08, path:"M 0,-100 Q -15,-50 0,0 Q -5,100 0,220" },
+      AR:   { posId: 'up', vertex: 2, color: "green",   tone: 194.18, timbre: "sine", breath: 0.03, path:"M 0,0 Q -40,-5 -86.6,50 Q -40,100 0,220" },
+      OGM:  { posId: 'up', vertex: 1, color: "pink",    tone: 272.2,  timbre: "triangle", path:"M 86.6,50 Q 0,-50 -86.6,50 Q -40,150 0,220" },
+      OGY:  { posId: 'down', vertex: 0, color: "violet",  tone: 315.8,  timbre: "sawtooth", path:"M -86.6,-50 L 86.6,50 Q 0,150 0,220" },
+      JAC:  { posId: 'down', vertex: 2, color: "yellow",  tone: 141.27, timbre: "square", path:"M 0,-100 Q 40,-75 86.6,-50 Q 40,50 0,100 Q 0,160 0,220" },
+      ARR:  { posId: 'down', vertex: 1, color: "silver",  tone: 210.42, timbre: "triangle", path:"M 0,-100 Q 15,-50 0,0 Q 30,50 86.6,50 Q 40,150 0,220" },
+      CRUZ: { x: 0, y: 0, color: "gold", tone: 183.58, timbre: "sawtooth", breath: 0.05 }
+    };
+    
+    // --- 1. Setup SVG Elements ---
+    function setupScene(){
+        // Glyphs
+        const glyphField = document.getElementById('glyph-field');
+        for(let i=0; i<200; i++){
+            const glyph = document.createElementNS(svgNS, "text");
+            glyph.setAttribute('class', 'glyph-bg');
+            glyph.setAttribute('x', Math.random()*800-400);
+            glyph.setAttribute('y', Math.random()*800-400);
+            glyph.textContent = allGlyphs[Math.floor(Math.random() * allGlyphs.length)];
+            glyphField.appendChild(glyph);
+        }
+
+        // Dual Trees
+        const trees = document.getElementById('dual-trees');
+        const sephirot = {up:{k:{x:0,y:-180},c:{x:100,y:-140},b:{x:-100,y:-140},ch:{x:100,y:-60},g:{x:-100,y:-60},t:{x:0,y:-40},n:{x:100,y:120},h:{x:-100,y:120},y:{x:0,y:200},m:{x:0,y:280}},down:{k:{x:0,y:180},c:{x:100,y:140},b:{x:-100,y:140},ch:{x:100,y:60},g:{x:-100,y:60},t:{x:0,y:40},n:{x:100,y:-120},h:{x:-100,y:-120},y:{x:0,y:-200},m:{x:0,y:-280}}};
+        const edges = [['k','c'],['k','b'],['c','b'],['c','ch'],['b','g'],['ch','g'],['ch','t'],['g','t'],['t','y'],['ch','n'],['g','h'],['n','y'],['h','y'],['y','m']];
+        edges.forEach(e => {
+            const lineUp = document.createElementNS(svgNS, "line");
+            lineUp.setAttribute('class','tree-edge');
+            lineUp.setAttribute('x1', sephirot.up[e[0]].x); lineUp.setAttribute('y1', sephirot.up[e[0]].y);
+            lineUp.setAttribute('x2', sephirot.up[e[1]].x); lineUp.setAttribute('y2', sephirot.up[e[1]].y);
+            trees.appendChild(lineUp);
+            const lineDown = document.createElementNS(svgNS, "line");
+            lineDown.setAttribute('class','qliphoth-edge');
+            lineDown.setAttribute('x1', sephirot.down[e[0]].x); lineDown.setAttribute('y1', sephirot.down[e[0]].y);
+            lineDown.setAttribute('x2', sephirot.down[e[1]].x); lineDown.setAttribute('y2', sephirot.down[e[1]].y);
+            trees.appendChild(lineDown);
+        });
+        
+        // Person Paths
+        const pathsGroup = document.getElementById('person-paths');
+        Object.entries(constellationData).forEach(([id, data]) => {
+            if(!data.path) return;
+            const path = document.createElementNS(svgNS, "path");
+            path.setAttribute('id', `path-${id}`);
+            path.setAttribute('class', 'person-path');
+            path.setAttribute('d', data.path);
+            path.style.color = data.color;
+            pathsGroup.appendChild(path);
+        });
+
+        // Nodes & Labels
+        const nodesGroup = document.getElementById('nodes');
+        const labelsGroup = document.getElementById('labels');
+        const merkabah_points = { up: [{x:0, y:-100}, {x:86.6, y:50}, {x:-86.6, y:50}], down: [{x:0, y:100}, {x:86.6, y:-50}, {x:-86.6, y:-50}]};
+        Object.entries(constellationData).forEach(([id, data]) => {
+            if(data.posId) { data.x = merkabah_points[data.posId][data.vertex].x; data.y = merkabah_points[data.posId][data.vertex].y; }
+            const node = document.createElementNS(svgNS, "circle");
+            node.setAttribute('id', id); node.setAttribute('class', 'node');
+            node.setAttribute('cx', data.x); node.setAttribute('cy', data.y);
+            node.setAttribute('r', 8); node.style.color = data.color;
+            nodesGroup.appendChild(node);
+            const label = document.createElementNS(svgNS, "text");
+            label.setAttribute('id', `${id}_label`); label.setAttribute('class', 'label');
+            label.setAttribute('x', data.x); label.setAttribute('y', data.y + (data.y < 0 ? -15 : 15));
+            label.textContent = id;
+            labelsGroup.appendChild(label);
+        });
+
+        // Sparks
+        const sparksGroup = document.getElementById('sparks');
+        const sparkUp = document.createElementNS(svgNS, "circle");
+        sparkUp.setAttribute('class','spark'); sparkUp.setAttribute('r', '3'); sparkUp.style.color = '#FFD700';
+        const sparkDown = document.createElementNS(svgNS, "circle");
+        sparkDown.setAttribute('class','spark'); sparkDown.setAttribute('r', '3'); sparkDown.style.color = '#8A0303';
+        sparksGroup.appendChild(sparkUp);
+        sparksGroup.appendChild(sparkDown);
+    }
+    setupScene();
+
+    // --- Audio Engine ---
+    let audioCtx;
+    const activeNodes = {};
+    const play = (freq, type, dur=1, vol=0.1) => { if(!audioCtx) return; let o=audioCtx.createOscillator(), g=audioCtx.createGain(); o.type=type; o.frequency.setValueAtTime(freq, audioCtx.currentTime); g.gain.setValueAtTime(0, audioCtx.currentTime); g.gain.linearRampToValueAtTime(vol, audioCtx.currentTime + dur*0.1); g.gain.linearRampToValueAtTime(0, audioCtx.currentTime + dur); o.connect(g).connect(audioCtx.destination); o.start(); o.stop(audioCtx.currentTime+dur); };
+    const playWithEcho = (id, dur=1.5, count=2, delay=0.4, decay=0.5) => { if(!audioCtx) return; const {tone, timbre} = constellationData[id]; play(tone, timbre, dur); for (let i=1; i<=count; i++) { setTimeout(() => play(tone, timbre, dur, 0.15*Math.pow(decay,i)), delay*1000*i); }};
+    const startFullDrone = () => { if(!audioCtx) return; Object.values(constellationData).filter(c=>c.breath).forEach(c => { let o=audioCtx.createOscillator(), g=audioCtx.createGain(); o.type="sine"; o.frequency.value=c.tone; let lfo=audioCtx.createOscillator(), lg=audioCtx.createGain(); lfo.type="sine"; lfo.frequency.value=0.2; lg.gain.value=1.5; lfo.connect(lg).connect(o.frequency); let b=audioCtx.createOscillator(), bg=audioCtx.createGain(); b.type="sine"; b.frequency.value=c.breath; bg.gain.value=0.04; b.connect(bg).connect(g.gain); g.gain.value=0.08; o.connect(g).connect(audioCtx.destination); o.start(); lfo.start(); b.start(); activeNodes[c.tone] = o; }); ["OGY","OGM"].forEach(id => { const {tone, timbre} = constellationData[id]; let o=audioCtx.createOscillator(), g=audioCtx.createGain(); o.type=timbre; o.frequency.value=tone; activeNodes[tone] = o; const ghostFade = () => { if (!tl || !tl.isActive()) return; setTimeout(() => { o.detune.setValueAtTime((Math.random()*30-15), audioCtx.currentTime); gsap.to(g.gain, {value:0.12, duration:4, yoyo:true, repeat:1, onComplete:ghostFade}); }, (Math.random()*10+5)*1000); }; g.gain.value=0.0; o.connect(g).connect(audioCtx.destination); o.start(); ghostFade(); });};
+    const stopAllAudio = () => { if(!audioCtx) return; Object.values(activeNodes).forEach(n => n.stop()); };
+
+    // --- Animation Timeline ---
+    const tl = gsap.timeline({ paused: true, onComplete: () => { 
+        stopAllAudio();
+        gsap.to("#info", { text: "Click to Begin the Ritual", duration: 1 });
+        tl.invalidate(); 
+        } 
+    });
+    const getPath = (id) => document.getElementById(id).getAttribute("d");
+
+    function buildTimeline(){
+        tl.clear();
+        // Phase 0: Stillness (Initial State)
+        tl.set("#dual-trees, #container", { opacity: 0.05 })
+          .set("#glyph-field text", { opacity: () => Math.random() * 0.1 })
+          .set(["#nodes > *", "#labels > *", "#person-paths > *", "#elohim-container", "#sparks > *"], { opacity: 0 });
+
+        // Phase 1: Genesis of Light
+        tl.addLabel("genesis")
+          .to("#genesis", { attr: { d: getPath("point") }, opacity: 1, duration: 2 })
+          .to("#genesis", { attr: { d: getPath("line") }, duration: 2, ease: "none" })
+          .to("#genesis", { attr: { d: getPath("triangle") }, duration: 2, ease: "none" })
+          .to("#genesis", { attr: { d: getPath("tetrahedron") }, duration: 2, ease: "none" })
+          .to("#genesis", { attr: { d: getPath("pentagram") }, duration: 2, ease: "none" })
+          .to("#genesis", { attr: { d: getPath("unicursal") }, duration: 2, ease: "none" });
+
+        // Phase 2: Ignition & The Chorus
+        tl.addLabel("ignition")
+          .to("#genesis", { opacity: 0, duration: 2 }, "ignition")
+          .to("#container, #dual-trees", { opacity: 0.6, duration: 3, ease: "power3.in" }, "ignition")
+          .call(startFullDrone, [], "ignition")
+          .to("#sparks > *", {opacity: 1}, "ignition");
+
+        tl.to(".spark:nth-child(1)", { duration: 12, ease: "linear", motionPath: { path: "M 0,-180 L 100,-140 L 100,-60 L 0,-40 L 0,0 L 0,40 L -100,120 L -100,140 L 0, 180" } }, "ignition");
+        tl.to(".spark:nth-child(2)", { duration: 12, ease: "linear", motionPath: { path: "M 0,280 L 0,200 L -100,120 L -100,-60 L 0,-40 L 100, -120 L 0,-200 L 0, -280" } }, "ignition");
+        
+        const nodeOrder = ["BAM", "AR", "OGM", "OGY", "JAC", "ARR", "CRUZ"];
+        nodeOrder.forEach((id, i) => {
+            const activationTime = `ignition+=${1.5 + i * 1.5}`;
+            tl.to([`#${id}`, `#${id}_label`], { opacity: 1, duration: 1 }, activationTime);
+            const path = document.getElementById(`path-${id}`);
+            if(path) {
+                const len = path.getTotalLength();
+                tl.fromTo(path, {strokeDasharray: len, strokeDashoffset: len, opacity: 1}, {strokeDashoffset: 0, duration: 3, ease:"power1.inOut"}, activationTime);
+            }
+
+            if(id === 'OGY') { tl.call(()=>play(constellationData.OGY.tone, constellationData.OGY.timbre, 2.5), [], "<"); tl.to(`#${id}`, { opacity: 0.5, scale: 1.2, repeat: 3, yoyo: true, duration: 0.8, ease:"sine.inOut" }, "<"); }
+            else if(id === 'ARR') { tl.call(()=>playWithEcho('ARR',1.5,1,0.8,0.4), [], "<"); tl.to(`#${id}`, {scale:1.2, repeat:1, yoyo:true, duration:0.8}, "<0.8"); }
+            else if(id === 'JAC') { tl.call(()=>playWithEcho('JAC',1.5,3,0.3,0.6), [], "<"); tl.to(`#${id}`, {scale:1.1, repeat:3, yoyo:true, duration:0.3}, "<0.2"); }
+            else { tl.call(()=>play(constellationData[id].tone, constellationData[id].timbre, 1.5), [], "<"); }
+        });
+        
+        // Phase 3: Refraction Beyond the Veil
+        tl.addLabel("refraction", "+=3")
+          .to("#container path:nth-of-type(odd)", { rotation: 360, transformOrigin: "center center", duration: 60, ease: "linear", repeat: -1 }, "refraction")
+          .to("#container path:nth-of-type(even)", { rotation: -360, transformOrigin: "center center", duration: 60, ease: "linear", repeat: -1 }, "refraction");
+
+        const rippleMap = [ {id:"halo1", src:"BAM"}, {id:"halo2", src:"AR"}, {id:"halo3", src:"OGM"}, {id:"halo4", src:"OGY"}, {id:"halo5", src:"JAC"}, {id:"halo6", src:"ARR"}, {id:"halo7", src:"CRUZ"} ];
+        rippleMap.forEach((r, i) => {
+            const data = constellationData[r.src];
+            tl.fromTo("#" + r.id, { opacity: 0, attr: { r: 50 }, stroke: data.color }, { opacity: 0.7, attr: { r: 280 }, duration: (data.breath ? 4 / (data.breath * 100) : 3), ease: "sine.out", onStart: () => play(data.tone, data.timbre, 2) }, `refraction+=${i * 0.5}`);
+            tl.to("#" + r.id, { opacity: 0, duration: 2.5, ease: "sine.in" }, "<=70%");
+        });
+        
+        const elohimLetters = "ELOHIM".split('');
+        const elohimLabel = document.getElementById('elohim-label');
+        elohimLabel.textContent = '';
+        elohimLetters.forEach(letter => {
+            const span = document.createElementNS(svgNS, 'tspan');
+            span.textContent = letter;
+            elohimLabel.appendChild(span);
+        });
+
+        tl.to("#elohim-container", { opacity: 1, duration: 1}, "refraction+=2")
+          .from("#elohim-container tspan", { x: () => Math.random()*100-50, y: () => Math.random()*100-50, opacity: 0, duration: 3, ease: "power3.out", stagger: 0.3}, "refraction+=2");
+
+        // Phase 4: The Ouroboros - The Return to the Beginning
+        tl.to(["#nodes > *", "#labels > *", "#elohim-container", "#person-paths > *", "#container", "#dual-trees", "#sparks > *"], {opacity: 0, duration: 4}, "+=8");
+        tl.to("#glyph-field text", { opacity: () => Math.random() * 0.1, stagger: 0.01, duration: 4}, "<");
+    }
+
+    // --- Start ---
+    info.addEventListener("click", () => {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        audioCtx.resume();
+        info.textContent = "Ritual in Progress...";
+      }
+      buildTimeline();
+      tl.play(0);
+    }, { once: true });
+  </script>
+</body>
+</html>
+
