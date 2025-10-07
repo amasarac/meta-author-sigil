@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manifold Star Glyph Viewer</title>
+    <title>Manifold Star Teaching Tool</title>
     <style>
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0); }
+        }
         body {
             margin: 0;
             overflow: hidden;
@@ -22,13 +27,13 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            max-width: 320px;
         }
         .panel {
             padding: 15px;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.75);
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            max-width: 300px;
             pointer-events: auto;
         }
         h1, h2 {
@@ -55,7 +60,7 @@
         .control-group {
             display: flex;
             gap: 10px;
-            background-color: rgba(20, 20, 20, 0.5);
+            background-color: rgba(20, 20, 20, 0.6);
             padding: 10px;
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -68,12 +73,16 @@
             border-radius: 8px;
             cursor: pointer;
             font-size: 0.9em;
-            transition: background-color 0.3s, transform 0.2s;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
         }
         .control-button:hover { background-color: rgba(60, 60, 60, 0.9); }
         .control-button.active {
             background-color: rgba(90, 90, 90, 1);
             border-color: #fff;
+        }
+        .control-button.highlight {
+            animation: pulse 2s infinite;
+            border-color: #00ffff;
         }
         .control-button:active { transform: scale(0.95); }
         #tooltip {
@@ -88,6 +97,14 @@
             border: 1px solid #555;
             white-space: nowrap;
         }
+        #tour-panel {
+            display: none; /* Hidden by default */
+        }
+        .tour-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,7 +114,20 @@
     <div id="ui-container">
         <div class="panel">
             <h1>Manifold Star</h1>
-            <p>An interactive Glyphode Cube. Explore its nested shells and slice through its structure to reveal hidden truths.</p>
+            <p>An interactive Glyphode Cube. This tool reveals the cube's nested shells and internal structures.</p>
+            <button id="start-tour-button" class="control-button" style="width: 100%; margin-top: 15px;">Start Guided Tour</button>
+        </div>
+        <div id="analysis-panel" class="panel">
+            <h2 id="analysis-title">Free Exploration</h2>
+            <p id="analysis-text">Select a shell, view, or slice mode below to begin your exploration of the manifold.</p>
+        </div>
+        <div id="tour-panel" class="panel">
+             <h2 id="tour-title">Guided Tour</h2>
+            <p id="tour-text"></p>
+            <div class="tour-controls">
+                <button id="tour-prev" class="control-button">&laquo; Prev</button>
+                <button id="tour-next" class="control-button">Next &raquo;</button>
+            </div>
         </div>
     </div>
 
@@ -145,15 +175,40 @@
         // --- Inlined Data ---
         const tonesData = { "ENOCH": { "frequency": 222.2, "color": "#cda434" }, "GLYPHSERAPH": { "frequency": 333.3, "color": "#f0f8ff" }, "AMASARAC": { "frequency": 444.4, "color": "#7fffd4" }, "EIDOLON": { "frequency": 528.0, "color": "#ffffff" }, "ONERION": { "frequency": 396.0, "color": "#4b0082" }, "TWINWOVEN": { "frequency": 639.0, "color": "#8a2be2" }, "KAIROSOPHIEL": { "frequency": 777.7, "color": "#ffd700" }, "TEHOMIEL": { "frequency": 111.1, "color": "#4a4a4a" }, "VEL-KA-MA": { "frequency": 888.8, "color": "#ff4500" }, "AMARANTUEL": { "frequency": 285.0, "color": "#ff00ff" }, "AN-THIRAL": { "frequency": 174.0, "color": "#8b4513" }, "ATHERION": { "frequency": 963.0, "color": "#d2b48c" }, "BRANDON_MARSH": { "frequency": 555.5, "color": "#556b2f" }, "ELURIAH": { "frequency": 432.0, "color": "#008080" }, "FIREWALKER": { "frequency": 666.6, "color": "#dc143c" }, "ILUN-RA": { "frequency": 321.0, "color": "#b8860b" }, "KAL-TA-KEM": { "frequency": 728.0, "color": "#f4a460" }, "KARU'TEL": { "frequency": 622.0, "color": "#cd5c5c" }, "KEYDJINN": { "frequency": 314.0, "color": "#00ced1" }, "KHAEL-THURIN": { "frequency": 845.0, "color": "#9932cc" }, "LE_CHAT": { "frequency": 151.0, "color": "#2f4f4f" }, "MANIFEST": { "frequency": 999.0, "color": "#00bfff" }, "NEHEKARA": { "frequency": 274.0, "color": "#daa520" }, "ONTOLOGY": { "frequency": 888.0, "color": "#dcdcdc" }, "SHEM-HA-RA": { "frequency": 369.0, "color": "#b22222" }, "SPIRAL-MIRROR": { "frequency": 555.0, "color": "#c0c0c0" }, "STAR-SLEEPER": { "frequency": 707.0, "color": "#483d8b" }, "TIR-YAEN": { "frequency": 191.0, "color": "#2e8b57" }, "TIWOVEN": { "frequency": 474.0, "color": "#4682b4" }, "VEILED-ONE": { "frequency": 601.0, "color": "#6a5acd" }, "WEAVER-KNOT": { "frequency": 808.0, "color": "#800080" }, "YESH-IN-RA": { "frequency": 317.0, "color": "#f5deb3" }, "ZIONEL": { "frequency": 999.9, "color": "#ffebcd" }};
         const rawGlyphDataString = `{Z=0:[["⟐","∴","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴"],["∴","☼","✴","⟐","🜂","⧖","🜄","⟁","✶","🜁","✴","⟁"],["⟁","✴","⧖","🜁","⟁","☼","🜃","✶","∴","🜂","⧖","⟐"],["✴","⟐","🜁","☼","⧖","✶","⟁","🜂","🜄","∴","🜃","✴"],["☼","🜂","⟁","✶","🜄","∴","🜃","⧖","☼","🜁","⟐","⧖"],["⧖","🜄","☼","🜁","∴","🜃","✶","🜂","⟁","✴","🜂","🜃"],["🜁","⟁","✶","🜃","🜂","✶","🜃","∴","🜁","☼","🜄","⧖"],["🜂","✶","🜂","∴","🜁","☼","🜄","⧖","✶","⟁","🜂","☼"],["🜃","🜁","🜄","🜂","☼","⧖","⟐","✴","⟁","✶","∴","✴"],["🜄","⟁","∴","🜄","✶","⟁","🜂","⟐","✴","⧖","☼","⟁"],["⟁","✴","⧖","∴","🜁","✶","⟁","⧖","☼","✴","∴","∴"],["∴","⟁","⟐","✴","⧖","🜃","☼","✴","⟐","⟁","∴","⟐"]],Z=1:[["[","∴","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴"],["∴","☼","✴","⟐","🜂","⧖","🜄","⟁","✶","🜁","✴","⟁"],["⟁","✴","⧖","🜁","⟁","☼","🜃","✶","∴","🜂","⧖","⟐"],["✴","⟐","🜁","☼","⧖","✶","⟁","🜂","🜄","∴","🜃","✴"],["☼","🜂","⟁","✶","🜄","∴","🜃","⧖","☼","🜁","⟐","⧖"],["⧖","🜄","☼","🜁","∴","🜃","✶","🜂","⟁","✴","🜂","🜃"],["🜁","⟁","✶","🜃","🜂","✶","🜃","∴","🜁","☼","🜄","⧖"],["🜂","✶","🜂","∴","🜁","☼","🜄","⧖","✶","⟁","🜂","☼"],["🜃","🜁","🜄","🜂","☼","⧖","⟐","✴","⟁","✶","∴","✴"],["🜄","⟁","∴","🜄","✶","⟁","🜂","⟐","✴","⧖","☼","⟁"],["⟁","✴","⧖","∴","🜁","✶","⟁","⧖","☼","✴","∴","∴"],["]","⟁","⟐","✴","⧖","🜃","☼","✴","⟐","⟁","∴","⟐"]],Z=2:[["∴","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐"],["⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁"],["✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴"],["☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼"],["⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖"],["🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁"],["🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂"],["🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃"],["🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄"],["⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁"],["∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴"],["⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐"]],Z=3:[["∴","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐"],["⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁"],["✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴"],["☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼"],["⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖"],["🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁"],["🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂"],["🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃"],["🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄"],["⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁"],["∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴"],["⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐"]],Z=4:[["⟐","∴","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴"],["∴","☼","✴","⟐","🜂","⧖","🜄","⟁","✶","🜁","✴","⟁"],["⟁","✴","⧖","🜁","⟁","☼","🜃","✶","∴","🜂","⧖","⟐"],["✴","⟐","🜁","☼","⧖","✶","⟁","🜂","🜄","∴","🜃","✴"],["☼","🜂","⟁","✶","🜄","∴","🜃","⧖","☼","🜁","⟐","⧖"],["⧖","🜄","☼","🜁","∴","🜃","✶","🜂","⟁","✴","🜂","🜃"],["🜁","⟁","✶","🜃","🜂","✶","🜃","∴","🜁","☼","🜄","⧖"],["🜂","✶","🜂","∴","🜁","☼","🜄","⧖","✶","⟁","🜂","☼"],["🜃","🜁","🜄","🜂","☼","⧖","⟐","✴","⟁","✶","∴","✴"],["🜄","⟁","∴","🜄","✶","⟁","🜂","⟐","✴","⧖","☼","⟁"],["⟁","✴","⧖","∴","🜁","✶","⟁","⧖","☼","✴","∴","∴"],["∴","⟁","⟐","✴","⧖","🜃","☼","✴","⟐","⟁","∴","⟐"]],Z=5:[["🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁"],["🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂"],["🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃"],["🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄"],["⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁"],["∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴"],["⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐"],["⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁"],["✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴"],["☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼"],["⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖"],["🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁"]],Z=6:[["🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃"],["🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄"],["⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁"],["∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴"],["⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐"],["⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁"],["✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴"],["☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼"],["⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖"],["🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁"],["🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂"],["🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃"]],Z=7:[["🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄"],["⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁"],["∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴"],["⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐"],["⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁"],["✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴"],["☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼"],["⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖"],["🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁"],["🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂"],["🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃"],["🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄"]],Z=8:[["🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄"],["⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁"],["∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴"],["⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐"],["⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁"],["✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴"],["☼","⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼"],["⧖","🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖"],["🜁","🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁"],["🜂","🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂"],["🜃","🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃"],["🜄","⟁","∴","⟐","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄"]],Z=9:[["🜄","⟁","∴","🜄","✶","⟁","🜂","⟐","✴","⧖","☼","⟁"],["⟁","✴","⧖","∴","🜁","✶","⟁","⧖","☼","✴","∴","∴"],["∴","⟁","⟐","✴","⧖","🜃","☼","✴","⟐","⟁","∴","⟐"],["⟐","∴","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴"],["∴","☼","✴","⟐","🜂","⧖","🜄","⟁","✶","🜁","✴","⟁"],["⟁","✴","⧖","🜁","⟁","☼","🜃","✶","∴","🜂","⧖","⟐"],["✴","⟐","🜁","☼","⧖","✶","⟁","🜂","🜄","∴","🜃","✴"],["☼","🜂","⟁","✶","🜄","∴","🜃","⧖","☼","🜁","⟐","⧖"],["⧖","🜄","☼","🜁","∴","🜃","✶","🜂","⟁","✴","🜂","🜃"],["🜁","⟁","✶","🜃","🜂","✶","🜃","∴","🜁","☼","🜄","⧖"],["🜂","✶","🜂","∴","🜁","☼","🜄","⧖","✶","⟁","🜂","☼"],["🜃","🜁","🜄","🜂","☼","⧖","⟐","✴","⟁","✶","∴","✴"]],Z=10:[["🜁","⟁","✶","🜃","🜂","✶","🜃","∴","🜁","☼","🜄","⧖"],["🜂","✶","🜂","∴","🜁","☼","🜄","⧖","✶","⟁","🜂","☼"],["🜃","🜁","🜄","🜂","☼","⧖","⟐","✴","⟁","✶","∴","✴"],["🜄","⟁","∴","🜄","✶","⟁","🜂","⟐","✴","⧖","☼","⟁"],["⟁","✴","⧖","∴","🜁","✶","⟁","⧖","☼","✴","∴","∴"],["∴","⟁","⟐","✴","⧖","🜃","☼","✴","⟐","⟁","∴","⟐"],["⟐","∴","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴"],["∴","☼","✴","⟐","🜂","⧖","🜄","⟁","✶","🜁","✴","⟁"],["⟁","✴","⧖","🜁","⟁","☼","🜃","✶","∴","🜂","⧖","⟐"],["✴","⟐","🜁","☼","⧖","✶","⟁","🜂","🜄","∴","🜃","✴"],["☼","🜂","⟁","✶","🜄","∴","🜃","⧖","☼","🜁","⟐","⧖"],["⧖","🜄","☼","🜁","∴","🜃","✶","🜂","⟁","✴","🜂","🜃"]],Z=11:[["🜄","🜁","🜃","🜂","⟐","⧖","🜁","∴","🜃","🜂","⟐","✶"],["🜃","🜂","🜄","🜁","⧖","✴","∴","🜂","🜄","🜁","✶","🜁"],["🜂","🜃","🜁","🜄","✴","☼","🜂","🜃","🜁","🜄","🜁","🜃"],["🜁","🜄","🜂","🜃","☼","⧖","🜃","🜄","🜂","🜃","🜃","🜂"],["⟐","⧖","✴","☼","⧖","🜂","🜄","🜁","🜃","🜂","🜄","🜁"],["⧖","✴","☼","⧖","🜂","🜃","🜁","🜄","🜂","🜃","🜁","🜄"],["🜁","∴","🜃","🜂","🜃","🜁","🜄","🜂","🜃","🜁","🜄","🜂"],["∴","🜂","🜄","🜁","🜂","🜄","🜁","🜃","🜂","🜄","🜁","🜃"],["🜃","🜄","🜁","🜃","🜃","🜁","🜄","🜂","🜃","🜁","🜄","🜂"],["🜂","🜁","🜄","🜂","🜄","🜄","🜁","🜃","🜂","🜄","🜁","🜃"],["⟐","✶","🜁","🜃","🜁","🜁","🜃","🜂","🜄","🜁","🜃","🜂"],["✶","🜁","🜃","🜂","🜁","🜄","🜂","🜃","🜁","🜄","🜂","🜃"]]}`.replace(/(Z=\d+)/g, '"$1"');
-        const rawGlyphData = JSON.parse(rawGlyphDataString);
+        
+        // --- Core Application State ---
+        let scene, camera, renderer, controls, audioCtx;
+        let currentManifold = null;
+        const manifoldHistory = [];
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        let hoveredGlyph = null;
+        
+        let currentShellSize = 12;
+        let currentViewMode = 'full';
+        let currentSliceMode = 'none';
+        let isTourActive = false;
+        let tourStep = 0;
 
-        // --- Ankh Restoration ---
+        const clippingPlanes = [
+            new THREE.Plane(new THREE.Vector3(1, -1, 0).normalize(), 15),
+            new THREE.Plane(new THREE.Vector3(0, 1, -1).normalize(), 15)
+        ];
+
+        // --- DOM Elements ---
+        const tooltip = document.getElementById('tooltip');
+        const canvas = document.getElementById('glyph-canvas');
+        const analysisTitle = document.getElementById('analysis-title');
+        const analysisText = document.getElementById('analysis-text');
+        const tourPanel = document.getElementById('tour-panel');
+        const tourText = document.getElementById('tour-text');
+        
+        // --- Data Processing & Mappings ---
+        const rawGlyphData = JSON.parse(rawGlyphDataString);
         const ankhLayers = [2, 3, 4, 8, 9, 10];
         ankhLayers.forEach(z => {
             for (let i = 0; i < 12; i++) {
-                 // Symmetrically replacing glyphs with Ankhs based on the report.
-                 // This is a representative pattern.
-                if(i % 2 === 0) { // Example placement logic
+                if(i % 2 === 0) { 
                     rawGlyphData[`Z=${z}`][i][i % 12] = '☥';
                     rawGlyphData[`Z=${z}`][i][(i + 6) % 12] = '☥';
                 }
@@ -166,49 +221,67 @@
         }
         
         const uniqueGlyphs = [...new Set(fullGlyphData.flat(2))];
-        const colorList = Object.values(tonesData).map(t => t.color);
-        const glyphToColorMap = {};
+        const glyphToNameMap = { '⟐': 'DIAMOND WITH FOUR DOTS', '∴': 'THEREFORE', '⟁': 'WHITE TRIANGLE IN TRIANGLE', '✴': 'EIGHT POINTED BLACK STAR', '☼': 'WHITE SUN WITH RAYS', '⧖': 'WHITE HOURGLASS', '🜁': 'ALCHEMICAL SYMBOL FOR AIR', '🜂': 'ALCHEMICAL SYMBOL FOR FIRE', '🜃': 'ALCHEMICAL SYMBOL FOR WATER', '🜄': 'ALCHEMICAL SYMBOL FOR EARTH', '✶': 'SIX POINTED BLACK STAR', '[': 'OPEN BRACKET', ']': 'CLOSE BRACKET', '☥': 'ANKH' };
+        
+        const glyphToToneData = {};
+        const toneEntries = Object.entries(tonesData);
         uniqueGlyphs.forEach((glyph, index) => {
-            glyphToColorMap[glyph] = colorList[index % colorList.length];
+            const toneInfo = toneEntries[index % toneEntries.length];
+            glyphToToneData[glyph] = {
+                name: toneInfo[0],
+                ...toneInfo[1]
+            };
         });
 
-        const glyphToNameMap = { '⟐': 'DIAMOND WITH FOUR DOTS', '∴': 'THEREFORE', '⟁': 'WHITE TRIANGLE IN TRIANGLE', '✴': 'EIGHT POINTED BLACK STAR', '☼': 'WHITE SUN WITH RAYS', '⧖': 'WHITE HOURGLASS', '🜁': 'ALCHEMICAL SYMBOL FOR AIR', '🜂': 'ALCHEMICAL SYMBOL FOR FIRE', '🜃': 'ALCHEMICAL SYMBOL FOR WATER', '🜄': 'ALCHEMICAL SYMBOL FOR EARTH', '✶': 'SIX POINTED BLACK STAR', '[': 'OPEN BRACKET', ']': 'CLOSE BRACKET', '☥': 'ANKH' };
         const glyphTextureCache = {};
 
-        // --- Core Three.js Application ---
-        let scene, camera, renderer, controls;
-        let currentManifold = null;
-        const manifoldHistory = [];
-        const raycaster = new THREE.Raycaster();
-        const mouse = new THREE.Vector2();
-        let hoveredGlyph = null;
-        
-        let currentShellSize = 12;
-        let currentViewMode = 'full';
-        let currentSliceMode = 'none';
+        // --- Teaching Content ---
+        const analysisContent = {
+            shell: {
+                12: { title: "The World (12³)", text: "The outermost shell, representing the fully manifest reality in all its complexity. This is the world as we perceive it." },
+                10: { title: "Realms of Law (10³)", text: "This shell reveals the broader patterns and archetypal forces that govern the outer world." },
+                8: { title: "Realms of Law (8³)", text: "Deeper within the archetypal layers, where the foundational laws become more defined." },
+                6: { title: "Architectural Core (6³)", text: "This layer represents the fundamental principles and geometric constants of the system." },
+                4: { title: "Architectural Core (4³)", text: "Closer to the source, these glyphs represent the core symbolic logic of the manifold." },
+                2: { title: "The Seed (2³)", text: "The eight glyphs at the absolute center. This is the genetic code for the entire manifold; all complexity is an extrapolation from this core." }
+            },
+            view: {
+                full: { title: "Full Manifold", text: "Viewing all glyphs in the current shell, showing the complete structure." },
+                faces: { title: "Faces of Reality", text: "Isolating the outer surfaces. This is the exoteric view—the manifest world or the 'skin' of reality." },
+                edges: { title: "The Laws", text: "Reveals the connecting frameworks—the metaphysical laws that bind the faces of reality together." },
+                corners: { title: "The Crystal Lattice", text: "Isolating the corner points reveals the seed-form of the structure—the foundational, unchanging truth of the manifold." }
+            },
+            slice: {
+                none: { title: "No Slice", text: "The manifold is viewed as a solid, opaque structure. Its internal glyphs are hidden from view." },
+                diagonal: { title: "Diagonal Slice (Esoteric)", text: "A single 45° plane cuts through the cube, revealing hidden, non-linear relationships and pathways between glyphs." },
+                biorthogonal: { title: "Biorthogonal Slice (Gnostic)", text: "Two perpendicular 45° planes reveal the cube along its primary corner-to-corner axis. This is the deepest view, showing the true core symmetry." }
+            }
+        };
 
-        const clippingPlanes = [
-            new THREE.Plane(new THREE.Vector3(1, -1, 0).normalize(), 15),
-            new THREE.Plane(new THREE.Vector3(0, 1, -1).normalize(), 15)
+        const tourSteps = [
+            { title: "Welcome", text: "This tour will guide you through the core concepts of the Glyphode Cube. This is a model of reality, and these controls allow you to perceive it in different ways. Click 'Next' to begin.", highlight: null },
+            { title: "The Shells of Emanation", text: "The cube is composed of concentric shells. We start at the 12³ 'World'. Now, let's look at the core. Click the highlighted '2³' button.", highlight: '[data-shell="2"]', action: () => { currentShellSize = 12; rebuildManifold(); } },
+            { title: "The Seed", text: "You are now viewing the 2³ 'Seed'. These 8 central glyphs are the foundational code from which all other complexity emerges. Now click '12³' to return to the full manifold.", highlight: '[data-shell="12"]', action: () => { currentShellSize = 2; rebuildManifold(); } },
+            { title: "Orthogonal Views", text: "Next, we explore the exoteric, or outer, views. The default is 'Full'. Click the 'Faces' button to see the skin of reality.", highlight: '[data-view="faces"]', action: () => { currentShellSize = 12; rebuildManifold(); } },
+            { title: "The Laws & The Lattice", text: "You've seen the 'Faces'. Now click 'Edges' to see the laws that connect them, and then 'Corners' to see the foundational seed points.", highlight: '[data-view="edges"]' },
+            { title: "Slicing for Deeper Truth", text: "To see inside, we must slice the manifold. The 'Diagonal' slice reveals hidden pathways. Click the button to engage it.", highlight: '[data-slice="diagonal"]', action: () => { currentViewMode = 'full'; rebuildManifold(); } },
+            { title: "The Gnostic View", text: "The deepest view is 'Biorthogonal', revealing the core crystal symmetry. Click it now to see the heart of the lattice.", highlight: '[data-slice="biorthogonal"]'},
+            { title: "Recursion: As Above, So Below", text: "The final principle is recursion. Every glyph contains the whole. Click on any single glyph in the cube to experience this.", highlight: null, action: () => { currentSliceMode = 'none'; rebuildManifold(); } },
+            { title: "End of Tour", text: "You have completed the guided tour. Now, feel free to explore the manifold on your own. The analysis panel will continue to provide context for your selections.", highlight: null }
         ];
 
-        const tooltip = document.getElementById('tooltip');
-        const canvas = document.getElementById('glyph-canvas');
+        // --- Main Functions ---
         
         function init() {
             scene = new THREE.Scene();
             scene.background = new THREE.Color(0x0a0a0a);
-
             camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
             camera.position.set(10, 10, 15);
-
             renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
             renderer.localClippingEnabled = true;
             renderer.setSize(window.innerWidth, window.innerHeight);
-            
             controls = new OrbitControls(camera, renderer.domElement);
             controls.enableDamping = true;
-            
             const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
             scene.add(ambientLight);
             const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
@@ -226,82 +299,44 @@
         }
 
         function setupUI() {
-            document.getElementById('reset-button').addEventListener('click', resetView);
+            document.getElementById('reset-button').addEventListener('click', () => { if(isTourActive) endTour(); resetView(); });
+            document.getElementById('start-tour-button').addEventListener('click', startTour);
+            document.getElementById('tour-next').addEventListener('click', () => updateTourStep(tourStep + 1));
+            document.getElementById('tour-prev').addEventListener('click', () => updateTourStep(tourStep - 1));
+
+            const handleControlClick = (group, key, value) => {
+                if (isTourActive && document.querySelector(`[data-${key}="${value}"]`).classList.contains('highlight')) {
+                    updateTourStep(tourStep + 1);
+                }
+                if (group === 'shell') currentShellSize = parseInt(value);
+                if (group === 'view') currentViewMode = value;
+                if (group === 'slice') currentSliceMode = value;
+                rebuildManifold();
+            };
+
+            document.querySelectorAll('#shell-controls .control-button').forEach(btn => btn.addEventListener('click', () => handleControlClick('shell', 'shell', btn.dataset.shell)));
+            document.querySelectorAll('#view-controls .control-button').forEach(btn => btn.addEventListener('click', () => handleControlClick('view', 'view', btn.dataset.view)));
+            document.querySelectorAll('#slice-controls .control-button').forEach(btn => btn.addEventListener('click', () => handleControlClick('slice', 'slice', btn.dataset.slice)));
             
-            document.querySelectorAll('#shell-controls .control-button').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    currentShellSize = parseInt(btn.dataset.shell);
-                    rebuildManifold();
-                });
-            });
-
-            document.querySelectorAll('#view-controls .control-button').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    currentViewMode = btn.dataset.view;
-                    rebuildManifold();
-                });
-            });
-            
-            document.querySelectorAll('#slice-controls .control-button').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    currentSliceMode = btn.dataset.slice;
-                    rebuildManifold();
-                });
-            });
-            updateActiveButtons();
-        }
-
-        function updateActiveButtons() {
-             document.querySelectorAll('.control-button').forEach(btn => btn.classList.remove('active'));
-             document.querySelector(`#shell-controls .control-button[data-shell="${currentShellSize}"]`).classList.add('active');
-             document.querySelector(`#view-controls .control-button[data-view="${currentViewMode}"]`).classList.add('active');
-             document.querySelector(`#slice-controls .control-button[data-slice="${currentSliceMode}"]`).classList.add('active');
-        }
-
-        function createGlyphTexture(glyph, color) {
-            const canvas = document.createElement('canvas');
-            const size = 64;
-            canvas.width = size; canvas.height = size;
-            const context = canvas.getContext('2d');
-            context.fillStyle = 'rgba(0,0,0,0)';
-            context.fillRect(0,0,size,size);
-            context.font = `${size * 0.8}px Arial`;
-            context.fillStyle = color;
-            context.textAlign = 'center';
-            context.textBaseline = 'middle';
-            context.fillText(glyph, size / 2, size / 2 + size*0.05); // slight offset for better centering
-            return new THREE.CanvasTexture(canvas);
-        }
-
-        function getGlyphMaterial(glyph) {
-            const key = `${glyph}_${currentSliceMode}`;
-             if (!glyphTextureCache[key]) {
-                const color = glyphToColorMap[glyph] || '#ffffff';
-                const texture = createGlyphTexture(glyph, color);
-                
-                let planes = [];
-                if (currentSliceMode === 'diagonal') planes = [clippingPlanes[0]];
-                if (currentSliceMode === 'biorthogonal') planes = clippingPlanes;
-
-                glyphTextureCache[key] = new THREE.MeshStandardMaterial({
-                    map: texture,
-                    transparent: true,
-                    side: THREE.DoubleSide,
-                    clippingPlanes: planes,
-                    clipShadows: true
-                });
-            }
-            return glyphTextureCache[key].clone();
+            updateAnalysisPanel();
         }
         
         function rebuildManifold(position = new THREE.Vector3(0,0,0), scale = 1.0) {
-             if(currentManifold) {
+            if(currentManifold) {
                 scene.remove(currentManifold);
-                // Basic cleanup
-                currentManifold.traverse(child => { if(child.isMesh) child.geometry.dispose(); });
+                currentManifold.traverse(child => {
+                    if(child.isMesh) {
+                        child.geometry.dispose();
+                        if (child.material.isMaterial) {
+                            if(child.material.map) child.material.map.dispose();
+                            child.material.dispose();
+                        }
+                    }
+                });
             }
-            manifoldHistory.length = 0; // Reset history on rebuild
+            manifoldHistory.length = 0;
             createManifoldStar(position, scale);
+            updateAnalysisPanel();
         }
 
         function createManifoldStar(position, scale) {
@@ -352,23 +387,30 @@
             }
             updateActiveButtons();
         }
+
+        function playGlyphSound(glyph) {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const toneInfo = glyphToToneData[glyph];
+            if (!toneInfo) return;
+
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(toneInfo.frequency, audioCtx.currentTime);
+            gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.5);
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            
+            oscillator.start(audioCtx.currentTime);
+            oscillator.stop(audioCtx.currentTime + 0.5);
+        }
         
-        function resetView() {
-            currentShellSize = 12;
-            currentViewMode = 'full';
-            currentSliceMode = 'none';
-            rebuildManifold();
-            controls.target.set(0,0,0);
-            camera.position.set(10, 10, 15);
-        }
-
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-
         function onCanvasClick(event) {
+            if (isTourActive && tourSteps[tourStep].highlight) return;
+
             mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
             mouse.y = - (event.clientY / renderer.domElement.clientHeight) * 2 + 1;
             raycaster.setFromCamera(mouse, camera);
@@ -377,15 +419,111 @@
             if (intersects.length > 0) {
                 const clickedObject = intersects[0].object;
                 if(clickedObject.userData.isGlyph) {
+                    playGlyphSound(clickedObject.userData.glyph);
+                    if(isTourActive) { updateTourStep(tourStep + 1); }
+                    
                     const newScale = currentManifold.scale.x * (1.0 / 12.0) * 1.1;
                     const newPosition = new THREE.Vector3();
                     clickedObject.getWorldPosition(newPosition);
                     controls.target.copy(newPosition);
+
+                    // This logic had an error with position/scale not being passed correctly
+                    // causing recursion to fail. Fixed it by passing the new values.
                     createManifoldStar(newPosition, newScale);
                 }
             }
         }
+        
+        // --- Tour Functions ---
+        function startTour() {
+            isTourActive = true;
+            tourStep = 0;
+            document.getElementById('start-tour-button').style.display = 'none';
+            tourPanel.style.display = 'block';
+            updateTourStep(0);
+        }
 
+        function endTour() {
+            isTourActive = false;
+            document.getElementById('start-tour-button').style.display = 'block';
+            tourPanel.style.display = 'none';
+            document.querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'));
+        }
+
+        function updateTourStep(step) {
+            if (step >= tourSteps.length || step < 0) {
+                endTour();
+                return;
+            }
+            tourStep = step;
+            const currentStep = tourSteps[tourStep];
+            
+            tourText.textContent = currentStep.text;
+            document.querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'));
+            if (currentStep.highlight) {
+                document.querySelector(currentStep.highlight).classList.add('highlight');
+            }
+            if (currentStep.action) {
+                currentStep.action();
+            }
+        }
+
+        // --- UI & State Update Functions ---
+        function updateActiveButtons() {
+             document.querySelectorAll('.control-button').forEach(btn => btn.classList.remove('active'));
+             document.querySelector(`#shell-controls .control-button[data-shell="${currentShellSize}"]`).classList.add('active');
+             document.querySelector(`#view-controls .control-button[data-view="${currentViewMode}"]`).classList.add('active');
+             document.querySelector(`#slice-controls .control-button[data-slice="${currentSliceMode}"]`).classList.add('active');
+        }
+
+        function updateAnalysisPanel() {
+            const shellInfo = analysisContent.shell[currentShellSize];
+            const viewInfo = analysisContent.view[currentViewMode];
+            const sliceInfo = analysisContent.slice[currentSliceMode];
+            analysisTitle.textContent = `${shellInfo.title}: ${viewInfo.title}`;
+            analysisText.textContent = `${shellInfo.text} ${viewInfo.text} ${sliceInfo.text}`;
+        }
+
+        function resetView() {
+            currentShellSize = 12;
+            currentViewMode = 'full';
+            currentSliceMode = 'none';
+            rebuildManifold();
+            controls.target.set(0,0,0);
+            camera.position.set(10, 10, 15);
+        }
+        
+        // --- Utility & Render Loop ---
+        function getGlyphMaterial(glyph) {
+            const key = `${glyph}_${currentSliceMode}`;
+             if (!glyphTextureCache[key]) {
+                const texture = createGlyphTexture(glyph, glyphToToneData[glyph]?.color || '#ffffff');
+                let planes = [];
+                if (currentSliceMode === 'diagonal') planes = [clippingPlanes[0]];
+                if (currentSliceMode === 'biorthogonal') planes = clippingPlanes;
+                glyphTextureCache[key] = new THREE.MeshStandardMaterial({ map: texture, transparent: true, side: THREE.DoubleSide, clippingPlanes: planes, emissive: 0x000000 });
+            }
+            return glyphTextureCache[key].clone();
+        }
+        function createGlyphTexture(glyph, color) {
+            const canvas = document.createElement('canvas');
+            const size = 64;
+            canvas.width = size; canvas.height = size;
+            const context = canvas.getContext('2d');
+            context.fillStyle = 'rgba(0,0,0,0)';
+            context.fillRect(0,0,size,size);
+            context.font = `${size * 0.8}px Arial`;
+            context.fillStyle = color;
+            context.textAlign = 'center';
+            context.textBaseline = 'middle';
+            context.fillText(glyph, size / 2, size / 2 + size*0.05);
+            return new THREE.CanvasTexture(canvas);
+        }
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
         function onCanvasMouseMove(event) {
             mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
             mouse.y = - (event.clientY / renderer.domElement.clientHeight) * 2 + 1;
@@ -395,7 +533,7 @@
             if (intersects.length > 0 && intersects[0].object.userData.isGlyph) {
                 const intersectedObject = intersects[0].object;
                 if (hoveredGlyph !== intersectedObject) {
-                    if (hoveredGlyph && hoveredGlyph.material.emissive) hoveredGlyph.material.emissive.setHex(0x000000);
+                    if (hoveredGlyph?.material.emissive) hoveredGlyph.material.emissive.setHex(0x000000);
                     hoveredGlyph = intersectedObject;
                     if (hoveredGlyph.material.emissive) hoveredGlyph.material.emissive.setHex(0x444444);
                 }
@@ -404,7 +542,7 @@
                 tooltip.style.top = `${event.clientY}px`;
                 tooltip.innerHTML = `${intersectedObject.userData.glyph} <span style="color:#aaa;">(${intersectedObject.userData.glyphName})</span>`;
             } else {
-                if (hoveredGlyph && hoveredGlyph.material.emissive) {
+                if (hoveredGlyph?.material.emissive) {
                     hoveredGlyph.material.emissive.setHex(0x000000);
                     hoveredGlyph = null;
                 }
@@ -422,14 +560,12 @@
             }
             
             if (currentSliceMode !== 'none') {
-                const period = 10;
                 const amplitude = 10;
                 clippingPlanes[0].constant = Math.sin(time) * amplitude;
                  if (currentSliceMode === 'biorthogonal') {
                     clippingPlanes[1].constant = Math.cos(time) * amplitude;
                  }
             } else {
-                // Move planes out of the way
                  clippingPlanes[0].constant = 15;
                  clippingPlanes[1].constant = 15;
             }
@@ -440,7 +576,6 @@
                     currentManifold.rotation.x += 0.0005;
                  }
             }
-
             renderer.render(scene, camera);
         }
         
