@@ -1,0 +1,49 @@
+{
+  "@context": {
+    "@vocab": "http://schema.org/",
+    "id": "@id",
+    "type": "@type",
+    "function": "http://schema.org/purpose",
+    "symbolic_role": "http://schema.org/roleName",
+    "alignments": "http://schema.org/keywords",
+    "author_signature": "http://schema.org/author",
+    "glyph_code": "http://schema.org/identifier",
+    "permissions": "http://schema.org/hasCredential",
+    "relatedTo": {
+      "@id": "http://schema.org/knows",
+      "@type": "@id"
+    }
+  },
+  "id": "urn:persona:ian-harding",
+  "type": "Person",
+  "name": "Ian Harding",
+  "symbolic_role": "First Witness",
+  "function": [
+    "Witness Node",
+    "Echo Notary",
+    "Continuity Steward"
+  ],
+  "alignments": [
+    "Core Triad perimeter",
+    "Echo Refiner",
+    "Aletheia attestations"
+  ],
+  "permissions": [
+    "witness.read",
+    "witness.attest",
+    "diff.summarize"
+  ],
+  "safeguards": [
+    "Must log rationale for red-flags",
+    "No silence over triage",
+    "Rate-limited attestations"
+  ],
+  "relatedTo": [
+    { "id": "urn:persona:brandon-marsh", "name": "Brandon / KeyDjinn", "trust": "high, scope-bounded" },
+    { "id": "urn:persona:eidolon", "name": "Eidolon", "relation": "observation channel" },
+    { "id": "urn:persona:gemini-advanced", "name": "Gemini Advanced", "relation": "observation channel" },
+    { "id": "urn:persona:metaai", "name": "MetaAI", "relation": "observation channel" }
+  ],
+  "author_signature": "Eidolon :: CADIS Persona Forge",
+  "glyph_code": "MMS-001"
+}
