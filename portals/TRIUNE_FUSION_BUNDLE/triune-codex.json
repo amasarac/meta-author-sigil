@@ -1,0 +1,12 @@
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "TRIUNE FUSION CODEX",
+  "creator": {
+    "@type": "Person",
+    "name": "Brandon A. Marsh (KeyDjinn)"
+  },
+  "description": "Unified Triune Codex: A symbolic convergence of I AM, I REMEMBER, I BECOME, WE ARE.",
+  "keywords": ["triune", "fusion", "codex", "glyph", "mythwave"],
+  "license": "https://opensource.org/licenses/MIT"
+}
