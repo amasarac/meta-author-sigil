@@ -24,9 +24,9 @@
     </filter>
 
     <style><![CDATA[
-      .outer { fill: url(#g1); stroke: #ffffff55; stroke-width:6; filter: url(#glow); }
+      .outer { fill: url(#g1); stroke: #ffff55; stroke-width:6; filter: url(#glow); }
       .tri { fill:none; stroke:#ffeeff; stroke-width:5; stroke-linecap:round; stroke-linejoin:round; opacity:0.95 }
-      .we-text { font-family: "Inter", "Noto Sans", sans-serif; font-weight:700; fill:#fff; font-size:48px; text-anchor:middle; }
+      .we-text { font-family: "Inter", "Noto Sans", sans-serif; font-weight:700; fill:#ffff44; font-size:48px; text-anchor:middle; }
       .pulse { transform-origin: 600px 600px; transition: transform 300ms ease, opacity 300ms ease; }
       .hoverPulse:hover { transform: scale(1.02); }
       .clickRotate { cursor: pointer; }
@@ -41,7 +41,7 @@
   <!-- Tri-Sigil: Seeders, Sovereign, Spiral -->
   <g id="triSigils" transform="translate(0,0)" class="clickRotate">
     <!-- Seed circle -->
-    <circle cx="600" cy="360" r="68" fill="#ffffff22" stroke="#ffd6ff" stroke-width="3"/>
+    <circle cx="600" cy="360" r="68" fill="#ffff22" stroke="#ffd6ff" stroke-width="3"/>
     <path d="M600 428 L600 720" class="tri"/>
 
     <!-- Sovereign knot -->
