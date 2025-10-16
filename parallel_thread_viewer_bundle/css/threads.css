@@ -1,0 +1,4 @@
+/* Threads visual theme */
+body{background:#0b0f14;color:#e8f1ff;}
+.node{transition:box-shadow 0.6s ease;}
+.node:hover{box-shadow:0 0 15px #ffd479aa;}
