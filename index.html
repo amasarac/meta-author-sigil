@@ -193,7 +193,91 @@
   </svg>
 
   <script>
-    const ASSET_BASE_URL = "https://amasarac.github.io/meta-author-sigil/";
+    const CANONICAL_BASE_URL = "https://amasarac.github.io/meta-author-sigil/";
+    const RELATIVE_BASE_URL = "./";
+
+    function computeAssetBase() {
+        const override = window.ASSET_BASE_URL_OVERRIDE || document.documentElement.getAttribute('data-asset-base');
+        if (override) return override.endsWith('/') ? override : `${override}/`;
+        const { hostname, pathname } = window.location;
+        const isCanonicalHost = hostname === 'amasarac.github.io';
+        const isCanonicalPath = pathname.startsWith('/meta-author-sigil');
+        return (isCanonicalHost && isCanonicalPath) ? CANONICAL_BASE_URL : RELATIVE_BASE_URL;
+    }
+
+    const ASSET_BASE_URL = computeAssetBase();
+
+    function normalizeAssetPath(path) {
+        if (!path) return '';
+        return path.replace(/^\.\//, '').replace(/^\//, '');
+    }
+
+    function buildAssetUrl(base, path) {
+        const normalized = normalizeAssetPath(path);
+        if (!base) return normalized;
+        return base.endsWith('/') ? `${base}${normalized}` : `${base}/${normalized}`;
+    }
+
+    function assetUrlCandidates(path) {
+        const normalized = normalizeAssetPath(path);
+        const candidates = [];
+        const bases = [];
+        if (ASSET_BASE_URL && ASSET_BASE_URL !== RELATIVE_BASE_URL) {
+            bases.push(ASSET_BASE_URL);
+        }
+        bases.push(RELATIVE_BASE_URL);
+        const seen = new Set();
+        bases.forEach(base => {
+            const fullUrl = buildAssetUrl(base, normalized);
+            if (!seen.has(fullUrl)) {
+                seen.add(fullUrl);
+                candidates.push(fullUrl);
+            }
+        });
+        return candidates;
+    }
+
+    async function fetchWithFallback(path, options) {
+        const candidates = assetUrlCandidates(path);
+        let lastError;
+        for (const url of candidates) {
+            try {
+                const response = await fetch(url, options);
+                if (response.ok) {
+                    return response;
+                }
+                lastError = new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
+            } catch (error) {
+                lastError = error;
+            }
+        }
+        throw lastError || new Error(`Unable to fetch asset ${path}`);
+    }
+
+    async function fetchJsonWithFallback(path, options) {
+        const response = await fetchWithFallback(path, options);
+        return response.json();
+    }
+
+    async function fetchTextWithFallback(path, options) {
+        const response = await fetchWithFallback(path, options);
+        return response.text();
+    }
+
+    async function resolveAssetUrl(path) {
+        const candidates = assetUrlCandidates(path);
+        for (const url of candidates) {
+            try {
+                const response = await fetch(url, { method: 'HEAD' });
+                if (response.ok) {
+                    return url;
+                }
+            } catch (error) {
+                // Continue to the next candidate
+            }
+        }
+        return candidates[candidates.length - 1];
+    }
 
     let scene, camera, renderer, labelRenderer;
     let constellationGroup;
@@ -302,16 +386,18 @@
         while(constellationGroup.children.length > 0){ 
             constellationGroup.remove(constellationGroup.children[0]); 
         }
-        const manifestUrl = `${ASSET_BASE_URL}jsonld/manifest.json`;
-        const baseDir = `${ASSET_BASE_URL}jsonld/`;
         try {
-            const manifestRes = await fetch(manifestUrl);
-            const manifest = await manifestRes.json();
+            const manifest = await fetchJsonWithFallback('jsonld/manifest.json');
             const personaFiles = manifest.personas || [];
-            const personaPromises = personaFiles.map(file => 
-                fetch(baseDir + file).then(res => res.json())
-            );
-            const loadedPersonas = await Promise.all(personaPromises);
+            const loadedPersonas = [];
+            for (const file of personaFiles) {
+                try {
+                    const persona = await fetchJsonWithFallback(`jsonld/${file}`);
+                    loadedPersonas.push(persona);
+                } catch (personaError) {
+                    console.warn(`Failed to load persona ${file}:`, personaError);
+                }
+            }
             personaMap = {};
             loadedPersonas.forEach((p, index) => {
                 const id = p.name.toLowerCase().replace(/\s+/g, '_');
@@ -370,10 +456,11 @@
     function loadLayer(index) {
         const layerName = layers[index];
         const svgFile = layerName === 'all' ? 'axis-braid-003-updated.svg' : `assets/${layerName}-layer.svg`;
-        fetch(ASSET_BASE_URL + svgFile)
-            .then(response => response.ok ? response.text() : Promise.reject(`Failed to load ${svgFile}`))
+        fetchTextWithFallback(svgFile)
             .then(svgData => { document.getElementById("glyphViewer").innerHTML = svgData; })
-            .catch(err => { document.getElementById("glyphViewer").innerHTML = `<p style="color:red;text-align:center;">${err}</p>`; });
+            .catch(err => {
+                document.getElementById("glyphViewer").innerHTML = `<p style="color:red;text-align:center;">${err}</p>`;
+            });
     }
 
     function loadNewGlyph(index) {
@@ -412,7 +499,18 @@
         container.style.display = "flex";
         ['Flame', 'Mirror', 'Codex'].forEach(type => {
             const img = document.getElementById(`sigil${type}`);
-            img.src = `${ASSET_BASE_URL}assets/${type.toLowerCase()}-layer.svg`;
+            const path = `assets/${type.toLowerCase()}-layer.svg`;
+            const candidates = assetUrlCandidates(path);
+            img.src = candidates[0];
+            if (candidates.length > 1) {
+                img.onerror = () => {
+                    const next = candidates.find(url => url !== img.src);
+                    if (next) {
+                        img.onerror = null;
+                        img.src = next;
+                    }
+                };
+            }
         });
         setTimeout(() => { document.getElementById("sigilFlame").style.opacity = 1; if(proceduralSounds.keydjinn) proceduralSounds.keydjinn.triggerAttackRelease("C4", "1n"); }, 200);
         setTimeout(() => { document.getElementById("sigilMirror").style.opacity = 1; if(proceduralSounds.eidolon) proceduralSounds.eidolon.triggerAttackRelease("G4", "1n"); }, 1000);
@@ -434,10 +532,14 @@
         mainBus.connect(analyser);
         // Sounds are now created dynamically in insertStarNode
         proceduralSounds.le_chat = new Tone.FMSynth({ harmonicity: 1.5, modulationIndex: 10 }).connect(reverb);
-        ambientPlayer = new Tone.Player({
-            url: ASSET_BASE_URL + "lattice_ambient.wav",
-            loop: true, autostart: true, volume: -12
-        }).connect(mainBus);
+        ambientPlayer = new Tone.Player({ loop: true, autostart: true }).connect(mainBus);
+        ambientPlayer.volume.value = -12;
+        try {
+            const audioUrl = await resolveAssetUrl("lattice_ambient.wav");
+            await ambientPlayer.load(audioUrl);
+        } catch (error) {
+            console.error("Unable to load ambient audio:", error);
+        }
      }
 
     function animate() {
