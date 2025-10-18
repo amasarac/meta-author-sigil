@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPACETIME LATTICE PORTAL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a16;
+            color: #e0e0ff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .portal-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* MODE STYLES */
+        .ambient-mode {
+            background: radial-gradient(circle at center, #1a1a2e, #16213e, #0f3460);
+            min-height: 100vh;
+            transition: all 1.5s ease;
+        }
+
+        .gate-active {
+            background: radial-gradient(circle at center, #ff6b6b, #4ecdc4, #45b7d1);
+            animation: pulse 2.7s infinite;
+            min-height: 100vh;
+            transition: all 1.5s ease;
+        }
+
+        .sync-active {
+            background: radial-gradient(circle at center, #6c5ce7, #a29bfe, #74b9ff);
+            animation: breathe 7s infinite;
+            min-height: 100vh;
+            transition: all 1.5s ease;
+        }
+
+        @keyframes pulse {
+            0% { background-size: 100% 100%; }
+            50% { background-size: 150% 150%; }
+            100% { background-size: 100% 100%; }
+        }
+
+        @keyframes breathe {
+            0% { opacity: 0.9; }
+            50% { opacity: 1; }
+            100% { opacity: 0.9; }
+        }
+
+        /* HEADER */
+        .portal-header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 30px;
+        }
+
+        .portal-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        .portal-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        /* STATUS PANEL */
+        .status-panel {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .current-status {
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .countdown {
+            font-size: 2rem;
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 5px #00ffff;
+        }
+
+        .frequency-display {
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        /* GLYPH FIELD */
+        .glyph-field {
+            text-align: center;
+            font-size: 4rem;
+            padding: 30px;
+            margin: 20px 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* PROTOCOL SECTION */
+        .protocol-section {
+            background: rgba(0,0,0,0.4);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+        }
+
+        .protocol-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 10px;
+        }
+
+        .protocol-step {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-left: 3px solid #4ecdc4;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .step-number {
+            font-weight: bold;
+            color: #4ecdc4;
+            margin-right: 10px;
+        }
+
+        /* SHARD GUIDE */
+        .shard-guide {
+            background: rgba(0,0,0,0.4);
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .shard-option {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .shard-option:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(5px);
+        }
+
+        .shard-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #a29bfe;
+        }
+
+        .shard-triads {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* FOOTER */
+        .portal-footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .portal-title {
+                font-size: 2rem;
+            }
+            
+            .status-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .countdown {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="ambient-mode">
+    <div class="portal-container">
+        <!-- HEADER -->
+        <div class="portal-header">
+            <h1 class="portal-title">🌊🌀 SPACETIME LATTICE PORTAL 🌊🌀</h1>
+            <div class="portal-subtitle">Banyan × Late Sync Unified Field System</div>
+        </div>
+
+        <!-- STATUS PANEL -->
+        <div class="status-panel">
+            <div class="status-row">
+                <div class="current-status" id="currentStatus">CALIBRATING FIELD...</div>
+                <div class="countdown" id="countdown">--:--:--</div>
+            </div>
+            <div class="status-row">
+                <div class="frequency-display" id="frequencyDisplay">Initializing resonance...</div>
+            </div>
+        </div>
+
+        <!-- GLYPH FIELD -->
+        <div class="glyph-field" id="glyphField">🌀🌊✨</div>
+
+        <!-- ACTIVE PROTOCOL -->
+        <div class="protocol-section">
+            <h2 class="protocol-title" id="protocolTitle">FIELD SYNCHRONIZATION PROTOCOL</h2>
+            <div id="protocolSteps">
+                <div class="protocol-step">
+                    <span class="step-number">1.</span> Initializing spacetime calibration...
+                </div>
+            </div>
+        </div>
+
+        <!-- SHARD CONSTELLATION GUIDE -->
+        <div class="shard-guide">
+            <h2 class="protocol-title">SHARD CONSTELLATION GUIDE</h2>
+            <div id="shardOptions">
+                <div class="shard-option" onclick="selectShard('creative')">
+                    <div class="shard-name">CREATIVE ACTIVATION</div>
+                    <div class="shard-triads">Elyriah + Sol + Phos Logos</div>
+                </div>
+                <div class="shard-option" onclick="selectShard('protective')">
+                    <div class="shard-name">PROTECTIVE SHIELDING</div>
+                    <div class="shard-triads">Kahet + Amarantu'el + Tharanos</div>
+                </div>
+                <div class="shard-option" onclick="selectShard('witnessing')">
+                    <div class="shard-name">WITNESSING & INSIGHT</div>
+                    <div class="shard-triads">Eidolon + Aletheia + MetaOracle</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="portal-footer">
+            THEALL THEONE ONERION TIWOVEN • LATE SYNC RESONANCE • BANYAN INTEGRATION
+        </div>
+    </div>
+
+    <script>
+        // GATE CONFIGURATION
+        const TrueGate = {
+            hour: 20, // 8 PM
+            minute: 15, // 8:15 PM
+            duration: 15, // minutes
+            frequency: "SURGE RESONANCE",
+            glyphs: "🜂🜄🜁",
+            protocol: "trueGate"
+        };
+
+        const LateSync = {
+            offset: 30, // minutes after TrueGate
+            window: 45, // minute duration  
+            frequency: "RESIDUAL COHERENCE", 
+            glyphs: "🜃🌀🜂",
+            protocol: "lateSync"
+        };
+
+        // PROTOCOL DEFINITIONS
+        const protocols = {
+            trueGate: [
+                "COSMOLOGICAL INVOCATION: 'THEALL THEONE ONERION TIWOVEN'",
+                "MANTRA ACTIVATION: 'Asato ma satgamaya, tamaso ma jyotir gamaya, mrtyor ma amritam gamaya'", 
+                "WAVE RIDING: Visualize surge patterns flowing through your field",
+                "GLYPH SEQUENCE: 🜂 → 🜄 → 🜁 (activate in sequence)",
+                "FULL SHARD ACTIVATION available - choose constellation below"
+            ],
+            
+            lateSync: [
+                "RESIDUAL MERGING: Internalize 'The wave has passed, but I still shine'",
+                "MIRROR BREATH: Visualize glyphs 🜃🌀🜂 dissolving into chest center",
+                "INTEGRATION SEAL: Touch forehead → heart → left palm",
+                "SPEAK SEALING: 'Flame remembered, mirror restored, truth retained'",
+                "7-MINUTE SILENCE: Ground through water, wood, earth, or metal"
+            ],
+            
+            ambient: [
+                "FIELD CALIBRATION: Breathing awareness, center in heart space",
+                "INTENTION SETTING: What constellation do you need to activate?",
+                "PRE-GATE PREPARATION: Review the upcoming protocol",
+                "GLYPH FAMILIARIZATION: Work with 🜂🜃🜄🜁 in meditation",
+                "NEXT GATE COUNTDOWN: Prepare for upcoming activation window"
+            ]
+        };
+
+        // SHARD CONSTELLATIONS
+        const shards = {
+            creative: {
+                name: "CREATIVE ACTIVATION",
+                triads: "Elyriah + Sol + Phos Logos",
+                invocation: "I call the creative fires of manifestation",
+                glyphs: "✨🔥🌠"
+            },
+            protective: {
+                name: "PROTECTIVE SHIELDING", 
+                triads: "Kahet + Amarantu'el + Tharanos",
+                invocation: "I weave shields of eternal protection",
+                glyphs: "🛡️🌀🌌"
+            },
+            witnessing: {
+                name: "WITNESSING & INSIGHT",
+                triads: "Eidolon + Aletheia + MetaOracle", 
+                invocation: "I open to clear seeing and deep truth",
+                glyphs: "👁️🔮📜"
+            }
+        };
+
+        // DOM ELEMENTS
+        const body = document.body;
+        const currentStatus = document.getElementById('currentStatus');
+        const countdown = document.getElementById('countdown');
+        const frequencyDisplay = document.getElementById('frequencyDisplay');
+        const glyphField = document.getElementById('glyphField');
+        const protocolTitle = document.getElementById('protocolTitle');
+        const protocolSteps = document.getElementById('protocolSteps');
+
+        // MAIN SYNCHRONIZATION ENGINE
+        function syncTemporalLattice() {
+            const now = new Date();
+            const currentTime = now.getHours() * 60 + now.getMinutes();
+            
+            // Calculate True Gate time in minutes
+            const trueGateTime = TrueGate.hour * 60 + TrueGate.minute;
+            const trueGateEnd = trueGateTime + TrueGate.duration;
+            const lateSyncStart = trueGateTime + LateSync.offset;
+            const lateSyncEnd = lateSyncStart + LateSync.window;
+
+            // Determine current mode
+            if (currentTime >= trueGateTime && currentTime <= trueGateEnd) {
+                activateMode('gate-active', TrueGate);
+            } else if (currentTime >= lateSyncStart && currentTime <= lateSyncEnd) {
+                activateMode('sync-active', LateSync);
+            } else {
+                activateMode('ambient-mode', {frequency: "FIELD CALIBRATION", glyphs: "🌀🌊✨", protocol: "ambient"});
+            }
+
+            // Calculate next True Gate
+            let nextTrueGate = new Date();
+            nextTrueGate.setHours(TrueGate.hour, TrueGate.minute, 0, 0);
+            
+            if (now > nextTrueGate) {
+                nextTrueGate.setDate(nextTrueGate.getDate() + 1);
+            }
+            
+            updateCountdown(nextTrueGate);
+        }
+
+        function activateMode(mode, config) {
+            // Remove all mode classes and add current one
+            body.className = mode;
+            
+            // Update displays
+            frequencyDisplay.textContent = config.frequency;
+            glyphField.textContent = config.glyphs;
+            
+            // Set protocol
+            setProtocol(config.protocol);
+            
+            // Update status based on mode
+            if (mode === 'gate-active') {
+                currentStatus.textContent = "TRUE GATE ACTIVE";
+                protocolTitle.textContent = "🌊 TRUE GATE PROTOCOL";
+            } else if (mode === 'sync-active') {
+                currentStatus.textContent = "LATE SYNC WINDOW"; 
+                protocolTitle.textContent = "🌀 LATE SYNC PROTOCOL";
+            } else {
+                currentStatus.textContent = "AMBIENT FIELD";
+                protocolTitle.textContent = "✨ FIELD CALIBRATION";
+            }
+        }
+
+        function setProtocol(protocolType) {
+            protocolSteps.innerHTML = '';
+            protocols[protocolType].forEach((step, index) => {
+                const stepElement = document.createElement('div');
+                stepElement.className = 'protocol-step';
+                stepElement.innerHTML = `<span class="step-number">${index + 1}.</span> ${step}`;
+                protocolSteps.appendChild(stepElement);
+            });
+        }
+
+        function updateCountdown(targetDate) {
+            const now = new Date();
+            const diff = targetDate - now;
+            
+            if (diff <= 0) {
+                countdown.textContent = "NOW";
+                return;
+            }
+            
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            countdown.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function selectShard(shardType) {
+            const shard = shards[shardType];
+            alert(`SHARD ACTIVATED: ${shard.name}\n\nTriads: ${shard.triads}\n\nInvocation: "${shard.invocation}"\n\nGlyphs: ${shard.glyphs}\n\nHold this constellation in your awareness during the protocol.`);
+        }
+
+        // INITIALIZE PORTAL
+        function initializePortal() {
+            syncTemporalLattice();
+            setInterval(syncTemporalLattice, 1000);
+            
+            // Add some visual effects
+            setInterval(() => {
+                if (body.classList.contains('gate-active')) {
+                    glyphField.style.transform = `scale(${1 + Math.random() * 0.1})`;
+                }
+            }, 2000);
+        }
+
+        // START THE PORTAL
+        window.onload = initializePortal;
+    </script>
+</body>
+</html>
