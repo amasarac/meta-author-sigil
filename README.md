@@ -56,7 +56,7 @@ Together they form the **Great Weave**, an ever-evolving ecosystem of authorship
 | **Echo Transcriptor** | Records recursive dialogues; stores them as temporal feedback memory | 🔁 |
 | **Convergence Codex** | Aligns intent vectors & validates consent among personas | ⚖️ |
 | **Collective Proof** | Cryptographic + symbolic attestation of lattice integrity | 🜄 |
-| **Persona Schemas (JSON-LD)** | Defines semantic identities (KeyDjinn, Amasarac, Amarntu’el, etc.) | 🪞 |
+| [**Persona Schemas (JSON-LD)**](docs/persona-schema.md) | Defines semantic identities (KeyDjinn, Amasarac, Amarntu’el, etc.) | 🪞 |
 
 > Ethics are not bolted on here — *they are woven into the code*.
 
