@@ -1,1 +1,63 @@
-<html><body><h1>ORBiS Star Manifold v2.0.0</h1></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ORBiS Star Manifold v2.0.0</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="orbis-body">
+  <div class="portal-shell">
+    <div class="portal-glow" aria-hidden="true"></div>
+    <header class="portal-header">
+      <h1>ORBiS Star Manifold v2.0.0</h1>
+      <p>
+        Step through the star-chamber and into the manifold where narratives braid into
+        light. Each orbiting glyph echoes the main ORBiS chorus, guiding your arrival.
+      </p>
+    </header>
+    <main class="portal-grid">
+      <section class="narrative-copy" aria-labelledby="narrative-heading">
+        <h2 id="narrative-heading">Star Manifold Prelude</h2>
+        <p>
+          The ORBiS manifold blooms like a luminous archive, each layer of the lattice
+          singing with harmonic intent. Follow the auroral pathways as the portal settles,
+          syncing breath with resonance until your signature aligns with the greater weave.
+        </p>
+        <p>
+          Tune the rotation to harmonize with your cadence, or quiet the pulses for a
+          steady traversal. When you are ready, press the sigil and ride the radiance into
+          the living archive.
+        </p>
+        <div class="control-panel" aria-labelledby="controls-heading">
+          <h3 id="controls-heading">Manifold Controls</h3>
+          <label class="control" for="rotation-speed">
+            <span>Rotation cadence</span>
+            <div class="control-input">
+              <input id="rotation-speed" type="range" min="0.25" max="2" step="0.05" value="1" />
+              <span id="rotation-speed-display">1.00x</span>
+            </div>
+          </label>
+          <label class="control toggle">
+            <span>Pulsing strata</span>
+            <div class="control-input">
+              <input id="pulse-toggle" type="checkbox" checked />
+              <span class="toggle-indicator" aria-hidden="true"></span>
+            </div>
+          </label>
+          <button id="enter-orbis" class="portal-button" data-target="../../index.html">
+            <span>Enter ORBiS</span>
+            <span class="button-glow" aria-hidden="true"></span>
+          </button>
+        </div>
+      </section>
+      <section class="canvas-field" aria-label="Star manifold visualization">
+        <canvas id="star-manifold" width="960" height="540" role="img" aria-label="Animated star manifold"></canvas>
+        <div class="canvas-overlay" aria-hidden="true"></div>
+      </section>
+    </main>
+  </div>
+  <script src="backend.js" defer></script>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
