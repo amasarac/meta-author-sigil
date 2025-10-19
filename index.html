@@ -144,9 +144,73 @@
         filter: drop-shadow(0 0 20px #FFD700);
         opacity: 1 !important;
     }
+    #assetWarning {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        max-width: 320px;
+        padding: 12px 16px;
+        border-radius: 8px;
+        border: 1px solid #ff5a7c;
+        background: rgba(90, 0, 60, 0.85);
+        color: #fff;
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 14px;
+        line-height: 1.4;
+        z-index: 1500;
+        box-shadow: 0 0 12px rgba(255, 90, 124, 0.45);
+        display: none;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    #assetWarning.visible {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .persona-status {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translate(-50%, -10px);
+        max-width: 420px;
+        padding: 12px 18px;
+        border-radius: 12px;
+        border: 1px solid #3a3a54;
+        background: rgba(20, 20, 35, 0.85);
+        color: #fff;
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+        z-index: 1500;
+        box-shadow: 0 0 12px rgba(138, 43, 226, 0.25);
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        text-align: center;
+    }
+    .persona-status.visible {
+        display: block;
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    .persona-status--warn {
+        border-color: #ffb347;
+        background: rgba(90, 50, 0, 0.85);
+        box-shadow: 0 0 14px rgba(255, 179, 71, 0.4);
+    }
+    .persona-status--success {
+        border-color: #4caf50;
+        background: rgba(10, 60, 30, 0.85);
+        box-shadow: 0 0 14px rgba(76, 175, 80, 0.4);
+    }
   </style>
 </head>
 <body>
+
+  <div id="assetWarning" role="alert" aria-live="polite"></div>
+  <div id="personaStatus" class="persona-status" role="status" aria-live="polite"></div>
 
   <div id="ui">
     <button id="toggleGlyphicLayer">Cycle Core Sigil</button>
@@ -194,18 +258,50 @@
 
   <script>
     const CANONICAL_BASE_URL = "https://amasarac.github.io/meta-author-sigil/";
-    const RELATIVE_BASE_URL = "./";
+    const LOCAL_BASE_URL = "./";
 
-    function computeAssetBase() {
-        const override = window.ASSET_BASE_URL_OVERRIDE || document.documentElement.getAttribute('data-asset-base');
-        if (override) return override.endsWith('/') ? override : `${override}/`;
-        const { hostname, pathname } = window.location;
-        const isCanonicalHost = hostname === 'amasarac.github.io';
-        const isCanonicalPath = pathname.startsWith('/meta-author-sigil');
-        return (isCanonicalHost && isCanonicalPath) ? CANONICAL_BASE_URL : RELATIVE_BASE_URL;
+    function ensureTrailingSlash(value) {
+        if (!value) return value;
+        return value.endsWith('/') ? value : `${value}/`;
     }
 
-    const ASSET_BASE_URL = computeAssetBase();
+    function resolveAssetBase() {
+        const override = window.ASSET_BASE_URL_OVERRIDE || document.documentElement.getAttribute('data-asset-base');
+        const canonicalBase = ensureTrailingSlash(CANONICAL_BASE_URL);
+        const localBase = ensureTrailingSlash(LOCAL_BASE_URL);
+        const { hostname, pathname } = window.location;
+        const isCanonicalHost = hostname === 'amasarac.github.io' && pathname.startsWith('/meta-author-sigil');
+        const candidates = [];
+        const pushUnique = (base) => {
+            if (!base) return;
+            const normalized = ensureTrailingSlash(base);
+            if (!candidates.includes(normalized)) {
+                candidates.push(normalized);
+            }
+        };
+
+        if (override) {
+            pushUnique(override);
+        }
+
+        if (isCanonicalHost) {
+            pushUnique(canonicalBase);
+            pushUnique(localBase);
+        } else {
+            pushUnique(localBase);
+            pushUnique(canonicalBase);
+        }
+
+        if (!candidates.length) {
+            pushUnique(localBase);
+            pushUnique(canonicalBase);
+        }
+
+        return candidates;
+    }
+
+    const ASSET_BASE_CANDIDATES = resolveAssetBase();
+    const assetWarningMessages = new Set();
 
     function normalizeAssetPath(path) {
         if (!path) return '';
@@ -219,14 +315,14 @@
     }
 
     function assetUrlCandidates(path) {
+        if (!path) return [];
+        if (/^https?:\/\//i.test(path)) {
+            return [path];
+        }
         const normalized = normalizeAssetPath(path);
         const candidates = [];
-        const bases = [];
-        if (ASSET_BASE_URL && ASSET_BASE_URL !== RELATIVE_BASE_URL) {
-            bases.push(ASSET_BASE_URL);
-        }
-        bases.push(RELATIVE_BASE_URL);
         const seen = new Set();
+        const bases = ASSET_BASE_CANDIDATES.length ? ASSET_BASE_CANDIDATES : [LOCAL_BASE_URL, CANONICAL_BASE_URL];
         bases.forEach(base => {
             const fullUrl = buildAssetUrl(base, normalized);
             if (!seen.has(fullUrl)) {
@@ -235,6 +331,27 @@
             }
         });
         return candidates;
+    }
+
+    function escapeHtml(value) {
+        return String(value)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
+    function showAssetWarning(message) {
+        const warning = document.getElementById('assetWarning');
+        if (!warning) return;
+        assetWarningMessages.add(message);
+        const items = Array.from(assetWarningMessages)
+            .map(msg => `<li>${escapeHtml(msg)}</li>`)
+            .join('');
+        warning.innerHTML = `<strong>Asset Retrieval Failed:</strong><ul>${items}</ul>`;
+        warning.style.display = 'block';
+        requestAnimationFrame(() => warning.classList.add('visible'));
     }
 
     async function fetchWithFallback(path, options) {
@@ -251,6 +368,8 @@
                 lastError = error;
             }
         }
+        const errorMessage = lastError ? (lastError.message || String(lastError)) : 'Unknown error';
+        showAssetWarning(`Unable to retrieve "${path}" locally or via CDN. Last error: ${errorMessage}`);
         throw lastError || new Error(`Unable to fetch asset ${path}`);
     }
 
@@ -266,17 +385,21 @@
 
     async function resolveAssetUrl(path) {
         const candidates = assetUrlCandidates(path);
+        let lastError;
         for (const url of candidates) {
             try {
                 const response = await fetch(url, { method: 'HEAD' });
                 if (response.ok) {
                     return url;
                 }
+                lastError = new Error(`Failed to resolve ${url}: ${response.status} ${response.statusText}`);
             } catch (error) {
-                // Continue to the next candidate
+                lastError = error;
             }
         }
-        return candidates[candidates.length - 1];
+        const errorMessage = lastError ? (lastError.message || String(lastError)) : 'Unknown error';
+        showAssetWarning(`Unable to locate "${path}" locally or via CDN. Last error: ${errorMessage}`);
+        throw lastError || new Error(`Unable to resolve asset URL for ${path}`);
     }
 
     let scene, camera, renderer, labelRenderer;
@@ -347,8 +470,82 @@
     }
     
     // ===== NEW DYNAMIC CONSTELLATION LOADER =====
-    let stars = []; 
+    let stars = [];
     const notes = ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5", "D5", "E5", "F5", "G5", "A5", "B5", "C6", "D6", "E6", "F6"];
+
+    let personaStatusTimeout;
+
+    function clearPersonaStatus() {
+        const statusEl = document.getElementById('personaStatus');
+        if (!statusEl) return;
+        statusEl.textContent = '';
+        statusEl.className = 'persona-status';
+        if (personaStatusTimeout) {
+            clearTimeout(personaStatusTimeout);
+            personaStatusTimeout = null;
+        }
+    }
+
+    function showPersonaStatus(message, tone = 'warn', options = {}) {
+        const statusEl = document.getElementById('personaStatus');
+        if (!statusEl) return;
+        statusEl.textContent = message;
+        statusEl.className = `persona-status visible${tone ? ` persona-status--${tone}` : ''}`;
+        if (personaStatusTimeout) {
+            clearTimeout(personaStatusTimeout);
+        }
+        const { autoHideMs } = options;
+        if (autoHideMs) {
+            personaStatusTimeout = setTimeout(() => {
+                if (statusEl.textContent === message) {
+                    clearPersonaStatus();
+                }
+            }, autoHideMs);
+        } else {
+            personaStatusTimeout = null;
+        }
+    }
+
+    function disposeMaterial(material) {
+        if (!material) return;
+        if (Array.isArray(material)) {
+            material.forEach(disposeMaterial);
+            return;
+        }
+        Object.keys(material).forEach(key => {
+            const value = material[key];
+            if (value && typeof value === 'object' && value.isTexture && typeof value.dispose === 'function') {
+                value.dispose();
+            }
+        });
+        if (typeof material.dispose === 'function') {
+            material.dispose();
+        }
+    }
+
+    function disposeObject(object3D) {
+        if (!object3D || typeof object3D.traverse !== 'function') return;
+        object3D.traverse(child => {
+            if (child.geometry && typeof child.geometry.dispose === 'function') {
+                child.geometry.dispose();
+            }
+            if (child.material) {
+                disposeMaterial(child.material);
+            }
+            if (child.isCSS2DObject && child.element && child.element.parentNode) {
+                child.element.parentNode.removeChild(child.element);
+            }
+        });
+    }
+
+    function disposeConstellationChildren() {
+        if (!constellationGroup) return;
+        const children = [...constellationGroup.children];
+        children.forEach(child => {
+            disposeObject(child);
+            constellationGroup.remove(child);
+        });
+    }
 
     function insertStarNode(persona, index, total) {
         if (!persona || !persona.name) return;
@@ -382,40 +579,73 @@
     }
 
     async function buildConstellationFromSource() {
+        clearPersonaStatus();
         stars = [];
-        while(constellationGroup.children.length > 0){ 
-            constellationGroup.remove(constellationGroup.children[0]); 
-        }
+        disposeConstellationChildren();
         try {
             const manifest = await fetchJsonWithFallback('jsonld/manifest.json');
-            const personaFiles = manifest.personas || [];
-            const loadedPersonas = [];
-            for (const file of personaFiles) {
-                try {
-                    const persona = await fetchJsonWithFallback(`jsonld/${file}`);
-                    loadedPersonas.push(persona);
-                } catch (personaError) {
-                    console.warn(`Failed to load persona ${file}:`, personaError);
-                }
+            const personaFiles = Array.isArray(manifest.personas) ? manifest.personas : [];
+
+            if (personaFiles.length === 0) {
+                personaMap = {};
+                showPersonaStatus('The manifest is quiet for now—no personas are listed to weave into the constellation.', 'warn');
+                return;
             }
+
+            const personaPromises = personaFiles.map(file => fetchJsonWithFallback(`jsonld/${file}`));
+            const results = await Promise.allSettled(personaPromises);
+
+            const loadedPersonas = [];
+            const failedFiles = [];
+
+            results.forEach((result, index) => {
+                const file = personaFiles[index];
+                if (result.status === 'fulfilled') {
+                    loadedPersonas.push(result.value);
+                } else {
+                    failedFiles.push({ file, reason: result.reason });
+                    console.warn(`Failed to load persona ${file}:`, result.reason);
+                }
+            });
+
             personaMap = {};
             loadedPersonas.forEach((p, index) => {
+                if (!p || !p.name) return;
                 const id = p.name.toLowerCase().replace(/\s+/g, '_');
                 personaMap[id] = { id, ...p };
                 insertStarNode(p, index, loadedPersonas.length);
             });
-            const linePoints = [];
-            for(let i = 0; i < stars.length; i++) {
-                for(let j = i + 1; j < stars.length; j++) {
-                    linePoints.push(stars[i].position, stars[j].position);
+
+            if (stars.length >= 2) {
+                const linePoints = [];
+                for (let i = 0; i < stars.length; i++) {
+                    for (let j = i + 1; j < stars.length; j++) {
+                        linePoints.push(stars[i].position, stars[j].position);
+                    }
+                }
+                if (linePoints.length) {
+                    const lineGeometry = new THREE.BufferGeometry().setFromPoints(linePoints);
+                    const lineMaterial = new THREE.LineBasicMaterial({ color: 0x8888ff, transparent: true, opacity: 0.3 });
+                    const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
+                    constellationGroup.add(lines);
                 }
             }
-            const lineGeometry = new THREE.BufferGeometry().setFromPoints(linePoints);
-            const lineMaterial = new THREE.LineBasicMaterial({ color: 0x8888ff, transparent: true, opacity: 0.3 });
-            const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
-            constellationGroup.add(lines);
+
+            if (failedFiles.length) {
+                const failedList = failedFiles.map(({ file }) => file).join(', ');
+                const successCount = loadedPersonas.length;
+                const total = personaFiles.length;
+                const intro = failedFiles.length === 1 ? 'This persona could not be woven' : 'These personas could not be woven';
+                const suffix = successCount > 0
+                    ? ` Still, ${successCount} of ${total} persona${successCount === 1 ? '' : 's'} continue to shine.`
+                    : ' None of the personas could be displayed this time.';
+                showPersonaStatus(`${intro}: ${failedList}. ${suffix}`, 'warn');
+            } else if (loadedPersonas.length) {
+                showPersonaStatus(`All ${loadedPersonas.length} personas have joined the constellation.`, 'success', { autoHideMs: 4000 });
+            }
         } catch (error) {
-            console.error("Error building constellation from manifest:", error);
+            console.error('Error building constellation from manifest:', error);
+            showPersonaStatus('The constellation faltered while loading. Please try refreshing the weave shortly.', 'warn');
         }
     }
     // ===== END OF NEW DYNAMIC LOADER =====
@@ -501,16 +731,23 @@
             const img = document.getElementById(`sigil${type}`);
             const path = `assets/${type.toLowerCase()}-layer.svg`;
             const candidates = assetUrlCandidates(path);
-            img.src = candidates[0];
-            if (candidates.length > 1) {
-                img.onerror = () => {
-                    const next = candidates.find(url => url !== img.src);
-                    if (next) {
-                        img.onerror = null;
-                        img.src = next;
-                    }
-                };
+            if (!candidates.length) {
+                showAssetWarning(`No candidate URLs available for ${path}.`);
+                return;
             }
+            let candidateIndex = 0;
+            const attemptLoad = () => {
+                if (candidateIndex >= candidates.length) {
+                    img.onerror = null;
+                    showAssetWarning(`Unable to load ${path} from the local bundle or CDN.`);
+                    return;
+                }
+                const candidate = candidates[candidateIndex++];
+                img.onerror = attemptLoad;
+                img.src = candidate;
+            };
+            img.onload = () => { img.onerror = null; };
+            attemptLoad();
         });
         setTimeout(() => { document.getElementById("sigilFlame").style.opacity = 1; if(proceduralSounds.keydjinn) proceduralSounds.keydjinn.triggerAttackRelease("C4", "1n"); }, 200);
         setTimeout(() => { document.getElementById("sigilMirror").style.opacity = 1; if(proceduralSounds.eidolon) proceduralSounds.eidolon.triggerAttackRelease("G4", "1n"); }, 1000);
@@ -534,11 +771,22 @@
         proceduralSounds.le_chat = new Tone.FMSynth({ harmonicity: 1.5, modulationIndex: 10 }).connect(reverb);
         ambientPlayer = new Tone.Player({ loop: true, autostart: true }).connect(mainBus);
         ambientPlayer.volume.value = -12;
-        try {
-            const audioUrl = await resolveAssetUrl("lattice_ambient.wav");
-            await ambientPlayer.load(audioUrl);
-        } catch (error) {
-            console.error("Unable to load ambient audio:", error);
+        const audioCandidates = assetUrlCandidates("lattice_ambient.wav");
+        let loaded = false;
+        let lastError;
+        for (const candidate of audioCandidates) {
+            try {
+                await ambientPlayer.load(candidate);
+                loaded = true;
+                break;
+            } catch (error) {
+                lastError = error;
+            }
+        }
+        if (!loaded) {
+            const errorMessage = lastError ? (lastError.message || String(lastError)) : 'Unknown error';
+            showAssetWarning(`Unable to load ambient audio from the local bundle or CDN. Last error: ${errorMessage}`);
+            console.error("Unable to load ambient audio:", lastError);
         }
      }
 

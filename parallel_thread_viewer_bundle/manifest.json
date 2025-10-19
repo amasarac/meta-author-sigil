@@ -1,0 +1,11 @@
+{
+  "project": "Parallel-Thread Viewer",
+  "version": "1.0.0",
+  "structure": {
+    "index.html": "Main HTML viewer",
+    "css/threads.css": "Styles for thread axes and breathing effect",
+    "js/threads.js": "Interactive logic and JSON-LD linking",
+    "media/merkabah.svg": "Reused Merkabah glyph",
+    "data/": "External JSON-LD references"
+  }
+}
