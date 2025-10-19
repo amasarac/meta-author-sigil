@@ -1,1 +1,349 @@
-body{background:#000;color:#0ff;}
+:root {
+  --portal-bg: radial-gradient(circle at 20% 20%, rgba(20, 18, 60, 0.95), rgba(3, 5, 12, 0.98));
+  --portal-accent: #9ff4ff;
+  --portal-accent-strong: #65e4ff;
+  --portal-shadow: rgba(5, 10, 25, 0.6);
+  --portal-text: #f3f7ff;
+  --portal-muted: rgba(210, 226, 255, 0.7);
+  --portal-highlight: rgba(155, 244, 255, 0.4);
+  --control-bg: rgba(8, 14, 29, 0.75);
+  --control-border: rgba(130, 204, 255, 0.35);
+  --canvas-border: rgba(148, 220, 255, 0.4);
+  --font-display: "Space Grotesk", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body.orbis-body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  color: var(--portal-text);
+  background: linear-gradient(180deg, #020409 0%, #050818 55%, #020306 100%);
+  overflow-x: hidden;
+}
+
+.portal-shell {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 5vw, 4.5rem) clamp(3rem, 7vh, 5rem);
+  isolation: isolate;
+}
+
+.portal-shell::before,
+.portal-shell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+  background: var(--portal-bg);
+  opacity: 0.94;
+}
+
+.portal-shell::after {
+  background: radial-gradient(circle at 80% 10%, rgba(110, 218, 255, 0.25), transparent 45%),
+    radial-gradient(circle at 0% 100%, rgba(122, 78, 255, 0.2), transparent 55%),
+    radial-gradient(circle at 50% 50%, rgba(8, 15, 42, 0.6), transparent 65%);
+  mix-blend-mode: screen;
+  opacity: 0.85;
+}
+
+.portal-glow {
+  position: absolute;
+  inset: 8% 6%;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(111, 249, 255, 0.18), transparent 65%);
+  filter: blur(65px);
+  z-index: -1;
+  opacity: 0.7;
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+
+.portal-header {
+  max-width: 760px;
+  padding-bottom: 1.5rem;
+}
+
+.portal-header h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 0.75rem;
+  font-size: clamp(2rem, 4.2vw, 3.5rem);
+  color: var(--portal-accent);
+  text-shadow: 0 0 18px rgba(153, 238, 255, 0.45);
+}
+
+.portal-header p {
+  margin: 0;
+  font-size: clamp(1rem, 1.25vw + 0.75rem, 1.25rem);
+  line-height: 1.6;
+  color: var(--portal-muted);
+}
+
+.portal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(2rem, 3vw, 3.5rem);
+  align-items: start;
+}
+
+.narrative-copy {
+  background: linear-gradient(145deg, rgba(8, 12, 25, 0.92), rgba(10, 18, 35, 0.65));
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(110, 190, 255, 0.2);
+  box-shadow: 0 25px 45px rgba(5, 8, 18, 0.55);
+  position: relative;
+  overflow: hidden;
+}
+
+.narrative-copy::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 10% 0%, rgba(159, 244, 255, 0.12), transparent 45%),
+    radial-gradient(circle at 120% 85%, rgba(153, 140, 255, 0.1), transparent 55%);
+  mix-blend-mode: screen;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.narrative-copy h2 {
+  margin-top: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--portal-accent-strong);
+}
+
+.narrative-copy p {
+  color: var(--portal-muted);
+  line-height: 1.75;
+  margin-bottom: 1.35rem;
+  font-size: 1.02rem;
+}
+
+.control-panel {
+  margin-top: 2rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(104, 198, 255, 0.25);
+  display: grid;
+  gap: 1.35rem;
+}
+
+.control-panel h3 {
+  margin: 0 0 0.25rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--portal-accent-strong);
+}
+
+.control {
+  display: grid;
+  gap: 0.45rem;
+  color: var(--portal-text);
+  font-size: 0.95rem;
+}
+
+.control-input {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.control input[type="range"] {
+  flex: 1;
+  accent-color: var(--portal-accent);
+  background: transparent;
+}
+
+#rotation-speed-display {
+  min-width: 3rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--portal-accent);
+}
+
+.control.toggle {
+  position: relative;
+  align-items: center;
+  grid-template-columns: 1fr auto;
+}
+
+.control.toggle input[type="checkbox"] {
+  appearance: none;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  position: absolute;
+}
+
+.toggle-indicator {
+  width: 44px;
+  height: 24px;
+  background: rgba(20, 26, 42, 0.85);
+  border-radius: 999px;
+  border: 1px solid var(--control-border);
+  position: relative;
+  transition: background 250ms ease, border 250ms ease;
+}
+
+.toggle-indicator::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  width: 16px;
+  height: 16px;
+  background: var(--portal-accent);
+  border-radius: 50%;
+  transform: translate(0, -50%);
+  box-shadow: 0 0 14px rgba(123, 238, 255, 0.5);
+  transition: transform 250ms ease;
+}
+
+.control.toggle input[type="checkbox"]:checked + .toggle-indicator {
+  background: rgba(55, 115, 168, 0.6);
+  border-color: rgba(149, 227, 255, 0.55);
+}
+
+.control.toggle input[type="checkbox"]:checked + .toggle-indicator::after {
+  transform: translate(18px, -50%);
+}
+
+.portal-button {
+  position: relative;
+  border: 1px solid rgba(152, 245, 255, 0.5);
+  background: linear-gradient(120deg, rgba(12, 30, 60, 0.75), rgba(20, 52, 92, 0.8));
+  color: var(--portal-text);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  padding: 0.95rem 1.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 250ms ease, box-shadow 250ms ease;
+}
+
+.portal-button span:first-child {
+  position: relative;
+  z-index: 2;
+}
+
+.portal-button .button-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(152, 245, 255, 0.45), transparent 75%);
+  opacity: 0;
+  transition: opacity 250ms ease;
+  z-index: 1;
+}
+
+.portal-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(20, 30, 52, 0.5), 0 0 22px rgba(140, 238, 255, 0.45);
+}
+
+.portal-button:hover .button-glow {
+  opacity: 1;
+}
+
+.portal-button:focus-visible {
+  outline: 2px solid rgba(159, 244, 255, 0.7);
+  outline-offset: 4px;
+}
+
+.portal-button.is-animating {
+  pointer-events: none;
+  box-shadow: 0 0 28px rgba(152, 245, 255, 0.45), 0 0 55px rgba(85, 173, 255, 0.6);
+  transform: translateY(-1px) scale(1.01);
+}
+
+.canvas-field {
+  position: relative;
+  border-radius: 1.75rem;
+  overflow: hidden;
+  border: 1px solid var(--canvas-border);
+  background: linear-gradient(160deg, rgba(5, 8, 18, 0.65), rgba(10, 22, 42, 0.85));
+  box-shadow: inset 0 0 25px rgba(10, 25, 50, 0.6), 0 35px 65px rgba(4, 6, 12, 0.65);
+  min-height: clamp(320px, 55vh, 540px);
+}
+
+.canvas-field canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.canvas-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(150, 255, 252, 0.12), transparent 55%),
+    radial-gradient(circle at 70% 70%, rgba(108, 163, 255, 0.1), transparent 60%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+body.portal-transition .portal-glow {
+  opacity: 1;
+  transform: scale(1.12);
+}
+
+body.portal-transition .portal-shell::after {
+  animation: portal-flare 900ms ease forwards;
+}
+
+body.portal-transition .canvas-field {
+  animation: manifold-thrum 900ms ease forwards;
+}
+
+@keyframes portal-flare {
+  0% {
+    opacity: 0.85;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.25;
+  }
+}
+
+@keyframes manifold-thrum {
+  0% {
+    box-shadow: inset 0 0 25px rgba(10, 25, 50, 0.6), 0 35px 65px rgba(4, 6, 12, 0.65);
+  }
+  50% {
+    box-shadow: inset 0 0 45px rgba(130, 255, 255, 0.45), 0 55px 85px rgba(30, 55, 95, 0.8);
+  }
+  100% {
+    box-shadow: inset 0 0 15px rgba(10, 25, 50, 0.4), 0 30px 50px rgba(4, 6, 12, 0.6);
+  }
+}
+
+@media (max-width: 768px) {
+  .portal-header {
+    text-align: center;
+  }
+
+  .control-panel {
+    justify-items: center;
+  }
+
+  .portal-button {
+    width: 100%;
+    text-align: center;
+  }
+}
