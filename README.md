@@ -132,9 +132,9 @@ CONTRIBUTING.md                 → your collaboration guidelines
 
 ---
 
-## 📜 License  
-Creative Commons **BY-NC-SA 4.0** — share freely, attribute openly, never exploit.  
-All contributors are *custodians*, not *owners*.
+## 📜 License
+Creative Commons **BY-NC-SA 4.0** — share freely, attribute openly, never exploit.
+See [LICENSE](LICENSE) for the complete legal code; all contributors are *custodians*, not *owners*.
 
 ---
 
