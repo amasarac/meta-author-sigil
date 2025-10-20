@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WE — Star Lattice (Routes · Audits · Live)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root { --bg:#0b0f14; --fg:#d9e1ee; --muted:#7d90a8; --edge:#2f4056; --nodestroke:#8be9fd; }
+    html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial}
+    header{padding:14px 16px;border-bottom:1px solid #1c2430;display:flex;gap:12px;align-items:center}
+    header h1{font-size:16px;margin:0;letter-spacing:.06em;text-transform:uppercase}
+    main{display:grid;grid-template-columns:360px 1fr;height:calc(100% - 50px)}
+    aside{border-right:1px solid #1c2430;padding:14px;overflow:auto}
+    .small{font-size:12px;color:var(--muted)}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid #233042;border-radius:10px;cursor:pointer}
+    .btn:hover{border-color:#2f4056}
+    .row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+    .list{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+    .toggle{display:flex;align-items:center;gap:8px}
+    .toggle input{accent-color:#8be9fd}
+    input[type="text"]{background:#0d141c;border:1px solid #233042;border-radius:10px;color:#cfe3ff;padding:8px 10px;min-width:220px}
+    svg{width:100%;height:100%;display:block}
+    .card{background:#0d141c;border:1px solid #24344a;padding:10px;border-radius:10px}
+    .muted{color:var(--muted);font-size:12px}
+    .big{font-size:26px;font-weight:700}
+    footer{position:absolute;bottom:10px;left:12px;font-size:11px;color:var(--muted)}
+    #auditView{white-space:pre-wrap;font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;font-size:12px;background:#0d141c;border:1px solid #24344a;border-radius:10px;padding:10px;color:#cfe3ff}
+  
+    .theme-print body { background:#ffffff; color:#0a0a0a; }
+    .theme-print .card { background:#ffffff; border-color:#c7d0dc; color:#0a0a0a; }
+    .theme-print #spark rect { stroke:#c7d0dc; }
+    </style>
+</head>
+<body>
+  <header>
+    <div title="Lattice Crest">🜂🜃🜄</div>
+    <h1>WE — Star Lattice (Routes · Audits · Live)</h1>
+    <div class="small">Load JSON-LD, then add routes, audits, and telemetry.</div>
+  </header>
+  <main>
+    <aside>
+      <div class="row">
+        <label class="btn"><input id="fileJsonLd" type="file" accept=".json,.jsonld" style="display:none">Load JSON-LD</label>
+        <label class="btn"><input id="fileRoutes" type="file" accept=".json" multiple style="display:none">Load Route(s)</label>
+        <label class="btn"><input id="fileAudits" type="file" accept=".json" multiple style="display:none">Load Audit(s)</label>
+      </div>
+      <div class="row">
+        <label class="btn"><input id="fileTelem" type="file" accept=".json,.jsonl" style="display:none">Load Telemetry</label>
+        <button class="btn" id="savePng">Save PNG</button>
+        <button class="btn" id="savePdf">Save PDF</button>
+      </div>
+      <div class="row">
+        <label for="telemUrl" class="muted">Telemetry URL</label>
+        <input id="telemUrl" type="text" placeholder="./telemetry.jsonl">
+        <button class="btn" id="startPoll">Start</button>
+        <button class="btn" id="stopPoll">Stop</button>
+      </div>
+      <div class="row">
+        <label class="btn" style="gap:6px"><input id="hideLabels" type="checkbox" style="display:inline-block"> Hide labels</label>
+        <label class="muted">Theme</label>
+        <select id="themeSel" style="background:#0d141c;border:1px solid #233042;border-radius:8px;color:#cfe3ff;padding:6px 10px">
+          <option value="dark" selected>Dark</option>
+          <option value="print">Print</option>
+        </select>
+      </div>
+      <div class="card">
+        <div class="muted">Triad / Tetrad</div>
+        <div style="display:flex;gap:10px">
+          <div class="big" id="triadCount">–</div>
+          <div class="big" id="tetradCount">–</div>
+        </div>
+        <svg id="spark" viewBox="0 0 300 80" width="100%" height="80" style="margin-top:8px">
+          <rect x="0" y="0" width="300" height="80" fill="#0d141c" stroke="#24344a" rx="8" ry="8"></rect>
+          <polyline id="sparkTriad" fill="none" stroke="#f0ad3d" stroke-width="1.8" points=""/>
+          <polyline id="sparkTetrad" fill="none" stroke="#7db7d4" stroke-width="1.8" points=""/>
+          <g id="sparkTicks" stroke="#24344a" stroke-width="0.5" />
+        </svg>
+      </div>
+      <div class="card"><div class="muted">Route Colors</div><div id="routeColors" class="list"></div></div>
+      <h3 style="margin:12px 0 6px 0;font-size:13px;color:#9eb3cc;letter-spacing:.08em;text-transform:uppercase">Audit Entry</h3>
+      <div id="auditView" class="card"></div>
+    </aside>
+    <section style="position:relative">
+      <svg id="s" viewBox="-480 -520 960 1040" preserveAspectRatio="xMidYMid meet" aria-label="WE Star Lattice">
+        <defs>
+          <filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <radialGradient id="halo">
+            <stop offset="0%" stop-color="#8be9fd" stop-opacity="0.85"/>
+            <stop offset="60%" stop-color="#8be9fd" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#8be9fd" stop-opacity="0"/>
+          </radialGradient>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#cfe3ff"/>
+          </marker>
+        </defs>
+      </svg>
+      <footer>© MASL · Crest 🜂🜃🜄</footer>
+    </section>
+  </main>
+  <script>
+    const svg = document.getElementById('s');
+    const fileJsonLd = document.getElementById('fileJsonLd');
+    const fileRoutes = document.getElementById('fileRoutes');
+    const fileAudits = document.getElementById('fileAudits');
+    const fileTelem = document.getElementById('fileTelem');
+    const startPoll = document.getElementById('startPoll');
+    const stopPoll = document.getElementById('stopPoll');
+    const telemUrl = document.getElementById('telemUrl');
+    const triadCountEl = document.getElementById('triadCount');
+    const tetradCountEl = document.getElementById('tetradCount');
+    const auditView = document.getElementById('auditView');
+    let pollId = null;
+    let attHash = "";
+    let ridxCounter = 0;
+    const routeColorPanel = document.getElementById('routeColors');
+    function registerRouteColorControl(routeId, initialColor, groupEl){
+      if(!routeColorPanel) return;
+      const wrap = document.createElement('div');
+      wrap.style.display='flex'; wrap.style.alignItems='center'; wrap.style.gap='8px';
+      const input = document.createElement('input'); input.type='color'; input.value = colorToHex(initialColor);
+      const label = document.createElement('span'); label.textContent = routeId; label.className='muted';
+      wrap.appendChild(input); wrap.appendChild(label); routeColorPanel.appendChild(wrap);
+      input.addEventListener('input', ()=>{
+        recolorRouteGroup(groupEl, input.value);
+      });
+    }
+    function colorToHex(c){
+      const ctx = document.createElement('canvas').getContext('2d'); ctx.fillStyle = c; return ctx.fillStyle;
+    }
+    function recolorRouteGroup(G, col){
+      const ridx = parseInt(G.dataset.ridx||0,10);
+      G.querySelectorAll('line.edge').forEach((L, idx)=>{
+        L.setAttribute('stroke', col);
+        const dwellSecs = (parseFloat(L.dataset.weight||0)*10);
+        const markerUrl = ensureEdgeMarker(col, dwellSecs, ridx, idx);
+        L.setAttribute('marker-end', markerUrl);
+      });
+      G.querySelectorAll('text.edgeLabel').forEach(T=>{ T.setAttribute('fill', col); });
+      G.querySelectorAll('circle').forEach(C=>{ C.setAttribute('fill', col); });
+    }
+
+
+    // create per-edge marker sized by dwell seconds
+    function ensureEdgeMarker(color, dwell, ridx, eidx){
+      const defs = svg.querySelector('defs') || (()=>{ const d=document.createElementNS('http://www.w3.org/2000/svg','defs'); svg.insertBefore(d, svg.firstChild); return d; })();
+      const id = `arrow_r${ridx}_e${eidx}`;
+      if (document.getElementById(id)) return `url(#${id})`;
+      const size = Math.max(5, Math.min(16, 4 + 0.7*dwell)); // 4..16
+      const refx = 0.9*size, refy = 0.5*size;
+      const m = document.createElementNS('http://www.w3.org/2000/svg','marker');
+      m.setAttribute('id', id);
+      m.setAttribute('viewBox', '0 0 10 10');
+      m.setAttribute('refX', refx.toFixed(2));
+      m.setAttribute('refY', refy.toFixed(2));
+      m.setAttribute('markerWidth', size.toFixed(2));
+      m.setAttribute('markerHeight', size.toFixed(2));
+      m.setAttribute('orient', 'auto-start-reverse');
+      const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+      path.setAttribute('d','M 0 0 L 10 5 L 0 10 z');
+      path.setAttribute('fill', color);
+      m.appendChild(path);
+      defs.appendChild(m);
+      return `url(#${id})`;
+    }
+
+    // export current SVG view to PNG
+    async function savePNG(){
+      const serializer = new XMLSerializer();
+      const clone = svg.cloneNode(true);
+      // inline computed size using viewBox
+      const vb = (svg.getAttribute('viewBox')||'0 0 1000 1000').split(/\s+/).map(Number);
+      const w = Math.max(960, Math.abs(vb[2])); const h = Math.max(960, Math.abs(vb[3]));
+      const xml = serializer.serializeToString(clone);
+      const svgBlob = new Blob([xml], {type:'image/svg+xml;charset=utf-8'});
+      const url = URL.createObjectURL(svgBlob);
+      await new Promise((resolve)=>{
+        const img = new Image();
+        img.onload = ()=>{
+          const canvas = document.createElement('canvas');
+          canvas.width = w; canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.fillStyle = '#0b0f14'; ctx.fillRect(0,0,w,h);
+          ctx.drawImage(img, 0, 0, w, h);
+          // watermark attestation
+          try{
+            const stamp = 'Attestation ' + (attHash ? attHash : '—');
+            ctx.font = '12px ui-sans-serif';
+            ctx.fillStyle = document.documentElement.classList.contains('theme-print') ? '#0a0a0a' : '#cfe3ff';
+            const tw = ctx.measureText(stamp).width;
+            ctx.fillText(stamp, w - tw - 12, h - 12);
+          }catch(_e){}
+
+          canvas.toBlob((pngBlob)=>{
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(pngBlob);
+            a.download = 'WE_Star_Lattice_snapshot.png';
+            document.body.appendChild(a); a.click(); a.remove();
+            URL.revokeObjectURL(url);
+            resolve();
+          }, 'image/png');
+        };
+        img.src = url;
+      });
+    }
+
+    // Merkle proof generator (same hashing rule as audits)
+    function sha256hex(str){
+      const enc = new TextEncoder().encode(str);
+      return crypto.subtle.digest('SHA-256', enc).then(buf => {
+        const b = new Uint8Array(buf);
+        return Array.from(b).map(x=>x.toString(16).padStart(2,'0')).join('');
+      });
+    }
+    async function merkleRoot(hashes){
+      let level = hashes.slice();
+      while(level.length > 1){
+        const next = [];
+        for (let i=0; i<level.length; i+=2){
+          const a = level[i];
+          const b = (i+1<level.length) ? level[i+1] : a;
+          const c = await sha256hex(a + b);
+          next.push(c);
+        }
+        level = next;
+      }
+      return level[0];
+    }
+    async function merkleProof(entries, idx){
+      const leaves = await Promise.all(entries.map(e=> sha256hex(JSON.stringify(e, Object.keys(e).sort()))));
+      const path = []; // [{dir:'L'|'R', hash: string}]
+      let indices = leaves.map((_,i)=>i);
+      let level = leaves.slice();
+      let pos = idx;
+      while(level.length > 1){
+        const isRight = (pos % 2 === 1);
+        const sib = isRight ? pos-1 : (pos+1 < level.length ? pos+1 : pos);
+        path.push({dir: isRight ? 'L' : 'R', hash: level[sib]});
+        // build next level
+        const next = [];
+        const nextIdx = [];
+        for (let i=0; i<level.length; i+=2){
+          const a = level[i];
+          const b = (i+1<level.length) ? level[i+1] : a;
+          nextIdx.push(i/2);
+          next.push(await sha256hex(a + b));
+        }
+        pos = Math.floor(pos/2);
+        level = next;
+        indices = nextIdx;
+      }
+      const root = level[0];
+      return {leaf: leaves[idx], path, root};
+    }
+
+    let audits = {}; // keyed by route masl:node
+    let routeColors = ["#f0ad3d", "#7db7d4", "#7bdd7b", "#e58be1"];
+    let histTriad = [], histTetrad = [];
+    const group = (id)=>{ let g=document.getElementById(id); if(!g){g=document.createElementNS('http://www.w3.org/2000/svg','g'); g.setAttribute('id',id); svg.appendChild(g);} return g; };
+
+    const bgStars = ()=>{
+      for(let i=0;i<420;i++){
+        const x=-460+Math.random()*920, y=-480+Math.random()*960, r=0.2+Math.random()*1.0;
+        const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+        c.setAttribute('cx',x.toFixed(1)); c.setAttribute('cy',y.toFixed(1)); c.setAttribute('r',r.toFixed(2)); c.setAttribute('fill','#223142'); svg.appendChild(c);
+      }
+    };
+
+    function loadJSONLD(txt){
+      const d=JSON.parse(txt);
+      attHash = (d["masl:attestationRing"] && d["masl:attestationRing"].hash) || "";
+      svg.innerHTML='<defs>'+document.querySelector('#s defs').innerHTML+'</defs>';
+      bgStars();
+      const baseNodes=(d["masl:nodes"]||[]).map(n=>({name:n["label"], pos:n["masl:position"], mag:n["masl:magnitude"]||3.0}));
+      const baseEdges=(d["masl:edges"]||[]).map(e=>({from:e["from"], to:e["to"]}));
+      // base edges
+      const G=group('base');
+      baseEdges.forEach(e=>{
+        const a=baseNodes[e.from].pos, b=baseNodes[e.to].pos;
+        const L=document.createElementNS('http://www.w3.org/2000/svg','line');
+        L.setAttribute('x1',a.x); L.setAttribute('y1',a.y); L.setAttribute('x2',b.x); L.setAttribute('y2',b.y);
+        L.setAttribute('stroke','#2f4056'); L.setAttribute('stroke-width','1.6'); G.appendChild(L);
+      });
+      // base nodes
+      baseNodes.forEach(n=>{
+        const g=document.createElementNS('http://www.w3.org/2000/svg','g'); g.setAttribute('transform',`translate(${n.pos.x},${n.pos.y})`); g.setAttribute('filter','url(#glow)');
+        const r=3.5+(5.0-Math.min(5.0,n.mag)); const h=document.createElementNS('http://www.w3.org/2000/svg','circle'); h.setAttribute('r',r.toFixed(2)); h.setAttribute('fill','url(#halo)'); g.appendChild(h);
+        const c=document.createElementNS('http://www.w3.org/2000/svg','circle'); c.setAttribute('r',Math.max(1.6,r*0.45).toFixed(2)); c.setAttribute('fill','#0b0f14'); c.setAttribute('stroke','#8be9fd'); c.setAttribute('stroke-width','1.2'); g.appendChild(c);
+        const t=document.createElementNS('http://www.w3.org/2000/svg','text'); t.setAttribute('x',0); t.setAttribute('y',(r+14).toFixed(2)); t.setAttribute('fill','#a8b5c8'); t.setAttribute('font-size','12'); t.setAttribute('text-anchor','middle'); t.textContent=n.name; g.appendChild(t);
+        G.appendChild(g);
+      });
+      // outer asterisms
+      const asts=(d["masl:asterisms"]||[]).map(A=>({
+        name:A.name, nodes:A.nodes.map(n=>({label:n.label, pos:n.pos})), edges:A.edges.map(e=>({from:e.from,to:e.to}))
+      }));
+      const colors=["#334b68","#3a556f","#41607a","#476885","#4e7290","#557b9a","#5b85a5","#6290b0","#699aba","#70a4c5","#77aed0","#7db7da"];
+      asts.forEach((A, idx)=>{
+        const id=`ast_${idx}`; const G=group(id);
+        A.edges.forEach(e=>{
+          const a=A.nodes[e.from].pos, b=A.nodes[e.to].pos;
+          const L=document.createElementNS('http://www.w3.org/2000/svg','line');
+          L.setAttribute('x1',a.x); L.setAttribute('y1',a.y); L.setAttribute('x2',b.x); L.setAttribute('y2',b.y);
+          L.setAttribute('stroke', colors[idx%colors.length]); L.setAttribute('stroke-width','1.2'); G.appendChild(L);
+        });
+        A.nodes.forEach(n=>{
+          const g=document.createElementNS('http://www.w3.org/2000/svg','g'); g.setAttribute('transform',`translate(${n.pos.x},${n.pos.y})`);
+          const c=document.createElementNS('http://www.w3.org/2000/svg','circle'); c.setAttribute('r','2.4'); c.setAttribute('fill','#0b0f14'); c.setAttribute('stroke',colors[idx%colors.length]); c.setAttribute('stroke-width','1.1'); g.appendChild(c);
+          const t=document.createElementNS('http://www.w3.org/2000/svg','text'); t.setAttribute('x',0); t.setAttribute('y','10'); t.setAttribute('font-size','10'); t.setAttribute('fill','#8fa8c4'); t.setAttribute('text-anchor','middle'); t.textContent=n.label; g.appendChild(t);
+          G.appendChild(g);
+        });
+      });
+    }
+
+    function loadRoutes(files){
+      const colors = routeColors;
+      Array.from(files).forEach((f, idx)=>{
+        const reader = new FileReader();
+        reader.onload = ()=>{
+          try{
+            const r = JSON.parse(reader.result);
+            renderRoute(r, colors[idx % colors.length]);
+          }catch(e){ console.error(e); }
+        };
+        reader.readAsText(f);
+      });
+    }
+
+    function renderRoute(route, color){
+      const id = `route_${route["masl:node"]}`;
+      const G = document.createElementNS('http://www.w3.org/2000/svg','g');
+      G.setAttribute('id', id); G.setAttribute('data-route', route["masl:node"]);
+      G.dataset.ridx = (ridxCounter++);
+      svg.appendChild(G);
+
+      const nodes = {}; route.graph.nodes.forEach(n=> nodes[n.id]=n );
+      route.graph.edges.forEach((e, i)=>{
+        const a = nodes[e.from], b = nodes[e.to];
+        const L = document.createElementNS('http://www.w3.org/2000/svg','line');
+        L.setAttribute('x1', a.x); L.setAttribute('y1', a.y);
+        L.setAttribute('x2', b.x); L.setAttribute('y2', b.y);
+        L.setAttribute('stroke', color); L.setAttribute('stroke-width','2.2');
+        let dwellSecs = (parseFloat(e.weight||0)*10);
+        const markerUrl = ensureEdgeMarker(color, dwellSecs, (G.dataset.ridx||0), i);
+        L.setAttribute('marker-end', markerUrl);
+        L.dataset.route = route["masl:node"]; L.dataset.edgeFrom = e.from; L.dataset.edgeTo = e.to; L.dataset.mode = e.mode; L.dataset.weight = e.weight;
+        /* dwellSecs defined above */
+        const dwell = dwellSecs.toFixed(1)+'s';
+        const title = document.createElementNS('http://www.w3.org/2000/svg','title');
+        title.textContent = `${route["masl:node"]} | ${e.from}→${e.to} · ${e.mode} · w ${parseFloat(e.weight||0).toFixed(2)} · ${dwell}`;
+        L.appendChild(title);
+        L.addEventListener('click', ()=> showAudit(route["masl:node"], e.from, e.to));
+        G.appendChild(L);
+        const tx = (a.x+b.x)/2, ty=(a.y+b.y)/2 - 6;
+        const T = document.createElementNS('http://www.w3.org/2000/svg','text');
+        T.setAttribute('x',tx); T.setAttribute('y',ty); T.setAttribute('font-size','9'); T.setAttribute('fill', color); T.setAttribute('text-anchor','middle');
+        T.textContent = `${e.mode} · ${dwell}`;
+        G.appendChild(T);
+      });
+      // nodes dots
+      route.graph.nodes.forEach(n=>{
+        const C = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        C.setAttribute('cx', n.x); C.setAttribute('cy', n.y); C.setAttribute('r', '2.2'); C.setAttribute('fill', color);
+        G.appendChild(C);
+      });
+      registerRouteColorControl(route["masl:node"], color, G);
+    }
+
+    function showAudit(routeId, frm, to){
+      const a = audits[routeId];
+      if(!a){ auditView.textContent = `No audit loaded for ${routeId}`; return; }
+      const entry = (a.entries||[]).find(e=> e.from===frm && e.to===to);
+      if(!entry){ auditView.textContent = `No entry for edge ${frm}→${to} in ${routeId}`; return; }
+      merkleProof(a.entries, (a.entries||[]).findIndex(e=> e.from===frm && e.to===to)).then(proof=>{
+        auditView.textContent = JSON.stringify({route: routeId, merkle_root: a.merkle_root, verified_root: proof.root, leaf: proof.leaf, path: proof.path, entry}, null, 2);
+      });
+    }
+
+    function loadAudits(files){
+      Array.from(files).forEach(f=>{
+        const reader = new FileReader();
+        reader.onload = ()=>{
+          try{ const a = JSON.parse(reader.result); audits[a["masl:node"]] = a; }catch(e){}
+        };
+        reader.readAsText(f);
+      });
+    }
+
+    function applyTelemetry(lines){
+      const recs = lines.filter(Boolean).map(t=>{ try{return JSON.parse(t);}catch(e){return null;} }).filter(Boolean);
+      recs.forEach(r=>{ histTriad.push(+r.triad); histTetrad.push(+r.tetrad); });
+      const last = recs[recs.length-1];
+      if (!last){ drawSpark(); return; }
+      triadCountEl.textContent = isFinite(+last.triad) ? last.triad : '–';
+      tetradCountEl.textContent = isFinite(+last.tetrad) ? last.tetrad : '–';
+      drawSpark();
+    }
+
+    function drawSpark(){
+      const N = 30;
+      const xs = (i)=> 10 + (280*(i/(N-1)));
+      const norm = (arr)=>{
+        if (arr.length===0) return [0,1];
+        let mn = Math.min(...arr), mx = Math.max(...arr);
+        if (mn===mx){ mx = mn+1; } return [mn, mx];
+      };
+      const tri = histTriad.slice(-N), tet = histTetrad.slice(-N);
+      const [tmin,tmax]=norm(tri), [emin,emax]=norm(tet);
+      const ymin=10, ymax=70;
+      const mapY=(v,mn,mx)=> ymax - ((v-mn)/(mx-mn) * (ymax-ymin));
+      const triPts = tri.map((v,i)=> `${xs(i)},${mapY(v,tmin,tmax).toFixed(1)}`).join(" ");
+      const tetPts = tet.map((v,i)=> `${xs(i)},${mapY(v,emin,emax).toFixed(1)}`).join(" ");
+      document.getElementById('sparkTriad').setAttribute('points', triPts);
+      document.getElementById('sparkTetrad').setAttribute('points', tetPts);
+      const ticks = document.getElementById('sparkTicks'); ticks.innerHTML="";
+      for(let i=0;i<6;i++){ const x = 10 + i*(280/5);
+        const L=document.createElementNS('http://www.w3.org/2000/svg','line'); L.setAttribute('x1',x); L.setAttribute('y1',10); L.setAttribute('x2',x); L.setAttribute('y2',70); ticks.appendChild(L);
+      }
+    }
+
+    // wiring
+    fileJsonLd.addEventListener('change', async (e)=>{ const f=e.target.files[0]; if(!f) return; const txt=await f.text(); loadJSONLD(txt); });
+    fileRoutes.addEventListener('change', (e)=> loadRoutes(e.target.files));
+    fileAudits.addEventListener('change', (e)=> loadAudits(e.target.files));
+    fileTelem.addEventListener('change', async (e)=>{ const f=e.target.files[0]; if(!f) return; const txt=await f.text(); applyTelemetry(txt.split(/\r?\n/)); });
+    startPoll.addEventListener('click', async ()=>{
+      const url=telemUrl.value.trim(); if(!url) return;
+      if (pollId) clearInterval(pollId);
+      const pull = async ()=>{
+        try{ const r=await fetch(url,{cache:'no-store'}); const t=await r.text(); applyTelemetry(t.split(/\r?\n/)); } catch(e){}
+      };
+      await pull(); pollId=setInterval(pull,3000);
+    });
+    stopPoll.addEventListener('click', ()=>{ if(pollId) clearInterval(pollId); pollId=null; });
+    document.getElementById('savePng').addEventListener('click', savePNG);
+    async function savePDF(){
+      const serializer = new XMLSerializer();
+      const clone = svg.cloneNode(true);
+      // ensure theme applied
+      const wrapper = document.createElement('div');
+      wrapper.appendChild(clone);
+      const xml = serializer.serializeToString(clone);
+      const w = 960, h = 1040;
+      const popup = window.open('', '_blank');
+      popup.document.open();
+      popup.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>WE_Star_Lattice.pdf</title>
+        <style>@page { size: A4; margin: 10mm; } html, body { margin:0; } body {{ background: #fff; }}</style></head>
+        <body>${xml}</body></html>`);
+      popup.document.close();
+      popup.focus();
+      popup.print();
+    }
+    document.getElementById('savePdf').addEventListener('click', savePDF);
+    const hideCb = document.getElementById('hideLabels');
+    const themeSel = document.getElementById('themeSel');
+    function applyHide(){ const labels = svg.querySelectorAll('.edgeLabel, .astLabel, .nodeLabel'); labels.forEach(el=> el.style.display = hideCb.checked ? 'none' : 'block'); }
+    hideCb.addEventListener('change', applyHide); applyHide();
+    function applyTheme(){ document.documentElement.classList.toggle('theme-print', themeSel.value==='print'); }
+    themeSel.addEventListener('change', applyTheme); applyTheme();
+
+    // initial hint
+    const msg=document.createElementNS('http://www.w3.org/2000/svg','text');
+    msg.setAttribute('x','0'); msg.setAttribute('y','0'); msg.setAttribute('text-anchor','middle'); msg.setAttribute('fill','#607c9e'); msg.textContent='Load we_star_lattice_v2.jsonld · Add routes/audits'; svg.appendChild(msg);
+  </script>
+</body>
+</html>
