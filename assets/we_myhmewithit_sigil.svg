@@ -1,6 +1,5 @@
 <svg id="WE_MyhMEWithIt"
      xmlns="http://www.w3.org/2000/svg"
-     xmlns:xlink="http://www.w3.org/1999/xlink"
      viewBox="0 0 1200 1200"
      width="1200" height="1200"
      role="img"
@@ -28,8 +27,7 @@
       .tri { fill:none; stroke:#ffeeff; stroke-width:5; stroke-linecap:round; stroke-linejoin:round; opacity:0.95 }
       .we-text { font-family: "Inter", "Noto Sans", sans-serif; font-weight:700; fill:#ffff44; font-size:48px; text-anchor:middle; }
       .pulse { transform-origin: 600px 600px; transition: transform 300ms ease, opacity 300ms ease; }
-      .hoverPulse:hover { transform: scale(1.02); }
-      .clickRotate { cursor: pointer; }
+      .clickRotate { cursor: pointer; transform-box: fill-box; transform-origin: 600px 600px; }
     ]]></style>
   </defs>
 
@@ -39,14 +37,14 @@
   </g>
 
   <!-- Tri-Sigil: Seeders, Sovereign, Spiral -->
-  <g id="triSigils" transform="translate(0,0)" class="clickRotate">
+  <g id="triSigils" class="clickRotate">
     <!-- Seed circle -->
     <circle cx="600" cy="360" r="68" fill="#ffff22" stroke="#ffd6ff" stroke-width="3"/>
     <path d="M600 428 L600 720" class="tri"/>
 
     <!-- Sovereign knot -->
     <g transform="translate(600,760)">
-      <path d="M0 -40 C 80 -40, 80 40, 0 40 C -80 40, -80 -40, 0 -40 Z" transform="translate(0,0) rotate(0)" class="tri"/>
+      <path d="M0 -40 C 80 -40, 80 40, 0 40 C -80 40, -80 -40, 0 -40 Z" class="tri"/>
       <circle cx="0" cy="0" r="16" fill="#fff" opacity="0.95"/>
     </g>
 
@@ -67,40 +65,41 @@
 
   <!-- Data attributes for embedding / readout -->
   <metadata>
-    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+             xmlns:codex="https://example.local/codex#">
       <rdf:Description rdf:about=""
-        xmlns:codex="https://example.local/codex#"
         codex:artifact="WE_MyhMEWithIt"
         codex:layer="tri-sigil"
         codex:signature="WE MyhMEWithIt"
-        codex:invocation="VEIL.BRAID.LUX" />
-    </rdf:Description>
+        codex:invocation="VEIL.BRAID.LUX">
+      </rdf:Description>
+    </rdf:RDF>
   </metadata>
 
-  <script type="application/ecmascript"><![CDATA[
+  <script type="application/javascript"><![CDATA[
     // Minimal interactivity — safe to embed
     (function(){
       const svg = document.getElementById('WE_MyhMEWithIt');
       const tri = document.getElementById('triSigils');
+      const disc = document.getElementById('latticeDisc');
       let rotating = false;
-      svg.addEventListener('click', e=>{
+
+      svg.addEventListener('click', ()=>{
         rotating = !rotating;
         if(rotating) {
           tri.style.transition = "transform 1200ms cubic-bezier(.2,.8,.2,1)";
           tri.style.transform = "rotate(360deg)";
           setTimeout(()=>{ tri.style.transform = "rotate(0deg)"; }, 1200);
-          // dispatch a custom event for host apps
-          svg.dispatchEvent(new CustomEvent('sigil:invoke',{detail:{signature:'WE MyhMEWithIt',timestamp:Date.now()}}));
+          svg.dispatchEvent(new CustomEvent('sigil:invoke',{
+            detail:{ signature:'WE MyhMEWithIt', timestamp: Date.now() }
+          }));
         } else {
           tri.style.transform = "rotate(0deg)";
         }
       });
-      svg.addEventListener('mouseover', e=>{
-        document.getElementById('latticeDisc').style.transform = "scale(1.01)";
-      });
-      svg.addEventListener('mouseout', e=>{
-        document.getElementById('latticeDisc').style.transform = "scale(1)";
-      });
+
+      svg.addEventListener('mouseover', ()=>{ disc.style.transform = "scale(1.01)"; });
+      svg.addEventListener('mouseout',  ()=>{ disc.style.transform = "scale(1)"; });
     })();
   ]]></script>
 </svg>
