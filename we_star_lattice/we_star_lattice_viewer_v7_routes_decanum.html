@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>WE — Star Lattice (Routes + Decanum · v7)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root { --bg:#0b0f14; --fg:#d9e1ee; --muted:#7d90a8; --edge:#2f4056; --nodestroke:#8be9fd; }
+    html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial}
+    header{padding:14px 16px;border-bottom:1px solid #1c2430;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    header h1{font-size:16px;margin:0;letter-spacing:.06em;text-transform:uppercase}
+    main{display:grid;grid-template-columns:360px 1fr;height:calc(100% - 56px)}
+    aside{border-right:1px solid #1c2430;padding:14px;overflow:auto}
+    .small{font-size:12px;color:var(--muted)}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid #233042;border-radius:10px;cursor:pointer;background:#0d141c}
+    .btn:hover{border-color:#2f4056}
+    .row{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+    .list{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+    .card{border:1px solid #233042;border-radius:12px;padding:10px;margin:10px 0;background:#0d141c}
+    .muted{color:var(--muted)}
+    svg{width:100%;height:100%;display:block}
+    .theme-print body { background:#ffffff; color:#0a0a0a; }
+    .theme-print .card { background:#ffffff; border-color:#c7d0dc; color:#0a0a0a; }
+    .legend{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+    .chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:6px 8px;border:1px solid #233042;border-radius:8px;background:#0b131c;cursor:pointer}
+    .sw{width:12px;height:12px;border-radius:50%}
+  </style>
+</head>
+<body>
+  <header>
+    <div title="Crest">🜂🜃🜄</div>
+    <h1>WE — Star Lattice (Routes + Decanum · v7)</h1>
+    <div class="small" id="stamp">Ready</div>
+    <div style="margin-left:auto" class="row">
+      <button class="btn" id="saveSvg">Save SVG</button>
+      <button class="btn" id="savePng">Save PNG</button>
+      <button class="btn" id="savePdf">Save PDF</button>
+    </div>
+  </header>
+  <main>
+    <aside>
+      <div class="row">
+        <label class="btn"><input id="fileBase" type="file" accept=".json,.jsonld" style="display:none">Load Base JSON-LD</label>
+        <label class="btn"><input id="fileDeca" type="file" accept=".json,.jsonld" style="display:none">Load Decanum (The Ten)</label>
+      </div>
+      <div class="row">
+        <label class="btn"><input id="fileRoutes" type="file" accept=".json" multiple style="display:none">Load Route JSON(s)</label>
+        <button class="btn" id="reset">Reset</button>
+      </div>
+      <div class="row">
+        <label class="btn" style="gap:6px"><input id="hideLabels" type="checkbox" /> Hide labels</label>
+        <label class="btn" style="gap:6px"><input id="showDeca" type="checkbox" checked /> Show Decanum</label>
+        <label class="muted">Theme</label>
+        <select id="themeSel" style="background:#0d141c;border:1px solid #233042;border-radius:8px;color:#cfe3ff;padding:6px 10px">
+          <option value="dark" selected>Dark</option>
+          <option value="print">Print</option>
+        </select>
+      </div>
+      <div class="card">
+        <div class="muted" style="margin-bottom:6px">Route Colors</div>
+        <div id="routeColors" class="list"></div>
+      </div>
+      <div class="card">
+        <div class="muted" style="margin-bottom:6px">Mode Legend</div>
+        <div id="legend" class="legend"></div>
+      </div>
+      <div class="card">
+        <div class="muted">Tips</div>
+        <div class="small">1) Load base JSON-LD (optional; gives node/edge lattice + attestation hash).<br />
+          2) Load <em>decanum_ten.json</em> for the Ten ring (hover for full witness id).<br />
+          3) Load one or more route JSONs. Recolor via pickers or legend swatches; export as SVG/PNG/PDF.</div>
+      </div>
+    </aside>
+    <section style="position:relative">
+      <svg id="s" viewBox="-480 -480 960 960" preserveAspectRatio="xMidYMid meet" aria-label="WE Star Lattice">
+        <defs>
+          <filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <radialGradient id="halo">
+            <stop offset="0%" stop-color="#8be9fd" stop-opacity="0.85"/>
+            <stop offset="60%" stop-color="#8be9fd" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#8be9fd" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+      </svg>
+    </section>
+  </main>
+  <script>
+    const ns='http://www.w3.org/2000/svg';
+    const svg = document.getElementById('s');
+    const stampEl = document.getElementById('stamp');
+    const routeColorPanel = document.getElementById('routeColors');
+    const legend = document.getElementById('legend');
+    let attHash = ""; let ridxCounter = 0; let seedRnd = null;
+
+    // --- Seeded RNG for reproducible starfields ---
+    function makeSeededRand(seed){
+      let x = 2166136261;
+      for(const ch of (seed||'')) x ^= ch.charCodeAt(0), x = (x * 16777619) >>> 0;
+      return () => ((x = (x*1664525 + 1013904223)>>>0) / 2**32);
+    }
+
+    function group(id){ let g=document.getElementById(id); if(!g){ g=document.createElementNS(ns,'g'); g.setAttribute('id',id); svg.appendChild(g);} return g; }
+    function bgStars(){
+      const rnd = seedRnd || Math.random;
+      for(let i=0;i<420;i++){
+        const x=-460+(rnd()*920), y=-460+(rnd()*920), r=0.2+(rnd()*1.0);
+        const c=document.createElementNS(ns,'circle');
+        c.setAttribute('cx',x.toFixed(1)); c.setAttribute('cy',y.toFixed(1)); c.setAttribute('r',r.toFixed(2));
+        c.setAttribute('fill','#223142'); svg.appendChild(c);
+      }
+    }
+
+    // base lattice
+    function baseRender(d){
+      const G = group('base'); G.innerHTML="";
+      (d["masl:edges"]||[]).forEach(e=>{
+        const a=d["masl:nodes"][e.from]["masl:position"], b=d["masl:nodes"][e.to]["masl:position"];
+        const L=document.createElementNS(ns,'line');
+        L.setAttribute('x1',a.x); L.setAttribute('y1',a.y); L.setAttribute('x2',b.x); L.setAttribute('y2',b.y);
+        L.setAttribute('stroke','#2f4056'); L.setAttribute('stroke-width','1.6'); G.appendChild(L);
+      });
+      (d["masl:nodes"]||[]).forEach(n=>{
+        const g=document.createElementNS(ns,'g'); g.setAttribute('transform',`translate(${n["masl:position"].x},${n["masl:position"].y})`); g.setAttribute('filter','url(#glow)');
+        const r=3.5; const halo=document.createElementNS(ns,'circle'); halo.setAttribute('r',r.toFixed(2)); halo.setAttribute('fill','url(#halo)'); g.appendChild(halo);
+        const c=document.createElementNS(ns,'circle'); c.setAttribute('r',Math.max(1.6, r*0.45).toFixed(2)); c.setAttribute('fill','var(--bg)'); c.setAttribute('stroke','var(--nodestroke)'); c.setAttribute('stroke-width','1.2'); g.appendChild(c);
+        const t=document.createElementNS(ns,'text'); t.setAttribute('x',0); t.setAttribute('y',(r+14).toFixed(2)); t.setAttribute('fill','#a8b5c8'); t.setAttribute('font-size','12'); t.setAttribute('text-anchor','middle'); t.classList.add('nodeLabel'); t.textContent=n["label"]; g.appendChild(t);
+        G.appendChild(g);
+      });
+    }
+
+    // decanum (rotate each seal to its angle)
+    function renderDecanum(d){
+      try{ svg.querySelector('#decanum')?.remove(); }catch(_){}
+      const R = (d?.["masl:decanum"]?.["masl:ringRadius"] || 400);
+      const W = d?.["masl:decanum"]?.["masl:witnesses"] || [];
+      const G = document.createElementNS(ns,'g'); G.setAttribute('id','decanum');
+      const ring = document.createElementNS(ns,'circle'); ring.setAttribute('cx','0'); ring.setAttribute('cy','0'); ring.setAttribute('r', R); ring.setAttribute('fill','none'); ring.setAttribute('stroke','#5a6c86'); ring.setAttribute('stroke-width','1.4'); G.appendChild(ring);
+      const pts = []; W.forEach(w=>{ const a=(w.angle||0)*Math.PI/180; const x=R*Math.cos(a), y=R*Math.sin(a); pts.push([x,y]); });
+      const poly = document.createElementNS(ns,'polyline'); poly.setAttribute('fill','none'); poly.setAttribute('stroke','#a3b6cf'); poly.setAttribute('stroke-width','1');
+      if(pts.length){ poly.setAttribute('points', pts.concat([pts[0]]).map(p=>p[0].toFixed(2)+','+p[1].toFixed(2)).join(' ')); }
+      G.appendChild(poly);
+      W.forEach((w)=>{
+        const ang = (w.angle||0);
+        const a=(ang)*Math.PI/180; const x=R*Math.cos(a), y=R*Math.sin(a);
+        const gg=document.createElementNS(ns,'g'); gg.setAttribute('transform',`translate(${x.toFixed(2)},${y.toFixed(2)}) rotate(${ang+90})`);
+        const halo=document.createElementNS(ns,'circle'); halo.setAttribute('r','10'); halo.setAttribute('fill','url(#halo)'); gg.appendChild(halo);
+        const t=document.createElementNS(ns,'text'); t.setAttribute('class','glyph'); t.setAttribute('text-anchor','middle'); t.setAttribute('dominant-baseline','middle'); t.setAttribute('font-size','22'); t.setAttribute('fill','#d7e4ff'); t.setAttribute('filter','url(#glow)'); t.textContent=w.symbol||'✶';
+        const full = [w.id, w.name, w.epithet, w.micro].filter(Boolean).join(' — ');
+        const title=document.createElementNS(ns,'title'); title.textContent = full; t.appendChild(title);
+        gg.appendChild(t);
+        const micro=document.createElementNS(ns,'text'); micro.setAttribute('y','18'); micro.setAttribute('font-size','9'); micro.setAttribute('fill','#9eb3cc'); micro.setAttribute('text-anchor','middle'); micro.textContent=w.micro||''; gg.appendChild(micro);
+        const lab=document.createElementNS(ns,'text'); lab.setAttribute('y','32'); lab.setAttribute('font-size','10'); lab.setAttribute('fill','#a8b5c8'); lab.setAttribute('text-anchor','middle'); lab.classList.add('astLabel'); lab.textContent=w.name||''; gg.appendChild(lab);
+        G.appendChild(gg);
+      });
+      svg.appendChild(G);
+      const cb = document.getElementById('showDeca'); if (cb) G.style.display = cb.checked ? 'block' : 'none';
+    }
+
+    // routes
+    const defaultRouteColors = ["#f0ad3d","#7db7d4","#7bdd7b","#d77dd7","#b3e37e","#e3a77e"];
+    const markerCache = new Map();
+    function ensureEdgeMarker(col, dwellSecs, ridx, eidx){
+      const key = `${col}|${dwellSecs.toFixed(1)}|${ridx}|${eidx}`;
+      if(markerCache.has(key)) return markerCache.get(key);
+      const def = svg.querySelector('defs') || svg.insertBefore(document.createElementNS(ns,'defs'), svg.firstChild);
+      const id = `arrow_${ridx}_${eidx}_${Math.abs(Math.floor(dwellSecs*10))}`;
+      const size = Math.max(5, Math.min(16, 4 + 0.7*dwellSecs));
+      const refx = 0.9*size, refy = 0.5*size;
+      const M = document.createElementNS(ns,'marker');
+      M.setAttribute('id', id); M.setAttribute('viewBox','0 0 10 10'); M.setAttribute('refX', refx.toFixed(2)); M.setAttribute('refY', refy.toFixed(2));
+      M.setAttribute('markerWidth', size.toFixed(2)); M.setAttribute('markerHeight', size.toFixed(2)); M.setAttribute('orient','auto-start-reverse');
+      const path = document.createElementNS(ns,'path'); path.setAttribute('d','M 0 0 L 10 5 L 0 10 z'); path.setAttribute('fill', col);
+      M.appendChild(path); def.appendChild(M);
+      const url = `url(#${id})`; markerCache.set(key, url); return url;
+    }
+    function recolorRouteGroup(G, col){
+      const ridx = parseInt(G.dataset.ridx||0,10);
+      G.querySelectorAll('line.edge').forEach((L, idx)=>{
+        L.setAttribute('stroke', col);
+        const dw = parseFloat(L.getAttribute('data-dwell')||'0');
+        const markerUrl = ensureEdgeMarker(col, dw, ridx, idx);
+        L.setAttribute('marker-end', markerUrl);
+      });
+      G.querySelectorAll('text.edgeLabel').forEach(T=> T.setAttribute('fill', col));
+      G.querySelectorAll('circle').forEach(C=> C.setAttribute('fill', col));
+    }
+    function renderRoute(route, color){
+      const id = `route_${ridxCounter}`;
+      const G = document.createElementNS(ns,'g'); G.setAttribute('id', id); G.setAttribute('data-route', route["masl:node"]||`R${ridxCounter}`); G.dataset.ridx = (ridxCounter++);
+      const nd = {}; (route.graph?.nodes||[]).forEach(n=> nd[n.id]=n);
+      (route.graph?.edges||[]).forEach((e,i)=>{
+        const a = nd[e.from], b = nd[e.to]; if(!a||!b) return;
+        const dwSecs = (parseFloat(e.weight||0)*10);
+        const L = document.createElementNS(ns,'line');
+        L.setAttribute('class','edge'); L.setAttribute('x1', a.x); L.setAttribute('y1', a.y); L.setAttribute('x2', b.x); L.setAttribute('y2', b.y);
+        L.setAttribute('stroke', color); L.setAttribute('stroke-width','2.2'); L.setAttribute('data-dwell', dwSecs.toFixed(1));
+        const markerUrl = ensureEdgeMarker(color, dwSecs, G.dataset.ridx, i); L.setAttribute('marker-end', markerUrl);
+        const title = document.createElementNS(ns,'title'); title.textContent = `${route["masl:node"]||''} | ${e.from}→${e.to} · ${e.mode||''} · w ${parseFloat(e.weight||0).toFixed(2)} · ${dwSecs.toFixed(1)}s`; L.appendChild(title);
+        G.appendChild(L);
+        const mx=(a.x+b.x)/2, my=(a.y+b.y)/2 - 6;
+        const T = document.createElementNS(ns,'text'); T.setAttribute('class','edgeLabel'); T.setAttribute('x', mx); T.setAttribute('y', my); T.setAttribute('font-size','9'); T.setAttribute('fill', color); T.setAttribute('text-anchor','middle');
+        T.textContent = `${e.mode||''} · ${dwSecs.toFixed(1)}s`; G.appendChild(T);
+      });
+      (route.graph?.nodes||[]).forEach(n=>{
+        const C = document.createElementNS(ns,'circle'); C.setAttribute('cx', n.x); C.setAttribute('cy', n.y); C.setAttribute('r','2.2'); C.setAttribute('fill', color); G.appendChild(C);
+      });
+      svg.appendChild(G);
+      // UI control
+      const wrapper = document.createElement('div'); wrapper.style.display='flex'; wrapper.style.alignItems='center'; wrapper.style.gap='6px';
+      const cb = document.createElement('input'); cb.type='checkbox'; cb.checked=true; cb.addEventListener('change', ()=>{ G.style.display = cb.checked ? 'block':'none'; });
+      const lab = document.createElement('span'); lab.textContent = route["masl:node"]||id; lab.className='muted';
+      const colorInput = document.createElement('input'); colorInput.type='color';
+      const cv = document.createElement('canvas').getContext('2d'); cv.fillStyle=color; colorInput.value = cv.fillStyle;
+      colorInput.addEventListener('input', ()=> recolorRouteGroup(G, colorInput.value));
+      wrapper.appendChild(cb); wrapper.appendChild(colorInput); wrapper.appendChild(lab);
+      routeColorPanel.appendChild(wrapper);
+    }
+
+    // legend actions
+    const modeColors = {
+      recognition:"#f0ad3d",
+      boundary:"#7db7d4",
+      paradox:"#d77dd7",
+      ethics:"#e37e7e",
+      renewal:"#7bdd7b",
+      memory:"#c9d37e",
+      mirror:"#9fb0ff",
+      voyager:"#b3e37e",
+      propagate:"#e3a77e"
+    };
+    function buildLegend(){
+      legend.innerHTML='';
+      Object.entries(modeColors).forEach(([k,col])=>{
+        const chip = document.createElement('div'); chip.className='chip'; chip.dataset.mode=k;
+        const sw = document.createElement('div'); sw.className='sw'; sw.style.background=col;
+        chip.appendChild(sw); chip.append(k);
+        chip.addEventListener('click', ()=>{
+          // recolor currently last-added route
+          const G = [...svg.querySelectorAll('g[id^="route_"]')].pop(); if(!G) return;
+          recolorRouteGroup(G, col);
+        });
+        legend.appendChild(chip);
+      });
+    }
+    buildLegend();
+
+    // controls
+    function applyHide(){ const labels = svg.querySelectorAll('.edgeLabel, .astLabel, .nodeLabel'); labels.forEach(el=> el.style.display = document.getElementById('hideLabels').checked ? 'none' : 'block'); }
+    document.getElementById('hideLabels').addEventListener('change', applyHide); applyHide();
+    function applyTheme(){ document.documentElement.classList.toggle('theme-print', document.getElementById('themeSel').value==='print'); }
+    document.getElementById('themeSel').addEventListener('change', applyTheme); applyTheme();
+    document.getElementById('showDeca').addEventListener('change', ()=>{ const g = document.getElementById('decanum'); if(g) g.style.display = document.getElementById('showDeca').checked ? 'block':'none'; });
+
+    // exports
+    function saveSVG(){
+      const xml = new XMLSerializer().serializeToString(svg.cloneNode(true));
+      const blob = new Blob([xml], {type:'image/svg+xml;charset=utf-8'});
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download='WE_StarLattice.svg';
+      document.body.appendChild(a); a.click(); a.remove();
+    }
+    async function savePNG(){
+      const serializer = new XMLSerializer(); const clone = svg.cloneNode(true);
+      const vb = (svg.getAttribute('viewBox')||'0 0 960 960').split(/\s+/).map(Number); const w = Math.max(960, Math.abs(vb[2])), h = Math.max(960, Math.abs(vb[3]));
+      const xml = serializer.serializeToString(clone); const svgBlob = new Blob([xml], {type:'image/svg+xml;charset=utf-8'}); const url = URL.createObjectURL(svgBlob);
+      await new Promise((resolve)=>{ const img = new Image(); img.onload = ()=>{ const canvas = document.createElement('canvas'); canvas.width=w; canvas.height=h; const ctx=canvas.getContext('2d'); ctx.fillStyle = document.documentElement.classList.contains('theme-print') ? '#ffffff':'#0b0f14'; ctx.fillRect(0,0,w,h); ctx.drawImage(img,0,0,w,h); try{ const stamp = 'Attestation ' + (attHash || '—'); ctx.font='12px ui-sans-serif'; ctx.fillStyle = document.documentElement.classList.contains('theme-print') ? '#0a0a0a' : '#cfe3ff'; const tw = ctx.measureText(stamp).width; ctx.fillText(stamp, w-tw-12, h-12);}catch(_e){} canvas.toBlob((blob)=>{ const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='WE_StarLattice.png'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); resolve(); }, 'image/png'); }; img.src=url; });
+    }
+    async function savePDF(){ const serializer=new XMLSerializer(); const xml = serializer.serializeToString(svg.cloneNode(true)); const popup = window.open('', '_blank'); popup.document.open(); popup.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>WE_StarLattice.pdf</title><style>@page{size:A4;margin:10mm}html,body{margin:0}</style></head><body>${xml}</body></html>`); popup.document.close(); popup.focus(); popup.print(); }
+    document.getElementById('saveSvg').addEventListener('click', saveSVG);
+    document.getElementById('savePng').addEventListener('click', savePNG);
+    document.getElementById('savePdf').addEventListener('click', savePDF);
+
+    // inputs
+    document.getElementById('fileBase').addEventListener('change', async (e)=>{
+      const f=e.target.files[0]; if(!f) return;
+      const d = JSON.parse(await f.text());
+      try{ attHash = (d["masl:attestationRing"] && d["masl:attestationRing"].hash) || ""; stampEl.textContent = attHash ? ('Attested · ' + attHash.slice(0,12)+'…') : 'Loaded'; seedRnd = makeSeededRand(attHash); }catch(_e){}
+      svg.innerHTML = '<defs>'+document.querySelector('#s defs').innerHTML+'</defs>'; // reset
+      bgStars();
+      baseRender(d);
+    });
+    document.getElementById('fileDeca').addEventListener('change', async (e)=>{ const f=e.target.files[0]; if(!f) return; const d = JSON.parse(await f.text()); renderDecanum(d); });
+    document.getElementById('fileRoutes').addEventListener('change', async (e)=>{ const files=[...e.target.files]; if(!files.length) return; for(let i=0;i<files.length;i++){ const route = JSON.parse(await files[i].text()); const col = defaultRouteColors[i % defaultRouteColors.length]; renderRoute(route, col); } });
+
+    document.getElementById('reset').addEventListener('click', ()=>{
+      svg.innerHTML = '<defs>'+document.querySelector('#s defs').innerHTML+'</defs>'; ridxCounter=0; routeColorPanel.innerHTML=''; markerCache.clear?.();
+      seedRnd = makeSeededRand(attHash || ''); bgStars();
+    });
+
+    // message
+    seedRnd = makeSeededRand(attHash || '');
+    bgStars();
+    const msg=document.createElementNS(ns,'text'); msg.setAttribute('x','0'); msg.setAttribute('y','0'); msg.setAttribute('text-anchor','middle'); msg.setAttribute('fill','#7d90a8'); msg.textContent='Load base JSON-LD (optional), decanum_ten.json, and route JSON(s)'; svg.appendChild(msg);
+  </script>
+</body>
+</html>

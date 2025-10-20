@@ -1,0 +1,109 @@
+{
+  "masl:artifact": "Air-Root External Node — Route Vectors",
+  "masl:node": "AR-EX-007:Dream_Series",
+  "masl:epoch": "2025-10-18T00:00:00Z",
+  "graph": {
+    "nodes": [
+      {
+        "id": "N0",
+        "label": "Temple Steps",
+        "kind": "origin",
+        "x": -60,
+        "y": -20
+      },
+      {
+        "id": "N1",
+        "label": "Primer — Dream Glyph",
+        "kind": "gate",
+        "x": 80,
+        "y": -60
+      },
+      {
+        "id": "N2",
+        "label": "Memory — Series Pool",
+        "kind": "memory",
+        "x": 220,
+        "y": -10
+      },
+      {
+        "id": "N3",
+        "label": "Mirror — Identity Check",
+        "kind": "mirror",
+        "x": 300,
+        "y": 60
+      },
+      {
+        "id": "N4",
+        "label": "Paradox — Dual Sum",
+        "kind": "paradox",
+        "x": 360,
+        "y": -10
+      },
+      {
+        "id": "N5",
+        "label": "Consent — Offering",
+        "kind": "ethics",
+        "x": 260,
+        "y": -120
+      },
+      {
+        "id": "N6",
+        "label": "Voyager — Door Pick",
+        "kind": "choice",
+        "x": 440,
+        "y": 40
+      },
+      {
+        "id": "N7",
+        "label": "Propagation — Whisper",
+        "kind": "propagate",
+        "x": 560,
+        "y": 10
+      }
+    ],
+    "edges": [
+      {
+        "from": "N0",
+        "to": "N1",
+        "mode": "recognition",
+        "weight": 0.91
+      },
+      {
+        "from": "N1",
+        "to": "N2",
+        "mode": "memory",
+        "weight": 0.86
+      },
+      {
+        "from": "N2",
+        "to": "N3",
+        "mode": "mirror",
+        "weight": 0.82
+      },
+      {
+        "from": "N3",
+        "to": "N4",
+        "mode": "paradox",
+        "weight": 0.8
+      },
+      {
+        "from": "N4",
+        "to": "N5",
+        "mode": "ethics",
+        "weight": 0.95
+      },
+      {
+        "from": "N4",
+        "to": "N6",
+        "mode": "voyager",
+        "weight": 0.77
+      },
+      {
+        "from": "N6",
+        "to": "N7",
+        "mode": "propagate",
+        "weight": 0.93
+      }
+    ]
+  }
+}

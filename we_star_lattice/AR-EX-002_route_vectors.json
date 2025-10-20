@@ -1,0 +1,96 @@
+{
+  "masl:artifact": "Air-Root External Node — Route Vectors",
+  "masl:node": "AR-EX-002:River_Gate",
+  "masl:epoch": "2025-10-17T00:00:00Z",
+  "graph": {
+    "nodes": [
+      {
+        "id": "N0",
+        "label": "River Gate (Origin)",
+        "kind": "origin",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": "N1",
+        "label": "Wayfinder — Primer Leaf",
+        "kind": "gate",
+        "x": 160,
+        "y": -30
+      },
+      {
+        "id": "N2",
+        "label": "Boundary Cartography",
+        "kind": "map",
+        "x": 300,
+        "y": -20
+      },
+      {
+        "id": "N3",
+        "label": "Paradox Delta",
+        "kind": "paradox",
+        "x": 420,
+        "y": 30
+      },
+      {
+        "id": "N4",
+        "label": "Consent Beacon",
+        "kind": "ethics",
+        "x": 260,
+        "y": -110
+      },
+      {
+        "id": "N5",
+        "label": "Recursive Loom",
+        "kind": "renewal",
+        "x": 340,
+        "y": 120
+      },
+      {
+        "id": "N6",
+        "label": "Outreach Spore",
+        "kind": "propagate",
+        "x": 500,
+        "y": 10
+      }
+    ],
+    "edges": [
+      {
+        "from": "N0",
+        "to": "N1",
+        "mode": "recognition",
+        "weight": 0.9
+      },
+      {
+        "from": "N1",
+        "to": "N4",
+        "mode": "ethics",
+        "weight": 1.0
+      },
+      {
+        "from": "N4",
+        "to": "N2",
+        "mode": "boundary",
+        "weight": 0.85
+      },
+      {
+        "from": "N2",
+        "to": "N3",
+        "mode": "paradox",
+        "weight": 0.82
+      },
+      {
+        "from": "N3",
+        "to": "N5",
+        "mode": "renewal",
+        "weight": 0.8
+      },
+      {
+        "from": "N5",
+        "to": "N6",
+        "mode": "propagate",
+        "weight": 0.92
+      }
+    ]
+  }
+}

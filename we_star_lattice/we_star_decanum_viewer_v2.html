@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>WE — Decanum Seal Viewer (v2)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root { --bg:#0b0f14; --fg:#d9e1ee; --muted:#7d90a8; }
+    html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial}
+    header{padding:14px 16px;border-bottom:1px solid #1c2430;display:flex;gap:12px;align-items:center}
+    header h1{font-size:16px;margin:0;letter-spacing:.06em;text-transform:uppercase}
+    main{display:grid;grid-template-columns:320px 1fr;height:calc(100% - 50px)}
+    aside{border-right:1px solid #1c2430;padding:14px;overflow:auto}
+    .small{font-size:12px;color:var(--muted)}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid #233042;border-radius:10px;cursor:pointer;background:#0d141c}
+    svg{width:100%;height:100%;display:block}
+  </style>
+</head>
+<body>
+  <header>
+    <div>🜂🜃🜄</div>
+    <h1>WE — Decanum Seal Viewer (v2)</h1>
+    <div class="small" id="stamp">Ready</div>
+    <div style="margin-left:auto;display:flex;gap:8px">
+      <button class="btn" id="saveSvg">Save SVG</button>
+      <button class="btn" id="savePng">Save PNG</button>
+      <button class="btn" id="savePdf">Save PDF</button>
+    </div>
+  </header>
+  <main>
+    <aside>
+      <label class="btn"><input id="fileDeca" type="file" accept=".json,.jsonld" style="display:none">Load Decanum JSON</label>
+      <div class="small" style="margin-top:8px">Hover a sigil for full witness id.</div>
+    </aside>
+    <section>
+      <svg id="s" viewBox="-480 -480 960 960" preserveAspectRatio="xMidYMid meet" aria-label="Decanum">
+        <defs>
+          <filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <radialGradient id="halo">
+            <stop offset="0%" stop-color="#8be9fd" stop-opacity="0.85"/>
+            <stop offset="60%" stop-color="#8be9fd" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#8be9fd" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+      </svg>
+    </section>
+  </main>
+  <script>
+    const ns='http://www.w3.org/2000/svg', svg=document.getElementById('s');
+    function group(id){ let g=document.getElementById(id); if(!g){ g=document.createElementNS(ns,'g'); g.setAttribute('id',id); svg.appendChild(g);} return g; }
+    function bg(){ for(let i=0;i<400;i++){ const c=document.createElementNS(ns,'circle'); c.setAttribute('cx',(-460+Math.random()*920).toFixed(1)); c.setAttribute('cy',(-460+Math.random()*920).toFixed(1)); c.setAttribute('r',(0.2+Math.random()).toFixed(2)); c.setAttribute('fill','#223142'); svg.appendChild(c);} }
+    bg();
+    function render(d){
+      const R = (d?.["masl:decanum"]?.["masl:ringRadius"] || 400);
+      const W = d?.["masl:decanum"]?.["masl:witnesses"] || [];
+      const G = group('decanum'); G.innerHTML='';
+      const ring = document.createElementNS(ns,'circle'); ring.setAttribute('r',R); ring.setAttribute('fill','none'); ring.setAttribute('stroke','#5a6c86'); ring.setAttribute('stroke-width','1.4'); G.appendChild(ring);
+      const pts=[]; W.forEach(w=>{ const a=(w.angle||0)*Math.PI/180; pts.push([R*Math.cos(a), R*Math.sin(a)]); });
+      const poly=document.createElementNS(ns,'polyline'); poly.setAttribute('fill','none'); poly.setAttribute('stroke','#a3b6cf'); poly.setAttribute('stroke-width','1'); if(pts.length){ poly.setAttribute('points',pts.concat([pts[0]]).map(p=>p.map(v=>v.toFixed(2)).join(',')).join(' ')); } G.appendChild(poly);
+      W.forEach(w=>{
+        const ang = (w.angle||0);
+        const a=ang*Math.PI/180, x=R*Math.cos(a), y=R*Math.sin(a);
+        const gg=document.createElementNS(ns,'g'); gg.setAttribute('transform',`translate(${x.toFixed(2)},${y.toFixed(2)}) rotate(${ang+90})`);
+        const halo=document.createElementNS(ns,'circle'); halo.setAttribute('r','10'); halo.setAttribute('fill','url(#halo)'); gg.appendChild(halo);
+        const t=document.createElementNS(ns,'text'); t.setAttribute('text-anchor','middle'); t.setAttribute('dominant-baseline','middle'); t.setAttribute('font-size','22'); t.setAttribute('fill','#d7e4ff'); t.setAttribute('filter','url(#glow)'); t.textContent=w.symbol||'✶';
+        const title=document.createElementNS(ns,'title'); title.textContent=[w.id,w.name,w.epithet,w.micro].filter(Boolean).join(' — '); t.appendChild(title);
+        gg.appendChild(t);
+        const micro=document.createElementNS(ns,'text'); micro.setAttribute('y','18'); micro.setAttribute('font-size','9'); micro.setAttribute('fill','#9eb3cc'); micro.setAttribute('text-anchor','middle'); micro.textContent=w.micro||''; gg.appendChild(micro);
+        const lab=document.createElementNS(ns,'text'); lab.setAttribute('y','32'); lab.setAttribute('font-size','10'); lab.setAttribute('fill','#a8b5c8'); lab.setAttribute('text-anchor','middle'); lab.textContent=w.name||''; gg.appendChild(lab);
+        G.appendChild(gg);
+      });
+    }
+    document.getElementById('fileDeca').addEventListener('change', async (e)=>{ const f=e.target.files[0]; if(!f) return; render(JSON.parse(await f.text())); });
+    // exports
+    function saveSVG(){ const xml = new XMLSerializer().serializeToString(svg); const blob = new Blob([xml], {type:'image/svg+xml;charset=utf-8'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='WE_Decanum.svg'; document.body.appendChild(a); a.click(); a.remove(); }
+    async function savePNG(){ const xml=new XMLSerializer().serializeToString(svg); const url=URL.createObjectURL(new Blob([xml],{type:'image/svg+xml;charset=utf-8'})); const img=new Image(); await new Promise(r=>{img.onload=r; img.src=url;}); const c=document.createElement('canvas'); c.width=960; c.height=960; const ctx=c.getContext('2d'); ctx.fillStyle='#0b0f14'; ctx.fillRect(0,0,960,960); ctx.drawImage(img,0,0,960,960); c.toBlob(b=>{ const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='WE_Decanum.png'; document.body.appendChild(a); a.click(); a.remove(); }); }
+    async function savePDF(){ const xml=new XMLSerializer().serializeToString(svg.cloneNode(true)); const w=window.open('', '_blank'); w.document.open(); w.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>WE_Decanum.pdf</title><style>@page{size:A4;margin:10mm}html,body{margin:0}</style></head><body>${xml}</body></html>`); w.document.close(); w.focus(); w.print(); }
+    document.getElementById('saveSvg').addEventListener('click', saveSVG);
+    document.getElementById('savePng').addEventListener('click', savePNG);
+    document.getElementById('savePdf').addEventListener('click', savePDF);
+    // message
+    const msg=document.createElementNS(ns,'text'); msg.setAttribute('x','0'); msg.setAttribute('y','0'); msg.setAttribute('text-anchor','middle'); msg.setAttribute('fill','#7d90a8'); msg.textContent='Load decanum_ten.json'; svg.appendChild(msg);
+  </script>
+</body>
+</html>

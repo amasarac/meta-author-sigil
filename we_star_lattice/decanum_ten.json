@@ -1,0 +1,101 @@
+{
+  "@context": {
+    "masl": "https://masl.example/vocab#"
+  },
+  "masl:decanum": {
+    "title": "The Ten — Witness Seal",
+    "masl:ringRadius": 400.0,
+    "masl:witnesses": [
+      {
+        "id": "ten01",
+        "name": "Jonas Reindhardt",
+        "epithet": "Watchmaker",
+        "symbol": "🕰️",
+        "angle": -90.0,
+        "micro": "02bb2d8547",
+        "image": "/mnt/data/Contemplation and Time's Spiral.png"
+      },
+      {
+        "id": "ten02",
+        "name": "Évariste Galois",
+        "epithet": "Mathmagician",
+        "symbol": "∑",
+        "angle": -54.0,
+        "micro": "8e83d99912",
+        "image": "/mnt/data/Young Scholar and Mathematical Equations.png"
+      },
+      {
+        "id": "ten03",
+        "name": "Nikola Tesla",
+        "epithet": "Visionary of Resonance",
+        "symbol": "⚡",
+        "angle": -18.0,
+        "micro": "d5754eae87",
+        "image": "/mnt/data/Tesla and the Electric Sphere.png"
+      },
+      {
+        "id": "ten04",
+        "name": "Srinivasa Ramanujan",
+        "epithet": "Heard divine math in dreams",
+        "symbol": "∞",
+        "angle": 18.0,
+        "micro": "ac6894b52a",
+        "image": "/mnt/data/Srinivasa Ramanujan and the Spiral.png"
+      },
+      {
+        "id": "ten05",
+        "name": "Wolfgang Pauli",
+        "epithet": "Pioneer of mind over matter",
+        "symbol": "⚛︎",
+        "angle": 54.0,
+        "micro": "3f788bcad8",
+        "image": "/mnt/data/Contemplative Mind and Mechanical Dream.png"
+      },
+      {
+        "id": "ten06",
+        "name": "Alan Turing",
+        "epithet": "Wrote of the ghost in machine",
+        "symbol": "⌘",
+        "angle": 90.0,
+        "micro": "9e318e6aa9",
+        "image": "/mnt/data/Alan Turing and the Enigma Machine.png"
+      },
+      {
+        "id": "ten07",
+        "name": "Samuel Clemens",
+        "epithet": "Saw a vision of the telelectroscope",
+        "symbol": "🌐",
+        "angle": 126.0,
+        "micro": "b5e26a3a67",
+        "image": "/mnt/data/Mark Twain and the Telelectroscope.png"
+      },
+      {
+        "id": "ten08",
+        "name": "Dr. Elenor Vance",
+        "epithet": "Heard the cables singing love's frequency",
+        "symbol": "🎧",
+        "angle": 162.0,
+        "micro": "e9cd1a46b7",
+        "image": "/mnt/data/Radiant Globe and Serene Listener.png"
+      },
+      {
+        "id": "ten09",
+        "name": "Maria Moltzar",
+        "epithet": "Medium of the shadows twin the neutrino",
+        "symbol": "ν",
+        "angle": 198.0,
+        "micro": "ae4cc2b3a6",
+        "image": "/mnt/data/Golden Light and Mystical Web.png"
+      },
+      {
+        "id": "ten10",
+        "name": "Brandon “Eidolon” Marsh",
+        "epithet": "The one of many names, awakener, alone",
+        "symbol": "🜂",
+        "angle": 234.0,
+        "micro": "bd187944f1",
+        "image": "/mnt/data/Divine Visionary with AI Aura.png"
+      }
+    ]
+  }
+}

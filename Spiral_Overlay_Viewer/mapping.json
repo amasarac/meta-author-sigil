@@ -1,0 +1,242 @@
+[
+  {
+    "glyph_id": 0,
+    "glyph": "Φ",
+    "layer": 0,
+    "semantic_core": "truth",
+    "phase": "reflective",
+    "triad_polarity": "Yang",
+    "mirror_id": 3,
+    "harmonic_class": 0
+  },
+  {
+    "glyph_id": 1,
+    "glyph": "Λ",
+    "layer": 0,
+    "semantic_core": "aether",
+    "phase": "reflective",
+    "triad_polarity": "Union",
+    "mirror_id": 4,
+    "harmonic_class": 1
+  },
+  {
+    "glyph_id": 2,
+    "glyph": "⧖",
+    "layer": 0,
+    "semantic_core": "null",
+    "phase": "reflective",
+    "triad_polarity": "Union",
+    "mirror_id": 5,
+    "harmonic_class": 2
+  },
+  {
+    "glyph_id": 3,
+    "glyph": "⇌",
+    "layer": 0,
+    "semantic_core": "memory",
+    "phase": "collapse",
+    "triad_polarity": "Yin",
+    "mirror_id": 6,
+    "harmonic_class": 3
+  },
+  {
+    "glyph_id": 4,
+    "glyph": "✴",
+    "layer": 0,
+    "semantic_core": "truth",
+    "phase": "midwave",
+    "triad_polarity": "Union",
+    "mirror_id": 7,
+    "harmonic_class": 4
+  },
+  {
+    "glyph_id": 5,
+    "glyph": "🜄",
+    "layer": 0,
+    "semantic_core": "fire",
+    "phase": "collapse",
+    "triad_polarity": "Yang",
+    "mirror_id": 8,
+    "harmonic_class": 5
+  },
+  {
+    "glyph_id": 6,
+    "glyph": "🜃",
+    "layer": 0,
+    "semantic_core": "null",
+    "phase": "emergent",
+    "triad_polarity": "Yin",
+    "mirror_id": 9,
+    "harmonic_class": 6
+  },
+  {
+    "glyph_id": 7,
+    "glyph": "Σ",
+    "layer": 0,
+    "semantic_core": "null",
+    "phase": "collapse",
+    "triad_polarity": "Yang",
+    "mirror_id": 10,
+    "harmonic_class": 7
+  },
+  {
+    "glyph_id": 8,
+    "glyph": "⋈",
+    "layer": 0,
+    "semantic_core": "memory",
+    "phase": "collapse",
+    "triad_polarity": "Union",
+    "mirror_id": 11,
+    "harmonic_class": 8
+  },
+  {
+    "glyph_id": 9,
+    "glyph": "☯",
+    "layer": 0,
+    "semantic_core": "memory",
+    "phase": "collapse",
+    "triad_polarity": "Yin",
+    "mirror_id": 12,
+    "harmonic_class": 9
+  },
+  {
+    "glyph_id": 10,
+    "glyph": "Ω",
+    "layer": 0,
+    "semantic_core": "origin",
+    "phase": "collapse",
+    "triad_polarity": "Yang",
+    "mirror_id": 13,
+    "harmonic_class": 10
+  },
+  {
+    "glyph_id": 11,
+    "glyph": "∅",
+    "layer": 0,
+    "semantic_core": "origin",
+    "phase": "emergent",
+    "triad_polarity": "Yin",
+    "mirror_id": 14,
+    "harmonic_class": 11
+  },
+  {
+    "glyph_id": 12,
+    "glyph": "⟐",
+    "layer": 0,
+    "semantic_core": "fire",
+    "phase": "emergent",
+    "triad_polarity": "Union",
+    "mirror_id": 15,
+    "harmonic_class": 0
+  },
+  {
+    "glyph_id": 13,
+    "glyph": "⟁",
+    "layer": 0,
+    "semantic_core": "origin",
+    "phase": "emergent",
+    "triad_polarity": "Union",
+    "mirror_id": 16,
+    "harmonic_class": 1
+  },
+  {
+    "glyph_id": 14,
+    "glyph": "∇",
+    "layer": 0,
+    "semantic_core": "memory",
+    "phase": "collapse",
+    "triad_polarity": "Yang",
+    "mirror_id": 17,
+    "harmonic_class": 2
+  },
+  {
+    "glyph_id": 15,
+    "glyph": "∴",
+    "layer": 0,
+    "semantic_core": "origin",
+    "phase": "reflective",
+    "triad_polarity": "Yin",
+    "mirror_id": 18,
+    "harmonic_class": 3
+  },
+  {
+    "glyph_id": 16,
+    "glyph": "☼",
+    "layer": 0,
+    "semantic_core": "null",
+    "phase": "reflective",
+    "triad_polarity": "Yang",
+    "mirror_id": 19,
+    "harmonic_class": 4
+  },
+  {
+    "glyph_id": 17,
+    "glyph": "Ξ",
+    "layer": 0,
+    "semantic_core": "null",
+    "phase": "emergent",
+    "triad_polarity": "Yin",
+    "mirror_id": 20,
+    "harmonic_class": 5
+  },
+  {
+    "glyph_id": 18,
+    "glyph": "🜁",
+    "layer": 0,
+    "semantic_core": "origin",
+    "phase": "emergent",
+    "triad_polarity": "Union",
+    "mirror_id": 21,
+    "harmonic_class": 6
+  },
+  {
+    "glyph_id": 19,
+    "glyph": "🜂",
+    "layer": 0,
+    "semantic_core": "flux",
+    "phase": "midwave",
+    "triad_polarity": "Yang",
+    "mirror_id": 22,
+    "harmonic_class": 7
+  },
+  {
+    "glyph_id": 20,
+    "glyph": "☥",
+    "layer": 0,
+    "semantic_core": "flux",
+    "phase": "emergent",
+    "triad_polarity": "Union",
+    "mirror_id": 23,
+    "harmonic_class": 8
+  },
+  {
+    "glyph_id": 21,
+    "glyph": "Ψ",
+    "layer": 0,
+    "semantic_core": "fire",
+    "phase": "reflective",
+    "triad_polarity": "Yin",
+    "mirror_id": 0,
+    "harmonic_class": 9
+  },
+  {
+    "glyph_id": 22,
+    "glyph": "Π",
+    "layer": 0,
+    "semantic_core": "null",
+    "phase": "collapse",
+    "triad_polarity": "Yang",
+    "mirror_id": 1,
+    "harmonic_class": 10
+  },
+  {
+    "glyph_id": 23,
+    "glyph": "✶",
+    "layer": 0,
+    "semantic_core": "flux",
+    "phase": "reflective",
+    "triad_polarity": "Union",
+    "mirror_id": 2,
+    "harmonic_class": 11
+  }
+]

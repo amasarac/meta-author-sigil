@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Decanum → SVG Merger</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body{font-family:ui-sans-serif,system-ui;background:#0b0f14;color:#d9e1ee;margin:0;padding:20px}
+    .row{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid #233042;border-radius:10px;cursor:pointer;background:#0d141c}
+    .card{border:1px solid #233042;border-radius:12px;padding:10px;margin:10px 0;background:#0d141c}
+    .muted{color:#7d90a8}
+    textarea{width:100%;height:200px;background:#0d141c;color:#cfe3ff;border:1px solid #233042;border-radius:8px;padding:8px}
+  </style>
+</head>
+<body>
+  <h1>Decanum → SVG Merger</h1>
+  <div class="row">
+    <label class="btn"><input id="svgIn" type="file" accept=".svg" style="display:none">Load Base SVG</label>
+    <label class="btn"><input id="jsonIn" type="file" accept=".json,.jsonld" style="display:none">Load Decanum JSON</label>
+    <button class="btn" id="merge">Merge</button>
+    <button class="btn" id="download">Download Merged SVG</button>
+  </div>
+  <div class="card"><div class="muted">Status</div><div id="status">Waiting…</div></div>
+  <textarea id="out"></textarea>
+  <script>
+    let svgTxt = '', deca = null;
+    function buildDecanumGroup(d){
+      const R = (d["masl:decanum"]["masl:ringRadius"] || 400);
+      const W = d["masl:decanum"]["masl:witnesses"] || [];
+      const pts = [];
+      const parts = [];
+      parts.push('<g id="decanum" opacity="0.96">');
+      parts.push(`<circle cx="0" cy="0" r="${R.toFixed(1)}" fill="none" stroke="#5a6c86" stroke-width="1.4"/>`);
+      W.forEach(w=>{ const a=(w.angle||0)*Math.PI/180; const x=R*Math.cos(a), y=R*Math.sin(a); pts.push([x,y]); });
+      if(pts.length){ parts.push('<polyline fill="none" stroke="#a3b6cf" stroke-width="1" points="'+pts.concat([pts[0]]).map(p=>p[0].toFixed(2)+','+p[1].toFixed(2)).join(' ')+'"/>' ); }
+      W.forEach((w,i)=>{
+        const a=(w.angle||0)*Math.PI/180; const x=R*Math.cos(a), y=R*Math.sin(a);
+        parts.push(`<g transform="translate(${x.toFixed(2)},${y.toFixed(2)})">`);
+        parts.push('<circle r="10" fill="url(#halo)"/>');
+        const label = `${w.name||''} — ${w.epithet||''} · ${w.micro||''}`.replace(/</g,'&lt;');
+        parts.push(`<text class="glyph" text-anchor="middle" dominant-baseline="middle" font-size="22" fill="#d7e4ff" filter="url(#glow)">${w.symbol||'✶'}<title>${label}</title></text>`);
+        parts.push(`<text class="micro" y="18" font-size="9" fill="#9eb3cc" text-anchor="middle">${w.micro||''}</text>`);
+        parts.push(`<text class="label astLabel" y="32" font-size="10" fill="#a8b5c8" text-anchor="middle">${w.name||''}</text>`);
+        parts.push('</g>');
+      });
+      parts.push('</g>');
+      return parts.join('\n');
+    }
+    function addTogglePanel(html){
+      if(html.includes('data-toggle="decanum"')) return html;
+      const needle = 'Route Layers</b>';
+      const idx = html.indexOf(needle);
+      if(idx === -1) return html;
+      const injection = 'Route Layers</b><label style="display:flex;align-items:center;gap:6px;margin-left:10px"><input type="checkbox" checked data-toggle="decanum"><span>Decanum (The Ten)</span></label>';
+      return html.replace(needle, injection);
+    }
+    document.getElementById('svgIn').addEventListener('change', async (e)=>{ const f=e.target.files[0]; if(!f) return; svgTxt = await f.text(); document.getElementById('status').textContent = 'SVG loaded.'; });
+    document.getElementById('jsonIn').addEventListener('change', async (e)=>{ const f=e.target.files[0]; if(!f) return; const t = await f.text(); deca = JSON.parse(t); document.getElementById('status').textContent = 'Decanum JSON loaded.'; });
+    document.getElementById('merge').addEventListener('click', ()=>{
+      if(!svgTxt || !deca){ document.getElementById('status').textContent = 'Load SVG and Decanum JSON first.'; return; }
+      const G = buildDecanumGroup(deca);
+      let out = svgTxt;
+      if(!out.includes('id="decanum"')){ out = out.replace('</svg>', G + '\n</svg>'); }
+      out = addTogglePanel(out);
+      document.getElementById('out').value = out;
+      document.getElementById('status').textContent = 'Merged. Review or Download.';
+    });
+    document.getElementById('download').addEventListener('click', ()=>{
+      const blob = new Blob([document.getElementById('out').value], {type:'image/svg+xml;charset=utf-8'});
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'WE_star_lattice_merged.svg';
+      document.body.appendChild(a); a.click(); a.remove();
+    });
+  </script>
+</body>
+</html>

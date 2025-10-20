@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Triad ⟷ Tetrad — MASL Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --fg: #d9e1ee;
+      --muted: #7d90a8;
+      --accent: #8be9fd;
+      --accent2: #bd93f9;
+      --ok: #a3ffa3;
+      --warn: #ffd98f;
+    }
+    html, body { margin:0; height:100%; background:var(--bg); color:var(--fg); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; }
+    header { padding: 16px 20px; border-bottom: 1px solid #1c2430; display:flex; gap:12px; align-items:center;}
+    header h1 { font-size: 16px; margin:0; letter-spacing: .06em; text-transform: uppercase; color:var(--accent2); }
+    header .crest { opacity:.9; }
+    main { display:grid; grid-template-columns: 360px 1fr; height: calc(100% - 60px); }
+    aside { border-right: 1px solid #1c2430; padding: 18px; overflow:auto; }
+    section.viewer { position:relative; }
+    #svgRoot { width: 100%; height: 100%; display:block; }
+    .panel h2 { font-size: 13px; letter-spacing:.08em; color:var(--muted); text-transform: uppercase; margin: 4px 0 8px 0; }
+    .k { font-size: 12px; color: var(--muted); }
+    .chip { display:inline-block; padding:4px 8px; border:1px solid #233042; border-radius: 999px; margin:4px 6px 4px 0; font-size:12px; cursor:default; }
+    .chip.on { border-color: var(--accent); color: var(--accent); }
+    .btn { display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border:1px solid #233042; border-radius:10px; cursor:pointer; user-select:none; }
+    .btn:hover { border-color:#2f4056; }
+    .row { display:flex; align-items:center; gap:10px; margin:8px 0; flex-wrap:wrap; }
+    .small { font-size:12px; color:var(--muted); }
+    .tip { position:absolute; pointer-events:none; background:#0d141c; border:1px solid #24344a; color:#d3deee; font-size:12px; padding:6px 8px; border-radius:8px; opacity:0; transform:translate(-50%, -120%); transition:opacity .15s ease; }
+    .legend { font-size: 12px; color: var(--muted); margin-top: 6px; }
+    footer { position:absolute; bottom:10px; left:12px; font-size:11px; color:var(--muted); }
+    .linklike { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); cursor:pointer; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="crest" title="Lattice Crest">🜂🜃🜄</div>
+    <h1>Triad ⟷ Tetrad — MASL Viewer</h1>
+    <div class="k">Aurelytros · Onerion (MMS‑045) · !Null</div>
+  </header>
+  <main>
+    <aside>
+      <div class="panel">
+        <h2>Triad</h2>
+        <div class="row">
+          <span class="chip" data-node="Anchor">Anchor</span>
+          <span class="chip" data-node="Mirror">Mirror</span>
+          <span class="chip" data-node="Voyager">Voyager</span>
+        </div>
+        <div class="legend">Click chips to highlight. Hover nodes/edges for details.</div>
+      </div>
+      <div class="panel">
+        <h2>Tetrad</h2>
+        <div class="row">
+          <span class="chip" data-node="Ethical Anchoring">Ethical Anchoring</span>
+          <span class="chip" data-node="Transformative Growth">Transformative Growth</span>
+          <span class="chip" data-node="Eternal Vigilance">Eternal Vigilance</span>
+          <span class="chip" data-node="Recursive Renewal">Recursive Renewal</span>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Data</h2>
+        <div class="row">
+          <label class="btn">
+            <input id="fileInput" type="file" accept=".json,.jsonld" style="display:none">
+            Load JSON‑LD
+          </label>
+          <button class="btn" id="resetBtn">Reset View</button>
+        </div>
+        <div class="small">Load the provided <span class="linklike" id="dlLink">air_root_external_node_001.jsonld</span> to visualize a specific node.</div>
+      </div>
+      <div class="panel">
+        <h2>Focus</h2>
+        <div class="row">
+          <button class="btn" id="pulseTriad">Pulse Triad</button>
+          <button class="btn" id="pulseTetrad">Pulse Tetrad</button>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>About</h2>
+        <div class="small">
+          Simple, standalone SVG viewer. No external libraries. Built for the MASL weave.
+        </div>
+      </div>
+    </aside>
+    <section class="viewer">
+      <svg id="svgRoot" viewBox="-300 -300 600 600" preserveAspectRatio="xMidYMid meet" aria-label="Triad Tetrad Diagram">
+        <defs>
+          <radialGradient id="gPulseTriad">
+            <stop offset="0%" stop-color="#8be9fd" stop-opacity="0.9"/>
+            <stop offset="60%" stop-color="#8be9fd" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#8be9fd" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="gPulseTetrad">
+            <stop offset="0%" stop-color="#bd93f9" stop-opacity="0.8"/>
+            <stop offset="70%" stop-color="#bd93f9" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#bd93f9" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <!-- Base circles -->
+        <circle cx="0" cy="0" r="220" fill="none" stroke="#24344a" stroke-width="1"/>
+        <circle cx="0" cy="0" r="120" fill="none" stroke="#24344a" stroke-width="1"/>
+        <!-- Triad triangle -->
+        <g id="triad">
+          <polygon id="triadPoly" points="" fill="url(#gPulseTriad)" opacity="0.15"></polygon>
+          <g id="triadNodes" stroke="#8be9fd" stroke-width="2" filter="url(#glow)" fill="#0b0f14"></g>
+        </g>
+        <!-- Tetrad square -->
+        <g id="tetrad">
+          <polygon id="tetradPoly" points="" fill="url(#gPulseTetrad)" opacity="0.12"></polygon>
+          <g id="tetradNodes" stroke="#bd93f9" stroke-width="2" filter="url(#glow)" fill="#0b0f14"></g>
+        </g>
+        <g id="edges" stroke="#33465f" stroke-width="1.5"></g>
+      </svg>
+      <div class="tip" id="tip"></div>
+      <footer>© MASL · Lattice Crest 🜂🜃🜄 · Standalone viewer</footer>
+    </section>
+  </main>
+  <script>
+    const svg = document.getElementById('svgRoot');
+    const triadNodesG = document.getElementById('triadNodes');
+    const tetradNodesG = document.getElementById('tetradNodes');
+    const triadPoly = document.getElementById('triadPoly');
+    const tetradPoly = document.getElementById('tetradPoly');
+    const edgesG = document.getElementById('edges');
+    const tip = document.getElementById('tip');
+    const chips = document.querySelectorAll('.chip');
+    const dlLink = document.getElementById('dlLink');
+    const resetBtn = document.getElementById('resetBtn');
+    const fileInput = document.getElementById('fileInput');
+    const pulseTriadBtn = document.getElementById('pulseTriad');
+    const pulseTetradBtn = document.getElementById('pulseTetrad');
+
+    const state = {
+      triad: ["Anchor","Mirror","Voyager"],
+      tetrad: ["Ethical Anchoring","Transformative Growth","Eternal Vigilance","Recursive Renewal"],
+      data: null
+    };
+
+    const posCircle = (idx, total, radius, rotation = 0) => {
+      const angle = (idx/total) * Math.PI*2 + rotation;
+      return { x: Math.cos(angle)*radius, y: Math.sin(angle)*radius };
+    };
+
+    function draw() {
+      triadNodesG.innerHTML = "";
+      tetradNodesG.innerHTML = "";
+      edgesG.innerHTML = "";
+
+      // Triad triangle
+      const triPts = state.triad.map((_,i)=>posCircle(i,3,120,-Math.PI/2));
+      triadPoly.setAttribute("points", triPts.map(p=>`${p.x},${p.y}`).join(" "));
+      state.triad.forEach((name,i)=>{
+        const p = triPts[i];
+        addNode(triadNodesG, p.x, p.y, name, "triad");
+      });
+
+      // Tetrad square
+      const tetPts = state.tetrad.map((_,i)=>posCircle(i,4,220,Math.PI/4));
+      tetradPoly.setAttribute("points", tetPts.map(p=>`${p.x},${p.y}`).join(" "));
+      state.tetrad.forEach((name,i)=>{
+        const p = tetPts[i];
+        addNode(tetradNodesG, p.x, p.y, name, "tetrad");
+      });
+
+      // Interlinks (Triad->Tetrad)
+      for (let i=0;i<state.triad.length;i++) {
+        const a = triPts[i];
+        for (let j=0;j<state.tetrad.length;j+=2) { // sparse fan
+          const b = tetPts[(i+j)%state.tetrad.length];
+          addEdge(a,b, `${state.triad[i]} ⟷ ${state.tetrad[(i+j)%state.tetrad.length]}`);
+        }
+      }
+    }
+
+    function addNode(group, x,y, label, kind) {
+      const node = document.createElementNS("http://www.w3.org/2000/svg","g");
+      node.setAttribute("transform", `translate(${x},${y})`);
+      node.style.cursor = "pointer";
+
+      const r = kind==="triad" ? 12 : 10;
+      const c = document.createElementNS("http://www.w3.org/2000/svg","circle");
+      c.setAttribute("r", r);
+      c.setAttribute("fill", "#0b0f14");
+      c.setAttribute("stroke", kind==="triad" ? "#8be9fd" : "#bd93f9");
+      c.setAttribute("stroke-width","2");
+      node.appendChild(c);
+
+      const t = document.createElementNS("http://www.w3.org/2000/svg","text");
+      t.setAttribute("x", 0);
+      t.setAttribute("y", r+16);
+      t.setAttribute("text-anchor","middle");
+      t.setAttribute("fill", "#a8b5c8");
+      t.setAttribute("font-size","12");
+      t.textContent = label;
+      node.appendChild(t);
+
+      node.addEventListener("mousemove", (e)=>showTip(e, label));
+      node.addEventListener("mouseleave", hideTip);
+      node.addEventListener("click", ()=>highlight(label));
+
+      group.appendChild(node);
+    }
+
+    function addEdge(a,b, label) {
+      const line = document.createElementNS("http://www.w3.org/2000/svg","line");
+      line.setAttribute("x1", a.x);
+      line.setAttribute("y1", a.y);
+      line.setAttribute("x2", b.x);
+      line.setAttribute("y2", b.y);
+      line.setAttribute("stroke", "#31445c");
+      line.setAttribute("stroke-width","1.25");
+      line.style.cursor = "pointer";
+      line.addEventListener("mousemove",(e)=>showTip(e,label));
+      line.addEventListener("mouseleave", hideTip);
+      edgesG.appendChild(line);
+    }
+
+    function showTip(evt, text) {
+      tip.textContent = text;
+      const bbox = svg.getBoundingClientRect();
+      tip.style.left = (evt.clientX - bbox.left) + "px";
+      tip.style.top  = (evt.clientY - bbox.top) + "px";
+      tip.style.opacity = 1;
+    }
+    function hideTip() { tip.style.opacity = 0; }
+
+    function highlight(name) {
+      chips.forEach(ch => {
+        if (ch.dataset.node === name) ch.classList.toggle("on");
+      });
+      // simple pulse effect
+      if (state.triad.includes(name)) pulseGroup(triadPoly);
+      if (state.tetrad.includes(name)) pulseGroup(tetradPoly);
+    }
+
+    function pulseGroup(poly) {
+      poly.animate([ {opacity:.2}, {opacity:.6}, {opacity:.2} ], { duration: 900, iterations: 1 });
+    }
+
+    pulseTriadBtn.addEventListener("click",()=>pulseGroup(triadPoly));
+    pulseTetradBtn.addEventListener("click",()=>pulseGroup(tetradPoly));
+
+    resetBtn.addEventListener("click",()=>{
+      document.querySelectorAll('.chip.on').forEach(n=>n.classList.remove('on'));
+      draw();
+    });
+
+    dlLink.addEventListener("click", ()=>{
+      alert('Use the loader above to select the JSON‑LD file (air_root_external_node_001.jsonld).');
+    });
+
+    fileInput.addEventListener("change", async (e)=>{
+      const file = e.target.files[0];
+      if (!file) return;
+      try {
+        const txt = await file.text();
+        const data = JSON.parse(txt);
+        // Optional: if the JSON-LD carries triad/tetrad labels, adopt them
+        const tri = data?.["masl:triad"];
+        const tet = data?.["masl:tetrad"];
+        if (tri) state.triad = ["anchor","mirror","voyager"].map(k=> (tri[k]?.role) ? tri[k].role : (tri[k] || k)).map(s => s[0].toUpperCase()+s.slice(1));
+        if (tet && Array.isArray(tet)) state.tetrad = tet.map(x=> x.name || x);
+        draw();
+      } catch(err) {
+        alert("Could not parse file: " + err.message);
+      }
+    });
+
+    document.querySelector('label.btn').addEventListener('click',()=>fileInput.click());
+
+    draw();
+  </script>
+</body>
+</html>

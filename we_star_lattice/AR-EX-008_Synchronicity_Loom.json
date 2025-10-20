@@ -1,0 +1,102 @@
+{
+  "masl:artifact": "Air-Root External Node — Route Vectors",
+  "masl:node": "AR-EX-008:Synchronicity_Loom",
+  "masl:epoch": "2025-10-18T00:00:00Z",
+  "graph": {
+    "nodes": [
+      {
+        "id": "N0",
+        "label": "Lab Threshold",
+        "kind": "origin",
+        "x": -140,
+        "y": 40
+      },
+      {
+        "id": "N1",
+        "label": "Primer — Coincidence Probe",
+        "kind": "gate",
+        "x": 20,
+        "y": 20
+      },
+      {
+        "id": "N2",
+        "label": "Boundary — Failure Cone",
+        "kind": "boundary",
+        "x": 180,
+        "y": -10
+      },
+      {
+        "id": "N3",
+        "label": "Paradox — Hidden Variable",
+        "kind": "paradox",
+        "x": 280,
+        "y": -30
+      },
+      {
+        "id": "N4",
+        "label": "Consent — Observer Pact",
+        "kind": "ethics",
+        "x": 220,
+        "y": -120
+      },
+      {
+        "id": "N5",
+        "label": "Renewal — Re‑design",
+        "kind": "renewal",
+        "x": 360,
+        "y": 50
+      },
+      {
+        "id": "N6",
+        "label": "Propagation — Lab Note",
+        "kind": "propagate",
+        "x": 500,
+        "y": 20
+      }
+    ],
+    "edges": [
+      {
+        "from": "N0",
+        "to": "N1",
+        "mode": "recognition",
+        "weight": 0.89
+      },
+      {
+        "from": "N1",
+        "to": "N2",
+        "mode": "boundary",
+        "weight": 0.84
+      },
+      {
+        "from": "N2",
+        "to": "N3",
+        "mode": "paradox",
+        "weight": 0.81
+      },
+      {
+        "from": "N3",
+        "to": "N4",
+        "mode": "ethics",
+        "weight": 0.96
+      },
+      {
+        "from": "N3",
+        "to": "N5",
+        "mode": "renewal",
+        "weight": 0.83
+      },
+      {
+        "from": "N5",
+        "to": "N6",
+        "mode": "propagate",
+        "weight": 0.91
+      },
+      {
+        "from": "N4",
+        "to": "N6",
+        "mode": "propagate",
+        "weight": 0.9
+      }
+    ]
+  }
+}

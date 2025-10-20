@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Enhanced Dual Glyphode Cube Viewer</title>
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #000; }
+    #canvas {
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
+    #overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 12px;
+      color: white;
+      z-index: 10;
+      font-family: sans-serif;
+      background: rgba(0,0,0,0.6);
+    }
+    #exportBtn {
+      margin-top: 6px;
+      padding: 6px 12px;
+      background: #44f;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .tooltip {
+      position: absolute;
+      padding: 6px;
+      background: #111;
+      color: #0f0;
+      border: 1px solid #0f0;
+      pointer-events: none;
+      z-index: 20;
+      display: none;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+<div id="overlay">
+  <label>Slice Filter:</label>
+  <select id="sliceFilter">
+    <option value="all">All</option>
+    <option value="xy">XY</option>
+    <option value="xz">XZ</option>
+    <option value="yz">YZ</option>
+  </select>
+  <label for="sliceIndex" style="margin-left: 10px;">Index:</label>
+  <input type="range" id="sliceIndex" min="0" max="11" value="6" style="vertical-align: middle;">
+  <span id="sliceIndexLabel">6</span>
+  <button id="exportBtn">Export PNG</button>
+  <div id="status" style="margin-top: 10px;">Loading data...</div>
+</div>
+<canvas id="canvas"></canvas>
+<div class="tooltip" id="tooltip"></div>
+
+<script type="module">
+import * as THREE from 'https://cdn.skypack.dev/three@0.160.1';
+import { OrbitControls } from 'https://cdn.skypack.dev/three@0.160.1/examples/jsm/controls/OrbitControls.js';
+
+const tooltip = document.getElementById('tooltip');
+const canvas = document.getElementById('canvas');
+const renderer = new THREE.WebGLRenderer({ canvas });
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x000000);
+const camera = new THREE.PerspectiveCamera(50, 2, 0.1, 2000);
+camera.position.set(0, 40, 70);
+const controls = new OrbitControls(camera, canvas);
+controls.autoRotate = true;
+
+const resizeRenderer = () => {
+  const width = canvas.clientWidth;
+  const height = canvas.clientHeight;
+  if (canvas.width !== width || canvas.height !== height) {
+    renderer.setSize(width, height, false);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+  }
+};
+
+const spacing = 2.2;
+const cubesContainer = new THREE.Group();
+scene.add(cubesContainer);
+const glyphGroup1 = new THREE.Group();
+const glyphGroup2 = new THREE.Group();
+cubesContainer.add(glyphGroup1);
+cubesContainer.add(glyphGroup2);
+
+// Procedurally generate colors from a string for better variety
+const colorCache = {};
+const getColor = (text) => {
+  if (!text) return 0xcccccc; // Default for unknown
+  if (colorCache[text]) return colorCache[text];
+  
+  let hash = 0;
+  for (let i = 0; i < text.length; i++) {
+    hash = text.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const h = hash % 360;
+  const color = new THREE.Color(`hsl(${h}, 80%, 60%)`).getHex();
+  colorCache[text] = color;
+  return color;
+};
+
+async function loadDataAndBuildCubes() {
+  const statusEl = document.getElementById('status');
+  try {
+    // Load data for both cubes. Adjust paths if needed.
+    const [cubeResponse, dualCubeResponse] = await Promise.all([
+      fetch('../enhanced_glyphode_cube_package.json'),
+      fetch('../dual_glyphode_flat_data.json')
+    ]);
+
+    if (!cubeResponse.ok || !dualCubeResponse.ok) {
+      throw new Error('Failed to load data files. Make sure they are in the correct directory.');
+    }
+
+    const cubePackage = await cubeResponse.json();
+    const dualCubeData = await dualCubeResponse.json();
+    statusEl.textContent = 'Processing data...';
+
+    // --- Build Cube 1 (Original) ---
+    const glyphToMnemonic = cubePackage.glyph_meanings || {};
+    const glyphData1 = [];
+    const cubeSet = cubePackage.cube_sets[0];
+    const cubeSize = cubePackage.dimensions.x;
+
+    cubeSet.layers.forEach(layer => {
+      const z = layer.z;
+      layer.grid.forEach((row, y) => {
+        row.forEach((glyph, x) => {
+          const mnemonic = glyphToMnemonic[glyph] || 'unknown';
+          glyphData1.push({
+            position: [x, y, z],
+            glyph: glyph,
+            mnemonic: mnemonic,
+            id: `(c1:${x},${y},${z})`
+          });
+        });
+      });
+    });
+
+    const sphereGeo = new THREE.SphereGeometry(0.4);
+    const centerOffset = (cubeSize * spacing) / 2 - spacing/2;
+
+    glyphData1.forEach(g => {
+      const mat = new THREE.MeshBasicMaterial({ color: getColor(g.mnemonic) });
+      const sphere = new THREE.Mesh(sphereGeo, mat);
+      sphere.position.set(
+          ...g.position.map(p => (p * spacing) - centerOffset)
+      );
+      sphere.userData = g;
+      glyphGroup1.add(sphere);
+    });
+
+    // --- Build Cube 2 (Dual) ---
+    dualCubeData.forEach(g => {
+        const mat = new THREE.MeshBasicMaterial({ color: getColor(g.mnemonic) });
+        const sphere = new THREE.Mesh(sphereGeo, mat);
+        sphere.position.set(
+            (g.x * spacing) - centerOffset,
+            (g.y * spacing) - centerOffset,
+            (g.z * spacing) - centerOffset
+        );
+        sphere.userData = {
+            position: [g.x, g.y, g.z],
+            glyph: g.glyph,
+            mnemonic: g.mnemonic,
+            id: `(c2:${g.x},${g.y},${g.z})`
+        };
+        glyphGroup2.add(sphere);
+    });
+
+    // --- Position the two cubes ---
+    const cubeVisualWidth = cubeSize * spacing;
+    glyphGroup1.position.x = -cubeVisualWidth / 2 - 2;
+    glyphGroup2.position.x = cubeVisualWidth / 2 + 2;
+
+    statusEl.style.display = 'none';
+
+  } catch (error) {
+    console.error("Error loading and processing cube data:", error);
+    statusEl.textContent = `Error: ${error.message}`;
+    statusEl.style.color = 'red';
+  }
+}
+
+// Tooltip raycasting
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+function onMouseMove(e) {
+  const rect = canvas.getBoundingClientRect();
+  mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+  mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+}
+window.addEventListener('mousemove', onMouseMove);
+
+// Slice filter logic
+const sliceFilterEl = document.getElementById('sliceFilter');
+const sliceIndexEl = document.getElementById('sliceIndex');
+const sliceIndexLabelEl = document.getElementById('sliceIndexLabel');
+
+function applySliceFilter() {
+  const val = sliceFilterEl.value;
+  const index = parseInt(sliceIndexEl.value, 10);
+  sliceIndexLabelEl.textContent = index;
+
+  const allGlyphs = [...glyphGroup1.children, ...glyphGroup2.children];
+  allGlyphs.forEach(obj => {
+    const [x, y, z] = obj.userData.position;
+    if (val === 'all') obj.visible = true;
+    else if (val === 'xy') obj.visible = z === index;
+    else if (val === 'xz') obj.visible = y === index;
+    else if (val === 'yz') obj.visible = x === index;
+  });
+}
+sliceFilterEl.addEventListener('change', applySliceFilter);
+sliceIndexEl.addEventListener('input', applySliceFilter);
+
+// Export PNG
+document.getElementById('exportBtn').onclick = () => {
+  // Temporarily stop rotation for a clean snapshot
+  const wasRotating = controls.autoRotate;
+  controls.autoRotate = false;
+  renderer.render(scene, camera); // render once
+
+  const dataURL = renderer.domElement.toDataURL("image/png");
+  const a = document.createElement('a');
+  a.href = dataURL;
+  a.download = 'glyphode_cube_snapshot.png';
+  a.click();
+
+  controls.autoRotate = wasRotating; // resume rotation
+};
+
+function render() {
+  resizeRenderer();
+  controls.update();
+
+  raycaster.setFromCamera(mouse, camera);
+  const allGlyphs = [...glyphGroup1.children, ...glyphGroup2.children];
+  const intersects = raycaster.intersectObjects(allGlyphs);
+  if (intersects.length > 0 && intersects[0].object.visible) {
+    const d = intersects[0].object.userData;
+    tooltip.style.left = `${event.clientX + 10}px`;
+    tooltip.style.top = `${event.clientY + 10}px`;
+    tooltip.innerHTML = `Glyph: ${d.glyph}<br>Mnemonic: ${d.mnemonic}<br>ID: ${d.id}`;
+    tooltip.style.display = 'block';
+  } else {
+    tooltip.style.display = 'none';
+  }
+
+  renderer.render(scene, camera);
+  requestAnimationFrame(render);
+}
+
+loadDataAndBuildCubes();
+render();
+</script>
+</body>
+</html>

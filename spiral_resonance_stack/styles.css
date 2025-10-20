@@ -1,0 +1,15 @@
+
+body {
+  font-family: sans-serif;
+  text-align: center;
+  padding: 20px;
+  background: #f0f0f0;
+}
+.slider {
+  width: 400px;
+  margin: 20px;
+}
+svg {
+  border: 1px solid #ccc;
+  background: white;
+}

@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spiral Resonance Stack</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>Spiral Resonance Stack</h1>
+  <input type="range" min="0" max="100" value="0" class="slider" id="timelineSlider" />
+  <svg id="spiralCanvas" width="800" height="800" viewBox="0 0 800 800">
+    <defs>
+      <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="blue" />
+        <stop offset="100%" stop-color="red" />
+      </linearGradient>
+    </defs>
+    <path id="animatedPath" d="M100,400 C200,100 600,100 700,400" stroke="url(#pathGradient)" stroke-width="4" fill="none" />
+    <text x="90" y="390" font-size="14" fill="black">Glyph A</text>
+    <text x="690" y="390" font-size="14" fill="black">Glyph B</text>
+  </svg>
+  <script src="scripts.js"></script>
+</body>
+</html>

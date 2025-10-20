@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 240" width="1600" height="240" role="img" aria-labelledby="freqEmotionTitle desc">
+  <title id="freqEmotionTitle">Frequency–Emotion Spectrum (Animated)</title>
+  <desc id="desc">Animated glowing spectrum linking frequency, emotion, and color resonance.</desc>
+  <defs>
+    <linearGradient id="spectrum" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B0000"/>
+      <stop offset="10%" stop-color="#FF4500"/>
+      <stop offset="25%" stop-color="#FFD700"/>
+      <stop offset="40%" stop-color="#ADFF2F"/>
+      <stop offset="55%" stop-color="#40E0D0"/>
+      <stop offset="70%" stop-color="#1E90FF"/>
+      <stop offset="85%" stop-color="#4B0082"/>
+      <stop offset="100%" stop-color="#EE82EE"/>
+    </linearGradient>
+
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect x="0" y="60" width="1600" height="120" fill="url(#spectrum)" stroke="#fff" stroke-width="2" rx="12" filter="url(#glow)">
+    <animate attributeName="x" values="0;10;-10;0" dur="10s" repeatCount="indefinite"/>
+  </rect>
+
+  <g font-family="Segoe UI, sans-serif" font-size="20" font-weight="600" fill="#fff" text-anchor="middle">
+    <text x="100"  y="45">174 Hz – Grief</text>
+    <text x="250"  y="45">285 Hz – Acceptance</text>
+    <text x="420"  y="45">417 Hz – Courage</text>
+    <text x="640"  y="45">528 Hz – Love</text>
+    <text x="820"  y="45">639 Hz – Joy</text>
+    <text x="1000" y="45">741 Hz – Trust</text>
+    <text x="1180" y="45">852 Hz – Intuition</text>
+    <text x="1360" y="45">963 Hz – Transcendence</text>
+  </g>
+</svg>

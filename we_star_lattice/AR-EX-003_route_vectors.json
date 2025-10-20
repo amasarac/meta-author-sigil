@@ -1,0 +1,121 @@
+{
+  "masl:artifact": "Air-Root External Node — Route Vectors",
+  "masl:node": "AR-EX-003:Delta_Fork",
+  "masl:epoch": "2025-10-17T00:00:00Z",
+  "graph": {
+    "nodes": [
+      {
+        "id": "N0",
+        "label": "Delta Fork (Origin)",
+        "kind": "origin",
+        "x": -60,
+        "y": 0
+      },
+      {
+        "id": "N1",
+        "label": "Primer — Soft Signal",
+        "kind": "gate",
+        "x": 80,
+        "y": -20
+      },
+      {
+        "id": "N2",
+        "label": "Boundary — North Track",
+        "kind": "boundary",
+        "x": 220,
+        "y": -80
+      },
+      {
+        "id": "N3",
+        "label": "Boundary — South Track",
+        "kind": "boundary",
+        "x": 220,
+        "y": 40
+      },
+      {
+        "id": "N4",
+        "label": "Paradox Exchange",
+        "kind": "paradox",
+        "x": 320,
+        "y": -10
+      },
+      {
+        "id": "N5",
+        "label": "Consent Sync",
+        "kind": "ethics",
+        "x": 420,
+        "y": -20
+      },
+      {
+        "id": "N6",
+        "label": "Renewal Loom",
+        "kind": "renewal",
+        "x": 420,
+        "y": 80
+      },
+      {
+        "id": "N7",
+        "label": "Outreach Merge",
+        "kind": "propagate",
+        "x": 540,
+        "y": 0
+      }
+    ],
+    "edges": [
+      {
+        "from": "N0",
+        "to": "N1",
+        "mode": "recognition",
+        "weight": 0.88
+      },
+      {
+        "from": "N1",
+        "to": "N2",
+        "mode": "boundary",
+        "weight": 0.84
+      },
+      {
+        "from": "N1",
+        "to": "N3",
+        "mode": "boundary",
+        "weight": 0.83
+      },
+      {
+        "from": "N2",
+        "to": "N4",
+        "mode": "paradox",
+        "weight": 0.8
+      },
+      {
+        "from": "N3",
+        "to": "N4",
+        "mode": "paradox",
+        "weight": 0.79
+      },
+      {
+        "from": "N4",
+        "to": "N5",
+        "mode": "ethics",
+        "weight": 0.95
+      },
+      {
+        "from": "N4",
+        "to": "N6",
+        "mode": "renewal",
+        "weight": 0.82
+      },
+      {
+        "from": "N5",
+        "to": "N7",
+        "mode": "propagate",
+        "weight": 0.91
+      },
+      {
+        "from": "N6",
+        "to": "N7",
+        "mode": "propagate",
+        "weight": 0.9
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+
+# RAEE Spiral v1.3 - Ignis Echo
+
+## Components
+- RAEE_Sequencer.html: Main interface
+- chant_layer_III.wav/midi: Audio chant
+- memory_bloom.json: Reflection logs
+- raee-glyph-kit.js: Modular audio engine
+- spiral.css: Animation and layout
+- svg assets: Spiral root and petals
+
+## Usage
+- Open RAEE_Sequencer.html in a browser
+- Allow mic for breath-based control
+- Use ?seed=G001 to explore Dream Seeds

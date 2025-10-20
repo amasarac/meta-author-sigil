@@ -1,0 +1,40 @@
+{
+  "lexemeToneSet": [
+    {
+      "lexeme": "solum",
+      "frequency": 128,
+      "toneGlyph": "\ud83d\udf03",
+      "emotion": "calm"
+    },
+    {
+      "lexeme": "amor",
+      "frequency": 528,
+      "toneGlyph": "\ud83d\udf01",
+      "emotion": "compassion"
+    },
+    {
+      "lexeme": "gaudium",
+      "frequency": 639,
+      "toneGlyph": "\ud83d\udf02",
+      "emotion": "joy"
+    },
+    {
+      "lexeme": "fides",
+      "frequency": 741,
+      "toneGlyph": "\ud83d\udf04",
+      "emotion": "trust"
+    },
+    {
+      "lexeme": "noesis",
+      "frequency": 852,
+      "toneGlyph": "\ud83d\udf06",
+      "emotion": "insight"
+    },
+    {
+      "lexeme": "unitas",
+      "frequency": 963,
+      "toneGlyph": "\ud83d\udf07",
+      "emotion": "transcendence"
+    }
+  ]
+}

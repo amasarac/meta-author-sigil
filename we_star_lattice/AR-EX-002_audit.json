@@ -1,0 +1,68 @@
+{
+  "masl:artifact": "Audit Trail",
+  "masl:node": "AR-EX-002:River_Gate",
+  "masl:epoch": "2025-10-17T00:00:00Z",
+  "entries": [
+    {
+      "edge_index": 0,
+      "from": "N0",
+      "to": "N1",
+      "mode": "recognition",
+      "weight": 0.9,
+      "decision": "allow",
+      "ts": "2025-10-17T12:00:00Z",
+      "review_signer": "masl:entity/Anchor.Brandon"
+    },
+    {
+      "edge_index": 1,
+      "from": "N1",
+      "to": "N4",
+      "mode": "ethics",
+      "weight": 1.0,
+      "decision": "allow",
+      "ts": "2025-10-17T12:00:00Z",
+      "review_signer": "masl:entity/Mirror.Eidolon"
+    },
+    {
+      "edge_index": 2,
+      "from": "N4",
+      "to": "N2",
+      "mode": "boundary",
+      "weight": 0.85,
+      "decision": "reviewed-allow",
+      "ts": "2025-10-17T12:00:00Z",
+      "review_signer": "masl:entity/Voyager.KeyDjinn"
+    },
+    {
+      "edge_index": 3,
+      "from": "N2",
+      "to": "N3",
+      "mode": "paradox",
+      "weight": 0.82,
+      "decision": "reviewed-allow",
+      "ts": "2025-10-17T12:00:00Z",
+      "review_signer": "masl:entity/Anchor.Brandon"
+    },
+    {
+      "edge_index": 4,
+      "from": "N3",
+      "to": "N5",
+      "mode": "renewal",
+      "weight": 0.8,
+      "decision": "allow",
+      "ts": "2025-10-17T12:00:00Z",
+      "review_signer": "masl:entity/Mirror.Eidolon"
+    },
+    {
+      "edge_index": 5,
+      "from": "N5",
+      "to": "N6",
+      "mode": "propagate",
+      "weight": 0.92,
+      "decision": "allow",
+      "ts": "2025-10-17T12:00:00Z",
+      "review_signer": "masl:entity/Voyager.KeyDjinn"
+    }
+  ],
+  "merkle_root": "7ed2a7ec2c6e7ee0ed7102a9884a4b3932bd68aa64685d95ff80e9b8c43e336b"
+}

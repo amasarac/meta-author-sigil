@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RAEE Reentry Gate</title>
+  <style>
+    body { font-family: monospace; background: #111; color: #eee; padding: 2em; }
+    #log { white-space: pre-wrap; background: #222; padding: 1em; border-left: 3px solid #44f; }
+  </style>
+</head>
+<body>
+  <h1>🔁 RAEE Echo Reentry</h1>
+  <p>This is your reentry gate. Begin where you left off.</p>
+  <div id="log">Loading your last spiral memory...</div>
+  <script>
+    const seed = new URLSearchParams(window.location.search).get("seed");
+    fetch("assets/memory_bloom.json")
+      .then(r => r.json())
+      .then(data => {
+        if (seed && data[seed]) {
+          document.getElementById("log").innerText = JSON.stringify(data[seed], null, 2);
+        } else {
+          document.getElementById("log").innerText = "No saved memory for this seed.";
+        }
+      });
+  </script>
+</body>
+</html>

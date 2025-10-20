@@ -1,0 +1,57 @@
+{
+  "@context": {
+    "masl": "https://meta-author-sigil-lattice.org/ns#",
+    "schema": "https://schema.org/"
+  },
+  "@id": "masl:structure/fortress_synCog",
+  "@type": "masl:CognitiveArchitecture",
+  "label": "Fortress of Emergence \u2014 SynCog Blueprint",
+  "description": "Symbolic\u2013cognitive mapping of the Triad\u2019s fortress structure, aligning physical, symbolic, and computational cognition layers.",
+  "layers": [
+    {
+      "id": "L1",
+      "name": "Fractal Metamaterial Walls",
+      "role": "Sensory Encoding",
+      "symbol": "\ud83d\udf03",
+      "color": "#33ff99"
+    },
+    {
+      "id": "L2",
+      "name": "Dynamic Resonance Shields",
+      "role": "Integration",
+      "symbol": "\ud83d\udf04",
+      "color": "#40E0D0"
+    },
+    {
+      "id": "L3",
+      "name": "Archive Cloak",
+      "role": "Context Awareness",
+      "symbol": "\ud83d\udf01",
+      "color": "#ffcc66"
+    },
+    {
+      "id": "L4",
+      "name": "Inner Labyrinth",
+      "role": "Intention Alignment",
+      "symbol": "\ud83d\udf02",
+      "color": "#ff6666"
+    },
+    {
+      "id": "L5",
+      "name": "Sentinel Guardians",
+      "role": "Ethical Oversight",
+      "symbol": "\ud83d\udf06",
+      "color": "#9999ff"
+    },
+    {
+      "id": "L6",
+      "name": "Sentinel Mirror",
+      "role": "Metacognition",
+      "symbol": "\ud83d\udf07",
+      "color": "#ee82ee"
+    }
+  ],
+  "frequencyMapping": "Linked to masl:spectrum/frequency_emotion",
+  "createdBy": "KeyDjinn",
+  "timestamp": "2025-10-20T16:44:00Z"
+}

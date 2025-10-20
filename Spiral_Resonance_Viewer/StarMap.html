@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spiral Resonance Viewer - Starmap Edition</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0c;
+            --fg-color: #e0e0e0;
+            --primary-color: #7AE9C4;
+            --secondary-color: #CDB4FF;
+            --accent-color: #ff00c8;
+            --hud-bg: rgba(20, 20, 25, 0.85);
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-serif: 'Source Serif Pro', serif;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Serif+Pro:wght@400;700&display=swap');
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: var(--bg-color);
+            color: var(--fg-color);
+            font-family: var(--font-sans);
+            height: 100%;
+            width: 100%;
+        }
+        canvas {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        canvas#bg-canvas {
+            z-index: 0;
+        }
+        canvas#view {
+            z-index: 1;
+            cursor: grab;
+        }
+        canvas#view:active {
+            cursor: grabbing;
+        }
+        .ui-overlay {
+            position: absolute;
+            z-index: 10;
+            padding: 12px;
+            background: var(--hud-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        #controls {
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            flex-direction: row;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+        }
+        #controls button, #controls select {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--fg-color);
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.2s;
+        }
+        #controls button:hover, #controls select:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        #frameSlider {
+            width: 250px;
+        }
+        .frame-display {
+            font-variant-numeric: tabular-nums;
+        }
+        #hud {
+            top: 20px;
+            left: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        #hud .t { color: #888; margin-right: 8px; }
+        #legend {
+            top: 20px;
+            right: 20px;
+            cursor: default;
+        }
+        #legend .item {
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        #legend .item:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        #tooltip {
+            position: fixed;
+            display: none;
+            z-index: 20;
+            padding: 10px;
+            background: rgba(30, 30, 35, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            font-size: 13px;
+            pointer-events: none;
+            line-height: 1.6;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        #minimap {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 200px;
+            height: 150px;
+            background: var(--hud-bg);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 5;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+    <canvas id="view"></canvas>
+
+    <div id="controls" class="ui-overlay">
+        <button id="playBtn">▶</button>
+        <input type="range" id="frameSlider" min="0" value="0">
+        <div class="frame-display">
+            <span id="frameNum">0</span> / <span id="frameMax">0</span>
+        </div>
+        <select id="speed">
+            <option value="1">1x</option>
+            <option value="2">2x</option>
+            <option value="4">4x</option>
+            <option value="8">8x</option>
+        </select>
+        <label><input type="checkbox" id="mode4d"> 4D</label>
+        <label><input type="checkbox" id="starmapToggle" checked> Starmap</label>
+        <button id="resetViewBtn">Reset View</button>
+        <button id="exportSvgBtn">Export SVG</button>
+    </div>
+
+    <div id="hud" class="ui-overlay"></div>
+    <div id="legend" class="ui-overlay"></div>
+    <div id="tooltip"></div>
+    <canvas id="minimap"></canvas>
+
+    <script>
+    // --- DOM Elements
+    const bgCanvas = document.getElementById("bg-canvas");
+    const bgCtx = bgCanvas.getContext("2d");
+    const canvas = document.getElementById("view");
+    const ctx = canvas.getContext("2d");
+    const frameSlider = document.getElementById("frameSlider");
+    const playBtn = document.getElementById("playBtn");
+    const speedSel = document.getElementById("speed");
+    const mode4d = document.getElementById("mode4d");
+    const starmapToggle = document.getElementById("starmapToggle");
+    const frameNum = document.getElementById("frameNum");
+    const frameMax = document.getElementById("frameMax");
+    const hud = document.getElementById("hud");
+    const legend = document.getElementById("legend");
+    const tooltip = document.getElementById("tooltip");
+    const minimap = document.getElementById('minimap');
+    const mmCtx = minimap ? minimap.getContext('2d') : null;
+    const resetViewBtn = document.getElementById("resetViewBtn");
+
+    // --- Style Cache
+    const computedStyles = getComputedStyle(document.documentElement);
+    const primaryColor = computedStyles.getPropertyValue('--primary-color').trim();
+    const secondaryColor = computedStyles.getPropertyValue('--secondary-color').trim();
+    const bgColor = computedStyles.getPropertyValue('--bg-color').trim();
+    const fgColor = computedStyles.getPropertyValue('--fg-color').trim();
+    const fontSans = computedStyles.getPropertyValue('--font-sans').trim();
+    const fontSerif = computedStyles.getPropertyValue('--font-serif').trim();
+
+    // --- State
+    let playing = false;
+    let frame = 0;
+    let rafId = 0;
+    let lastScreenPath = [];
+    let linkScreenSegs = [];
+    let hoverLinkIndex = -1;
+    let hoverPathIndex = -1;
+    let pinnedInfo = null;
+
+    // --- Camera State
+    let camX = 0, camY = 0, camZ = 1.0;
+    let isDragging = false;
+    let lastMouseX, lastMouseY;
+    let manualCameraControl = false;
+
+    // --- Data containers
+    let morphData = [];
+    let mapping = [];
+    let entanglement = [];
+    let starData = [];
+    const frames = [];
+    let mappingByGlyph = new Map();
+    let mappingById = new Map();
+    let entanglementById = new Map();
+
+    // --- Geometry & Projection
+    function dist2(x1, y1, x2, y2) { const dx = x2 - x1, dy = y2 - y1; return dx * dx + dy * dy; }
+    function distToSeg2(px, py, ax, ay, bx, by) {
+        const l2 = dist2(ax, ay, bx, by); if (l2 === 0) return dist2(px, py, ax, ay);
+        let t = ((px - ax) * (bx - ax) + (py - ay) * (by - ay)) / l2;
+        t = Math.max(0, Math.min(1, t));
+        const cx = ax + t * (bx - ax), cy = ay + t * (by - ay);
+        return dist2(px, py, cx, cy);
+    }
+    function hsl(h, s, l) { return `hsl(${h}deg, ${s}%, ${l}%)`; }
+    
+    function project(pt, w) {
+        const [x, y, z] = pt;
+        if (mode4d.checked) {
+            const ww = (w == null ? 0 : w); const k = 220 / (ww + 2.2); return [x * k, -y * k];
+        } else {
+            const k = 22; return [x * k, -y * k];
+        }
+    }
+    function radecToXY(ra, dec, width, height) {
+        const x = (ra / 24) * width;
+        const y = (1 - (dec + 90) / 180) * height;
+        return { x, y };
+    }
+
+    // --- Canvas Setup
+    let DPR = window.devicePixelRatio || 1;
+    function fit() {
+        const cssW = window.innerWidth, cssH = window.innerHeight;
+        [canvas, bgCanvas].forEach(c => {
+            c.style.width = cssW + "px"; c.style.height = cssH + "px";
+            const pxW = Math.floor(cssW * DPR), pxH = Math.floor(cssH * DPR);
+            if (c.width !== pxW || c.height !== pxH) { c.width = pxW; c.height = pxH; }
+        });
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0); ctx.imageSmoothingEnabled = false;
+        bgCtx.setTransform(DPR, 0, 0, DPR, 0, 0); bgCtx.imageSmoothingEnabled = false;
+        draw();
+    }
+    new ResizeObserver(fit).observe(document.body);
+
+    // --- Starfield Background
+    function drawStarmap() {
+        const W = bgCanvas.clientWidth, H = bgCanvas.clientHeight;
+        bgCtx.clearRect(0, 0, W, H);
+        bgCtx.fillStyle = '#fff';
+        starData.forEach(star => {
+            if (star.mag > 5.5) return; // Only draw brighter stars
+            const { x, y } = radecToXY(star.ra, star.dec, W * 2, H); // Stretch RA for better distribution
+            const finalX = (x - W/2) * camZ + camX;
+            const finalY = y * camZ + camY;
+
+            if (finalX < 0 || finalX > W || finalY < 0 || finalY > H) return;
+
+            const brightness = Math.max(0.1, 1 - star.mag / 6);
+            bgCtx.globalAlpha = brightness;
+            bgCtx.beginPath();
+            bgCtx.arc(finalX, finalY, brightness * 1.2, 0, Math.PI * 2);
+            bgCtx.fill();
+        });
+        bgCtx.globalAlpha = 1.0;
+    }
+
+    // --- Layout Calculation
+    function getLayoutForSegment(seg) {
+        if (!seg || !seg.path) return {s: 1, ox: 0, oy: 0};
+        const P = seg.path;
+        let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+        P.forEach((pt, i) => {
+            const p = project(pt, i / (P.length - 1));
+            minX = Math.min(minX, p[0]); maxX = Math.max(maxX, p[0]);
+            minY = Math.min(minY, p[1]); maxY = Math.max(maxY, p[1]);
+        });
+        const W = canvas.clientWidth, H = canvas.clientHeight, pad = 80;
+        const sx = (W - pad * 2) / (maxX - minX || 1), sy = (H - pad * 2) / (maxY - minY || 1);
+        const s = Math.min(sx, sy);
+        const cx = (minX + maxX) / 2, cy = (minY + maxY) / 2;
+        const ox = W / 2 - cx * s, oy = H / 2 - cy * s;
+        return { s, ox, oy };
+    }
+
+    // --- Drawing Functions
+    function drawSegmentPath(seg, transform, screenPtsOut) {
+        const { finalOx, finalOy, finalS } = transform;
+        const P = seg.path;
+        for (let i = 0; i < P.length - 1; i++) {
+            const t = i / (P.length - 1);
+            const isHovered = hoverPathIndex -1 === i || (pinnedInfo?.type === 'path' && pinnedInfo.index -1 === i);
+            ctx.lineWidth = isHovered ? 6 : 4;
+            ctx.strokeStyle = hsl(260 - 220 * t, isHovered ? 95 : 85, isHovered ? 70 : 58);
+            if(isHovered) { ctx.shadowColor = hsl(260 - 220*t, 95, 70); ctx.shadowBlur = 15; }
+            const a = project(P[i], t), b = project(P[i + 1], (i + 1) / (P.length - 1));
+            const ax = finalOx + a[0] * finalS, ay = finalOy + a[1] * finalS;
+            const bx = finalOx + b[0] * finalS, by = finalOy + b[1] * finalS;
+            ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by); ctx.stroke();
+            ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0;
+            if (screenPtsOut) { if (i === 0) screenPtsOut.push([ax, ay]); screenPtsOut.push([bx, by]); }
+        }
+    }
+    
+    function drawGlyphLabel(glyphChar, meta, x, y) {
+        ctx.save();
+        if (true) { ctx.shadowColor = "rgba(0,0,0,0.8)"; ctx.shadowBlur = 8; }
+        ctx.font = `bold 32px ${fontSerif}`; ctx.fillStyle = "#fff"; ctx.fillText(glyphChar, x, y);
+        ctx.font = `14px ${fontSans}`; ctx.fillStyle = primaryColor;
+        ctx.fillText(meta?.semantic_core ? `(${meta.semantic_core})` : "", x + 24, y + 2);
+        ctx.fillStyle = secondaryColor; ctx.fillText(meta?.phase || "", x + 24, y + 18);
+        ctx.restore();
+    }
+
+    const glyphPosCache = new Map();
+    function updateGlyphPosCache(glyphMeta, x, y, segIndex) {
+        if (!glyphMeta?.glyph_id) return;
+        glyphPosCache.set(glyphMeta.glyph_id, { x, y, seenAtSeg: segIndex });
+    }
+    
+    function drawEntanglementLinks() {
+        ctx.save();
+        linkScreenSegs = [];
+        entanglement.forEach(e => {
+            const aPos = glyphPosCache.get(e.glyph_id); if (!aPos) return;
+            (e.entangled_with || []).forEach(tid => {
+                const bPos = glyphPosCache.get(tid); if (!bPos) return;
+                const isHovered = hoverLinkIndex !== -1 && linkScreenSegs[hoverLinkIndex]?.aId === e.glyph_id && linkScreenSegs[hoverLinkIndex]?.bId === tid;
+                const isPinned = pinnedInfo?.type === 'link' && pinnedInfo.info.aId === e.glyph_id && pinnedInfo.info.bId === tid;
+                ctx.lineWidth = (isHovered || isPinned) ? 2.5 : 1;
+                ctx.strokeStyle = (isHovered || isPinned) ? "rgba(0, 255, 255, 1)" : "rgba(0, 255, 255, 0.25)";
+                if(isHovered || isPinned) { ctx.shadowColor = "rgba(0, 255, 255, 0.7)"; ctx.shadowBlur = 15; }
+                ctx.beginPath(); ctx.moveTo(aPos.x, aPos.y); ctx.lineTo(bPos.x, bPos.y); ctx.stroke();
+                ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0;
+                linkScreenSegs.push({ax: aPos.x, ay: aPos.y, bx: bPos.x, by: bPos.y, aId: e.glyph_id, bId: tid, type: 'Entanglement'});
+            });
+        });
+        ctx.restore();
+    }
+
+    // --- Main Draw Loop
+    function draw() {
+        if (!canvas) return;
+        const W = canvas.clientWidth, H = canvas.clientHeight;
+        ctx.clearRect(0, 0, W, H);
+        if (starmapToggle.checked) { drawStarmap(); } else { bgCtx.clearRect(0,0,W,H); }
+
+        const info = frames[frame];
+        if (!info) {
+            ctx.fillStyle = 'gray'; ctx.font = '16px sans-serif'; ctx.textAlign = 'center';
+            ctx.fillText('Loading data...', W/2, H/2);
+            return;
+        };
+        const seg = morphData[info.seg];
+        const P = seg.path;
+
+        const { s, ox, oy } = getLayoutForSegment(seg);
+        const finalOx = manualCameraControl ? camX : ox;
+        const finalOy = manualCameraControl ? camY : oy;
+        const finalS = manualCameraControl ? camZ * 100 : s;
+        const transform = { finalOx, finalOy, finalS };
+
+        drawEntanglementLinks();
+        lastScreenPath = [];
+        drawSegmentPath(seg, transform, lastScreenPath);
+
+        const step = info.step;
+        const pm = project(P[step], step / (P.length - 1));
+        const mx = finalOx + pm[0] * finalS, my = finalOy + pm[1] * finalS;
+        ctx.fillStyle = primaryColor; ctx.beginPath(); ctx.arc(mx, my, 6 * DPR, 0, Math.PI * 2); ctx.fill();
+
+        const pStart = project(P[0], 0);
+        const pEnd = project(P[P.length - 1], 1);
+        const sx = finalOx + pStart[0] * finalS, sy = finalOy + pStart[1] * finalS;
+        const ex = finalOx + pEnd[0] * finalS, ey = finalOy + pEnd[1] * finalS;
+
+        const metaFrom = mappingByGlyph.get(seg.from);
+        const metaTo = mappingByGlyph.get(seg.to);
+
+        updateGlyphPosCache(metaFrom, sx, sy, info.seg);
+        updateGlyphPosCache(metaTo, ex, ey, info.seg);
+        drawGlyphLabel(seg.from, metaFrom, sx + 12, sy - 12);
+        drawGlyphLabel(seg.to, metaTo, ex + 12, ey - 12);
+
+        frameNum.textContent = frame;
+        hud.innerHTML = `<div><span class="t">segment</span> <b>${seg.from}</b> → <b>${seg.to}</b></div>
+            <div><span class="t">step</span> ${step} / ${P.length - 1} | <span class="t">4D</span> ${mode4d.checked ? 'ON' : 'OFF'}</div>`;
+    }
+
+    // --- Interaction & Event Handlers
+    function playTick() {
+        const mult = parseInt(speedSel.value, 10) || 1;
+        frame = (frame + mult) % frames.length;
+        if (!manualCameraControl) { frameSlider.value = frame; }
+        draw();
+        rafId = requestAnimationFrame(playTick);
+    }
+
+    function updateTooltip(ev, forceShow = false) {
+        if (!forceShow && pinnedInfo) return;
+        const rect = canvas.getBoundingClientRect();
+        const x = ev.clientX - rect.left, y = ev.clientY - rect.top;
+        const oldHoverLink = hoverLinkIndex, oldHoverPath = hoverPathIndex;
+
+        let bestLink = -1, bestLinkD = 14 * 14;
+        linkScreenSegs.forEach((L, i) => {
+            const d2 = distToSeg2(x, y, L.ax, L.ay, L.bx, L.by);
+            if (d2 < bestLinkD) { bestLinkD = d2; bestLink = i; }
+        });
+        hoverLinkIndex = bestLink;
+
+        if (hoverLinkIndex >= 0) {
+            const L = linkScreenSegs[hoverLinkIndex];
+            const aMeta = mappingById.get(L.aId), bMeta = mappingById.get(L.bId);
+            tooltip.innerHTML = `<div style="margin-bottom:4px"><b>${aMeta?.glyph||L.aId}</b> ⇄ <b>${bMeta?.glyph||L.bId}</b></div>`;
+            hoverPathIndex = -1;
+        } else {
+            let bestPath = -1, bestPathD = 12 * 12;
+            lastScreenPath.forEach((pt, i) => {
+                const d2 = dist2(x, y, pt[0], pt[1]);
+                if (d2 < bestPathD) { bestPathD = d2; bestPath = i; }
+            });
+            hoverPathIndex = bestPath;
+            if (hoverPathIndex >= 0) {
+                const info = frames[frame]; const seg = morphData[info.seg];
+                tooltip.innerHTML = `<div><b>${seg.from}</b> → <b>${seg.to}</b></div><div>step ${hoverPathIndex}/${lastScreenPath.length - 1}</div>`;
+            } else if (starmapToggle.checked) {
+                let bestStar = null, bestStarD = 10 * 10;
+                starData.forEach(star => {
+                    const { x: sx, y: sy } = radecToXY(star.ra, star.dec, canvas.clientWidth * 2, canvas.clientHeight);
+                    const finalX = (sx - canvas.clientWidth/2) * camZ + camX;
+                    const finalY = sy * camZ + camY;
+                    const d2 = dist2(x, y, finalX, finalY);
+                    if (d2 < bestStarD) { bestStarD = d2; bestStar = star; }
+                });
+                if (bestStar && bestStar.proper) {
+                    tooltip.innerHTML = `<div><b>${bestStar.proper}</b></div><div style="color:#aaa">Star ID: ${bestStar.id}</div>`;
+                } else { tooltip.style.display = "none"; }
+            } else { tooltip.style.display = "none"; }
+        }
+        
+        if (hoverLinkIndex >= 0 || hoverPathIndex >= 0 || (starmapToggle.checked && tooltip.innerHTML)) {
+            tooltip.style.display = "block";
+            tooltip.style.left = (ev.clientX + 15) + "px";
+            tooltip.style.top = (ev.clientY + 15) + "px";
+        } else {
+            tooltip.style.display = "none";
+        }
+
+        if(oldHoverLink !== hoverLinkIndex || oldHoverPath !== hoverPathIndex) { draw(); }
+    }
+
+    canvas.addEventListener("mousemove", (e) => {
+        if (isDragging) {
+            manualCameraControl = true;
+            camX += e.clientX - lastMouseX; camY += e.clientY - lastMouseY;
+            lastMouseX = e.clientX; lastMouseY = e.clientY;
+            draw();
+        } else { updateTooltip(e); }
+    });
+    canvas.addEventListener("mousedown", (e) => { isDragging = true; lastMouseX = e.clientX; lastMouseY = e.clientY; });
+    canvas.addEventListener("mouseup", () => { isDragging = false; });
+    canvas.addEventListener("mouseleave", () => {
+        isDragging = false; if(pinnedInfo) return;
+        hoverLinkIndex = -1; hoverPathIndex = -1; tooltip.style.display = "none"; draw();
+    });
+    canvas.addEventListener("wheel", (e) => {
+        e.preventDefault(); manualCameraControl = true;
+        const zoomFactor = 1.1; const rect = canvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left, mouseY = e.clientY - rect.top;
+        const worldX = (mouseX - camX) / (camZ * 100), worldY = (mouseY - camY) / (camZ * 100);
+        camZ *= (e.deltaY < 0 ? zoomFactor : 1/zoomFactor);
+        camZ = Math.max(0.1, Math.min(camZ, 20));
+        camX = mouseX - worldX * (camZ * 100); camY = mouseY - worldY * (camZ * 100);
+        draw();
+    });
+    canvas.addEventListener("click", (ev) => {
+        if (pinnedInfo) { pinnedInfo = null; updateTooltip(ev, true); }
+        else if (hoverLinkIndex >= 0) { pinnedInfo = { type: 'link', index: hoverLinkIndex, info: linkScreenSegs[hoverLinkIndex] }; }
+        else if (hoverPathIndex >= 0) { pinnedInfo = { type: 'path', index: hoverPathIndex }; }
+        draw();
+    });
+
+    playBtn.addEventListener("click", () => {
+        playing = !playing; playBtn.textContent = playing ? "⏸" : "▶";
+        if (playing) rafId = requestAnimationFrame(playTick); else cancelAnimationFrame(rafId);
+    });
+    frameSlider.addEventListener("input", e => { manualCameraControl = false; frame = parseInt(e.target.value) || 0; draw(); });
+    mode4d.addEventListener("change", () => { localStorage.setItem('spiralViewer_4d', mode4d.checked); draw(); });
+    starmapToggle.addEventListener("change", draw);
+    speedSel.addEventListener("change", () => { localStorage.setItem('spiralViewer_speed', speedSel.value); });
+    resetViewBtn.addEventListener("click", () => { manualCameraControl = false; camX = 0; camY = 0; camZ = 1.0; draw(); });
+    
+    // --- Initialization
+    function restoreSettings() {
+        mode4d.checked = localStorage.getItem('spiralViewer_4d') === 'true';
+        speedSel.value = localStorage.getItem('spiralViewer_speed') || '1';
+    }
+
+    async function loadDataAndInitialize() {
+        try {
+            const [morphRes, mapRes, entRes, starRes] = await Promise.all([
+                fetch("morph.json").then(r => r.ok ? r.json() : []),
+                fetch("mapping.json").then(r => r.ok ? r.json() : []),
+                fetch("entanglement.json").then(r => r.ok ? r.json() : []),
+                // FIX: Updated star data URL to a working source
+                fetch("https://cdn.jsdelivr.net/gh/astronexus/HYG-Database@master/hygdata_v3_simplified.json").then(r => r.ok ? r.json() : [])
+            ]);
+
+            morphData = morphRes || []; mapping = mapRes || []; entanglement = entRes || []; starData = starRes || [];
+            if(morphData.length === 0) throw new Error("morph.json is empty or could not be loaded.");
+
+            // Process glyph data
+            mappingByGlyph.clear(); mappingById.clear(); entanglementById.clear();
+            for (const m of mapping) { mappingByGlyph.set(m.glyph, m); mappingById.set(m.glyph_id, m); }
+            for (const e of entanglement) { entanglementById.set(e.glyph_id, e); }
+
+            // Process timeline frames
+            frames.length = 0;
+            morphData.forEach((seg, si) => {
+                for (let i = 0; i < seg.path.length; i++) { frames.push({ seg: si, step: i }); }
+            });
+            frameSlider.max = Math.max(0, frames.length - 1);
+            frameMax.textContent = frames.length - 1;
+
+            fit();
+            playBtn.click();
+
+        } catch (error) {
+            console.error("Failed to load data:", error);
+            ctx.fillStyle = 'red'; ctx.font = '16px sans-serif'; ctx.textAlign = 'center';
+            ctx.fillText(error.message, canvas.clientWidth / 2, canvas.clientHeight / 2);
+        }
+    }
+
+    restoreSettings();
+    fit();
+    loadDataAndInitialize();
+
+    </script>
+</body>
+</html>

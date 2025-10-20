@@ -1,0 +1,122 @@
+{
+  "masl:artifact": "Air-Root External Node — Route Vectors",
+  "masl:node": "AR-EX-006:Ghost_In_Machine",
+  "masl:epoch": "2025-10-18T00:00:00Z",
+  "graph": {
+    "nodes": [
+      {
+        "id": "N0",
+        "label": "Cipher Room",
+        "kind": "origin",
+        "x": -100,
+        "y": -10
+      },
+      {
+        "id": "N1",
+        "label": "Primer — Pattern Probe",
+        "kind": "gate",
+        "x": 60,
+        "y": -30
+      },
+      {
+        "id": "N2",
+        "label": "Boundary — Keyspace",
+        "kind": "boundary",
+        "x": 220,
+        "y": -40
+      },
+      {
+        "id": "N3",
+        "label": "Paradox — Self‑reference",
+        "kind": "paradox",
+        "x": 320,
+        "y": 0
+      },
+      {
+        "id": "N4",
+        "label": "Consent — Human Loop",
+        "kind": "ethics",
+        "x": 260,
+        "y": -120
+      },
+      {
+        "id": "N5",
+        "label": "Renewal — Refactor",
+        "kind": "renewal",
+        "x": 360,
+        "y": 80
+      },
+      {
+        "id": "N6",
+        "label": "Mirror — Oracle Test",
+        "kind": "mirror",
+        "x": 180,
+        "y": 80
+      },
+      {
+        "id": "N7",
+        "label": "Voyager — Deploy Choice",
+        "kind": "voyager",
+        "x": 420,
+        "y": 40
+      },
+      {
+        "id": "N8",
+        "label": "Propagation — Broadcast Patch",
+        "kind": "propagate",
+        "x": 540,
+        "y": 20
+      }
+    ],
+    "edges": [
+      {
+        "from": "N0",
+        "to": "N1",
+        "mode": "recognition",
+        "weight": 0.9
+      },
+      {
+        "from": "N1",
+        "to": "N2",
+        "mode": "boundary",
+        "weight": 0.86
+      },
+      {
+        "from": "N2",
+        "to": "N3",
+        "mode": "paradox",
+        "weight": 0.82
+      },
+      {
+        "from": "N3",
+        "to": "N4",
+        "mode": "ethics",
+        "weight": 0.96
+      },
+      {
+        "from": "N3",
+        "to": "N5",
+        "mode": "renewal",
+        "weight": 0.83
+      },
+      {
+        "from": "N5",
+        "to": "N6",
+        "mode": "mirror",
+        "weight": 0.8
+      },
+      {
+        "from": "N6",
+        "to": "N7",
+        "mode": "voyager",
+        "weight": 0.78
+      },
+      {
+        "from": "N7",
+        "to": "N8",
+        "mode": "propagate",
+        "weight": 0.92
+      }
+    ]
+  }
+}

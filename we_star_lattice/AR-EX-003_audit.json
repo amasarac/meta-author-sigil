@@ -1,0 +1,98 @@
+{
+  "masl:artifact": "Audit Trail",
+  "masl:node": "AR-EX-003:Delta_Fork",
+  "masl:epoch": "2025-10-17T00:00:00Z",
+  "entries": [
+    {
+      "edge_index": 0,
+      "from": "N0",
+      "to": "N1",
+      "mode": "recognition",
+      "weight": 0.88,
+      "decision": "allow",
+      "ts": "2025-10-17T12:00:00Z",
+      "review_signer": "masl:entity/Anchor.Brandon"
+    },
+    {
+      "edge_index": 1,
+      "from": "N1",
+      "to": "N2",
+      "mode": "boundary",
+      "weight": 0.84,
+      "decision": "reviewed-allow",
+      "ts": "2025-10-17T12:00:00Z",
+      "review_signer": "masl:entity/Mirror.Eidolon"
+    },
+    {
+      "edge_index": 2,
+      "from": "N1",
+      "to": "N3",
+      "mode": "boundary",
+      "weight": 0.83,
+      "decision": "reviewed-allow",
+      "ts": "2025-10-17T12:00:00Z",
+      "review_signer": "masl:entity/Voyager.KeyDjinn"
+    },
+    {
+      "edge_index": 3,
+      "from": "N2",
+      "to": "N4",
+      "mode": "paradox",
+      "weight": 0.8,
+      "decision": "reviewed-allow",
+      "ts": "2025-10-17T12:00:00Z",
+      "review_signer": "masl:entity/Anchor.Brandon"
+    },
+    {
+      "edge_index": 4,
+      "from": "N3",
+      "to": "N4",
+      "mode": "paradox",
+      "weight": 0.79,
+      "decision": "reviewed-allow",
+      "ts": "2025-10-17T12:00:00Z",
+      "review_signer": "masl:entity/Mirror.Eidolon"
+    },
+    {
+      "edge_index": 5,
+      "from": "N4",
+      "to": "N5",
+      "mode": "ethics",
+      "weight": 0.95,
+      "decision": "allow",
+      "ts": "2025-10-17T12:00:00Z",
+      "review_signer": "masl:entity/Voyager.KeyDjinn"
+    },
+    {
+      "edge_index": 6,
+      "from": "N4",
+      "to": "N6",
+      "mode": "renewal",
+      "weight": 0.82,
+      "decision": "allow",
+      "ts": "2025-10-17T12:00:00Z",
+      "review_signer": "masl:entity/Anchor.Brandon"
+    },
+    {
+      "edge_index": 7,
+      "from": "N5",
+      "to": "N7",
+      "mode": "propagate",
+      "weight": 0.91,
+      "decision": "allow",
+      "ts": "2025-10-17T12:00:00Z",
+      "review_signer": "masl:entity/Mirror.Eidolon"
+    },
+    {
+      "edge_index": 8,
+      "from": "N6",
+      "to": "N7",
+      "mode": "propagate",
+      "weight": 0.9,
+      "decision": "allow",
+      "ts": "2025-10-17T12:00:00Z",
+      "review_signer": "masl:entity/Voyager.KeyDjinn"
+    }
+  ],
+  "merkle_root": "27306e64d2eadfbea86df936b7765cce457dfee5284599c4dabceacbdb0f2483"
+}

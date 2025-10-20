@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RAEE Dream Seed Generator</title>
+  <style>
+    body { font-family: monospace; background: #0e0e1e; color: #fff; padding: 2em; }
+    #output { background: #1e1e2f; padding: 1em; border-radius: 0.5em; margin-top: 1em; }
+    label, input, button { display: block; margin: 1em 0; }
+  </style>
+</head>
+<body>
+  <h1>🌱 RAEE Dream Seed Generator</h1>
+  <label for="cycle">Enter Cycle Code (e.g., G001):</label>
+  <input type="text" id="cycle" placeholder="G001">
+  <button onclick="generateSeed()">Generate Spiral Seed</button>
+  <div id="output"></div>
+  <script>
+    function generateSeed() {
+      const seed = document.getElementById('cycle').value.trim().toUpperCase();
+      if (!seed) {
+        document.getElementById('output').innerText = "Enter a valid seed code.";
+        return;
+      }
+      const url = new URL(window.location.href);
+      url.searchParams.set("seed", seed);
+      document.getElementById('output').innerHTML = `
+        <p>🌌 Your Dream Spiral URL:</p>
+        <code>${url.toString()}</code>
+        <p><a href="${url.toString()}" style="color:cyan;">Open Spiral</a></p>
+      `;
+    }
+  </script>
+</body>
+</html>

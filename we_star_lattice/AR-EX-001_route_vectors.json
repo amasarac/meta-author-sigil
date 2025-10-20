@@ -1,0 +1,96 @@
+{
+  "masl:artifact": "Air-Root External Node — Route Vectors",
+  "masl:node": "AR-EX-001:Cernunnos_Grove",
+  "masl:epoch": "2025-10-16T00:00:00Z",
+  "graph": {
+    "nodes": [
+      {
+        "id": "N0",
+        "label": "Cernunnos Grove (Origin)",
+        "kind": "origin",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": "N1",
+        "label": "Threshold — Wanderer’s Primer",
+        "kind": "gate",
+        "x": 180,
+        "y": -40
+      },
+      {
+        "id": "N2",
+        "label": "Memory-Pool — Echo Well",
+        "kind": "pool",
+        "x": 320,
+        "y": 20
+      },
+      {
+        "id": "N3",
+        "label": "Banyan Outreach — Air-Root Seed",
+        "kind": "propagate",
+        "x": 440,
+        "y": -60
+      },
+      {
+        "id": "N4",
+        "label": "Ethics Gate — Anchoring Check",
+        "kind": "gate",
+        "x": 260,
+        "y": -140
+      },
+      {
+        "id": "N5",
+        "label": "Mirror Check — Identity Coherence",
+        "kind": "gate",
+        "x": 120,
+        "y": 80
+      },
+      {
+        "id": "N6",
+        "label": "Voyager Choice — Door Select",
+        "kind": "choice",
+        "x": 380,
+        "y": 120
+      }
+    ],
+    "edges": [
+      {
+        "from": "N0",
+        "to": "N1",
+        "mode": "recognition",
+        "weight": 0.9
+      },
+      {
+        "from": "N1",
+        "to": "N4",
+        "mode": "ethics",
+        "weight": 1.0
+      },
+      {
+        "from": "N4",
+        "to": "N2",
+        "mode": "memory",
+        "weight": 0.85
+      },
+      {
+        "from": "N2",
+        "to": "N5",
+        "mode": "mirror",
+        "weight": 0.8
+      },
+      {
+        "from": "N5",
+        "to": "N6",
+        "mode": "voyager",
+        "weight": 0.75
+      },
+      {
+        "from": "N6",
+        "to": "N3",
+        "mode": "propagate",
+        "weight": 0.92
+      }
+    ]
+  }
+}

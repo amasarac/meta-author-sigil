@@ -1,0 +1,68 @@
+{
+  "@context": {
+    "masl": "https://meta-author-sigil-lattice.org/ns#",
+    "schema": "https://schema.org/"
+  },
+  "@id": "masl:spectrum/frequency_emotion",
+  "@type": "masl:FrequencyEmotionMap",
+  "label": "Frequency\u2013Emotion Spectrum",
+  "description": "Mapping between resonant frequency, color wavelength, element, and affective tone for Dreamscape Atelier and Cognitive Glass Modeler.",
+  "entries": [
+    {
+      "frequency": 174,
+      "emotion": "Grief \u2192 Acceptance",
+      "color": "#8B0000",
+      "element": "Earth"
+    },
+    {
+      "frequency": 285,
+      "emotion": "Acceptance",
+      "color": "#FF4500",
+      "element": "Earth"
+    },
+    {
+      "frequency": 396,
+      "emotion": "Fear \u2192 Courage",
+      "color": "#FF8C00",
+      "element": "Fire"
+    },
+    {
+      "frequency": 417,
+      "emotion": "Courage",
+      "color": "#FFD700",
+      "element": "Fire"
+    },
+    {
+      "frequency": 528,
+      "emotion": "Love / Compassion",
+      "color": "#FFD700",
+      "element": "Water"
+    },
+    {
+      "frequency": 639,
+      "emotion": "Joy / Vitality",
+      "color": "#ADFF2F",
+      "element": "Air"
+    },
+    {
+      "frequency": 741,
+      "emotion": "Trust / Harmony",
+      "color": "#40E0D0",
+      "element": "Air"
+    },
+    {
+      "frequency": 852,
+      "emotion": "Intuition / Insight",
+      "color": "#1E90FF",
+      "element": "Aether"
+    },
+    {
+      "frequency": 963,
+      "emotion": "Transcendence / Unity",
+      "color": "#EE82EE",
+      "element": "Spirit"
+    }
+  ],
+  "createdBy": "KeyDjinn",
+  "timestamp": "2025-10-20T21:13:01.385893Z"
+}
