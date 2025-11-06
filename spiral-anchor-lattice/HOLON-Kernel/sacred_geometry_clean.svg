@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       DEFINITIONS SECTION - Gradients, Filters, Paths, and Styles
+       ═══════════════════════════════════════════════════════════════════════ -->
+  
+  <defs>
+    <!-- Gold Gradient -->
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff8d6"/>
+      <stop offset="40%" stop-color="#ffd367"/>
+      <stop offset="80%" stop-color="#d4a017"/>
+      <stop offset="100%" stop-color="#b8860b"/>
+    </linearGradient>
+    
+    <!-- Radial Gold Gradient -->
+    <radialGradient id="goldRadial" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff8d6"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#8a6f1f"/>
+    </radialGradient>
+    
+    <!-- Glow Filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Soft Glow Filter -->
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Aura Gradient -->
+    <radialGradient id="auraGradient" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#fff8e1" stop-opacity="0.15"/>
+      <stop offset="60%" stop-color="#d4af37" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    
+    <!-- Mantra Path -->
+    <path id="mantraPath" d="M 340 540 A 200 200 0 1 1 740 540"/>
+    
+    <!-- CSS Animations -->
+    <style>
+      .rotate-slow {
+        animation: rotate 60s linear infinite;
+        transform-origin: 540px 540px;
+      }
+      
+      .rotate-medium {
+        animation: rotate 30s linear infinite;
+        transform-origin: 540px 540px;
+      }
+      
+      .rotate-reverse {
+        animation: rotate-reverse 45s linear infinite;
+        transform-origin: 540px 540px;
+      }
+      
+      .pulse {
+        animation: pulse 6s ease-in-out infinite;
+      }
+      
+      .breathe {
+        animation: breathe 8s ease-in-out infinite;
+      }
+      
+      @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      
+      @keyframes rotate-reverse {
+        from { transform: rotate(360deg); }
+        to { transform: rotate(0deg); }
+      }
+      
+      @keyframes pulse {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
+      
+      @keyframes breathe {
+        0%, 100% { 
+          opacity: 0.3;
+          transform: scale(1);
+        }
+        50% { 
+          opacity: 0.6;
+          transform: scale(1.05);
+        }
+      }
+    </style>
+  </defs>
+  
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       BACKGROUND AND BASE LAYERS
+       ═══════════════════════════════════════════════════════════════════════ -->
+  
+  <!-- Dark Background -->
+  <rect width="1080" height="1080" fill="#0b0b0f"/>
+  
+  <!-- Background Aura -->
+  <rect width="1080" height="1080" fill="url(#auraGradient)" opacity="0.5"/>
+  
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       FLOWER OF LIFE - Base Sacred Geometry Pattern
+       ═══════════════════════════════════════════════════════════════════════ -->
+  
+  <g id="flowerOfLife" class="breathe" stroke="url(#goldGradient)" stroke-width="1.5" fill="none" opacity="0.25" filter="url(#softGlow)">
+    <!-- Center Circle -->
+    <circle cx="540" cy="540" r="200"/>
+    
+    <!-- First Ring - 6 Circles -->
+    <circle cx="540" cy="340" r="200"/>
+    <circle cx="693" cy="440" r="200"/>
+    <circle cx="693" cy="640" r="200"/>
+    <circle cx="540" cy="740" r="200"/>
+    <circle cx="387" cy="640" r="200"/>
+    <circle cx="387" cy="440" r="200"/>
+    
+    <!-- Second Ring - 12 Circles -->
+    <circle cx="540" cy="140" r="200"/>
+    <circle cx="740" cy="240" r="200"/>
+    <circle cx="846" cy="440" r="200"/>
+    <circle cx="846" cy="640" r="200"/>
+    <circle cx="740" cy="840" r="200"/>
+    <circle cx="540" cy="940" r="200"/>
+    <circle cx="340" cy="840" r="200"/>
+    <circle cx="234" cy="640" r="200"/>
+    <circle cx="234" cy="440" r="200"/>
+    <circle cx="340" cy="240" r="200"/>
+  </g>
+  
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       METATRON'S CUBE - 13 Spheres and Connecting Lines
+       ═══════════════════════════════════════════════════════════════════════ -->
+  
+  <g id="metatronsCube" class="rotate-slow" stroke="url(#goldGradient)" stroke-width="2" fill="none" opacity="0.7" filter="url(#glow)">
+    <!-- 13 Nodes -->
+    <!-- Center -->
+    <circle cx="540" cy="540" r="8" fill="url(#goldRadial)"/>
+    
+    <!-- Inner Hexagon - 6 nodes -->
+    <circle cx="540" cy="440" r="6" fill="url(#goldRadial)"/>
+    <circle cx="627" cy="490" r="6" fill="url(#goldRadial)"/>
+    <circle cx="627" cy="590" r="6" fill="url(#goldRadial)"/>
+    <circle cx="540" cy="640" r="6" fill="url(#goldRadial)"/>
+    <circle cx="453" cy="590" r="6" fill="url(#goldRadial)"/>
+    <circle cx="453" cy="490" r="6" fill="url(#goldRadial)"/>
+    
+    <!-- Outer Hexagon - 6 nodes -->
+    <circle cx="540" cy="340" r="6" fill="url(#goldRadial)"/>
+    <circle cx="713" cy="440" r="6" fill="url(#goldRadial)"/>
+    <circle cx="713" cy="640" r="6" fill="url(#goldRadial)"/>
+    <circle cx="540" cy="740" r="6" fill="url(#goldRadial)"/>
+    <circle cx="367" cy="640" r="6" fill="url(#goldRadial)"/>
+    <circle cx="367" cy="440" r="6" fill="url(#goldRadial)"/>
+    
+    <!-- Connecting Lines - Full Metatron Pattern -->
+    <!-- Center to Inner -->
+    <line x1="540" y1="540" x2="540" y2="440"/>
+    <line x1="540" y1="540" x2="627" y2="490"/>
+    <line x1="540" y1="540" x2="627" y2="590"/>
+    <line x1="540" y1="540" x2="540" y2="640"/>
+    <line x1="540" y1="540" x2="453" y2="590"/>
+    <line x1="540" y1="540" x2="453" y2="490"/>
+    
+    <!-- Inner Hexagon -->
+    <polygon points="540,440 627,490 627,590 540,640 453,590 453,490"/>
+    
+    <!-- Inner to Outer -->
+    <line x1="540" y1="440" x2="540" y2="340"/>
+    <line x1="627" y1="490" x2="713" y2="440"/>
+    <line x1="627" y1="590" x2="713" y2="640"/>
+    <line x1="540" y1="640" x2="540" y2="740"/>
+    <line x1="453" y1="590" x2="367" y2="640"/>
+    <line x1="453" y1="490" x2="367" y2="440"/>
+    
+    <!-- Outer Hexagon -->
+    <polygon points="540,340 713,440 713,640 540,740 367,640 367,440"/>
+    
+    <!-- Cross connections -->
+    <line x1="540" y1="340" x2="540" y2="740"/>
+    <line x1="713" y1="440" x2="367" y2="640"/>
+    <line x1="713" y1="640" x2="367" y2="440"/>
+  </g>
+  
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       TREE OF LIFE (KABBALAH) - Sephirot and Paths
+       ═══════════════════════════════════════════════════════════════════════ -->
+  
+  <g id="treeOfLife" stroke="url(#goldGradient)" stroke-width="2.5" fill="none" opacity="0.8" filter="url(#glow)">
+    <!-- Sephirot -->
+    <circle cx="540" cy="180" r="20"/> <!-- Keter -->
+    <circle cx="440" cy="280" r="18"/> <!-- Chokmah -->
+    <circle cx="640" cy="280" r="18"/> <!-- Binah -->
+    <circle cx="440" cy="420" r="18"/> <!-- Chesed -->
+    <circle cx="640" cy="420" r="18"/> <!-- Gevurah -->
+    <circle cx="540" cy="540" r="22"/> <!-- Tiferet -->
+    <circle cx="440" cy="660" r="18"/> <!-- Netzach -->
+    <circle cx="640" cy="660" r="18"/> <!-- Hod -->
+    <circle cx="540" cy="780" r="20"/> <!-- Yesod -->
+    <circle cx="540" cy="900" r="24"/> <!-- Malkuth -->
+    
+    <!-- Da'at (Hidden) -->
+    <circle cx="540" cy="380" r="14" opacity="0.4" stroke-dasharray="4,4"/>
+    
+    <!-- Paths -->
+    <!-- Middle Pillar -->
+    <line x1="540" y1="180" x2="540" y2="380"/>
+    <line x1="540" y1="380" x2="540" y2="540"/>
+    <line x1="540" y1="540" x2="540" y2="780"/>
+    <line x1="540" y1="780" x2="540" y2="900"/>
+    
+    <!-- Left Pillar -->
+    <line x1="440" y1="280" x2="440" y2="420"/>
+    <line x1="440" y1="420" x2="440" y2="660"/>
+    
+    <!-- Right Pillar -->
+    <line x1="640" y1="280" x2="640" y2="420"/>
+    <line x1="640" y1="420" x2="640" y2="660"/>
+    
+    <!-- Diagonal Paths -->
+    <line x1="540" y1="180" x2="440" y2="280"/>
+    <line x1="540" y1="180" x2="640" y2="280"/>
+    <line x1="440" y1="280" x2="640" y2="280"/>
+    <line x1="440" y1="420" x2="540" y2="540"/>
+    <line x1="640" y1="420" x2="540" y2="540"/>
+    <line x1="440" y1="660" x2="540" y2="540"/>
+    <line x1="640" y1="660" x2="540" y2="540"/>
+    <line x1="440" y1="660" x2="540" y2="780"/>
+    <line x1="640" y1="660" x2="540" y2="780"/>
+  </g>
+  
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       MERKABAH - Star Tetrahedron
+       ═══════════════════════════════════════════════════════════════════════ -->
+  
+  <g id="merkabah" class="rotate-reverse" stroke="url(#goldGradient)" stroke-width="1.8" fill="none" opacity="0.6" filter="url(#glow)">
+    <!-- Upward Triangle -->
+    <polygon points="540,380 680,620 400,620"/>
+    
+    <!-- Downward Triangle -->
+    <polygon points="540,700 680,460 400,460"/>
+    
+    <!-- Connecting Lines -->
+    <line x1="540" y1="380" x2="540" y2="700"/>
+    <line x1="680" y1="620" x2="400" y2="460"/>
+    <line x1="400" y1="620" x2="680" y2="460"/>
+  </g>
+  
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       HOLON SYMBOL - Central Diamond with Circles
+       ═══════════════════════════════════════════════════════════════════════ -->
+  
+  <g id="holon" class="pulse" stroke="url(#goldGradient)" stroke-width="8" fill="none" filter="url(#glow)">
+    <!-- Left Circle -->
+    <circle cx="340" cy="540" r="90"/>
+    
+    <!-- Right Circle -->
+    <circle cx="740" cy="540" r="90"/>
+    
+    <!-- Center Diamond -->
+    <polygon points="540,420 600,540 540,660 480,540" fill="url(#goldRadial)" fill-opacity="0.3"/>
+  </g>
+  
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SANSKRIT ELEMENTS - Om Symbol and Mantra
+       ═══════════════════════════════════════════════════════════════════════ -->
+  
+  <!-- Central Om Symbol -->
+  <text x="540" y="550" 
+        text-anchor="middle" 
+        font-family="serif" 
+        font-size="48" 
+        fill="url(#goldGradient)" 
+        filter="url(#glow)"
+        class="pulse">
+    ॐ
+  </text>
+  
+  <!-- Sanskrit Mantra on Arc -->
+  <text font-family="serif" font-size="24" fill="url(#goldGradient)" filter="url(#glow)" opacity="0.9">
+    <textPath href="#mantraPath" startOffset="50%" text-anchor="middle">
+      गते गते पारगते पारसंगते बोधि स्वाहा
+    </textPath>
+  </text>
+  
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       TEHOM ELEMENTS - Fractal Spirals and Core
+       ═══════════════════════════════════════════════════════════════════════ -->
+  
+  <!-- TEHOM Pulsing Core -->
+  <g id="tehomCore" filter="url(#glow)">
+    <circle cx="540" cy="540" r="40" fill="url(#goldRadial)" opacity="0.5">
+      <animate attributeName="r" values="38;44;38" dur="4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.4;0.7;0.4" dur="4s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Fractal Rings -->
+  <g id="fractalRings" stroke="url(#goldGradient)" stroke-width="0.8" fill="none" opacity="0.3" filter="url(#softGlow)">
+    <circle cx="540" cy="540" r="250" class="breathe"/>
+    <circle cx="540" cy="540" r="320" opacity="0.5"/>
+    <circle cx="540" cy="540" r="390" opacity="0.3"/>
+    <circle cx="540" cy="540" r="460" opacity="0.2"/>
+  </g>
+  
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       OUTER AURA AND FINAL TOUCHES
+       ═══════════════════════════════════════════════════════════════════════ -->
+  
+  <!-- Outer Halo -->
+  <circle cx="540" cy="540" r="500" 
+          stroke="url(#goldGradient)" 
+          stroke-width="1.5" 
+          fill="none" 
+          opacity="0.2" 
+          filter="url(#glow)"
+          class="breathe"/>
+  
+  <!-- Final Aura Overlay -->
+  <circle cx="540" cy="540" r="520" 
+          fill="url(#auraGradient)" 
+          opacity="0.3"/>
+  
+</svg>
