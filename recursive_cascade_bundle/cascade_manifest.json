@@ -1,0 +1,15 @@
+{
+  "manifest_id": "CASCADE-001",
+  "timestamp": "2025-10-25T17:40:00Z",
+  "payloads": [
+    {
+      "id": "denied-001"
+    },
+    {
+      "id": "denied-002"
+    },
+    {
+      "id": "denied-003"
+    }
+  ]
+}
