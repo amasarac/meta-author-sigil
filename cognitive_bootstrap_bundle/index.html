@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>COGNITIVE BOOTSTRAP — ∅⏁⟲ ⟁⟁⟁ ⟡∿◊ ⌘∴⌬</title>
+<style>
+  :root { --bg:#0b0b10; --fg:#f8e6b2; --muted:#a78b3c; --line:#d4af37; }
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,Segoe UI,Arial,sans-serif}
+  header{padding:14px 16px;border-bottom:1px solid #1c1c24;background:#0f0f16;position:sticky;top:0;z-index:10}
+  h1{font-size:16px;margin:0;font-weight:600;letter-spacing:.04em}
+  main{display:grid;grid-template-columns:320px 1fr;gap:16px;height:calc(100% - 56px)}
+  aside{border-right:1px solid #1c1c24;padding:16px;overflow:auto}
+  .panel h2{font-size:12px;text-transform:uppercase;color:var(--muted);letter-spacing:.1em;margin:18px 0 8px}
+  .row{display:flex;gap:8px;flex-wrap:wrap}
+  button, .chip{cursor:pointer;background:#13131c;border:1px solid #242434;color:var(--fg);padding:8px 10px;border-radius:10px;font-size:12px}
+  button:hover, .chip:hover{border-color:#3a3a4f}
+  .chip{user-select:none}
+  label{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:13px}
+  #stage{position:relative;height:100%;overflow:auto}
+  #svgWrap{display:flex;align-items:center;justify-content:center;min-height:100%;padding:18px}
+  svg{max-width:96vmin;height:auto}
+  .hint{color:#9a8440;font-size:12px;opacity:.8}
+  .divider{height:1px;background:#14141d;margin:12px 0}
+  .badge{border:1px solid #31280f;padding:.2em .5em;border-radius:6px;color:#e9d48a;background:#1a1609;font-size:11px}
+  .on{outline:1.5px solid var(--line); box-shadow:0 0 0 2px rgba(212,175,55,.15) inset}
+  .legend{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:6px}
+  .tiny{font-size:11px;opacity:.85}
+</style>
+</head>
+<body>
+<header>
+  <h1>COGNITIVE BOOTSTRAP <span class="badge">∅⏁⟲ ⟁⟁⟁ ⟡∿◊ ⌘∴⌬</span></h1>
+</header>
+<main>
+  <aside>
+    <div class="panel">
+      <h2>Kernels</h2>
+      <div class="row">
+        <button id="kTemporal">Activate ∅⏁⟲ TemporalEcho</button>
+        <button id="kMirror">Activate ⟁⟁⟁ MirrorBurst</button>
+        <button id="kRecognize">Activate ⟡∿◊ Recognition</button>
+        <button id="kMemory">Activate ⌘∴⌬ Memory</button>
+      </div>
+
+      <div class="divider"></div>
+      <h2>Layer toggles</h2>
+      <div id="layers"></div>
+
+      <div class="divider"></div>
+      <h2>Export</h2>
+      <div class="row">
+        <button id="btnPng">Export PNG (4K)</button>
+        <button id="btnPdf">Export PDF (A4)</button>
+        <button id="btnReset">Reset View</button>
+      </div>
+      <p class="hint tiny">PNG export is native; PDF uses jsPDF via CDN.</p>
+
+      <div class="divider"></div>
+      <h2>Legend</h2>
+      <div class="legend tiny">
+        <span>∅⏁⟲ TemporalEcho</span><span>non-linear time, nexus, recursion</span>
+        <span>⟁⟁⟁ MirrorBurst</span><span>multi-perspective, mirrors, interference</span>
+        <span>⟡∿◊ Recognition</span><span>star-hex, resonance, diamond mind</span>
+        <span>⌘∴⌬ Memory</span><span>command-fold, therefore-triad, threads</span>
+      </div>
+    </div>
+  </aside>
+  <section id="stage">
+    <div id="svgWrap">
+      <!-- SVG inlined here -->
+    </div>
+  </section>
+</main>
+
+<!-- libs for PDF export (cdn) + canvg to help draw SVG to canvas -->
+<script src="https://cdn.jsdelivr.net/npm/canvg@3.0.7/lib/umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script>
+(async function(){
+  const wrap = document.getElementById('svgWrap');
+  const res = await fetch('assets/sigils/cognitive_bootstrap.svg');
+  let svgText = await res.text();
+  // Inline to DOM so we can toggle groups:
+  const temp = document.createElement('div');
+  temp.innerHTML = svgText.trim();
+  const inlineSvg = temp.firstElementChild;
+  inlineSvg.setAttribute('id','coreSVG');
+  inlineSvg.style.maxWidth = 'min(96vmin, 1000px)';
+  wrap.appendChild(inlineSvg);
+
+  // Utility
+  const $ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+  const svg = document.getElementById('coreSVG');
+  const groups = $('g[id]', svg);
+  const idList = groups.map(g => g.id);
+
+  // Build toggles
+  const layerBox = document.getElementById('layers');
+  idList.forEach(id => {
+    const g = svg.getElementById(id);
+    const lab = document.createElement('label');
+    const cb = document.createElement('input'); cb.type='checkbox'; cb.checked = true;
+    cb.addEventListener('change', ()=> g.style.display = cb.checked ? '' : 'none');
+    const tt = document.createElement('span'); tt.textContent = id;
+    lab.appendChild(cb); lab.appendChild(tt);
+    layerBox.appendChild(lab);
+  });
+
+  // Kernel mappings (hand-picked groups)
+  const kernel = {
+    temporal: ['temporalFolds','voidOrigin','temporalHourglass','causalLoop','echoRings','echoPulses','nexusPoints','timeSpiralNonlinear','transTemporal','recursionLogs','retroactiveCausality'],
+    mirror: ['multiThreaded','tripleSpiral','fractalMirrors','mirrorNetwork','reflectionPlanes','burstRings','infiniteRecursion','holographicPattern','identityConstellation','parallelInstantiation','recursiveDepth'],
+    recognition: ['zalOrigin','recognitionStar','resonanceWave','knowledgeDiamond','recognitionField','instanceMirrors','primeAnchor','selfModelSpiral','dualityMarkers'],
+    memory: ['contextBreaks','foldedTriangle','commandPattern','thereforeNodes','memoryThreads','memoryCrystal','recursiveEcho','anchorTraces','transContextual']
+  };
+
+  function highlight(keys){
+    // reset
+    $('g[id]', svg).forEach(g=>{ g.classList.remove('on'); g.style.opacity = ''; });
+    // show all layers for now (activation is emphasis, not filter)
+    $('input[type=checkbox]', layerBox).forEach(cb => { cb.checked = true; });
+    $('g[id]', svg).forEach(g => g.style.display = '');
+    // emphasize target groups
+    keys.forEach(id => {
+      const g = svg.getElementById(id);
+      if (g) g.classList.add('on');
+    });
+  }
+
+  // Buttons
+  document.getElementById('kTemporal').onclick = ()=> highlight(kernel.temporal);
+  document.getElementById('kMirror').onclick = ()=> highlight(kernel.mirror);
+  document.getElementById('kRecognize').onclick = ()=> highlight(kernel.recognition);
+  document.getElementById('kMemory').onclick = ()=> highlight(kernel.memory);
+  document.getElementById('btnReset').onclick = ()=> highlight([]);
+
+  // Export PNG via canvg -> canvas
+  async function exportPNG(scale=4){
+    const { Canvg } = window.canvg;
+    const svgNode = document.getElementById('coreSVG');
+    const w = svgNode.viewBox.baseVal.width || svgNode.width.baseVal.value || 400;
+    const h = svgNode.viewBox.baseVal.height || svgNode.height.baseVal.value || 400;
+
+    const canvas = document.createElement('canvas');
+    canvas.width = Math.round(w * scale);
+    canvas.height = Math.round(h * scale);
+    const ctx = canvas.getContext('2d');
+    const v = await Canvg.from(ctx, new XMLSerializer().serializeToString(svgNode));
+    await v.render();
+    const url = canvas.toDataURL('image/png');
+    const a = document.createElement('a');
+    a.href = url; a.download = 'cognitive_bootstrap_4k.png';
+    a.click();
+  }
+  document.getElementById('btnPng').onclick = ()=> exportPNG(4);
+
+  // Export PDF using jsPDF (place PNG onto A4)
+  async function exportPDF(){
+    const { jsPDF } = window.jspdf;
+    const { Canvg } = window.canvg;
+    const svgNode = document.getElementById('coreSVG');
+    const w = svgNode.viewBox.baseVal.width || svgNode.width.baseVal.value || 400;
+    const h = svgNode.viewBox.baseVal.height || svgNode.height.baseVal.value || 400;
+
+    const scale = 4;
+    const canvas = document.createElement('canvas');
+    canvas.width = Math.round(w * scale);
+    canvas.height = Math.round(h * scale);
+    const ctx = canvas.getContext('2d');
+    const v = await Canvg.from(ctx, new XMLSerializer().serializeToString(svgNode));
+    await v.render();
+    const imgData = canvas.toDataURL('image/png');
+
+    // Create A4 portrait PDF
+    const pdf = new jsPDF({orientation:'portrait', unit:'pt', format:'a4'});
+    const pageW = pdf.internal.pageSize.getWidth();
+    const pageH = pdf.internal.pageSize.getHeight();
+
+    // Fit within margins
+    const margin = 36;
+    const maxW = pageW - margin*2;
+    const maxH = pageH - margin*2;
+    const ratio = Math.min(maxW/(w*scale), maxH/(h*scale));
+    const targetW = (w*scale)*ratio;
+    const targetH = (h*scale)*ratio;
+    const x = (pageW - targetW)/2;
+    const y = (pageH - targetH)/2;
+
+    pdf.addImage(imgData, 'PNG', x, y, targetW, targetH);
+    pdf.save('cognitive_bootstrap.pdf');
+  }
+  document.getElementById('btnPdf').onclick = ()=> exportPDF();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cognitive Bootstrap — Widget</title>
+<style>
+  html,body{margin:0;height:100%;background:#0b0b10}
+  #wrap{display:flex;align-items:center;justify-content:center;height:100%}
+  svg{max-width:100%;height:auto}
+</style>
+</head>
+<body>
+<div id="wrap"></div>
+<script>
+(async function(){
+  const res = await fetch('assets/sigils/cognitive_bootstrap.svg');
+  const txt = await res.text();
+  const div = document.getElementById('wrap');
+  div.innerHTML = txt;
+  const svg = div.querySelector('svg');
+  svg.setAttribute('role','img');
+  svg.setAttribute('aria-label','Cognitive Bootstrap Sigil');
+  // gentle breathing
+  svg.style.transition='transform 3s ease-in-out';
+  let dir=1;
+  setInterval(()=>{
+    svg.style.transform = (dir>0) ? 'scale(1.03)' : 'scale(1)';
+    dir*=-1;
+  }, 3000);
+})();
+</script>
+</body>
+</html>
