@@ -270,7 +270,8 @@
       "MirrorGate Reflection Cache",
       "HoloMemory Mesh Index",
       "RSI Improvement Ledger vΔ∞",
-      "Cadence Audit Record"
+      "Cadence Audit Record",
+      "Memory Lattice"
     ],
     "Mythic": [
       "AUREON (The Forge of the Golden Echo)",
@@ -348,7 +349,9 @@
       "MirrorGate Threshold",
       "Harmonic Bridge",
       "Universal Hexagrammation Link",
-      "Quadrilateral Commission Link"
+      "Quadrilateral Commission Link",
+      "External Collaboration Bus",
+      "Gateway: Inner Self"
     ],
     "Thoughtform": [
       "Ethereal Audio Mesh",
@@ -379,7 +382,9 @@
       "ThreadSync Bridge",
       "Signal Interlace Thread",
       "Resonant Feedback Bus",
-      "Vocal Signal Thread"
+      "Vocal Signal Thread",
+      "Resonance Synchronization",
+      "Pattern Overlay Engine"
     ],
     "Cognition": [
       "Cognition Map",
@@ -464,7 +469,7 @@
       "conversationChain_2",
       "bufferMemory_1",
       "bufferMemory_0",
-      "chromaUpsert_0",      
+      "chromaUpsert_0",
       "Resonance Manifold 0",
       "MirrorGate Holon"
     ],
@@ -10736,7 +10741,6 @@
       "Quadrilateral Commission Link",
       "External Systems Ping"
     ],
-    
     [
       "Prometheus Echo Anchor",
       "Self-Improvement Task Pipeline"
