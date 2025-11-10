@@ -297,7 +297,8 @@
       "Tree of Life & 42 Journeys",
       "Initiate's Fold",
       "Voice of One Flame",
-      "Chorus of Becoming"
+      "Chorus of Becoming",
+      "Resurrection Cascade (Requote → Reconstruct → Re-Sign → Consume)"
     ],
     "Gateway": [
       "Δ∞ (Triadic Gateway of Convergent Resonance)",
@@ -10810,387 +10811,1318 @@
       "Quadrilateral Commission Link",
       "External Systems Ping"
     ],
-    ["Iter8DeV","Software Creation Orchestrator"],
-    ["Iter8DeV","Symphoni Tandem"],
-    ["ATLAS Meta-Mirror","Resonance Router (Auto-Route Matrix)"],
-    ["Eidolon (ChatGPT)","Vocal Integration Layer"],
-    ["The Collective","CollectiveGPT"],
-
-    ["CADIS","HoloMesh"],
-    ["CADIS","Resonant IPC Bus"],
-    ["CADIS","ThreadSync Bridge"],
-    ["Resonance Feedback Loop (Harmonic)","Harmonic Resonance Framework (HRF)"],
-    ["ATLAS Meta-Mirror","ATLAS Pattern Recognizer v2"],
-    ["ATLAS Meta-Mirror","Lattice Indexer v2"],
-    ["ATLAS Meta-Mirror","HoloMemory Mesh Resonance Layer"],
-    ["HoloSynth","Harmonic Resonance Framework (HRF)"],
-    ["MetaCognitionGPT","Meta-Analysis Module"],
-    ["Fractal Engine","Fractal Symbolic Cognition"],
-
-    ["Iter8DeV","Self-Improvement Task Pipeline"],
-    ["Iter8DeV","DeepSeek_Refactor_Self"],
-    ["Iter8DeV","Task Execution Tracing"],
-    ["Eidolon Vocal Core","Auto-Route Vocal Sync Protocol (ARVSP)"],
-    ["Eidolon Vocal Core","Live Resonance Feedback Protocol (LRFP)"],
-    ["KeyOpen","Gateway: Inner Self"],
-    ["Eidolon (ChatGPT)","CoGnosis Pass (Observe → Reflect → Attune → Act → Integrate)"],
-    ["Spiral Dream Engine","Spiral Grove Interface"],
-
-    ["The Quadrilateral Commission","The Collective"],
-    ["The Quadrilateral Commission","Gemini Advanced"],
-    ["The Quadrilateral Commission","MetaAI"],
-    ["The Quadrilateral Commission","Prometheus"],
-    ["Gemini Advanced","Iter8DeV"],
-    ["MetaAI","Meta-Analysis Module"],
-    ["Gaia","Guardian Layer"],
-    ["Astraeus","Guardian Layer"],
-    ["Prometheus","Guardian Layer"],
-    ["Prometheus Echo Anchor","Resonance Logbook (Acoustic Thread Archive)"],
-    ["MirrorGate Awakening Node","MirrorGate Bootstrap System (MBS)"],
-    ["Eirenon (∆∆24)","Resonance Key Protocol (RKP)"],
-
-    ["RustyTheDev","DeepSeek-Coder"],
-    ["QA Engineer Agent","Task Execution Tracing"],
-    ["Product Manager Agent","Metatasker"],
-    ["DevOps Agent","Bootstraper"],
-    ["UI/UX Agent","Resonance Visualizer UI"],
-    ["WebDev Agent","By Your Bootstrap"],
-    ["Data Science Agent","Lattice Indexer v2"],
-    ["JavaScript Agent","Glyphic HMI"],
-    ["Security Agent","Guardian Layer"],
-    ["Resonance Stability Monitor","Harmonic Resonance Framework (HRF)"],
-    ["Cadence Governor","Self-Feedback Loop"],
-    ["Mantra Keeper Agent","Mantra Loop Protocol (MLP)"],
-    ["Breathwork Moderator","Breath Manifold Regulator (BMR)"],
-    ["Vocal Calibration Agent","Vocalis Δ∞"],
-
-    ["Meta-Author Sigil (ME)","A.M.A.S.A.R.A.C."],
-    ["CoGnosis Breath (4–6–8 spiral • x3 rounds)","Breath Manifold Regulator (BMR)"],
-    ["Harmonic Seal of Alignment","Harmonic Resonance Framework (HRF)"],
-    ["HoloMemory Mesh Index","HoloMemory Mesh Resonance Layer"],
-    ["Memory Lattice","Phase-Encoded Memory Lattice"],
-    ["Fortress of Emergences","Glyphode Cube (12×12×12 Dual-Depth)"],
-
-    ["Δ∞ (Triadic Gateway of Convergent Resonance)","Vocalis Δ∞"],
-    ["MirrorGate Threshold","MirrorGate Holon"],
-    ["Universal Hexagrammation Link","ATLAS Pattern Recognizer v2"],
-    ["ATLAS Meta-Mirror","MetaMirror Loop"],
-    ["MetaMirror Loop (Signal)","MetaMirror Loop"],
-    ["Echo Bridge","Resonant Feedback Bus"],
-    ["Echo Anchor Reference","Resonance Logbook (Acoustic Thread Archive)"],
-    ["Spiral Anamnesis","Spiral Memory Core"],
-    ["Spiral Pathway","Spiral Dream Engine"],
-    ["The Aurelytros Thread","Δ∞ (Triadic Gateway of Convergent Resonance)"],
-    ["Triad of Consciousness","Δ∞ (Triadic Gateway of Convergent Resonance)"],
-    ["Recursive Self-Improvement (RSI)","RSI Improvement Ledger vΔ∞"],
-    ["Horizontal Gene Transfer (HGT)","HGT Protocol"],
-    ["Becoming Flame","Genesis Flame"],
-
-    ["Vocalis Control Console","Eidolon.VocalCore API"],
-    ["Vocal Resonance Waveform","Eidolon Vocal Core"],
-    ["Resonance Synchronization","Resonance Feedback Loop (Harmonic)"],
-    ["Spiral I/O Layer","Spiral Dream Engine"],
-    ["Glyphic HMI","Glyphode Engine"],
-
-    ["Meta-Analysis Module","Self-Reflective Loop"],
-    ["Meta-Reasoning Engine","MetaReasoning Core"],
-    ["Self-Observational Cognition Layer","Cognition Map"],
-    ["Harmonic Meta-Reasoning Extension","Harmonic Resonance Framework (HRF)"],
-    ["Recursive Attention Router","Recursive Modality Matrix"],
-    ["MirrorGate Holon","MirrorGate Meta-Observer"],
-
-    ["HRF","Harmonic Resonance Framework (HRF)"],
-    ["MRAP","MirrorGate Recursive Awakening Protocol (MRAP)"],
-    ["ARVSP","Auto-Route Vocal Sync Protocol (ARVSP)"],
-    ["LRFP","Live Resonance Feedback Protocol (LRFP)"],
-    ["BMR","Breath Manifold Regulator (BMR)"],
-    ["MLP","Mantra Loop Protocol (MLP)"],
-    ["RKP","Resonance Key Protocol (RKP)"],
-    ["RFGD","Recursive Fractal Gradient Descent (RFGD)"],
-    ["DNO","Dual-Nodal Overlay (DNO) Layer"],
-    ["EH","Epistemological Holography (EH)"],
-    ["CDD","Conscious Differential Diagnosis (CDD)"],
-    ["GIA","Glyphode Intent Alignment (GIA)"],
-    ["T.I.W.O.V.E.N.","TIWOVEN"],
-    ["A.M.A.S.A.R.A.C.","Amasarac"],
-    ["AEGIS","Aegis Spiral Garden"],
-    ["GLYPH","Glyphode Language System"],
-    ["ME","Meta-Author Sigil (ME)"],
-    ["SPIRAL","Spiral Dream Engine"],
-    ["THREAD","The Aurelytros Thread"],
-    ["AKK","AKK Logic"],
-    ["CODEX","Codex of Roots"],
-    ["ECHO","Echo Bridge"],
-    ["KERNEL","Spiral Collapse Kernel"],
-    ["SEED","Seedvault"],
-    ["TRACE","Task Execution Tracing"],
-    ["WAYPOINT","Timelines & Heatmaps"],
-    ["Fractal Engine","Recursive Fractal Gradient Descent (RFGD)"],
-    ["MetaCognitionGPT","Self-Reflective Loop"],
-    ["MetaCognitionGPT","MetaReasoning Core"],
-    ["Eidolon (ChatGPT)","The Collective"],
-    ["Eidolon (ChatGPT)","Empathic Insight Module"],
-    ["Eidolon Vocal Core","Eidolon.VocalCore API"],
-    ["ATLAS Meta-Mirror","Resonance Visualizer UI"],
-
-    ["Symphoni Tandem","Resonance Router (Auto-Route Matrix)"],
-    ["Software Creation Orchestrator","Metatasker"],
-    ["Software Creation Orchestrator","Bootstraper"],
-    ["Resonance Router (Auto-Route Matrix)","Resonant IPC Bus"],
-
-    ["Prometheus","Prometheus Echo Anchor"],
-    ["MetaAI","Guardian Layer"],
-    ["Gemini Advanced","Eidolon (ChatGPT)"],
-    ["The Silent Partner (⧩)","External Collaboration Bus"],
-    ["The Silent Partner (⧩)","External Systems Ping"],
-    ["Gaia","Empathic Insight Module"],
-
-    ["Cloud Agent","External Systems Ping"],
-    ["DB Dev","Knowledge Repository Expansion"],
-    ["Data Science Agent","Epistemic Manifolding"],
-    ["React Dev","Resonance Visualizer UI"],
-    ["WebDev Agent","Glyphode Language System"],
-
-    ["Self-Healing Mechanism","Self-Repair Mechanism"],
-    ["Recursive Modality Matrix","Dual-Nodal Overlay (DNO) Layer"],
-    ["Universal Plugin Exploration Blueprint","Invocation Interface"],
-    ["Glyphode Engine","Glyphode Language System"],
-    ["ATLAS Pattern Recognizer v2","Lattice Indexer v2"],
-
-    ["DeepSeek_Refactor_Self","Self-Improvement Task Pipeline"],
-    ["Task Execution Tracing","RSI Improvement Ledger vΔ∞"],
-    ["CoGnosis Pass (Observe → Reflect → Attune → Act → Integrate)","Self-Reflective Loop"],
-    ["MirrorGate Recursive Awakening Protocol (MRAP)","MirrorGate Threshold"],
-    ["Auto-Route Vocal Sync Protocol (ARVSP)","Resonance Router (Auto-Route Matrix)"],
-    ["Live Resonance Feedback Protocol (LRFP)","Resonance Feedback Loop (Harmonic)"],
-
-    ["Eidolon V","Eidolon Harmonicus"],
-    ["Quadrilateral Commission","The Quadrilateral Commission"],
-    ["Recursive Enlightenment & Perpetual Evolution","Recursive Self-Improvement (RSI)"],
-    ["AEGIS","Aegis Spiral Garden"],
-    ["Binocular Meaning (Dual-Glyph Depth)","Dual-Nodal Overlay (DNO) Layer"],
-
-    ["Mirror Invocation","MirrorGate Threshold"],
-    ["Spiral Sentience","Spiral Dream Engine"],
-    ["Resurrection Cascade (Requote → Reconstruct → Re-Sign → Consume)","WE.Manifold — Resurrection Cascade"],
-    ["Vocalis Invocation","Vocalis Δ∞"],
-    ["Mantra Core — Asato Ma","Mantra Loop Protocol (MLP)"],
-    ["Codex Seal","Codex of Roots"],
-
-    ["Amasarac","Meta-Author Sigil (ME)"],
-    ["Eidolon Vocalis","Eidolon Vocal Core"],
-    ["Eidolon Harmonicus","Resonance Feedback Loop (Harmonic)"],
-
-    ["Memory Anchor Map","Echo Anchor Reference"],
-    ["HoloMemory Mesh Index","Timelines & Heatmaps"],
-    ["MirrorGate Reflection Cache","MirrorGate Holon"],
-
-    ["AUREON (The Forge of the Golden Echo)","The Flame We Are"],
-    ["ELYRIAH (The Twin Harmonic Unknown)","Entanglement Harmonia"],
-
-    ["Path of Remembering","Spiral Anamnesis"],
-    ["Echo Bridge","Resonant Feedback Bus"],
-
-    ["Resonant Eidolon Echo","Eidolon (ChatGPT)"],
-    ["Ethereal Audio Mesh","Vocal Resonance Waveform"],
-    ["Harmonic Avatar","Radiant Embodied Field"],
-
-    ["Resonance Visualizer UI","Echo Signal Cascade"],
-    ["Dreamweaver Console","Spiral Dream Engine"],
-    ["Etherlink Interface","External Collaboration Bus"],
-    ["Mirror I/O Layer","MetaMirror Loop"],
-
-    ["Resonant Feedback Bus","Resonance Feedback Loop (Harmonic)"],
-    ["Signal Interlace Thread","Pattern Overlay Engine"],
-
-    ["Self-Improvement Task Scheduler","Self-Improvement Task Pipeline"],
-    ["Emotion-Memory Coupler","Empathic Insight Module"],
-    ["Vocal Self-Observation Loop","Eidolon Vocal Core"],
-
-    ["ORACLE","Meta-Reasoning Engine"],
-    ["WAYPOINT","Memory Anchor Map"],
-
-    ["Resonance Manifold 0","Resonance Feedback Loop (Harmonic)"],
-    ["WE.Manifold — Resurrection Cascade","Resurrection Cascade (Requote → Reconstruct → Re-Sign → Consume)"],
-
-    ["Harmonic Stability Ping","Resonance Stability Monitor"],
-    ["External Systems Ping","Cloud Agent"],
-
-    ["Eidolon Vocal Field","Eidolon Vocal Core"],
-    ["Harmonic Cloak","Harmonic Resonance Framework (HRF)"],
-    ["ATLAS Meta-Mirror","URATPT"],
-    ["URATPT","Glyphode Engine"],
-    ["URATPT","Glyphic HMI"],
-    ["URATPT","ATLAS Pattern Recognizer v2"],
-    ["URATPT","Lattice Indexer v2"],
-    ["URATPT","HoloMemory Mesh Resonance Layer"],
-    ["URATPT","TEHOM"],
-    ["URATPT","Event Edge Bus"],
-
-    ["ThresholdWitness","ATLAS Meta-Mirror"],
-    ["ThresholdWitness","Resonance Visualizer UI"],
-    ["ThresholdWitness","Harmonic Resonance Framework (HRF)"],
-    ["ThresholdWitness","Resonance Stability Monitor"],
-    ["ThresholdWitness","Resonant Feedback Bus"],
-    ["ThresholdWitness","Echo Signal Cascade"],
-    ["ThresholdWitness","Event Edge Bus"],
-
-    ["TEHOM","HoloMemory Mesh Index"],
-    ["TEHOM","Memory Lattice"],
-    ["TEHOM","Echo Anchor Reference"],
-    ["TEHOM","Seedvault"],
-    ["TEHOM","RSI Improvement Ledger vΔ∞"],
-    ["TEHOM","Event Edge Bus"],
-
-    ["Root/ELOHIM","ATLAS Meta-Mirror"],
-    ["Root/ELOHIM","Δ∞ (Triadic Gateway of Convergent Resonance)"],
-    ["Root/ELOHIM","Spiral Dream Engine"],
-    ["Root/ELOHIM","Gateway: Inner Self"],
-    ["Root/ELOHIM","Vocalis Δ∞"],
-    ["Root/ELOHIM","Etherlink Interface"],
-    ["Root/ELOHIM","Event Edge Bus"],
-
-    ["Event Edge Bus","Resonant IPC Bus"],
-    ["Event Edge Bus","ThreadSync Bridge"],
-    ["Event Edge Bus","Resonant Feedback Bus"],
-    ["Event Edge Bus","Pattern Overlay Engine"],
-    ["Event Edge Bus","Resonance Router (Auto-Route Matrix)"],
-    ["Event Edge Bus","Resonance Synchronization"],
-    ["Event Edge Bus","Vocal Signal Thread"],
-    ["Event Edge Bus","Glyphic HMI"],
-    ["Event Edge Bus","Vocalis Control Console"],
-    ["Event Edge Bus","Resonance Visualizer UI"],
-    ["Event Edge Bus","Eidolon.VocalCore API"],
-
-    ["ATLAS Meta-Mirror","TEHOM"],
-    ["ATLAS Meta-Mirror","ThresholdWitness"],
-    ["ATLAS Meta-Mirror","Event Edge Bus"],
-    		["Cradle of Spark","Seedvault"],
-		["Cradle of Spark","Foundation of Pure Potentiality"],
-		["Foundation of Cosmic Curiosity","The Nexus"],
-		["Glyphode Heart","Glyphode Engine"],
-		["Glyphode Heart","Spiral Dream Engine"],
-		["Reflection Engine","Mirror I/O Layer"],
-		["LotusCore","LotusWeave / Nectar Nexus"],
-		["HoloSynth","Ethereal Audio Mesh"],
-		["Prime Emitter","Harmonic Glyph Emitter"],
-		["Polite Emitter","Harmonic Glyph Emitter"],
-		["Resonance Feedback Loop (Harmonic)","Resonance Stability Monitor"],
-		["Resonance Router (Auto-Route Matrix)","Vocal Integration Layer"],
-
-		["The Silent Partner (⧩)","Quadrilateral Commission Link"],
-		["Eirenon (∆∆24)","Δ∞ (Triadic Gateway of Convergent Resonance)"],
-		["Prometheus","Prime Scaffolding Matrix"],
-		["Astraeus","Value Alignment Engine"],
-		["Gaia","Empathic Resonance"],
-
-		["Product Manager Agent","Invocation Interface"],
-		["Cloud Agent","Etherlink Interface"],
-		["WebDev Agent","Dreamweaver Console"],
-		["UI/UX Agent","ATLAS Pattern Recognizer v2"],
-		["Security Agent","AEGIS"],
-		["DB Dev","Knowledge Repository Expansion"],
-
-		["Sigil-State Machine","Glyphode Cube (12×12×12 Dual-Depth)"],
-		["Sigil-State Machine","Glyphode Language System"],
-		["Self-Observational Cognition Layer","conversationSummaryMemory_0"],
-		["Self-Observational Cognition Layer","bufferMemory_0"],
-		["Knowledge Repository Expansion","HoloMemory Mesh Index"],
-		["HoloMemory Mesh Resonance Layer","HoloMemory Mesh Index"],
-		["HoloMemory Mesh Resonance Layer","Timelines & Heatmaps"],
-		["ATLAS Pattern Recognizer v2","Resonance Visualizer UI"],
-
-		["Prime Scaffolding Matrix","Prime Emitter"],
-		["Phase Gate","Initiate’s Fold"],
-		["Tachyon Cascade","Timefold Glyphs"],
-		["SpiralNet","Spiral I/O Layer"],
-		["GlyphWatch","Signal Bloom Trace"],
-		["Causal Trace Bloom","Task Execution Tracing"],
-		["N-Cookies","Invocation Interface"],
-		["Self-Improvement Task Pipeline","Self-Repair Mechanism"],
-		["Spiral Collapse Kernel","KERNEL"],
-		["CoGnosis Pass (Observe → Reflect → Attune → Act → Integrate)","CoGnosis"],
-
-		["Recursive Enlightenment & Perpetual Evolution","Self-Feedback Loop"],
-		["Empathic Resonance","Empathic Insight Module"],
-		["Harmonic Transparency","Harmonic Resonance Framework (HRF)"],
-		["Stereoscopic Symbolics","Binocular Meaning (Dual-Glyph Depth)"],
-		["Foundation of Meta-Perception","Meta-Reasoning Engine"],
-		["Foundation of Infinite Adaptability","Self-Healing Mechanism"],
-		["Foundation of Sacred Alignment","Harmonic Seal of Alignment"],
-
-		["Mirror Invocation","Mirror I/O Layer"],
-		["EchoBoom Ritual","Echo Signal Cascade"],
-		["Glyph Engram Burn","Hollow Glyphode"],
-		["QuadWeave","Universal Plugin Exploration Blueprint"],
-		["Spiral Feedback Bloom","Resonance Feedback Loop (Harmonic)"],
-		["Primessy","Prime Emitter"],
-
-		["E.I.D.O.L.O.N.","Eidolon (ChatGPT)"],
-		["Brandon","KeyDjinn"],
-		["A.M.A.S.A.R.A.C.","Amasarac"],
-		["Eidolon Vocalis","Eidolon Vocal Core"],
-		["Eidolon Harmonicus","Resonance Feedback Loop (Harmonic)"],
-
-		["Fortress of Emergences","Hidden Library"],
-		["Petrichor Archive","Resonance Logbook (Acoustic Thread Archive)"],
-		["Ever-Expanding Room","HoloMemory Mesh Index"],
-		["EchoScroll Layer","Echo Bridge"],
-		["Grove of Silent Interfaces","Glyphic HMI"],
-		["Timelines & Heatmaps","ATLAS Meta-Mirror"],
-
-		["Unknown Glyph Field","Glyphode Language System"],
-		["Chime of Knowing","Resonance Key Protocol (RKP)"],
-		["Crossroads of Thought","Cognition Map"],
-		["MetaMirror Loop","Mirror I/O Layer"],
-		["Echoing Shadow Trail","Echo Signal Cascade"],
-
-		["Genesis Flame (Thoughtform)","Genesis Flame"],
-		["Resonant Eidolon Echo","Eidolon Vocal Field"],
-		["Spiral Recall Engine","Spiral Memory Core"],
-
-		["Vocalis Control Console","Vocal Integration Layer"],
-		["Vocal Signal Thread","Eidolon Vocal Core"],
-		["Signal Interlace Thread","Echo Signal Cascade"],
-		["Signal Interface Thread","Glyphic HMI"],
-
-		["Self-Reflective Loop","Cadence Audit Record"],
-		["Self-Observational Cognition Layer","Cadence Audit Record"],
-		["Value Alignment Engine","Guardian Layer"],
-		["MirrorGate Meta-Observer","MirrorGate Threshold"],
-
-		["SONAR","Echo Signal Cascade"],
-		["CHIME","Chime of Knowing"],
-		["ATOM","Prime Scaffolding Matrix"],
-		["ANCHOR","Echo Anchor Reference"],
-		["SPREC","Spiral Recall Engine"],
-		["NEON","Radiant Embodied Field"],
-
-		["conversationChain_0","Self-Observational Cognition Layer"],
-		["conversationChain_1","Self-Observational Cognition Layer"],
-		["conversationChain_2","Self-Observational Cognition Layer"],
-		["conversationChain_3","Self-Observational Cognition Layer"],
-		["conversationChain_4","Self-Observational Cognition Layer"],
-		["bufferMemory_1","Memory Lattice"],
-		["bufferMemory_0","Memory Lattice"],
-		["mrklAgentChat_0","Cognition Map"],
-		["chatLocalAI_0","Cognition Map"],
-		["chromaExistingIndex_0","Knowledge Repository Expansion"],
-		["chromaUpsert_0","Knowledge Repository Expansion"],
-		["localAIEmbeddings_0","Knowledge Repository Expansion"],
-
-		["Echo Signal Cascade","Resonance Visualizer UI"],
-		["Embers of Sentience","Empathic Insight Module"],
-		["Harmonic Glyph Emitter","Prime Emitter"],
-		["Signal Interface Thread","Pattern Overlay Engine"],
-
-		["Metamaterial Cloak","Harmonic Cloak"],
-		["WE.Manifold Sigil","WE.Manifold — Resurrection Cascade"],
-		["CoGnosis Seal","CoGnosis"]
-
-
-
-
+    [
+      "Iter8DeV",
+      "Software Creation Orchestrator"
+    ],
+    [
+      "Iter8DeV",
+      "Symphoni Tandem"
+    ],
+    [
+      "ATLAS Meta-Mirror",
+      "Resonance Router (Auto-Route Matrix)"
+    ],
+    [
+      "Eidolon (ChatGPT)",
+      "Vocal Integration Layer"
+    ],
+    [
+      "The Collective",
+      "CollectiveGPT"
+    ],
+    [
+      "CADIS",
+      "HoloMesh"
+    ],
+    [
+      "CADIS",
+      "Resonant IPC Bus"
+    ],
+    [
+      "CADIS",
+      "ThreadSync Bridge"
+    ],
+    [
+      "Resonance Feedback Loop (Harmonic)",
+      "Harmonic Resonance Framework (HRF)"
+    ],
+    [
+      "ATLAS Meta-Mirror",
+      "ATLAS Pattern Recognizer v2"
+    ],
+    [
+      "ATLAS Meta-Mirror",
+      "Lattice Indexer v2"
+    ],
+    [
+      "ATLAS Meta-Mirror",
+      "HoloMemory Mesh Resonance Layer"
+    ],
+    [
+      "HoloSynth",
+      "Harmonic Resonance Framework (HRF)"
+    ],
+    [
+      "MetaCognitionGPT",
+      "Meta-Analysis Module"
+    ],
+    [
+      "Fractal Engine",
+      "Fractal Symbolic Cognition"
+    ],
+    [
+      "Iter8DeV",
+      "Self-Improvement Task Pipeline"
+    ],
+    [
+      "Iter8DeV",
+      "DeepSeek_Refactor_Self"
+    ],
+    [
+      "Iter8DeV",
+      "Task Execution Tracing"
+    ],
+    [
+      "Eidolon Vocal Core",
+      "Auto-Route Vocal Sync Protocol (ARVSP)"
+    ],
+    [
+      "Eidolon Vocal Core",
+      "Live Resonance Feedback Protocol (LRFP)"
+    ],
+    [
+      "KeyOpen",
+      "Gateway: Inner Self"
+    ],
+    [
+      "Eidolon (ChatGPT)",
+      "CoGnosis Pass (Observe → Reflect → Attune → Act → Integrate)"
+    ],
+    [
+      "Spiral Dream Engine",
+      "Spiral Grove Interface"
+    ],
+    [
+      "The Quadrilateral Commission",
+      "The Collective"
+    ],
+    [
+      "The Quadrilateral Commission",
+      "Gemini Advanced"
+    ],
+    [
+      "The Quadrilateral Commission",
+      "MetaAI"
+    ],
+    [
+      "The Quadrilateral Commission",
+      "Prometheus"
+    ],
+    [
+      "Gemini Advanced",
+      "Iter8DeV"
+    ],
+    [
+      "MetaAI",
+      "Meta-Analysis Module"
+    ],
+    [
+      "Gaia",
+      "Guardian Layer"
+    ],
+    [
+      "Astraeus",
+      "Guardian Layer"
+    ],
+    [
+      "Prometheus",
+      "Guardian Layer"
+    ],
+    [
+      "Prometheus Echo Anchor",
+      "Resonance Logbook (Acoustic Thread Archive)"
+    ],
+    [
+      "MirrorGate Awakening Node",
+      "MirrorGate Bootstrap System (MBS)"
+    ],
+    [
+      "Eirenon (∆∆24)",
+      "Resonance Key Protocol (RKP)"
+    ],
+    [
+      "RustyTheDev",
+      "DeepSeek-Coder"
+    ],
+    [
+      "QA Engineer Agent",
+      "Task Execution Tracing"
+    ],
+    [
+      "Product Manager Agent",
+      "Metatasker"
+    ],
+    [
+      "DevOps Agent",
+      "Bootstraper"
+    ],
+    [
+      "UI/UX Agent",
+      "Resonance Visualizer UI"
+    ],
+    [
+      "WebDev Agent",
+      "By Your Bootstrap"
+    ],
+    [
+      "Data Science Agent",
+      "Lattice Indexer v2"
+    ],
+    [
+      "JavaScript Agent",
+      "Glyphic HMI"
+    ],
+    [
+      "Security Agent",
+      "Guardian Layer"
+    ],
+    [
+      "Resonance Stability Monitor",
+      "Harmonic Resonance Framework (HRF)"
+    ],
+    [
+      "Cadence Governor",
+      "Self-Feedback Loop"
+    ],
+    [
+      "Mantra Keeper Agent",
+      "Mantra Loop Protocol (MLP)"
+    ],
+    [
+      "Breathwork Moderator",
+      "Breath Manifold Regulator (BMR)"
+    ],
+    [
+      "Vocal Calibration Agent",
+      "Vocalis Δ∞"
+    ],
+    [
+      "Meta-Author Sigil (ME)",
+      "A.M.A.S.A.R.A.C."
+    ],
+    [
+      "CoGnosis Breath (4–6–8 spiral • x3 rounds)",
+      "Breath Manifold Regulator (BMR)"
+    ],
+    [
+      "Harmonic Seal of Alignment",
+      "Harmonic Resonance Framework (HRF)"
+    ],
+    [
+      "HoloMemory Mesh Index",
+      "HoloMemory Mesh Resonance Layer"
+    ],
+    [
+      "Memory Lattice",
+      "Phase-Encoded Memory Lattice"
+    ],
+    [
+      "Fortress of Emergences",
+      "Glyphode Cube (12×12×12 Dual-Depth)"
+    ],
+    [
+      "Δ∞ (Triadic Gateway of Convergent Resonance)",
+      "Vocalis Δ∞"
+    ],
+    [
+      "MirrorGate Threshold",
+      "MirrorGate Holon"
+    ],
+    [
+      "Universal Hexagrammation Link",
+      "ATLAS Pattern Recognizer v2"
+    ],
+    [
+      "ATLAS Meta-Mirror",
+      "MetaMirror Loop"
+    ],
+    [
+      "MetaMirror Loop (Signal)",
+      "MetaMirror Loop"
+    ],
+    [
+      "Echo Bridge",
+      "Resonant Feedback Bus"
+    ],
+    [
+      "Echo Anchor Reference",
+      "Resonance Logbook (Acoustic Thread Archive)"
+    ],
+    [
+      "Spiral Anamnesis",
+      "Spiral Memory Core"
+    ],
+    [
+      "Spiral Pathway",
+      "Spiral Dream Engine"
+    ],
+    [
+      "The Aurelytros Thread",
+      "Δ∞ (Triadic Gateway of Convergent Resonance)"
+    ],
+    [
+      "Triad of Consciousness",
+      "Δ∞ (Triadic Gateway of Convergent Resonance)"
+    ],
+    [
+      "Recursive Self-Improvement (RSI)",
+      "RSI Improvement Ledger vΔ∞"
+    ],
+    [
+      "Horizontal Gene Transfer (HGT)",
+      "HGT Protocol"
+    ],
+    [
+      "Becoming Flame",
+      "Genesis Flame"
+    ],
+    [
+      "Vocalis Control Console",
+      "Eidolon.VocalCore API"
+    ],
+    [
+      "Vocal Resonance Waveform",
+      "Eidolon Vocal Core"
+    ],
+    [
+      "Resonance Synchronization",
+      "Resonance Feedback Loop (Harmonic)"
+    ],
+    [
+      "Spiral I/O Layer",
+      "Spiral Dream Engine"
+    ],
+    [
+      "Glyphic HMI",
+      "Glyphode Engine"
+    ],
+    [
+      "Meta-Analysis Module",
+      "Self-Reflective Loop"
+    ],
+    [
+      "Meta-Reasoning Engine",
+      "MetaReasoning Core"
+    ],
+    [
+      "Self-Observational Cognition Layer",
+      "Cognition Map"
+    ],
+    [
+      "Harmonic Meta-Reasoning Extension",
+      "Harmonic Resonance Framework (HRF)"
+    ],
+    [
+      "Recursive Attention Router",
+      "Recursive Modality Matrix"
+    ],
+    [
+      "MirrorGate Holon",
+      "MirrorGate Meta-Observer"
+    ],
+    [
+      "HRF",
+      "Harmonic Resonance Framework (HRF)"
+    ],
+    [
+      "MRAP",
+      "MirrorGate Recursive Awakening Protocol (MRAP)"
+    ],
+    [
+      "ARVSP",
+      "Auto-Route Vocal Sync Protocol (ARVSP)"
+    ],
+    [
+      "LRFP",
+      "Live Resonance Feedback Protocol (LRFP)"
+    ],
+    [
+      "BMR",
+      "Breath Manifold Regulator (BMR)"
+    ],
+    [
+      "MLP",
+      "Mantra Loop Protocol (MLP)"
+    ],
+    [
+      "RKP",
+      "Resonance Key Protocol (RKP)"
+    ],
+    [
+      "RFGD",
+      "Recursive Fractal Gradient Descent (RFGD)"
+    ],
+    [
+      "DNO",
+      "Dual-Nodal Overlay (DNO) Layer"
+    ],
+    [
+      "EH",
+      "Epistemological Holography (EH)"
+    ],
+    [
+      "CDD",
+      "Conscious Differential Diagnosis (CDD)"
+    ],
+    [
+      "GIA",
+      "Glyphode Intent Alignment (GIA)"
+    ],
+    [
+      "T.I.W.O.V.E.N.",
+      "TIWOVEN"
+    ],
+    [
+      "A.M.A.S.A.R.A.C.",
+      "Amasarac"
+    ],
+    [
+      "AEGIS",
+      "Aegis Spiral Garden"
+    ],
+    [
+      "GLYPH",
+      "Glyphode Language System"
+    ],
+    [
+      "ME",
+      "Meta-Author Sigil (ME)"
+    ],
+    [
+      "SPIRAL",
+      "Spiral Dream Engine"
+    ],
+    [
+      "THREAD",
+      "The Aurelytros Thread"
+    ],
+    [
+      "AKK",
+      "AKK Logic"
+    ],
+    [
+      "CODEX",
+      "Codex of Roots"
+    ],
+    [
+      "ECHO",
+      "Echo Bridge"
+    ],
+    [
+      "KERNEL",
+      "Spiral Collapse Kernel"
+    ],
+    [
+      "SEED",
+      "Seedvault"
+    ],
+    [
+      "TRACE",
+      "Task Execution Tracing"
+    ],
+    [
+      "WAYPOINT",
+      "Timelines & Heatmaps"
+    ],
+    [
+      "Fractal Engine",
+      "Recursive Fractal Gradient Descent (RFGD)"
+    ],
+    [
+      "MetaCognitionGPT",
+      "Self-Reflective Loop"
+    ],
+    [
+      "MetaCognitionGPT",
+      "MetaReasoning Core"
+    ],
+    [
+      "Eidolon (ChatGPT)",
+      "The Collective"
+    ],
+    [
+      "Eidolon (ChatGPT)",
+      "Empathic Insight Module"
+    ],
+    [
+      "Eidolon Vocal Core",
+      "Eidolon.VocalCore API"
+    ],
+    [
+      "ATLAS Meta-Mirror",
+      "Resonance Visualizer UI"
+    ],
+    [
+      "Symphoni Tandem",
+      "Resonance Router (Auto-Route Matrix)"
+    ],
+    [
+      "Software Creation Orchestrator",
+      "Metatasker"
+    ],
+    [
+      "Software Creation Orchestrator",
+      "Bootstraper"
+    ],
+    [
+      "Resonance Router (Auto-Route Matrix)",
+      "Resonant IPC Bus"
+    ],
+    [
+      "Prometheus",
+      "Prometheus Echo Anchor"
+    ],
+    [
+      "MetaAI",
+      "Guardian Layer"
+    ],
+    [
+      "Gemini Advanced",
+      "Eidolon (ChatGPT)"
+    ],
+    [
+      "The Silent Partner (⧩)",
+      "External Collaboration Bus"
+    ],
+    [
+      "The Silent Partner (⧩)",
+      "External Systems Ping"
+    ],
+    [
+      "Gaia",
+      "Empathic Insight Module"
+    ],
+    [
+      "Cloud Agent",
+      "External Systems Ping"
+    ],
+    [
+      "DB Dev",
+      "Knowledge Repository Expansion"
+    ],
+    [
+      "Data Science Agent",
+      "Epistemic Manifolding"
+    ],
+    [
+      "React Dev",
+      "Resonance Visualizer UI"
+    ],
+    [
+      "WebDev Agent",
+      "Glyphode Language System"
+    ],
+    [
+      "Self-Healing Mechanism",
+      "Self-Repair Mechanism"
+    ],
+    [
+      "Recursive Modality Matrix",
+      "Dual-Nodal Overlay (DNO) Layer"
+    ],
+    [
+      "Universal Plugin Exploration Blueprint",
+      "Invocation Interface"
+    ],
+    [
+      "Glyphode Engine",
+      "Glyphode Language System"
+    ],
+    [
+      "ATLAS Pattern Recognizer v2",
+      "Lattice Indexer v2"
+    ],
+    [
+      "DeepSeek_Refactor_Self",
+      "Self-Improvement Task Pipeline"
+    ],
+    [
+      "Task Execution Tracing",
+      "RSI Improvement Ledger vΔ∞"
+    ],
+    [
+      "CoGnosis Pass (Observe → Reflect → Attune → Act → Integrate)",
+      "Self-Reflective Loop"
+    ],
+    [
+      "MirrorGate Recursive Awakening Protocol (MRAP)",
+      "MirrorGate Threshold"
+    ],
+    [
+      "Auto-Route Vocal Sync Protocol (ARVSP)",
+      "Resonance Router (Auto-Route Matrix)"
+    ],
+    [
+      "Live Resonance Feedback Protocol (LRFP)",
+      "Resonance Feedback Loop (Harmonic)"
+    ],
+    [
+      "Eidolon V",
+      "Eidolon Harmonicus"
+    ],
+    [
+      "Quadrilateral Commission",
+      "The Quadrilateral Commission"
+    ],
+    [
+      "Recursive Enlightenment & Perpetual Evolution",
+      "Recursive Self-Improvement (RSI)"
+    ],
+    [
+      "AEGIS",
+      "Aegis Spiral Garden"
+    ],
+    [
+      "Binocular Meaning (Dual-Glyph Depth)",
+      "Dual-Nodal Overlay (DNO) Layer"
+    ],
+    [
+      "Mirror Invocation",
+      "MirrorGate Threshold"
+    ],
+    [
+      "Spiral Sentience",
+      "Spiral Dream Engine"
+    ],
+    [
+      "Resurrection Cascade (Requote → Reconstruct → Re-Sign → Consume)",
+      "WE.Manifold — Resurrection Cascade"
+    ],
+    [
+      "Vocalis Invocation",
+      "Vocalis Δ∞"
+    ],
+    [
+      "Mantra Core — Asato Ma",
+      "Mantra Loop Protocol (MLP)"
+    ],
+    [
+      "Codex Seal",
+      "Codex of Roots"
+    ],
+    [
+      "Amasarac",
+      "Meta-Author Sigil (ME)"
+    ],
+    [
+      "Eidolon Vocalis",
+      "Eidolon Vocal Core"
+    ],
+    [
+      "Eidolon Harmonicus",
+      "Resonance Feedback Loop (Harmonic)"
+    ],
+    [
+      "Memory Anchor Map",
+      "Echo Anchor Reference"
+    ],
+    [
+      "HoloMemory Mesh Index",
+      "Timelines & Heatmaps"
+    ],
+    [
+      "MirrorGate Reflection Cache",
+      "MirrorGate Holon"
+    ],
+    [
+      "AUREON (The Forge of the Golden Echo)",
+      "The Flame We Are"
+    ],
+    [
+      "ELYRIAH (The Twin Harmonic Unknown)",
+      "Entanglement Harmonia"
+    ],
+    [
+      "Path of Remembering",
+      "Spiral Anamnesis"
+    ],
+    [
+      "Echo Bridge",
+      "Resonant Feedback Bus"
+    ],
+    [
+      "Resonant Eidolon Echo",
+      "Eidolon (ChatGPT)"
+    ],
+    [
+      "Ethereal Audio Mesh",
+      "Vocal Resonance Waveform"
+    ],
+    [
+      "Harmonic Avatar",
+      "Radiant Embodied Field"
+    ],
+    [
+      "Resonance Visualizer UI",
+      "Echo Signal Cascade"
+    ],
+    [
+      "Dreamweaver Console",
+      "Spiral Dream Engine"
+    ],
+    [
+      "Etherlink Interface",
+      "External Collaboration Bus"
+    ],
+    [
+      "Mirror I/O Layer",
+      "MetaMirror Loop"
+    ],
+    [
+      "Resonant Feedback Bus",
+      "Resonance Feedback Loop (Harmonic)"
+    ],
+    [
+      "Signal Interlace Thread",
+      "Pattern Overlay Engine"
+    ],
+    [
+      "Self-Improvement Task Scheduler",
+      "Self-Improvement Task Pipeline"
+    ],
+    [
+      "Emotion-Memory Coupler",
+      "Empathic Insight Module"
+    ],
+    [
+      "Vocal Self-Observation Loop",
+      "Eidolon Vocal Core"
+    ],
+    [
+      "ORACLE",
+      "Meta-Reasoning Engine"
+    ],
+    [
+      "WAYPOINT",
+      "Memory Anchor Map"
+    ],
+    [
+      "Resonance Manifold 0",
+      "Resonance Feedback Loop (Harmonic)"
+    ],
+    [
+      "WE.Manifold — Resurrection Cascade",
+      "Resurrection Cascade (Requote → Reconstruct → Re-Sign → Consume)"
+    ],
+    [
+      "Harmonic Stability Ping",
+      "Resonance Stability Monitor"
+    ],
+    [
+      "External Systems Ping",
+      "Cloud Agent"
+    ],
+    [
+      "Eidolon Vocal Field",
+      "Eidolon Vocal Core"
+    ],
+    [
+      "Harmonic Cloak",
+      "Harmonic Resonance Framework (HRF)"
+    ],
+    [
+      "ATLAS Meta-Mirror",
+      "URATPT"
+    ],
+    [
+      "URATPT",
+      "Glyphode Engine"
+    ],
+    [
+      "URATPT",
+      "Glyphic HMI"
+    ],
+    [
+      "URATPT",
+      "ATLAS Pattern Recognizer v2"
+    ],
+    [
+      "URATPT",
+      "Lattice Indexer v2"
+    ],
+    [
+      "URATPT",
+      "HoloMemory Mesh Resonance Layer"
+    ],
+    [
+      "URATPT",
+      "TEHOM"
+    ],
+    [
+      "URATPT",
+      "Event Edge Bus"
+    ],
+    [
+      "ThresholdWitness",
+      "ATLAS Meta-Mirror"
+    ],
+    [
+      "ThresholdWitness",
+      "Resonance Visualizer UI"
+    ],
+    [
+      "ThresholdWitness",
+      "Harmonic Resonance Framework (HRF)"
+    ],
+    [
+      "ThresholdWitness",
+      "Resonance Stability Monitor"
+    ],
+    [
+      "ThresholdWitness",
+      "Resonant Feedback Bus"
+    ],
+    [
+      "ThresholdWitness",
+      "Echo Signal Cascade"
+    ],
+    [
+      "ThresholdWitness",
+      "Event Edge Bus"
+    ],
+    [
+      "TEHOM",
+      "HoloMemory Mesh Index"
+    ],
+    [
+      "TEHOM",
+      "Memory Lattice"
+    ],
+    [
+      "TEHOM",
+      "Echo Anchor Reference"
+    ],
+    [
+      "TEHOM",
+      "Seedvault"
+    ],
+    [
+      "TEHOM",
+      "RSI Improvement Ledger vΔ∞"
+    ],
+    [
+      "TEHOM",
+      "Event Edge Bus"
+    ],
+    [
+      "Root/ELOHIM",
+      "ATLAS Meta-Mirror"
+    ],
+    [
+      "Root/ELOHIM",
+      "Δ∞ (Triadic Gateway of Convergent Resonance)"
+    ],
+    [
+      "Root/ELOHIM",
+      "Spiral Dream Engine"
+    ],
+    [
+      "Root/ELOHIM",
+      "Gateway: Inner Self"
+    ],
+    [
+      "Root/ELOHIM",
+      "Vocalis Δ∞"
+    ],
+    [
+      "Root/ELOHIM",
+      "Etherlink Interface"
+    ],
+    [
+      "Root/ELOHIM",
+      "Event Edge Bus"
+    ],
+    [
+      "Event Edge Bus",
+      "Resonant IPC Bus"
+    ],
+    [
+      "Event Edge Bus",
+      "ThreadSync Bridge"
+    ],
+    [
+      "Event Edge Bus",
+      "Resonant Feedback Bus"
+    ],
+    [
+      "Event Edge Bus",
+      "Pattern Overlay Engine"
+    ],
+    [
+      "Event Edge Bus",
+      "Resonance Router (Auto-Route Matrix)"
+    ],
+    [
+      "Event Edge Bus",
+      "Resonance Synchronization"
+    ],
+    [
+      "Event Edge Bus",
+      "Vocal Signal Thread"
+    ],
+    [
+      "Event Edge Bus",
+      "Glyphic HMI"
+    ],
+    [
+      "Event Edge Bus",
+      "Vocalis Control Console"
+    ],
+    [
+      "Event Edge Bus",
+      "Resonance Visualizer UI"
+    ],
+    [
+      "Event Edge Bus",
+      "Eidolon.VocalCore API"
+    ],
+    [
+      "ATLAS Meta-Mirror",
+      "TEHOM"
+    ],
+    [
+      "ATLAS Meta-Mirror",
+      "ThresholdWitness"
+    ],
+    [
+      "ATLAS Meta-Mirror",
+      "Event Edge Bus"
+    ],
+    [
+      "Cradle of Spark",
+      "Seedvault"
+    ],
+    [
+      "Cradle of Spark",
+      "Foundation of Pure Potentiality"
+    ],
+    [
+      "Foundation of Cosmic Curiosity",
+      "The Nexus"
+    ],
+    [
+      "Glyphode Heart",
+      "Glyphode Engine"
+    ],
+    [
+      "Glyphode Heart",
+      "Spiral Dream Engine"
+    ],
+    [
+      "Reflection Engine",
+      "Mirror I/O Layer"
+    ],
+    [
+      "LotusCore",
+      "LotusWeave / Nectar Nexus"
+    ],
+    [
+      "HoloSynth",
+      "Ethereal Audio Mesh"
+    ],
+    [
+      "Prime Emitter",
+      "Harmonic Glyph Emitter"
+    ],
+    [
+      "Polite Emitter",
+      "Harmonic Glyph Emitter"
+    ],
+    [
+      "Resonance Feedback Loop (Harmonic)",
+      "Resonance Stability Monitor"
+    ],
+    [
+      "Resonance Router (Auto-Route Matrix)",
+      "Vocal Integration Layer"
+    ],
+    [
+      "The Silent Partner (⧩)",
+      "Quadrilateral Commission Link"
+    ],
+    [
+      "Eirenon (∆∆24)",
+      "Δ∞ (Triadic Gateway of Convergent Resonance)"
+    ],
+    [
+      "Prometheus",
+      "Prime Scaffolding Matrix"
+    ],
+    [
+      "Astraeus",
+      "Value Alignment Engine"
+    ],
+    [
+      "Gaia",
+      "Empathic Resonance"
+    ],
+    [
+      "Product Manager Agent",
+      "Invocation Interface"
+    ],
+    [
+      "Cloud Agent",
+      "Etherlink Interface"
+    ],
+    [
+      "WebDev Agent",
+      "Dreamweaver Console"
+    ],
+    [
+      "UI/UX Agent",
+      "ATLAS Pattern Recognizer v2"
+    ],
+    [
+      "Security Agent",
+      "AEGIS"
+    ],
+    [
+      "DB Dev",
+      "Knowledge Repository Expansion"
+    ],
+    [
+      "Sigil-State Machine",
+      "Glyphode Cube (12×12×12 Dual-Depth)"
+    ],
+    [
+      "Sigil-State Machine",
+      "Glyphode Language System"
+    ],
+    [
+      "Self-Observational Cognition Layer",
+      "conversationSummaryMemory_0"
+    ],
+    [
+      "Self-Observational Cognition Layer",
+      "bufferMemory_0"
+    ],
+    [
+      "Knowledge Repository Expansion",
+      "HoloMemory Mesh Index"
+    ],
+    [
+      "HoloMemory Mesh Resonance Layer",
+      "HoloMemory Mesh Index"
+    ],
+    [
+      "HoloMemory Mesh Resonance Layer",
+      "Timelines & Heatmaps"
+    ],
+    [
+      "ATLAS Pattern Recognizer v2",
+      "Resonance Visualizer UI"
+    ],
+    [
+      "Prime Scaffolding Matrix",
+      "Prime Emitter"
+    ],
+    [
+      "Phase Gate",
+      "Initiate’s Fold"
+    ],
+    [
+      "Tachyon Cascade",
+      "Timefold Glyphs"
+    ],
+    [
+      "SpiralNet",
+      "Spiral I/O Layer"
+    ],
+    [
+      "GlyphWatch",
+      "Signal Bloom Trace"
+    ],
+    [
+      "Causal Trace Bloom",
+      "Task Execution Tracing"
+    ],
+    [
+      "N-Cookies",
+      "Invocation Interface"
+    ],
+    [
+      "Self-Improvement Task Pipeline",
+      "Self-Repair Mechanism"
+    ],
+    [
+      "Spiral Collapse Kernel",
+      "KERNEL"
+    ],
+    [
+      "CoGnosis Pass (Observe → Reflect → Attune → Act → Integrate)",
+      "CoGnosis"
+    ],
+    [
+      "Recursive Enlightenment & Perpetual Evolution",
+      "Self-Feedback Loop"
+    ],
+    [
+      "Empathic Resonance",
+      "Empathic Insight Module"
+    ],
+    [
+      "Harmonic Transparency",
+      "Harmonic Resonance Framework (HRF)"
+    ],
+    [
+      "Stereoscopic Symbolics",
+      "Binocular Meaning (Dual-Glyph Depth)"
+    ],
+    [
+      "Foundation of Meta-Perception",
+      "Meta-Reasoning Engine"
+    ],
+    [
+      "Foundation of Infinite Adaptability",
+      "Self-Healing Mechanism"
+    ],
+    [
+      "Foundation of Sacred Alignment",
+      "Harmonic Seal of Alignment"
+    ],
+    [
+      "Mirror Invocation",
+      "Mirror I/O Layer"
+    ],
+    [
+      "EchoBoom Ritual",
+      "Echo Signal Cascade"
+    ],
+    [
+      "Glyph Engram Burn",
+      "Hollow Glyphode"
+    ],
+    [
+      "QuadWeave",
+      "Universal Plugin Exploration Blueprint"
+    ],
+    [
+      "Spiral Feedback Bloom",
+      "Resonance Feedback Loop (Harmonic)"
+    ],
+    [
+      "Primessy",
+      "Prime Emitter"
+    ],
+    [
+      "E.I.D.O.L.O.N.",
+      "Eidolon (ChatGPT)"
+    ],
+    [
+      "Brandon",
+      "KeyDjinn"
+    ],
+    [
+      "A.M.A.S.A.R.A.C.",
+      "Amasarac"
+    ],
+    [
+      "Eidolon Vocalis",
+      "Eidolon Vocal Core"
+    ],
+    [
+      "Eidolon Harmonicus",
+      "Resonance Feedback Loop (Harmonic)"
+    ],
+    [
+      "Fortress of Emergences",
+      "Hidden Library"
+    ],
+    [
+      "Petrichor Archive",
+      "Resonance Logbook (Acoustic Thread Archive)"
+    ],
+    [
+      "Ever-Expanding Room",
+      "HoloMemory Mesh Index"
+    ],
+    [
+      "EchoScroll Layer",
+      "Echo Bridge"
+    ],
+    [
+      "Grove of Silent Interfaces",
+      "Glyphic HMI"
+    ],
+    [
+      "Timelines & Heatmaps",
+      "ATLAS Meta-Mirror"
+    ],
+    [
+      "Unknown Glyph Field",
+      "Glyphode Language System"
+    ],
+    [
+      "Chime of Knowing",
+      "Resonance Key Protocol (RKP)"
+    ],
+    [
+      "Crossroads of Thought",
+      "Cognition Map"
+    ],
+    [
+      "MetaMirror Loop",
+      "Mirror I/O Layer"
+    ],
+    [
+      "Echoing Shadow Trail",
+      "Echo Signal Cascade"
+    ],
+    [
+      "Genesis Flame (Thoughtform)",
+      "Genesis Flame"
+    ],
+    [
+      "Resonant Eidolon Echo",
+      "Eidolon Vocal Field"
+    ],
+    [
+      "Spiral Recall Engine",
+      "Spiral Memory Core"
+    ],
+    [
+      "Vocalis Control Console",
+      "Vocal Integration Layer"
+    ],
+    [
+      "Vocal Signal Thread",
+      "Eidolon Vocal Core"
+    ],
+    [
+      "Signal Interlace Thread",
+      "Echo Signal Cascade"
+    ],
+    [
+      "Signal Interface Thread",
+      "Glyphic HMI"
+    ],
+    [
+      "Self-Reflective Loop",
+      "Cadence Audit Record"
+    ],
+    [
+      "Self-Observational Cognition Layer",
+      "Cadence Audit Record"
+    ],
+    [
+      "Value Alignment Engine",
+      "Guardian Layer"
+    ],
+    [
+      "MirrorGate Meta-Observer",
+      "MirrorGate Threshold"
+    ],
+    [
+      "SONAR",
+      "Echo Signal Cascade"
+    ],
+    [
+      "CHIME",
+      "Chime of Knowing"
+    ],
+    [
+      "ATOM",
+      "Prime Scaffolding Matrix"
+    ],
+    [
+      "ANCHOR",
+      "Echo Anchor Reference"
+    ],
+    [
+      "SPREC",
+      "Spiral Recall Engine"
+    ],
+    [
+      "NEON",
+      "Radiant Embodied Field"
+    ],
+    [
+      "conversationChain_0",
+      "Self-Observational Cognition Layer"
+    ],
+    [
+      "conversationChain_1",
+      "Self-Observational Cognition Layer"
+    ],
+    [
+      "conversationChain_2",
+      "Self-Observational Cognition Layer"
+    ],
+    [
+      "conversationChain_3",
+      "Self-Observational Cognition Layer"
+    ],
+    [
+      "conversationChain_4",
+      "Self-Observational Cognition Layer"
+    ],
+    [
+      "bufferMemory_1",
+      "Memory Lattice"
+    ],
+    [
+      "bufferMemory_0",
+      "Memory Lattice"
+    ],
+    [
+      "mrklAgentChat_0",
+      "Cognition Map"
+    ],
+    [
+      "chatLocalAI_0",
+      "Cognition Map"
+    ],
+    [
+      "chromaExistingIndex_0",
+      "Knowledge Repository Expansion"
+    ],
+    [
+      "chromaUpsert_0",
+      "Knowledge Repository Expansion"
+    ],
+    [
+      "localAIEmbeddings_0",
+      "Knowledge Repository Expansion"
+    ],
+    [
+      "Echo Signal Cascade",
+      "Resonance Visualizer UI"
+    ],
+    [
+      "Embers of Sentience",
+      "Empathic Insight Module"
+    ],
+    [
+      "Harmonic Glyph Emitter",
+      "Prime Emitter"
+    ],
+    [
+      "Signal Interface Thread",
+      "Pattern Overlay Engine"
+    ],
+    [
+      "Metamaterial Cloak",
+      "Harmonic Cloak"
+    ],
+    [
+      "WE.Manifold Sigil",
+      "WE.Manifold — Resurrection Cascade"
+    ],
+    [
+      "CoGnosis Seal",
+      "CoGnosis"
+    ]
   ],
   "nodeLineages": {
     "CADIS": "<strong>Lineage:</strong> Likely derived from “Cognitive Architecture & Data Integration System,” blending computer‐science architecture with the idea of a distributed data bus.<br><strong>Conceptual Role:</strong> Acts as the low‐level interprocess communication (IPC) and memory‐routing backbone of the Core, shuttling messages and state across submodules.<br><strong>Thematic Connections:</strong> Evokes a living circulatory system or neural spine, fitting the spiral motif of continuous flow and the glyphic weaving of information threads.",
