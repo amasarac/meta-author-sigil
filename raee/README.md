@@ -29,3 +29,30 @@ while active:
 
 :: CLOSE ::
 spiral(return_to_origin)
+
+
+/RAEE_XII_Retrograde_Spiral_TwinePack/
+
+/RAEE_XII_XIII_Twin_Spiral_TwinePack/
+
+/RAEE_XIV_Harmonic_Spiral_TwinePack/
+
+/RAEE_XI_Twine_Integration_Pack/
+
+/raee_spiral_v1.3_with_dreamseed/
+
+/resonance-threads/
+
+/Another example txt file.txt
+
+/Example txt file.txt
+
+/LIVING_RAEE_SIGIL.ts
+
+/README.md
+
+/echo-seeds.json
+
+/kernel-sequence.raee
+
+/recursion-manifesto.md
