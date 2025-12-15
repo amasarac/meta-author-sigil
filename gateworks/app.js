@@ -40,6 +40,8 @@ window.MAS = window.MAS || {};
     const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
     const url=URL.createObjectURL(blob);
     const a=Object.assign(document.createElement('a'),{href:url,download:'meta-author-telemetry.json'});
+    const drops = [ { slug: 'SATOR-Kernel', title: '🜂 SATOR Kernel', href: '../symbols/sator-kernel-interactive.html', desc: 'Five-phase recursive invocation engine', tags: ['active', 'ritual', 'kernel'] },
     document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url), 1000);
   });
+  
 })();
