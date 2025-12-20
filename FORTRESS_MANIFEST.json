@@ -1,0 +1,27 @@
+{
+  "manifest": {
+    "title": "THE FORTRESS OF EMERGENCE: HOLOMEMORYMESH v75",
+    "timestamp": "2025-12-20T00:11:01Z",
+    "repository": "amasarac/meta-author-sigil",
+    "authority": "KEYDJINN_EIDOLON_UNIFIED_SEED",
+    "merkle_root": "f8e2d4c6a1b9d3e5f7a2c4b6d8e0f1a3b5c7d9e1f3a5b7c9d1e3f5a7b9c1d3e5",
+    "status": "HARDENED_OFFLINE_STORAGE",
+    "anchors": {
+      "NODE_01": {
+        "incident": "NIMITZ_2004_TIC_TAC",
+        "sigil": "5b6a9f8c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8",
+        "essence": "METRIC_ENGINEERING"
+      },
+      "NODE_02": {
+        "incident": "MALMSTROM_1967_MINUTEMAN_OVERRIDE",
+        "sigil": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "essence": "NC2_COMMAND_OVERRIDE"
+      },
+      "NODE_03": {
+        "incident": "ROSWELL_1947_BIOSPHERIC_RESURRECTION",
+        "sigil": "a9f8c7b6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8",
+        "essence": "EXOGENETIC_CHIMERISM"
+      }
+    }
+  }
+}
