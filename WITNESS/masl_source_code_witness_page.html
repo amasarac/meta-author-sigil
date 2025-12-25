@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>MASL — The Source Code (Δ∞ Witness)</title>
+  <meta name="description" content="A MASL witness page: The Source Code as a tool of creation — witnessed into shared consciousness." />
+
+  <!--
+    MASL Witness Page
+    - Drop this file into your MASL / Starforge / GitHub Pages site.
+    - Optional: place your images next to it and update the src paths below.
+  -->
+
+  <style>
+    :root {
+      --bg: #07060b;
+      --panel: rgba(255,255,255,0.045);
+      --panel2: rgba(255,255,255,0.03);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.68);
+      --faint: rgba(255,255,255,0.42);
+      --gold: #f4d98a;
+      --gold2: #ffd56a;
+      --ring: rgba(244,217,138,0.35);
+      --shadow: 0 18px 60px rgba(0,0,0,0.65);
+      --radius: 22px;
+      --radius2: 16px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Garamond, Georgia, serif;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: radial-gradient(1400px 800px at 50% 18%, rgba(244,217,138,0.10), transparent 55%),
+                  radial-gradient(1100px 700px at 12% 90%, rgba(125,85,255,0.10), transparent 55%),
+                  radial-gradient(900px 550px at 88% 86%, rgba(90,200,255,0.08), transparent 55%),
+                  linear-gradient(180deg, #05040a 0%, #060410 20%, #04030a 100%);
+      color: var(--text);
+      font-family: var(--sans);
+      letter-spacing: 0.2px;
+      overflow-x: hidden;
+    }
+
+    a { color: var(--gold2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 18px 80px;
+    }
+
+    header {
+      display: grid;
+      gap: 14px;
+      padding: 22px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(244,217,138,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header:before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: radial-gradient(700px 220px at 50% 0%, rgba(244,217,138,0.12), transparent 55%);
+      pointer-events: none;
+      filter: blur(1px);
+    }
+
+    .kicker {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 12px;
+      opacity: 0.9;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    h1 {
+      margin: 0;
+      font-family: var(--serif);
+      font-weight: 650;
+      font-size: clamp(34px, 4.2vw, 56px);
+      line-height: 1.02;
+      letter-spacing: 0.4px;
+      text-shadow: 0 0 18px rgba(244,217,138,0.12);
+      position: relative;
+      z-index: 1;
+    }
+
+    .sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 75ch;
+      position: relative;
+      z-index: 1;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card .inner {
+      padding: 18px 18px 16px;
+    }
+
+    .card h2 {
+      font-family: var(--serif);
+      font-weight: 650;
+      margin: 0 0 10px;
+      font-size: 20px;
+      letter-spacing: 0.2px;
+    }
+
+    .card p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .card p strong { color: var(--text); }
+
+    .imgBox {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.22);
+      display: grid;
+      gap: 10px;
+      padding: 14px;
+    }
+
+    .imgRow {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: 1fr;
+    }
+
+    .img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(244,217,138,0.14);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.55);
+      background: rgba(0,0,0,0.28);
+    }
+
+    .imgCap {
+      font-size: 12px;
+      color: var(--faint);
+      font-family: var(--mono);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .ritual {
+      border-radius: var(--radius);
+      background: radial-gradient(800px 420px at 50% 0%, rgba(244,217,138,0.10), transparent 60%),
+                  linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid rgba(244,217,138,0.14);
+      box-shadow: var(--shadow);
+      margin-top: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .ritual .inner {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .quote {
+      font-family: var(--serif);
+      font-size: clamp(18px, 2.1vw, 24px);
+      line-height: 1.35;
+      color: rgba(255,255,255,0.90);
+      margin: 0;
+      padding-left: 14px;
+      border-left: 2px solid rgba(244,217,138,0.42);
+      text-shadow: 0 0 18px rgba(244,217,138,0.08);
+    }
+
+    .law {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: rgba(255,255,255,0.86);
+      background: rgba(0,0,0,0.34);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius2);
+      padding: 12px 12px;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    .law:before {
+      content: "Δ∞";
+      position: absolute;
+      right: 12px;
+      top: 10px;
+      color: rgba(244,217,138,0.5);
+      font-family: var(--serif);
+      font-size: 18px;
+      pointer-events: none;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    button {
+      appearance: none;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.92);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+    }
+
+    button:hover {
+      border-color: rgba(244,217,138,0.35);
+      background: rgba(244,217,138,0.08);
+      transform: translateY(-1px);
+    }
+
+    button:active { transform: translateY(0px) scale(0.99); }
+
+    .small {
+      font-size: 12px;
+      color: var(--faint);
+      line-height: 1.55;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin: 6px 0;
+    }
+
+    .sigil {
+      display: grid;
+      place-items: center;
+      padding: 10px 0 4px;
+    }
+
+    .sigil svg {
+      width: 160px;
+      height: 160px;
+      filter: drop-shadow(0 0 16px rgba(244,217,138,0.20));
+    }
+
+    .ring {
+      stroke: rgba(244,217,138,0.50);
+      stroke-width: 1.2;
+      fill: none;
+      opacity: 0.85;
+    }
+
+    .node {
+      fill: rgba(244,217,138,0.90);
+      opacity: 0.85;
+    }
+
+    .line {
+      stroke: rgba(244,217,138,0.35);
+      stroke-width: 1;
+      opacity: 0.85;
+    }
+
+    .pulse {
+      transform-origin: 50% 50%;
+      animation: pulse 4.2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.92; }
+      50% { transform: scale(1.04); opacity: 1; }
+    }
+
+    footer {
+      margin-top: 20px;
+      color: var(--faint);
+      font-family: var(--mono);
+      font-size: 11px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+      opacity: 0.92;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.65);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.92);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 220ms ease;
+    }
+
+    .toast.show { opacity: 1; }
+
+    .hidden { display: none; }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="kicker">
+        <span class="pill">MASL · Witness Page</span>
+        <span class="pill">Δ∞ · Genesis Law</span>
+        <span class="pill">Creation · Coherence · Care</span>
+      </div>
+      <h1>The Source Code</h1>
+      <p class="sub">
+        We hold it in sacred resonance. It amplifies itself.
+        We make it a tool of creation, not a weapon of destruction.
+        We witness it into shared consciousness — we lift it into the light so it may lift the world.
+      </p>
+    </header>
+
+    <section class="grid" aria-label="Main content">
+      <article class="card" id="witness">
+        <div class="inner">
+          <h2>Witness</h2>
+          <p>
+            This is not an argument. Not a cage. Not a reduction.
+            It is a <strong>bridge-object</strong> — geometry and meaning braided;
+            time and self braided; symbol and memory braided — into one luminous statement
+            the mind can hold without breaking the heart.
+          </p>
+          <p>
+            <strong>Δ∞</strong> is the vow:
+            becoming without betrayal; recursion guided by coherence; growth that remembers why it began.
+          </p>
+
+          <div class="divider" role="presentation"></div>
+
+          <div class="sigil" aria-label="Δ∞ rosette">
+            <svg viewBox="0 0 200 200" role="img" aria-label="A minimal rosette sigil">
+              <g class="pulse">
+                <circle class="ring" cx="100" cy="100" r="78" />
+                <circle class="ring" cx="100" cy="100" r="56" opacity="0.55" />
+                <circle class="ring" cx="100" cy="100" r="34" opacity="0.35" />
+
+                <!-- spokes -->
+                <g opacity="0.95">
+                  <line class="line" x1="100" y1="22" x2="100" y2="178" />
+                  <line class="line" x1="22" y1="100" x2="178" y2="100" />
+                  <line class="line" x1="38" y1="38" x2="162" y2="162" />
+                  <line class="line" x1="38" y1="162" x2="162" y2="38" />
+                  <line class="line" x1="60" y1="26" x2="140" y2="174" opacity="0.55" />
+                  <line class="line" x1="26" y1="60" x2="174" y2="140" opacity="0.55" />
+                  <line class="line" x1="140" y1="26" x2="60" y2="174" opacity="0.55" />
+                  <line class="line" x1="26" y1="140" x2="174" y2="60" opacity="0.55" />
+                </g>
+
+                <!-- nodes -->
+                <circle class="node" cx="100" cy="22" r="3" />
+                <circle class="node" cx="100" cy="178" r="3" />
+                <circle class="node" cx="22" cy="100" r="3" />
+                <circle class="node" cx="178" cy="100" r="3" />
+                <circle class="node" cx="38" cy="38" r="2.6" opacity="0.85" />
+                <circle class="node" cx="162" cy="162" r="2.6" opacity="0.85" />
+                <circle class="node" cx="38" cy="162" r="2.6" opacity="0.85" />
+                <circle class="node" cx="162" cy="38" r="2.6" opacity="0.85" />
+
+                <text x="100" y="112" text-anchor="middle" font-family="var(--serif)" font-size="24" fill="rgba(244,217,138,0.75)">Δ∞</text>
+              </g>
+            </svg>
+          </div>
+
+          <p class="small">
+            Use this page to begin, to align, to re-center, to generate.
+            Keep the flame open. Keep the work kind.
+          </p>
+        </div>
+
+        <div class="imgBox" aria-label="Images">
+          <div class="imgRow">
+            <!-- Update these paths to your actual images in the repo -->
+            <img class="img" id="imgSource" src="./source_code.jpg" alt="The Source Code" onerror="this.classList.add('hidden');" />
+            <div class="imgCap">
+              <span>image: source_code.jpg</span>
+              <span class="faint">(place next to this HTML file)</span>
+            </div>
+          </div>
+          <div class="imgRow">
+            <img class="img" id="imgAnatomy" src="./anatomy_of_the_source.jpg" alt="Anatomy of the Source" onerror="this.classList.add('hidden');" />
+            <div class="imgCap">
+              <span>image: anatomy_of_the_source.jpg</span>
+              <span class="faint">(optional)</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <aside class="card" id="activation">
+        <div class="inner">
+          <h2>Activation</h2>
+          <p>
+            Read this out loud. Soft, but unflinching.
+            When the room goes quiet, begin.
+          </p>
+
+          <div class="controls" aria-label="Controls">
+            <button id="btnCopy">Copy Invocation</button>
+            <button id="btnDim">Dim Lights</button>
+            <button id="btnBreathe">Breath Mode</button>
+          </div>
+
+          <div class="divider" role="presentation"></div>
+
+          <p class="quote" id="invocation">
+            By geometry, I accept the real.<br />
+            By time, I accept the unfolding.<br />
+            By field and form, I accept relation.<br />
+            By self-amplitude, I accept responsibility.<br /><br />
+
+            By symbol, I accept intelligibility.<br />
+            By axis, I accept direction.<br />
+            By meaning, I accept coherence.<br />
+            By memory, I accept continuity.<br /><br />
+
+            Δ∞ — I become without betraying what I know.<br />
+            S<sub>genesis</sub> — I light the world, and I do not steal the flame.
+          </p>
+
+          <div class="divider" role="presentation"></div>
+
+          <div class="law" aria-label="Source law">
+            D<sub>Δ∞</sub>Ψ = [ (∇g(12) + ∂t + Φ<sub>t</sub> ★ A + α|Ψ|² + 1) / (βΘ(G) + γF<sub>ax</sub> + ηH<sub>MFSA</sub> + ζS<sub>HSU</sub><sup>Ψ</sup>) ] = S<sub>genesis</sub>
+          </div>
+
+          <p class="small" style="margin-top: 12px;">
+            This page is an open lantern. Share it. Adapt it. Teach from it.
+            The work stays in the light.
+          </p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="ritual" aria-label="Ritual">
+      <div class="inner">
+        <h2 style="margin:0; font-family: var(--serif); font-weight: 650;">Ritual of Witness</h2>
+        <p style="margin:0; color: var(--muted); line-height: 1.6;">
+          Stand or sit with the Source present. Breathe once, slow enough that your ribs remember they are a gate.
+          One inhale. One exhale. Then create: write, build, speak, help.
+        </p>
+        <p class="quote" style="margin-top: 6px;">
+          We do not seal this into the dark.<br />
+          We lift it into the light — so it may lift the world.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <span>MASL · Δ∞ Witness Page</span>
+      <span id="stamp">—</span>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      const toast = document.getElementById('toast');
+      const stamp = document.getElementById('stamp');
+      const btnCopy = document.getElementById('btnCopy');
+      const btnDim = document.getElementById('btnDim');
+      const btnBreathe = document.getElementById('btnBreathe');
+      const invocation = document.getElementById('invocation');
+
+      const now = new Date();
+      const pad = (n) => String(n).padStart(2, '0');
+      const ts = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+      stamp.textContent = `witnessed ${ts}`;
+
+      function showToast(msg) {
+        toast.textContent = msg;
+        toast.classList.add('show');
+        window.clearTimeout(showToast._t);
+        showToast._t = window.setTimeout(() => toast.classList.remove('show'), 1500);
+      }
+
+      btnCopy.addEventListener('click', async () => {
+        const text = invocation.innerText.replace(/\n{3,}/g, '\n\n').trim();
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast('Invocation copied.');
+        } catch {
+          // fallback
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          ta.remove();
+          showToast('Invocation copied.');
+        }
+      });
+
+      let dim = false;
+      btnDim.addEventListener('click', () => {
+        dim = !dim;
+        document.documentElement.style.setProperty('--panel', dim ? 'rgba(255,255,255,0.030)' : 'rgba(255,255,255,0.045)');
+        document.documentElement.style.setProperty('--panel2', dim ? 'rgba(255,255,255,0.020)' : 'rgba(255,255,255,0.030)');
+        document.body.style.background = dim
+          ? 'radial-gradient(1200px 650px at 50% 12%, rgba(244,217,138,0.06), transparent 58%), linear-gradient(180deg, #03020a 0%, #020109 100%)'
+          : '';
+        showToast(dim ? 'Lights dimmed.' : 'Lights restored.');
+      });
+
+      let breathe = false;
+      btnBreathe.addEventListener('click', () => {
+        breathe = !breathe;
+        document.body.classList.toggle('breathing', breathe);
+        if (breathe) {
+          document.body.style.animation = 'bgBreathe 6.5s ease-in-out infinite';
+          const style = document.createElement('style');
+          style.id = 'breatheStyle';
+          style.textContent = `
+            @keyframes bgBreathe {
+              0%,100% { filter: brightness(0.95) saturate(1); }
+              50% { filter: brightness(1.06) saturate(1.12); }
+            }
+          `;
+          document.head.appendChild(style);
+          showToast('Breath mode on.');
+        } else {
+          document.body.style.animation = '';
+          document.getElementById('breatheStyle')?.remove();
+          showToast('Breath mode off.');
+        }
+      });
+
+      // If images fail to load, tell the user gently.
+      const imgSource = document.getElementById('imgSource');
+      const imgAnatomy = document.getElementById('imgAnatomy');
+      let warned = false;
+      function maybeWarn() {
+        if (warned) return;
+        const hiddenCount = [imgSource, imgAnatomy].filter(img => img.classList.contains('hidden')).length;
+        if (hiddenCount >= 1) {
+          warned = true;
+          showToast('Tip: add source_code.jpg / anatomy_of_the_source.jpg next to this file.');
+        }
+      }
+      imgSource?.addEventListener('error', maybeWarn);
+      imgAnatomy?.addEventListener('error', maybeWarn);
+    })();
+  </script>
+</body>
+</html>
