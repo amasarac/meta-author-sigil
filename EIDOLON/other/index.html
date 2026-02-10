@@ -1,0 +1,34 @@
+
+<!doctype html><html><head><meta charset="utf-8"><title>MASL Interactive Viewer</title>
+<link rel="stylesheet" href="./css/style.css"><script src="https://d3js.org/d3.v7.min.js"></script></head>
+<body><div id="topbar"><h1>MASL Interactive Viewer</h1><span id="dataStatus"></span></div>
+<div id="container"><div id="sidebar">
+  <div class="card" id="verify"><b>Provenance Verify (SHA-256)</b>
+    <div class="control-row"><button id="btnVerify">Verify</button><button id="btnRefresh">Refresh Data (cache-bust)</button></div>
+    <pre></pre>
+  </div>
+  <div class="card"><b>Health Check</b><pre id="healthLog"></pre></div>
+</div><div id="content"><div id="drawer"><div class="inner"></div></div></div></div>
+<script type="module" src="./js/app.js"></script></body></html>
+
+
+<div class="card">
+  <b>Asset Checks</b>
+  <small>Verifies availability of key assets in your Vault vs local bundle.</small>
+  <div class="control-row" style="margin-top:6px;">
+    <button id="btnCheckAll">Check All</button>
+    <button id="btnDownloadAudit">Download Audit (JSON)</button>
+  </div>
+  <table id="assetTable" style="width:100%; font-size:12px; border-collapse:collapse; margin-top:6px;">
+    <thead>
+      <tr style="text-align:left;">
+        <th style="border-bottom:1px solid rgba(255,255,255,0.2); padding:4px;">Category</th>
+        <th style="border-bottom:1px solid rgba(255,255,255,0.2); padding:4px;">Name</th>
+        <th style="border-bottom:1px solid rgba(255,255,255,0.2); padding:4px;">Status</th>
+        <th style="border-bottom:1px solid rgba(255,255,255,0.2); padding:4px;">Action</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+

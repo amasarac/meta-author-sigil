@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MASL Graph API Schema",
+  "description": "Schema definition for MASL graph node interaction and rendering via D3.js or MASL-aware UIs. Supports interactive traversal of invocation chains, anchor layers, and cognitive loops.",
+  "type": "object",
+  "properties": {
+    "nodes": {
+      "type": "array",
+      "description": "MASL nodes representing anchors, glyphodes, rituals, etc.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "glyphode",
+              "anchor",
+              "ritual",
+              "scroll",
+              "sigil",
+              "witness",
+              "schema"
+            ]
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Arbitrary MASL metadata such as sigils, scroll bindings, cognitive roles, etc."
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "type"
+        ]
+      }
+    },
+    "edges": {
+      "type": "array",
+      "description": "Directed edges defining scroll chains, anchor references, glyphode bloom links.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "invokes",
+              "anchors",
+              "binds",
+              "references",
+              "emerges"
+            ]
+          },
+          "label": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "from",
+          "to",
+          "type"
+        ]
+      }
+    }
+  },
+  "required": [
+    "nodes",
+    "edges"
+  ]
+}
