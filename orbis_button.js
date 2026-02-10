@@ -1,8 +1,18 @@
-const canvas=document.getElementById('orbisPortalCanvas');
-const ctx=canvas.getContext('2d');canvas.width=200;canvas.height=200;
-let particles=[];for(let i=0;i<50;i++)particles.push({x:100,y:100,angle:Math.random()*2*Math.PI,
-speed:Math.random()*1+0.5,radius:Math.random()*80,color:`hsl(${Math.random()*360},100%,70%)`});
-function animate(){ctx.clearRect(0,0,200,200);particles.forEach(p=>{p.angle+=0.02;p.x=100+Math.cos(p.angle)*p.radius;
-p.y=100+Math.sin(p.angle)*p.radius;ctx.beginPath();ctx.arc(p.x,p.y,2,0,2*Math.PI);ctx.fillStyle=p.color;ctx.fill();});
-requestAnimationFrame(animate);}animate();
-document.getElementById('orbisButton').addEventListener('click',()=>{window.location.href='orbis/v2.0.0_star_manifold/index.html';});
+(function(){
+  const btn = document.getElementById('orbisButton');
+  const canvas = document.getElementById('orbisPortalCanvas');
+  if(!btn || !canvas) return;
+  btn.addEventListener('click', ()=>{
+    canvas.style.display = canvas.style.display === 'none' ? 'block' : 'none';
+    const ctx = canvas.getContext('2d');
+    const {width,height} = canvas;
+    ctx.clearRect(0,0,width,height);
+    ctx.beginPath();
+    ctx.arc(width/2,height/2,Math.min(width,height)/4,0,Math.PI*2);
+    ctx.strokeStyle='#8A2BE2';
+    ctx.lineWidth=2;
+    ctx.stroke();
+  });
+  const resize=()=>{ canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; };
+  window.addEventListener('resize', resize); resize();
+})();

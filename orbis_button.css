@@ -1,5 +1,4 @@
-.orbis-portal-container {position:relative;width:200px;margin:40px auto;text-align:center;}
-.orbis-button {font-size:1.3rem;color:#0ff;background:transparent;border:2px solid #0ff;border-radius:50%;
-width:150px;height:150px;cursor:pointer;transition:0.4s;text-shadow:0 0 5px #0ff;box-shadow:0 0 10px #0ff inset;}
-.orbis-button:hover {background:rgba(0,255,255,0.1);box-shadow:0 0 30px #0ff,0 0 50px #00ffffaa inset;}
-#orbisPortalCanvas {position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+.orbis-portal-container{position:relative}
+#orbisPortalCanvas{position:absolute;inset:0;display:none}
+.orbis-button{padding:10px 14px;border-radius:999px;border:1px solid #555;background:#111;color:#EEE;font-family:sans-serif;cursor:pointer}
+.orbis-button:hover{background:#181818}
