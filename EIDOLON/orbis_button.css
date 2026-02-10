@@ -1,0 +1,4 @@
+.orbis-portal-container{position:relative}
+#orbisPortalCanvas{position:absolute;inset:0;display:none}
+.orbis-button{padding:10px 14px;border-radius:999px;border:1px solid #555;background:#111;color:#EEE;font-family:sans-serif;cursor:pointer}
+.orbis-button:hover{background:#181818}
