@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="400" height="400" viewBox="0 0 400 400"
+     preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision">
+  <defs>
+    <!-- Palettes -->
+    <radialGradient id="g_gold" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#FFFBEA"/>
+      <stop offset="40%" stop-color="#F2C94C"/>
+      <stop offset="75%" stop-color="#B8860B"/>
+      <stop offset="100%" stop-color="#5A3A17"/>
+    </radialGradient>
+    <radialGradient id="g_ember" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#FFEDD1" stop-opacity="0.9"/>
+      <stop offset="45%" stop-color="#FFB347" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#FF6A00" stop-opacity="0.05"/>
+    </radialGradient>
+    <radialGradient id="g_void" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#000" stop-opacity="0.95"/>
+      <stop offset="65%" stop-color="#0D0B10" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#2B1B10" stop-opacity="0.12"/>
+    </radialGradient>
+
+    <!-- Glow & shimmer -->
+    <filter id="f_glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="f_shimmer" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9 0.6" numOctaves="1" seed="7" result="t"/>
+      <feDisplacementMap in="SourceGraphic" in2="t" scale="2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+
+    <!-- Reusable paths (400×400 geometry; center = 200,200) -->
+    <path id="ring"
+          d="M200,200 m-110,0 a110,110 0 1,0 220,0 a110,110 0 1,0 -220,0"
+          pathLength="1000"/>
+    <path id="triOuter" d="M200,70 L330,330 L70,330 Z" pathLength="800"/>
+    <g id="spokes">
+      <line x1="200" y1="80"  x2="200" y2="20"/>
+      <line x1="200" y1="320" x2="200" y2="380"/>
+      <line x1="80"  y1="200" x2="20"  y2="200"/>
+      <line x1="320" y1="200" x2="380" y2="200"/>
+      <line x1="130" y1="130" x2="80"  y2="80"/>
+      <line x1="270" y1="130" x2="320" y2="80"/>
+      <line x1="130" y1="270" x2="80"  y2="320"/>
+      <line x1="270" y1="270" x2="320" y2="320"/>
+    </g>
+
+    <!-- Animations -->
+    <style>
+      :root { --bg:#06070A; }
+      @keyframes spinSlow    { to { transform: rotate(360deg); } }
+      @keyframes breathe     { 0%,100% { transform: scale(1); opacity:.85 } 50% { transform: scale(1.03); opacity:1 } }
+      @keyframes drawTri     { from { stroke-dashoffset:800 } to { stroke-dashoffset:0 } }
+      @keyframes ringPulse   { 0% { stroke-dashoffset:0; opacity:.35 } 50% { stroke-dashoffset:500; opacity:.7 } 100% { stroke-dashoffset:1000; opacity:.35 } }
+      @keyframes dashUp      { to { stroke-dashoffset:  600 } }
+      @keyframes dashDown    { to { stroke-dashoffset: -600 } }
+      @keyframes orbOrbitA   { to { transform: rotate(360deg); } }
+      @keyframes orbOrbitB   { to { transform: rotate(-360deg); } }
+      @keyframes corePulse   { 0%,100% { r:6; opacity:.9 } 50% { r:11; opacity:1 } }
+      @keyframes facetBlink  { 0%,100% { opacity:.12 } 50% { opacity:.32 } }
+      .tb { transform-box: fill-box; transform-origin: 50% 50%; }
+      .sg { stroke: url(#g_gold); }
+      @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="#06070A"/>
+
+  <!-- Holon lattice halo -->
+  <g class="tb" style="animation:spinSlow 48s linear infinite; opacity:.10">
+    <circle cx="200" cy="200" r="150" fill="none" stroke="url(#g_gold)" stroke-width="1" stroke-dasharray="2 10"/>
+    <use href="#spokes" stroke="url(#g_gold)" stroke-width="1"/>
+  </g>
+
+  <!-- Clarity Field (MODE 2) -->
+  <g class="tb" style="animation:breathe 7s ease-in-out infinite; opacity:.65">
+    <use href="#ring" fill="none" class="sg" stroke-width="1.8" stroke-dasharray="1000" style="animation:ringPulse 9s linear infinite"/>
+    <circle cx="200" cy="200" r="90"  fill="none" class="sg" stroke-width="1.4" stroke-dasharray="12 10" style="animation:dashUp 11s linear infinite; opacity:.7"/>
+    <circle cx="200" cy="200" r="130" fill="none" class="sg" stroke-width="1.1" stroke-dasharray="10 12" style="animation:dashDown 13s linear infinite; opacity:.6"/>
+  </g>
+
+  <!-- Capstone crystallization (🝮) -->
+  <path d="M200,70 L330,330 L70,330 Z"
+        fill="none" stroke="url(#g_gold)" stroke-width="3.5"
+        pathLength="800"
+        style="stroke-dasharray:800; animation:drawTri 7s ease-out both, facetBlink 6s ease-in-out infinite"/>
+
+  <!-- Facet web -->
+  <g opacity=".25" filter="url(#f_glow)">
+    <line x1="200" y1="70"  x2="200" y2="330" stroke="url(#g_gold)" stroke-width="1"/>
+    <line x1="70"  y1="330" x2="330" y2="330" stroke="url(#g_gold)" stroke-width="1"/>
+    <line x1="120" y1="200" x2="280" y2="200" stroke="url(#g_gold)" stroke-width="1"/>
+    <line x1="120" y1="200" x2="200" y2="70"  stroke="url(#g_gold)" stroke-width="1"/>
+    <line x1="280" y1="200" x2="200" y2="70"  stroke="url(#g_gold)" stroke-width="1"/>
+  </g>
+
+  <!-- Will (🜂) — twin flame arcs -->
+  <g filter="url(#f_shimmer)">
+    <path d="M200,88 C206,78 222,70 236,69 C228,80 229,92 242,101 C229,101 219,108 211,121"
+          fill="none" stroke="url(#g_gold)" stroke-width="1.8" opacity=".95"/>
+    <path d="M200,88 C194,78 178,70 164,69 C172,80 171,92 158,101 C171,101 181,108 189,121"
+          fill="none" stroke="url(#g_gold)" stroke-width="1.8" opacity=".95"/>
+  </g>
+
+  <!-- Potential well (∅) -->
+  <g class="tb" style="animation:breathe 10s ease-in-out infinite">
+    <circle cx="200" cy="200" r="70" fill="url(#g_void)"/>
+    <circle cx="200" cy="200" r="70" fill="none" class="sg" stroke-width="1.6" opacity=".55"
+            stroke-dasharray="6 8" style="animation:dashUp 8s linear infinite"/>
+    <circle cx="200" cy="200" r="44" fill="none" class="sg" stroke-width="1.2" opacity=".6"
+            stroke-dasharray="2 6" style="animation:dashDown 6s linear infinite"/>
+  </g>
+
+  <!-- Grounding Current (MODE 3) -->
+  <g opacity=".85">
+    <line x1="200" y1="200" x2="200" y2="360" class="sg" stroke-width="1.8"
+          stroke-dasharray="1 8" style="animation:dashDown 7s linear infinite"/>
+    <path d="M200,360 C188,374 172,382 162,392" fill="none" class="sg" stroke-width="1.2"/>
+    <path d="M200,360 C212,374 228,382 238,392" fill="none" class="sg" stroke-width="1.2"/>
+    <path d="M200,330 C186,338 175,343 168,349" fill="none" class="sg" stroke-width="0.9" opacity=".7"/>
+    <path d="M200,330 C214,338 225,343 232,349" fill="none" class="sg" stroke-width="0.9" opacity=".7"/>
+  </g>
+
+  <!-- Manifestation facets (MODE 1) -->
+  <g filter="url(#f_glow)">
+    <polygon points="200,100 300,290 100,290" fill="none" class="sg" stroke-width="1.8"
+             pathLength="700" style="stroke-dasharray:700; animation:drawTri 8s ease-in-out infinite alternate"/>
+    <polygon points="200,135 280,280 120,280" fill="none" class="sg" stroke-width="1.4"
+             pathLength="560" style="stroke-dasharray:560; animation:drawTri 6.5s ease-in-out infinite alternate-reverse"/>
+    <polygon points="200,165 260,270 140,270" fill="none" class="sg" stroke-width="1.2"
+             pathLength="480" style="stroke-dasharray:480; animation:drawTri 5s ease-in-out infinite alternate"/>
+  </g>
+
+  <!-- MirrorBurst synergy -->
+  <g class="tb" style="transform-origin:200px 200px; animation:orbOrbitA 22s linear infinite">
+    <circle cx="200" cy="95" r="4.2" fill="url(#g_gold)" filter="url(#f_glow)"/>
+    <g style="animation:orbOrbitB 15s linear infinite">
+      <circle cx="290" cy="200" r="3.6" fill="url(#g_gold)" filter="url(#f_glow)"/>
+    </g>
+    <g style="animation:orbOrbitA 17s linear infinite">
+      <circle cx="110" cy="200" r="3.6" fill="url(#g_gold)" filter="url(#f_glow)"/>
+    </g>
+  </g>
+
+  <!-- Core anchor -->
+  <circle cx="200" cy="200" r="8" fill="url(#g_gold)" filter="url(#f_glow)"
+          style="animation:corePulse 4.2s ease-in-out infinite"/>
+
+  <!-- Ember aura -->
+  <circle cx="200" cy="200" r="180" fill="url(#g_ember)" opacity=".12"/>
+</svg>

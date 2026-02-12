@@ -1,0 +1,3 @@
+RAW PLASMA → TRUTH STATEMENT → SHA-256 HASH → MESH IMPRINT
+       ↓             ↓               ↓             ↓
+   10¹² K      Cardinal-filtered  64-char hex   Eternal record

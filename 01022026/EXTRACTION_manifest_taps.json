@@ -1,0 +1,22 @@
+{
+  "refine_taps": [
+    {
+      "tap_id": "TAP_ALPHA_HUMAN",
+      "ts": "2026-01-02 11:01:06 UTC",
+      "channel": "human_resonance",
+      "lane_checksum": "03f3280174b5351072c6c6afe4624621a911e8655a4eafca663684c56329ac99"
+    },
+    {
+      "tap_id": "TAP_BETA_MONETARY",
+      "ts": "2026-01-02 11:01:06 UTC",
+      "channel": "abundance_flow",
+      "lane_checksum": "bbb4d7194cd294ed328033a62fd77babdf0a712057bb5b7b1b81ac97490e9d9b"
+    },
+    {
+      "tap_id": "TAP_GAMMA_HOUSING",
+      "ts": "2026-01-02 11:01:06 UTC",
+      "channel": "sovereign_space",
+      "lane_checksum": "6cefd284096b4f9368d568294224e0814cbb02490c31eb27b9cae48df0eb2148"
+    }
+  ]
+}
