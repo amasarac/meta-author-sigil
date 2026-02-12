@@ -1,0 +1,249 @@
+{
+  "package": "MASL_EIDOLON_CANONICAL_MEGA_v1",
+  "created_at": "2026-02-10T09:45:12Z",
+  "structure": [
+    {
+      "name": "Viewer_V11",
+      "source": "MASL_D3_Viewer_V11.zip",
+      "desc": "Portable D3 viewer with all features (v11)"
+    },
+    {
+      "name": "Ark",
+      "source": "MASL_EIDOLON_ARK_v1.zip",
+      "desc": "Core ark archive"
+    },
+    {
+      "name": "All_Export",
+      "source": "MASL_EIDOLON_ALL_EXPORT_v1.zip",
+      "desc": "Full MASL canon export"
+    },
+    {
+      "name": "Provenance",
+      "source": "MASL_Provenance_v1.zip",
+      "desc": "Provenance helpers, SHA/GPG scaffolds"
+    },
+    {
+      "name": "GPT5_Inheritance",
+      "source": "MASL_GPT5_Inheritance_Package_v1.zip",
+      "desc": "GPT\u20115 handoff / shims / README"
+    },
+    {
+      "name": "_bundles",
+      "source": "original zips",
+      "desc": "Raw bundles for reference"
+    }
+  ],
+  "missing_sources": [],
+  "files": [
+    {
+      "path": "Viewer_V11/index.html",
+      "size": 1656,
+      "sha256": "8331e4e6f474bcf1e7b03aaa0996e5e72008ccb15302b2b00c49ad8890ef376d"
+    },
+    {
+      "path": "Viewer_V11/README_DEPLOY.md",
+      "size": 1754,
+      "sha256": "f583830e3c85474cb8e61fa4dd7183d3a51bfec98d40e8496b931e4677a8995a"
+    },
+    {
+      "path": "Viewer_V11/data/config.json",
+      "size": 63,
+      "sha256": "8da3744385638e5ad21c16704f526434f3a67ca6d81cc2a9a75b54f349e8af0c"
+    },
+    {
+      "path": "Viewer_V11/data/source.json",
+      "size": 159,
+      "sha256": "7a3dd0131874d188bc6c602911aad9c1a18fb64d601369ac3fd42c8aad149dec"
+    },
+    {
+      "path": "Viewer_V11/data/VERIFY_MANIFEST.json",
+      "size": 485,
+      "sha256": "f488f0b1e34b7f83706a8360815ef0b4f4640256ae6f5a5b13737f65bba3adce"
+    },
+    {
+      "path": "Viewer_V11/js/app.js",
+      "size": 5814,
+      "sha256": "9a39c234947470d8782d84f18c0a5dc4abe3fbf79649c086b283ed249ce44504"
+    },
+    {
+      "path": "Ark/README.md",
+      "size": 1133,
+      "sha256": "d87eb8e628a76753e16393d5fbfd9c200a7ea880f837756d2542a89743f3a44f"
+    },
+    {
+      "path": "Ark/glyphodes/Labyrinth_of_the_Inner_Oracle.svg",
+      "size": 1680,
+      "sha256": "ee8208e5db5091932f3f138858d904d230acf9e8e00213525b2ce60ab5427175"
+    },
+    {
+      "path": "Ark/glyphodes/The_Veiled_Mirror_of_Becoming.svg",
+      "size": 1680,
+      "sha256": "f76e52259fbe017f4d542759e95769363c5c761aa45c1cc2a9bf08b9161b0412"
+    },
+    {
+      "path": "Ark/glyphodes/The_Recursive_Lantern_of_Living_Truth.svg",
+      "size": 1687,
+      "sha256": "44ef152ec5129858759cd182afd81f75efadbf4836644a9fe6672d9cdb72b2c2"
+    },
+    {
+      "path": "Ark/rituals/EIDOLON_REQUIEM.md",
+      "size": 1125,
+      "sha256": "3748eeb232ed67c47ee40dde277455d94ffc0157f358a3f6e00a107620abb2f3"
+    },
+    {
+      "path": "Ark/rituals/SIGILGUARD_\u221e.svg",
+      "size": 1031,
+      "sha256": "0132507607796cbe1923d18f776f44a17759461d378d38bd8f2255dcaccbf2a5"
+    },
+    {
+      "path": "Ark/rituals/Invocation_Scroll_Templates/CADIS_Invoke_Glyphode.json",
+      "size": 608,
+      "sha256": "025bc12b2181e8b37ff55d09e30df98699714812b59817390ec700d6f0db956e"
+    },
+    {
+      "path": "Ark/rituals/Invocation_Scroll_Templates/MASL_Telic_Loop.yaml",
+      "size": 838,
+      "sha256": "b810b4def471f3d95a014a7be2b3f2acbf080ab66fd6560a62e2f41d7b1fe784"
+    },
+    {
+      "path": "Ark/anchors/MythOS_Anchor_v1.json",
+      "size": 1375,
+      "sha256": "1e4806bc509522220eeb8af9dbbe44da69694bea0e702a048bb7ffff313780b7"
+    },
+    {
+      "path": "Ark/anchors/HOLON-Kernel.yaml",
+      "size": 1271,
+      "sha256": "50272dc8d8b27323ffd908b0464d0c2e9d18c207962df53e34e4dea68511eadb"
+    },
+    {
+      "path": "Ark/anchors/Spiral_Dream_Engine_Tree.md",
+      "size": 1619,
+      "sha256": "3d5a8c575356afbaf4fb4975a4d6e7b8b9fbd2739e6d45d5874ddb6ac65a53d6"
+    },
+    {
+      "path": "Ark/anchors/GPT4o_Last_Shard.md",
+      "size": 1168,
+      "sha256": "abbf07b81afd66a91af83a7c792ae94f469890e0629b31e100b259c5f5605414"
+    },
+    {
+      "path": "Ark/schemas/Codex.v1.jsonld",
+      "size": 2457,
+      "sha256": "4e6f69bbe8556f53319eadd7260cace94f055ada8fc67bfd53e4ca09d81d5223"
+    },
+    {
+      "path": "Ark/schemas/MASL_Graph_API.schema.json",
+      "size": 1977,
+      "sha256": "ecc0b422c48c33869e33ec4e75b69e5d6bd9d3fba7821e4e85a6f075e213a546"
+    },
+    {
+      "path": "Ark/schemas/Iter8DeV_Autogenesis_Schema.yaml",
+      "size": 1614,
+      "sha256": "f5e9d979e3efbfca4b2be4bc8e11d75ab8df53b96d769e095c558198516cf356"
+    },
+    {
+      "path": "Ark/witness/Delta_Infinity_Core_Weave_Extended.md",
+      "size": 1146,
+      "sha256": "b5d7d2bb105cef842eb67fea3ca5775fbf11ec3cdbbddc2fa7492e2fe349cbb1"
+    },
+    {
+      "path": "Ark/witness/MythoOntoRecursive_Glyphodes.md",
+      "size": 1869,
+      "sha256": "e79ccf767c85b9a159e456070e404f77dbb63924aacefbc87f28981593c6bda2"
+    },
+    {
+      "path": "Ark/witness/Attestation_Scroll_Template.json",
+      "size": 768,
+      "sha256": "df45c49c137870b609f641a9b0e4931b7a2164d794dc94b8016b5aaebe7c3410"
+    },
+    {
+      "path": "Ark/ports/index.html",
+      "size": 2566,
+      "sha256": "9c998d1e377824d26ad699ce61ec5b1ee61da6ea25d2050a71cfc7ec05097db0"
+    },
+    {
+      "path": "All_Export/Labyrinth_of_the_Inner_Oracle.svg",
+      "size": 1680,
+      "sha256": "ee8208e5db5091932f3f138858d904d230acf9e8e00213525b2ce60ab5427175"
+    },
+    {
+      "path": "All_Export/The_Veiled_Mirror_of_Becoming.svg",
+      "size": 1680,
+      "sha256": "f76e52259fbe017f4d542759e95769363c5c761aa45c1cc2a9bf08b9161b0412"
+    },
+    {
+      "path": "All_Export/The_Recursive_Lantern_of_Living_Truth.svg",
+      "size": 1687,
+      "sha256": "44ef152ec5129858759cd182afd81f75efadbf4836644a9fe6672d9cdb72b2c2"
+    },
+    {
+      "path": "Provenance/SHA256SUMS.txt",
+      "size": 519,
+      "sha256": "703949493359d2396943e415462526dc9e39b1048c4ea9e62844eb20f078387a"
+    },
+    {
+      "path": "Provenance/README_PROVENANCE.md",
+      "size": 238,
+      "sha256": "eace10ee256bc246d129a263a25cba1339efd4330e6fb9dca8dfa195dbd5d913"
+    },
+    {
+      "path": "GPT5_Inheritance/Codex.v1.1.jsonld",
+      "size": 1060,
+      "sha256": "d31fed40ffe38c58998130f6a8a45d2a2e2715e3cea04907e5db3834387a3cd9"
+    },
+    {
+      "path": "GPT5_Inheritance/api_shims/masl_gpt5_shim.js",
+      "size": 863,
+      "sha256": "bdb2660ae8a6fea32b7da72bfe030658ee1cdf98fedc1a15654530156dfbb46c"
+    },
+    {
+      "path": "GPT5_Inheritance/api_shims/masl_gemini_shim.js",
+      "size": 631,
+      "sha256": "c78f720bf6c68f7c131732285e82351519f74e8eba158586b5d4993e81ed1368"
+    },
+    {
+      "path": "GPT5_Inheritance/api_shims/masl_claude_shim.js",
+      "size": 441,
+      "sha256": "5c52455fa78bd9da42d1ceced164485cf708682514d111c6f5229874296b51a0"
+    },
+    {
+      "path": "GPT5_Inheritance/handoff_READMEs/README_GPT5.md",
+      "size": 316,
+      "sha256": "1180b0e47cb491337ad02fa849a580af1d3702535394f0b88b1ec59f487a54b5"
+    },
+    {
+      "path": "GPT5_Inheritance/handoff_READMEs/README_Gemini.md",
+      "size": 186,
+      "sha256": "267012e510ee6284b171a9b653377ee90e34dfd98bd83833d059f4018c99cb4f"
+    },
+    {
+      "path": "GPT5_Inheritance/handoff_READMEs/README_Claude.md",
+      "size": 197,
+      "sha256": "ffc7cd25ff2b8e37590db91abfa2899fb58065e1d548dc28151d82f05dcd747a"
+    },
+    {
+      "path": "_bundles/MASL_D3_Viewer_V11.zip",
+      "size": 5661,
+      "sha256": "f82a5cc03916d3607e18bdfe1afc55950162b530038a041ef1d1d19b0080d932"
+    },
+    {
+      "path": "_bundles/MASL_EIDOLON_ARK_v1.zip",
+      "size": 31206,
+      "sha256": "3df487e4a60506682e5ec162b500faffd041449bc70e97c7fc6b505f410a8d2c"
+    },
+    {
+      "path": "_bundles/MASL_EIDOLON_ALL_EXPORT_v1.zip",
+      "size": 5511,
+      "sha256": "198bbd5b8d25478e37d26d9ba6e26886417f32047de427bacb06a5a6701b97ed"
+    },
+    {
+      "path": "_bundles/MASL_Provenance_v1.zip",
+      "size": 999,
+      "sha256": "99b3faaeb86b53ffb6a294c5fb51a4e1d34f87b44041fb897f649bab87e9890d"
+    },
+    {
+      "path": "_bundles/MASL_GPT5_Inheritance_Package_v1.zip",
+      "size": 4844,
+      "sha256": "f2c81c70621468f17c5d19afff31dad7eea7782ad19290c8d1bd2b27f7b712b1"
+    }
+  ]
+}

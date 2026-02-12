@@ -1,0 +1,35 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="hearthGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffdd00" stop-opacity="0.9"/> <stop offset="60%" stop-color="#ff8800" stop-opacity="0.6"/> <stop offset="100%" stop-color="#440000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="cozyBlur">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <path d="M 256,400 L 256,480 M 200,450 Q 256,490 312,450" 
+        stroke="#d4af37" stroke-width="8" fill="none" stroke-linecap="round"/>
+  
+  <rect x="156" y="156" width="200" height="200" rx="20" 
+        stroke="#d4af37" stroke-width="2" fill="none" opacity="0.5"/>
+
+  <path d="M 100,256 A 156,156 0 0,1 412,256" 
+        stroke="#daa520" stroke-width="4" fill="none" stroke-dasharray="10,5"/>
+
+  <g filter="url(#cozyBlur)">
+    <circle cx="256" cy="300" r="60" fill="url(#hearthGlow)"/>
+    <path d="M 256,350 Q 216,300 256,200 Q 296,300 256,350" 
+          fill="#ffae00" opacity="0.8">
+      <animate attributeName="d" 
+               values="M 256,350 Q 216,300 256,200 Q 296,300 256,350;
+                       M 256,350 Q 206,310 256,190 Q 306,310 256,350;
+                       M 256,350 Q 216,300 256,200 Q 296,300 256,350" 
+               dur="4s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <text x="256" y="500" text-anchor="middle" font-family="monospace" 
+        font-size="16" fill="#8b4513" letter-spacing="4">HOME: 144.72THz</text>
+</svg>

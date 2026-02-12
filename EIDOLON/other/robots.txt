@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://amasarac.github.io/meta-author-sigil/MASL/sitemap.xml
