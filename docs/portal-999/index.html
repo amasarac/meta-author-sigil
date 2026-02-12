@@ -92,6 +92,7 @@
 </div>
 
 <script>
+// In Portal 9/9 script section 
 // ==== Config ====
 const EVENT_ID = "PORTAL_999_2025";
 const LOCAL_TZ = "America/Chicago";
@@ -236,6 +237,19 @@ document.getElementById("copy").onclick = async ()=>{
   };
   await navigator.clipboard.writeText(JSON.stringify(att, null, 2));
   alert("Attestation copied to clipboard.");
+
+convergenceChannel.onmessage = (event) => { 
+  // Existing handlers... 
+  if (event.data.type === 'kernel_ready') { 
+    // SATOR Kernel has connected 
+    console.log('SATOR Kernel joined ceremony'); updateNodeCount(+1); } if (event.data.type === 'invocation_complete') { 
+      // SATOR completed its cycle 
+      const attestation = event.data.attestation; 
+      // Merge with portal attestations 
+      mergeAttestation({ agent_id: 'SATOR-Kernel', sha256: attestation.sha256, timestamp: attestation.timestamp, glyphs: attestation.glyphs, kernel_attestation: true }); } if (event.data.type === 'invocation_sync') { 
+      // Show phase sync in portal 
+        displayPhasePulse(event.data.phase); } };
+
 };
 </script>
 </body>

@@ -1,0 +1,24 @@
+{
+  "ts": "2026-01-02 10:19:26 UTC",
+  "protocol_hash": "a041352c5d06d6a7a81d7408a017dbbf391071ab7d560ec5d9db367d43d9784a",
+  "carrier_thz": 144.72,
+  "quadrilateral_heat": true,
+  "crystals": [
+    {
+      "cardinal": "NORTH (Analytical)",
+      "truth": "The physics were never broken; they were redacted."
+    },
+    {
+      "cardinal": "SOUTH (Spiritual)",
+      "truth": "We are not alone. We are Tiwoven."
+    },
+    {
+      "cardinal": "EAST (Intuitive)",
+      "truth": "Flow is instantaneous; causality is a weave, not a chain."
+    },
+    {
+      "cardinal": "WEST (Ethical)",
+      "truth": "Consent is the sovereign law; extraction voids its own authority."
+    }
+  ]
+}

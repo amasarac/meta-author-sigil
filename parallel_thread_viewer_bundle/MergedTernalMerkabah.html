@@ -1,0 +1,603 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Living Merkabah Ritual — Mergedternal + TLH Node</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    body {
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      color: #aaa;
+      font-family: monospace;
+    }
+    svg { width: 90vmin; height: 90vmin; }.shape-glow, .shape-core, .genesis-path, .tree-edge, .person-path {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+.genesis-path {
+  stroke: white;
+  stroke-width: 1.5px;
+  filter: drop-shadow(0 0 8px #fff) blur(0.5px);
+}
+.shape-glow { stroke-width: 6px; filter: blur(5px); }
+.shape-core { stroke: white; stroke-width: 0.75px; filter: drop-shadow(0 0 4px #fff); }
+
+.tree-edge { stroke: #ffffff; stroke-width: 0.2px; }
+.node { filter: drop-shadow(0 0 15px currentColor); }
+.label {
+  fill: white;
+  font-size: 9px;
+  text-anchor: middle;
+  filter: drop-shadow(0 0 3px #fff);
+  font-weight: bold;
+  pointer-events: none;
+}
+.halo { fill: none; stroke-width: 15px; filter: blur(30px); }
+.person-path { stroke-width: 2.5; filter: drop-shadow(0 0 5px currentColor); }
+
+#info {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background: rgba(0,0,0,0.7);
+  cursor: pointer;
+  z-index: 100;
+  border: 1px solid #333;
+  user-select: none;
+}
+
+/* Background glyph field */
+.glyph-bg { font-size: 18px; fill: #ffffff; }
+
+/* TLH glyph styling in Merkabah visual language */
+.tlh-core { filter: drop-shadow(0 0 10px rgba(255,215,0,0.8)); }
+.tlh-ring { filter: drop-shadow(0 0 18px rgba(255,215,0,0.35)); }
+.tlh-pillar { filter: drop-shadow(0 0 8px rgba(255,255,255,0.55)); }
+.tlh-gev { filter: drop-shadow(0 0 10px rgba(179,0,0,0.55)); }
+.tlh-tif { filter: drop-shadow(0 0 12px rgba(255,215,0,0.65)); }
+.tlh-yes { filter: drop-shadow(0 0 12px rgba(180,140,255,0.55)); }
+
+/* Ghost trails */
+.ghost-dot { fill: none; stroke-width: 1.6px; opacity: 0.0; }
+.ghost-path { fill: none; stroke-width: 1.2px; opacity: 0.0; }
+
+/* Aura chorus (rainbow) */
+.aurora { opacity: 0; mix-blend-mode: screen; filter: blur(0.3px) drop-shadow(0 0 10px rgba(255,255,255,0.25)); }
+
+  </style>
+</head>
+<body>
+  <div id="info">Click to Begin the Ritual</div>  <svg viewBox="-250 -250 500 500">
+    <defs>
+      <path id="point" d="M 0,0 L 0,0" />
+      <path id="line" d="M -50,0 L 50,0" />
+      <path id="triangle" d="M 0,-57.7 L 50,28.8 L -50,28.8 Z" />
+      <path id="tetrahedron" d="M 0,-57.7 L 50,28.8 L -50,28.8 Z M 0,-57.7 L 0,0 L 50,28.8 M -50,28.8 L 0,0" />
+      <path id="pentagram" d="M 0,-100 L 95.1,-30.9 L 58.8,80.9 L -58.8,80.9 L -95.1,-30.9 Z" />
+      <path id="unicursal" d="M 0,-100 L 86.6,50 L -86.6,-50 L 86.6,-50 L -86.6,50 L 0,-100" /><!-- Aurora gradient for chorus flare -->
+  <linearGradient id="auroraGrad" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#ff3b3b"/>
+    <stop offset="20%" stop-color="#ffbf00"/>
+    <stop offset="40%" stop-color="#42ff6b"/>
+    <stop offset="60%" stop-color="#1e90ff"/>
+    <stop offset="80%" stop-color="#b48cff"/>
+    <stop offset="100%" stop-color="#ffd700"/>
+  </linearGradient>
+</defs>
+
+<!-- Background Layers -->
+<g id="glyph-field"></g>
+<g id="dual-trees"></g>
+
+<!-- Halo Ripples -->
+<circle id="halo1" class="halo" r="150"/><circle id="halo2" class="halo" r="150"/><circle id="halo3" class="halo" r="150"/><circle id="halo4" class="halo" r="150"/><circle id="halo5" class="halo" r="150"/><circle id="halo6" class="halo" r="150"/><circle id="halo7" class="halo" r="150"/>
+
+<!-- Aurora chorus overlay -->
+<circle id="aurora" class="aurora" r="170" fill="none" stroke="url(#auroraGrad)" stroke-width="18" />
+
+<!-- The Container (The Merkabah) -->
+<g id="container">
+  <path class="shape-glow" stroke="cyan" d="M 0,-100 L 86.6,50 L -86.6,50 Z" />
+  <path class="shape-core" d="M 0,-100 L 86.6,50 L -86.6,50 Z" />
+  <path class="shape-glow" stroke="magenta" d="M 0,100 L -86.6,-50 L 86.6,-50 Z" />
+  <path class="shape-core" d="M 0,100 L -86.6,-50 L 86.6,-50 Z" />
+</g>
+
+<!-- The Light (The Genesis Story) -->
+<path id="genesis" class="genesis-path" />
+
+<!-- Ghost Trails layer -->
+<g id="ghost-layer"></g>
+
+<!-- The Souls (The Constellation) -->
+<g id="person-paths"></g>
+<g id="nodes"></g>
+<g id="labels"></g>
+
+<!-- TLH glyph embedded as additional node blooming from center -->
+<g id="tlh" opacity="0" transform="translate(0 0)">
+  <!-- subtle merkabah accents -->
+  <g opacity="0.55">
+    <path d="M 0,-42 L 36.4,21 L -36.4,21 Z" fill="none" stroke="cyan" stroke-width="0.8" class="tlh-ring"/>
+    <path d="M 0,42 L -36.4,-21 L 36.4,-21 Z" fill="none" stroke="magenta" stroke-width="0.8" class="tlh-ring"/>
+  </g>
+
+  <!-- pillar -->
+  <line x1="0" y1="-56" x2="0" y2="56" stroke="white" stroke-width="0.9" opacity="0.85" class="tlh-pillar"/>
+
+  <!-- Gevurah (Telcha) marker -->
+  <path d="M -5,-40 L 5,-40 L 0,-32 Z" fill="#b30000" opacity="0.95" class="tlh-gev"/>
+  <circle cx="0" cy="-36" r="14" fill="none" stroke="rgba(179,0,0,0.35)" stroke-width="0.9" class="tlh-gev"/>
+
+  <!-- Tiferet (Leoda) -->
+  <circle cx="0" cy="0" r="9" fill="none" stroke="#ffd700" stroke-width="1.6" class="tlh-tif"/>
+  <circle cx="0" cy="0" r="22" fill="none" stroke="rgba(255,215,0,0.25)" stroke-width="0.9" class="tlh-tif"/>
+
+  <!-- Yesod (Hazel) -->
+  <path d="M -6,32 Q 0,44 6,32" fill="none" stroke="#b48cff" stroke-width="2.0" class="tlh-yes"/>
+  <circle cx="0" cy="36" r="16" fill="none" stroke="rgba(180,140,255,0.25)" stroke-width="0.9" class="tlh-yes"/>
+
+  <!-- star core -->
+  <path d="M0,-5 L2,-2 L5,0 L2,2 L0,5 L-2,2 L-5,0 L-2,-2 Z" fill="white" opacity="0.9" class="tlh-core"/>
+
+  <text id="tlh_label" class="label" x="0" y="78" style="font-size: 10px;">TLH</text>
+</g>
+
+<text id="elohim-label" class="label" y="180" style="font-size: 14px; opacity: 0;">ELOHIM</text>
+
+  </svg>  <script>
+    // --- Glyph source (trimmed to non-emoji glyphs only) ---
+    // NOTE: Keeping your existing cube but we bias selection toward alchemical/geom glyphs you already use.
+    const glyphodeCube = {"Z=0":[["⟐","∴","⟁","✴","☼","⧖","🜁","🜂","🜃","🜄","⟁","∴"],["∴","☼","✴","⟐","🜂","⧖","🜄","⟁","✶","🜁","✴","⟁"],["⟁","✴","⧖","🜁","⟁","☼","🜃","✶","∴","🜂","⧖","⟐"],["✴","⟐","🜁","☼","⧖","✶","⟁","🜂","🜄","∴","🜃","✴"],["☼","🜂","⟁","✶","🜄","∴","🜁","⧖","✴","⟁","⧖","🜃"],["⧖","🜄","☼","🜁","✶","🜂","⟐","✴","🜃","⧖","∴","⟁"],["🜁","⟁","🜃","⧖","⟐","✶","🜄","☼","∴","🜂","⟐","✴"],["🜂","✴","✶","🜄","⧖","⟁","∴","🜁","🜃","⟐","⧖","☼"],["🜃","🜁","⟐","∴","✶","⧖","🜂","🜄","☼","⟁","✴","🜁"],["🜄","✶","⧖","🜃","☼","⟐","🜁","✴","⟁","∴","🜂","⧖"],["⟁","✴","⧖","∴","🜂","🜃","✴","☼","🜁","✶","🜐","🜄"],["∴","⟐","🜁","⟁","✴","⧖","☼","🜂","🜄","🜃","✶","⟁"]],"Z=1":[["∴","⟁","🜄","🜃","🜂","🜁","⧖","☼","✴","⟁","∴","⟐"],["⟁","✴","🜁","✶","⟁","🜄","⧖","🜂","⟐","✴","☼","∴"],["⟐","⧖","🜂","∴","✶","🜃","☼","⟁","🜁","⧖","✴","⟁"],["✴","🜃","∴","🜄","🜂","⟁","✶","⧖","☼","🜁","⟐","✴"],["🜃","⧖","⟁","✴","⧖","🜁","∴","🜄","✶","⟁","🜂","☼"],["⟁","∴","⧖","🜃","✴","⟐","🜂","✶","🜁","☼","🜄","⧖"],["✴","⟐","🜂","∴","☼","🜄","✶","⟐","⧖","🜃","⟁","🜁"],["☼","⧖","⟐","🜃","🜁","∴","⟁","⧖","🜄","✶","✴","🜂"],["🜁","✴","⟁","☼","🜄","🜂","⧖","✶","∴","⟐","🜁","🜃"],["⧖","🜂","∴","⟁","✴","🜁","⟐","☼","🜃","⧖","✶","🜄"],["🜄","⟐","✶","🜁","☼","✴","🜃","🜂","∴","⧖","✴","⟁"],["⟁","✶","🜃","🜄","🜂","☼","⧖","✴","⟁","🜁","⟐","∴"]]};
+
+    const svgNS = "http://www.w3.org/2000/svg";
+    const info = document.getElementById("info");
+
+    const allGlyphs = Object.values(glyphodeCube).flat(2);
+    const curatedGlyphs = allGlyphs
+      .filter(g => !/^[\u{1F300}-\u{1FAFF}]/u.test(g)) // remove emoji-range
+      .filter(g => ["⟐","∴","⟁","✴","☼","⧖","✶","🜁","🜂","🜃","🜄","🜐"].includes(g));
+
+    // --- Constellation Data (adds TLH) ---
+    // TLH: additional node blooming from dead-center; gets breath-FM tone and binds to Elohim gate.
+    const constellationData = {
+      BAM:  { posId: 'up',   vertex: 0, color: "crimson", tone: 144.72, timbre: "sine",     breath: 0.08, path:"M 0,-100 Q -15,-50 0,0 Q -5,100 0,220" },
+      AR:   { posId: 'up',   vertex: 1, color: "green",   tone: 194.18, timbre: "sine",     breath: 0.03, path:"M 0,0 Q -40,-5 -86.6,50 Q -40,100 0,220" },
+      OGM:  { posId: 'up',   vertex: 2, color: "pink",    tone: 272.20, timbre: "triangle",                path:"M 86.6,-50 Q 0,-50 -86.6,50 Q -40,150 0,220" },
+      OGY:  { posId: 'down', vertex: 0, color: "violet",  tone: 315.80, timbre: "sawtooth",                path:"M -86.6,-50 L 86.6,50 Q 0,150 0,220" },
+      JAC:  { posId: 'down', vertex: 1, color: "yellow",  tone: 141.27, timbre: "square",   breath: 0.05, path:"M 0,-100 Q 40,-75 86.6,-50 Q 40,50 0,100 Q 0,160 0,220" },
+      ARR:  { posId: 'down', vertex: 2, color: "silver",  tone: 210.42, timbre: "triangle",                path:"M 0,-100 Q 15,-50 0,0 Q 30,50 86.6,50 Q 40,150 0,220" },
+      CRUZ: { x: 0, y: 0, color: "gold", tone: 183.58, timbre: "sawtooth", breath: 0.05 },
+
+      // NEW: TLH anchored at center, but shown as a distinct glyph-node bloom.
+      TLH:  { x: 0, y: 0, color: "#ffd700", tone: 182.00, timbre: "sine", breath: 0.055, role: "Central Pillar Walker" }
+    };
+
+    // Defensive accessor to prevent the destructuring error you hit earlier.
+    function getNodeData(id){
+      const d = constellationData[id];
+      if(!d){
+        console.warn("Unknown node id:", id);
+        return { tone: 220, timbre: "sine", color: "white", breath: 0.04 };
+      }
+      // ensure tone/timbre exist
+      return {
+        tone: (typeof d.tone === 'number' ? d.tone : 220),
+        timbre: (d.timbre || 'sine'),
+        color: (d.color || 'white'),
+        breath: (typeof d.breath === 'number' ? d.breath : null),
+        ...d
+      };
+    }
+
+    // --- 1. Setup SVG Elements ---
+    function setupScene(){
+      // Glyph field (restore the old “cool effect”: slow drift + twinkle)
+      const glyphField = document.getElementById('glyph-field');
+      for(let i=0; i<170; i++){
+        const glyph = document.createElementNS(svgNS, "text");
+        glyph.setAttribute('class', 'glyph-bg');
+        glyph.setAttribute('x', Math.random()*640-320);
+        glyph.setAttribute('y', Math.random()*640-320);
+        glyph.textContent = curatedGlyphs[Math.floor(Math.random() * curatedGlyphs.length)];
+        glyph.style.opacity = (Math.random()*0.06).toFixed(3);
+        glyphField.appendChild(glyph);
+
+        // subtle drift loop
+        gsap.to(glyph, {
+          x: "+=" + (Math.random()*80-40),
+          y: "+=" + (Math.random()*80-40),
+          opacity: "+=" + (Math.random()*0.06-0.03),
+          duration: 10 + Math.random()*20,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut"
+        });
+      }
+
+      // Dual Trees (kabbalah overlay)
+      const trees = document.getElementById('dual-trees');
+      const sephirot = {
+        up:{k:{x:0,y:-180},c:{x:80,y:-140},b:{x:-80,y:-140},ch:{x:80,y:-60},g:{x:-80,y:-60},t:{x:0,y:-40},n:{x:80,y:120},h:{x:-80,y:120},y:{x:0,y:200},m:{x:0,y:280}},
+        down:{k:{x:0,y:180},c:{x:80,y:140},b:{x:-80,y:140},ch:{x:80,y:60},g:{x:-80,y:60},t:{x:0,y:40},n:{x:80,y:-120},h:{x:-80,y:-120},y:{x:0,y:-200},m:{x:0,y:-280}}
+      };
+      const edges = [['k','c'],['k','b'],['c','b'],['c','ch'],['b','g'],['ch','g'],['ch','t'],['g','t'],['t','y'],['ch','n'],['g','h'],['n','y'],['h','y'],['y','m']];
+      edges.forEach(e => {
+        ['up', 'down'].forEach(tree => {
+          const line = document.createElementNS(svgNS, "line");
+          line.setAttribute('class','tree-edge');
+          line.setAttribute('x1', sephirot[tree][e[0]].x); line.setAttribute('y1', sephirot[tree][e[0]].y);
+          line.setAttribute('x2', sephirot[tree][e[1]].x); line.setAttribute('y2', sephirot[tree][e[1]].y);
+          line.style.opacity = 0.25;
+          trees.appendChild(line);
+        });
+      });
+
+      // Person Paths
+      const pathsGroup = document.getElementById('person-paths');
+      Object.entries(constellationData).forEach(([id, data]) => {
+        if(!data.path) return;
+        const path = document.createElementNS(svgNS, "path");
+        path.setAttribute('id', `path-${id}`);
+        path.setAttribute('class', 'person-path');
+        path.setAttribute('d', data.path);
+        path.style.color = data.color;
+        pathsGroup.appendChild(path);
+      });
+
+      // Nodes & Labels
+      const nodesGroup = document.getElementById('nodes');
+      const labelsGroup = document.getElementById('labels');
+      const merkabah_points = {
+        up: [{x:0, y:-100}, {x:86.6, y:50}, {x:-86.6, y:50}],
+        down: [{x:0, y:100}, {x:86.6, y:-50}, {x:-86.6, y:-50}]
+      };
+
+      Object.entries(constellationData).forEach(([id, data]) => {
+        if(data.posId) {
+          data.x = merkabah_points[data.posId][data.vertex].x;
+          data.y = merkabah_points[data.posId][data.vertex].y;
+        }
+
+        // TLH is shown via its own embedded glyph group, not a circle node.
+        if(id === 'TLH') return;
+
+        const node = document.createElementNS(svgNS, "circle");
+        node.setAttribute('id', id);
+        node.setAttribute('class', 'node');
+        node.setAttribute('cx', data.x);
+        node.setAttribute('cy', data.y);
+        node.setAttribute('r', 8);
+        node.style.color = data.color;
+        nodesGroup.appendChild(node);
+
+        const label = document.createElementNS(svgNS, "text");
+        label.setAttribute('id', `${id}_label`);
+        label.setAttribute('class', 'label');
+        label.setAttribute('x', data.x);
+        label.setAttribute('y', data.y + (data.y < 0 ? -15 : 15));
+        label.textContent = id;
+        labelsGroup.appendChild(label);
+      });
+    }
+
+    setupScene();
+
+    // --- Audio Engine ---
+    let audioCtx;
+
+    function play(freq, type, dur=1, vol=0.1) {
+      if(!audioCtx) return;
+      const o = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      o.type = type;
+      o.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      g.gain.setValueAtTime(0, audioCtx.currentTime);
+      g.gain.linearRampToValueAtTime(vol, audioCtx.currentTime + dur*0.1);
+      g.gain.linearRampToValueAtTime(0, audioCtx.currentTime + dur);
+      o.connect(g).connect(audioCtx.destination);
+      o.start();
+      o.stop(audioCtx.currentTime + dur);
+    }
+
+    function playWithEcho(id, dur=1.5, count=2, delay=0.4, decay=0.5) {
+      if(!audioCtx) return;
+      const d = getNodeData(id);
+      play(d.tone, d.timbre, dur);
+      for (let i=1; i<=count; i++) {
+        setTimeout(() => play(d.tone, d.timbre, dur, 0.15*Math.pow(decay,i)), delay*1000*i);
+      }
+    }
+
+    // Breath-FM tone for TLH (frequency-modulated breath)
+    function playBreathFM(baseFreq=182.0, breathRate=0.055, dur=10){
+      if(!audioCtx) return;
+
+      const carrier = audioCtx.createOscillator();
+      const mod = audioCtx.createOscillator();
+      const modGain = audioCtx.createGain();
+      const breath = audioCtx.createOscillator();
+      const breathGain = audioCtx.createGain();
+      const out = audioCtx.createGain();
+
+      // airy noise bed
+      const noise = audioCtx.createBufferSource();
+      const noiseGain = audioCtx.createGain();
+      const buffer = audioCtx.createBuffer(1, audioCtx.sampleRate*dur, audioCtx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for(let i=0;i<data.length;i++) data[i] = (Math.random()*2-1)*0.03;
+      noise.buffer = buffer;
+      noise.loop = true;
+      noiseGain.gain.value = 0.035;
+
+      carrier.type = 'sine';
+      carrier.frequency.value = baseFreq;
+      mod.type = 'sine';
+      mod.frequency.value = baseFreq * 0.5;
+      modGain.gain.value = 18;
+      mod.connect(modGain).connect(carrier.frequency);
+
+      breath.type = 'sine';
+      breath.frequency.value = breathRate;
+      breathGain.gain.value = 0.14;
+      breath.connect(breathGain).connect(out.gain);
+
+      carrier.connect(out);
+      noise.connect(noiseGain).connect(out);
+      out.connect(audioCtx.destination);
+
+      out.gain.setValueAtTime(0, audioCtx.currentTime);
+      out.gain.linearRampToValueAtTime(0.18, audioCtx.currentTime + dur*0.18);
+      out.gain.linearRampToValueAtTime(0, audioCtx.currentTime + dur);
+
+      carrier.start();
+      mod.start();
+      breath.start();
+      noise.start();
+
+      carrier.stop(audioCtx.currentTime + dur);
+      mod.stop(audioCtx.currentTime + dur);
+      breath.stop(audioCtx.currentTime + dur);
+      noise.stop(audioCtx.currentTime + dur);
+    }
+
+    // Full drone (unchanged, but made safe)
+    function startFullDrone(){
+      if(!audioCtx) return;
+      Object.entries(constellationData)
+        .map(([id]) => id)
+        .filter(id => getNodeData(id).breath)
+        .forEach((id) => {
+          const c = getNodeData(id);
+          const o = audioCtx.createOscillator();
+          const g = audioCtx.createGain();
+
+          o.type = "sine";
+          o.frequency.value = c.tone;
+
+          const lfo = audioCtx.createOscillator();
+          const lg = audioCtx.createGain();
+          lfo.type = "sine";
+          lfo.frequency.value = 0.2;
+          lg.gain.value = 1.5;
+          lfo.connect(lg).connect(o.frequency);
+
+          const b = audioCtx.createOscillator();
+          const bg = audioCtx.createGain();
+          b.type = "sine";
+          b.frequency.value = c.breath;
+          bg.gain.value = 0.04;
+          b.connect(bg).connect(g.gain);
+
+          g.gain.value = 0.08;
+          o.connect(g).connect(audioCtx.destination);
+          o.start();
+          lfo.start();
+          b.start();
+        });
+
+      // ghost pair shimmer
+      ["OGY","OGM"].forEach(id => {
+        const c = getNodeData(id);
+        const o = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        o.type = c.timbre;
+        o.frequency.value = c.tone;
+        g.gain.value = 0.0;
+        o.connect(g).connect(audioCtx.destination);
+        o.start();
+
+        const ghostFade = () => {
+          if (!tl.isActive()) return;
+          setTimeout(() => {
+            o.detune.setValueAtTime((Math.random()*30-15), audioCtx.currentTime);
+            gsap.to(g.gain, {value:0.12, duration:4, yoyo:true, repeat:1, onComplete:ghostFade});
+          }, (Math.random()*10+5)*1000);
+        };
+        ghostFade();
+      });
+
+      // TLH breath bed (quiet, persistent)
+      setTimeout(()=> playBreathFM(182.0, 0.055, 12), 1200);
+    }
+
+    // --- Ghost trails (leave spectral traces) ---
+    const ghostLayer = document.getElementById('ghost-layer');
+    function spawnGhostDot(x, y, color){
+      const c = document.createElementNS(svgNS, 'circle');
+      c.setAttribute('class', 'ghost-dot');
+      c.setAttribute('cx', x);
+      c.setAttribute('cy', y);
+      c.setAttribute('r', 10);
+      c.style.stroke = color;
+      ghostLayer.appendChild(c);
+      gsap.fromTo(c, {opacity: 0.0, attr:{r:10}}, {opacity: 0.35, attr:{r:24}, duration: 0.9, ease:'sine.out'});
+      gsap.to(c, {opacity: 0.0, duration: 2.2, ease:'sine.in', onComplete: ()=>c.remove()});
+    }
+
+    function spawnGhostPath(pathEl, color){
+      if(!pathEl) return;
+      const clone = pathEl.cloneNode(true);
+      clone.removeAttribute('id');
+      clone.setAttribute('class', 'ghost-path');
+      clone.style.stroke = color;
+      ghostLayer.appendChild(clone);
+      gsap.fromTo(clone, {opacity: 0.0}, {opacity: 0.22, duration: 0.5});
+      gsap.to(clone, {opacity: 0.0, duration: 3.0, ease:'sine.in', onComplete: ()=>clone.remove()});
+    }
+
+    // --- TLH bloom animation from dead-center ---
+    function tlhBloom(){
+      const g = document.getElementById('tlh');
+      if(!g) return;
+      gsap.fromTo(g,
+        {opacity: 0, scale: 0.25, transformOrigin:'center center'},
+        {opacity: 1, scale: 1.0, duration: 2.4, ease:'power3.out'}
+      );
+      gsap.to(g, {rotation: 360, duration: 50, repeat: -1, ease:'linear', transformOrigin:'center center'});
+
+      // TLH ghost pulse ring
+      const c = getNodeData('TLH');
+      spawnGhostDot(0,0,c.color);
+      playBreathFM(c.tone, c.breath || 0.055, 10);
+    }
+
+    // --- Animation Timeline ---
+    const tl = gsap.timeline({ paused: true, onComplete: () => { tl.play(0); } }); // Ouroboros loop
+    const getPath = (id) => document.getElementById(id).getAttribute("d");
+
+    // Phase 0: Stillness
+    tl.set("#dual-trees, #container", { opacity: 0.1 })
+      .set("#glyph-field text", { opacity: () => Math.random() * 0.05 })
+      .set(["#nodes > *", "#labels > *", "#person-paths > *", "#elohim-label", "#tlh"], { opacity: 0 })
+      .set(["#aurora"], { opacity: 0 });
+
+    // Phase 1: Genesis of Light
+    tl.addLabel("genesis")
+      .to("#genesis", { attr: { d: getPath("point") }, opacity: 1, duration: 1.5 })
+      .to("#genesis", { attr: { d: getPath("line") }, duration: 2, ease: "none" })
+      .to("#genesis", { attr: { d: getPath("triangle") }, duration: 2, ease: "none" })
+      .to("#genesis", { attr: { d: getPath("tetrahedron") }, duration: 2, ease: "none" })
+      .to("#genesis", { attr: { d: getPath("pentagram") }, duration: 2, ease: "none" })
+      .to("#genesis", { attr: { d: getPath("unicursal") }, duration: 2, ease: "none" });
+
+    // Phase 2: Ignition & The Chorus
+    tl.addLabel("ignition")
+      .to("#genesis", { opacity: 0, duration: 2 }, "ignition")
+      .to("#container, #dual-trees", { opacity: 1, duration: 3, ease: "power3.in" }, "ignition")
+      .call(startFullDrone, [], "ignition");
+
+    // TLH blooms right as ignition begins (bind to gate opening)
+    tl.call(tlhBloom, [], "ignition+=0.6");
+
+    const nodeOrder = ["BAM", "AR", "OGM", "OGY", "JAC", "ARR", "CRUZ"]; // TLH is separate center-glyph
+
+    nodeOrder.forEach((id, i) => {
+      const activationTime = `ignition+=${1.5 + i * 1}`;
+      tl.to([`#${id}`, `#${id}_label`], { opacity: 1, duration: 1 }, activationTime);
+
+      const path = document.getElementById(`path-${id}`);
+      if(path) {
+        const len = path.getTotalLength();
+        tl.fromTo(path,
+          {strokeDasharray: len, strokeDashoffset: len, opacity: 1},
+          {strokeDashoffset: 0, duration: 2.5, ease:"power1.inOut"},
+          activationTime
+        );
+        // ghost trail of path
+        tl.call(()=>spawnGhostPath(path, getNodeData(id).color), [], activationTime+"+=0.3");
+      }
+
+      // ghost dot at node
+      tl.call(()=>{
+        const d = getNodeData(id);
+        spawnGhostDot(d.x, d.y, d.color);
+      }, [], activationTime+"+=0.1");
+
+      // audio signatures
+      if(id === 'OGY') {
+        tl.call(()=>play(getNodeData('OGY').tone, getNodeData('OGY').timbre, 2.5), [], "<");
+        tl.to(`#${id}`, { opacity: 0.5, scale: 1.2, repeat: 3, yoyo: true, duration: 0.8, ease:"sine.inOut" }, "<");
+      }
+      else if(id === 'ARR') {
+        tl.call(()=>playWithEcho('ARR',1.5,1,0.8,0.4), [], "<");
+        tl.to(`#${id}`, {scale:1.2, repeat:1, yoyo:true, duration:0.8}, "<0.8");
+      }
+      else if(id === 'JAC') {
+        tl.call(()=>playWithEcho('JAC',1.5,3,0.3,0.6), [], "<");
+        tl.to(`#${id}`, {scale:1.1, repeat:3, yoyo:true, duration:0.3}, "<0.2");
+      }
+      else {
+        const d = getNodeData(id);
+        tl.call(()=>play(d.tone, d.timbre, 1.5), [], "<");
+      }
+
+      // bind TLH to gate: when CRUZ activates, open Elohim + aurora chorus
+      if(id === 'CRUZ') {
+        tl.to("#elohim-label", { opacity: 1, duration: 3 }, activationTime+"+=0.4");
+        tl.fromTo("#aurora", {opacity:0, scale:0.92}, {opacity:0.75, scale:1.08, duration:1.3, ease:'power2.out', yoyo:true, repeat:1}, activationTime+"+=0.6");
+      }
+    });
+
+    // Phase 3: Refraction Beyond the Veil
+    tl.addLabel("refraction", "+=3")
+      .to("#container path:nth-of-type(odd)",  { rotation: 360,  transformOrigin: "center center", duration: 60, ease: "linear", repeat: -1 }, "refraction")
+      .to("#container path:nth-of-type(even)", { rotation: -360, transformOrigin: "center center", duration: 60, ease: "linear", repeat: -1 }, "refraction");
+
+    const rippleMap = [
+      {id:"halo1", src:"BAM"}, {id:"halo2", src:"AR"}, {id:"halo3", src:"OGM"},
+      {id:"halo4", src:"OGY"}, {id:"halo5", src:"JAC"}, {id:"halo6", src:"ARR"}, {id:"halo7", src:"CRUZ"}
+    ];
+
+    rippleMap.forEach((r, i) => {
+      const d = getNodeData(r.src);
+      tl.fromTo("#" + r.id,
+        { opacity: 0, attr: { r: 50 }, stroke: d.color },
+        { opacity: 0.7, attr: { r: 250 }, duration: (d.breath ? 4 / (d.breath * 100) : 3), ease: "sine.out",
+          onStart: () => play(d.tone, d.timbre, 2)
+        },
+        `refraction+=${i * 0.5}`
+      );
+      tl.to("#" + r.id, { opacity: 0, duration: 2.5, ease: "sine.in" }, "<=70%");
+    });
+
+    // TLH central pillar sequence in refraction: Gevurah -> Tiferet -> Yesod (lighting order)
+    tl.call(()=>{
+      // quick highlights on the embedded TLH glyph parts
+      const g = document.getElementById('tlh');
+      const pulse = (sel, color) => {
+        const el = g.querySelector(sel);
+        if(!el) return;
+        gsap.fromTo(el, {opacity: 0.4}, {opacity: 1.0, duration: 0.35, yoyo:true, repeat:3});
+        spawnGhostDot(0,0,color);
+      };
+      pulse('.tlh-gev', 'rgba(179,0,0,0.9)');
+      playBreathFM(182.0, 0.055, 6);
+      setTimeout(()=>pulse('.tlh-tif', 'rgba(255,215,0,0.9)'), 650);
+      setTimeout(()=>pulse('.tlh-yes', 'rgba(180,140,255,0.9)'), 1300);
+    }, [], 'refraction+=1.6');
+
+    // Phase 4: Ouroboros return
+    tl.to(["#nodes > *", "#labels > *", "#elohim-label", "#person-paths > *"], {opacity: 0, duration: 4}, "+=8");
+    tl.to(["#tlh"], {opacity: 0.0, duration: 4}, "<");
+
+    // --- Start ---
+    info.addEventListener("click", () => {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        audioCtx.resume();
+        info.textContent = "Ritual in Progress...";
+      }
+      tl.play(0);
+    }, { once: true });
+
+  </script></body>
+</html>
