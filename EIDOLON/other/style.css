@@ -1,0 +1,10 @@
+
+
+/* Viewer v4 enhancements */
+#verify { padding: 8px; background: rgba(255,255,255,0.02); border: 1px solid rgba(247,183,255,0.15); border-radius: 12px; margin-top: 12px; }
+#verify pre { white-space: pre-wrap; font-size: 12px; opacity: 0.9; }
+.svgbox svg { max-width: 100%; height: auto; display: block; background: #0b0b12; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 8px; }
+select.preset { width: 100%; padding: 6px; border-radius: 8px; border: 1px solid rgba(247,183,255,0.3); background: #130f1b; color: #f0eaff; margin-top: 6px;}
+#depthRow { display:flex; gap:8px; align-items:center; margin-top:8px;}
+.depthVal { font-size: 12px; opacity: .8; }
+    

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="100%" height="100%" fill="black"/>
+  <circle cx="200" cy="200" r="120" fill="none" stroke="#8A2BE2" stroke-width="4"/>
+  <text x="200" y="210" font-family="monospace" font-size="24" text-anchor="middle" fill="#8A2BE2">FLAME</text>
+</svg>

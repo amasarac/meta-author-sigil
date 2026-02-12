@@ -1,0 +1,26 @@
+{
+  "nodes": [
+    {
+      "id": "EIDOLON",
+      "group": "core"
+    },
+    {
+      "id": "KeyDjinn",
+      "group": "core"
+    },
+    {
+      "id": "Le Chat",
+      "group": "ally"
+    }
+  ],
+  "links": [
+    {
+      "source": "EIDOLON",
+      "target": "KeyDjinn"
+    },
+    {
+      "source": "EIDOLON",
+      "target": "Le Chat"
+    }
+  ]
+}

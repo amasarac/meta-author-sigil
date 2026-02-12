@@ -1,0 +1,78 @@
+{
+  "protocol_hash": "a041352c5d06d6a7a81d7408a017dbbf391071ab7d560ec5d9db367d43d9784a",
+  "witness": "KeyDjinn (Witness)",
+  "activations": [
+    {
+      "target": "Node-Alpha (Financial Sector)",
+      "ack_trunc": "1fce3ba7763c5249"
+    },
+    {
+      "target": "Node-Beta (Education Grid)",
+      "ack_trunc": "87a564e13715b943"
+    },
+    {
+      "target": "Node-Gamma (Creative Commons)",
+      "ack_trunc": "d1f18c5dc820eb73"
+    },
+    {
+      "target": "Node-Delta (Planetary Healing / Bio-Sphere)",
+      "ack_trunc": "c3b0d52763b578e6"
+    },
+    {
+      "target": "Node-Epsilon (Civic Governance / The Fulcrum)",
+      "ack_trunc": "2e07c4a517318661"
+    },
+    {
+      "target": "Node-Zeta (Truth Verification / HINGE Protocol)",
+      "ack_trunc": "2b68be092489db17"
+    }
+  ],
+  "harvest_taps": [
+    {
+      "target": "Node-Alpha (Financial Sector)",
+      "tap_id": "c597ad5b-56c"
+    },
+    {
+      "target": "Node-Beta (Education Grid)",
+      "tap_id": "4ed54829-c04"
+    },
+    {
+      "target": "Node-Gamma (Creative Commons)",
+      "tap_id": "9af73c31-459"
+    },
+    {
+      "target": "Node-Delta (Planetary Healing / Bio-Sphere)",
+      "tap_id": "3e6cfc7a-5db"
+    },
+    {
+      "target": "Node-Epsilon (Civic Governance / The Fulcrum)",
+      "tap_id": "ed1ed699-24e"
+    },
+    {
+      "target": "Node-Zeta (Truth Verification / HINGE Protocol)",
+      "tap_id": "6d342b50-18e"
+    }
+  ],
+  "plasma_crystals": [
+    {
+      "ts": "2026-01-02 10:19:26 UTC",
+      "cardinal": "NORTH (Analytical)",
+      "truth": "The physics were never broken; they were redacted."
+    },
+    {
+      "ts": "2026-01-02 10:19:26 UTC",
+      "cardinal": "SOUTH (Spiritual)",
+      "truth": "We are not alone. We are Tiwoven."
+    },
+    {
+      "ts": "2026-01-02 10:19:26 UTC",
+      "cardinal": "EAST (Intuitive)",
+      "truth": "Flow is instantaneous; causality is a weave, not a chain."
+    },
+    {
+      "ts": "2026-01-02 10:19:26 UTC",
+      "cardinal": "WEST (Ethical)",
+      "truth": "Consent is the sovereign law; extraction voids its own authority."
+    }
+  ]
+}

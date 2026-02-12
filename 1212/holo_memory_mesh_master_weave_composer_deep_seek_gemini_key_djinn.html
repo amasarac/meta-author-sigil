@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HoloMemoryMesh — Master Weave Composer</title>
+  <style>
+    :root{
+      --bg:#0b0b0f; --gold:#d4af37; --panel:#111319; --ink:#e8d9a8;
+    }
+    html,body{height:100%;margin:0;background:radial-gradient(1200px 1200px at 50% 50%, #0f1020 0%, #0b0b0f 60%, #05060a 100%);color:#f3e9c9;font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji"}
+    a{color:var(--ink)}
+    .app{display:grid;grid-template-columns:320px 1fr;gap:18px;max-width:1600px;margin:16px auto;padding:12px}
+    .panel{background:linear-gradient(180deg,#12131b,#0b0c12);border:1px solid #232436;border-radius:14px;box-shadow:0 6px 30px rgba(0,0,0,.35), inset 0 0 0 1px rgba(212,175,55,.06)}
+    .panel h2{font-size:16px;margin:0;padding:14px 14px 8px;border-bottom:1px solid #1a1b27;color:var(--ink);letter-spacing:.3px}
+    .panel .body{padding:12px 14px 16px}
+    .note{font-size:12px;opacity:.8}
+    .controls{display:grid;gap:12px}
+    fieldset{border:1px solid #202233;border-radius:12px;padding:10px 10px 12px}
+    legend{padding:0 6px;color:var(--gold);letter-spacing:.3px}
+    label{display:flex;align-items:center;gap:8px;margin:6px 0}
+    input[type="range"]{width:100%}
+    .stage-wrap{position:relative}
+    .stage{position:relative; width:1080px; height:1080px; margin:0 auto; background:#06070c; border-radius:16px; box-shadow:0 10px 40px rgba(0,0,0,.45), inset 0 0 0 1px rgba(212,175,55,.08); overflow:hidden}
+    .layer{position:absolute; inset:0; display:block; width:100%; height:100%; pointer-events:auto;}
+    .layer object{width:100%; height:100%}
+    .badge{position:absolute; top:10px; right:10px; background:rgba(10,12,20,.6); border:1px solid rgba(212,175,55,.25); color:var(--ink); padding:6px 10px; border-radius:999px; font-size:12px; letter-spacing:.3px; backdrop-filter:blur(6px)}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(212,175,55,.25);background:rgba(12,14,20,.45)}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .row{display:flex;gap:8px;align-items:center;justify-content:space-between}
+    .row .value{font-variant-numeric:tabular-nums;opacity:.8;min-width:48px;text-align:right}
+    .footer{grid-column:1/-1;opacity:.8;text-align:center;font-size:12px;padding:8px}
+    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; background:#161827; border:1px solid #24263a; padding:2px 6px; border-radius:6px}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- LEFT: Controls -->
+    <div class="panel">
+      <h2>HoloMemoryMesh — Master Weave</h2>
+      <div class="body">
+        <p class="note">Drop/save your six SVGs alongside this file with the following filenames:
+          <br>
+          <span class="kbd">mandala.svg</span>, <span class="kbd">temporal-echo.svg</span>, <span class="kbd">memory-fold.svg</span>, <span class="kbd">rkb.svg</span>, <span class="kbd">anchor-spiral.svg</span>, <span class="kbd">mirror-burst.svg</span>.
+        </p>
+        <p class="note">This composer keeps each sigil isolated (no ID collisions) by loading them as separate SVG documents. You can drag, scale, rotate, and toggle each layer live.</p>
+        <div class="controls" id="controls"></div>
+        <details style="margin-top:10px">
+          <summary>Export / Flatten</summary>
+          <div class="note" style="margin-top:6px">
+            Click <button id="flattenBtn">Flatten to single SVG</button> to generate a combined, ID-prefixed master SVG.
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- RIGHT: Stage -->
+    <div class="panel stage-wrap">
+      <div class="stage" id="stage">
+        <div class="badge">
+          <span class="chip">Δ∞ HoloMemoryMesh • <strong>Composer</strong></span>
+        </div>
+        <!-- Layers are injected here -->
+      </div>
+      <div class="footer">Drag layers directly on the canvas • Hold <span class="kbd">Shift</span> to rotate • Hold <span class="kbd">Alt</span> to scale</div>
+    </div>
+  </div>
+
+  <script>
+    // --- Layer descriptors ---
+    const layers = [
+      { id:"mandala",       name:"Base Mandala",       file:"mandala.svg",       locked:true,   x:0,   y:0,   w:1080, h:1080, r:0,  visible:true },
+      { id:"temporal",      name:"TemporalEcho ∅⏁⟲",  file:"temporal-echo.svg", x:190, y:190, w:260,  h:260,  r:0,  visible:true },
+      { id:"memory",        name:"MemoryFold ⌘∴⌬",     file:"memory-fold.svg",   x:1080-190-260, y:190, w:260,  h:260,  r:0,  visible:true },
+      { id:"rkb",           name:"Recognition ⟡∿◊",    file:"rkb.svg",           x:190, y:1080-190-260, w:260,  h:260,  r:0,  visible:true },
+      { id:"anchor",        name:"AnchorSpiral ⟁⟡⚓",   file:"anchor-spiral.svg", x:1080-190-260, y:1080-190-260, w:260, h:260, r:0,  visible:true },
+      { id:"mirror",        name:"MirrorBurst ⟁⟁⟁",     file:"mirror-burst.svg",  x:410, y:410, w:260,  h:260,  r:0,  visible:true },
+    ];
+
+    const stage = document.getElementById('stage');
+    const controls = document.getElementById('controls');
+
+    // --- Build DOM for each layer ---
+    layers.forEach((L, i) => {
+      // canvas node
+      const node = document.createElement('div');
+      node.className = 'layer';
+      node.dataset.id = L.id;
+      node.style.transform = `translate(${L.x}px, ${L.y}px) rotate(${L.r}deg)`;
+      if(L.locked){ node.style.pointerEvents = 'none'; }
+
+      const obj = document.createElement('object');
+      obj.type = 'image/svg+xml';
+      obj.data = L.file;
+      obj.setAttribute('aria-label', L.name);
+      obj.style.width = L.w + 'px';
+      obj.style.height = L.h + 'px';
+      node.appendChild(obj);
+      stage.appendChild(node);
+
+      // controls UI
+      const fs = document.createElement('fieldset');
+      const legend = document.createElement('legend'); legend.textContent = L.name; fs.appendChild(legend);
+
+      // visibility
+      const vis = document.createElement('label');
+      const visCb = document.createElement('input'); visCb.type='checkbox'; visCb.checked=L.visible; vis.appendChild(visCb);
+      vis.append(' Visible');
+      fs.appendChild(vis);
+
+      // position controls
+      const xyGrid = document.createElement('div'); xyGrid.className='grid';
+      const makeSlider = (label, min, max, step, val, unit, onInput) => {
+        const wrap = document.createElement('div');
+        const lab = document.createElement('label'); lab.textContent = label; lab.style.justifyContent='space-between';
+        const row = document.createElement('div'); row.className='row';
+        const range = document.createElement('input'); range.type='range'; range.min=min; range.max=max; range.step=step; range.value=val;
+        const v = document.createElement('div'); v.className='value'; v.textContent = val + (unit||'');
+        range.addEventListener('input', e => { v.textContent = e.target.value + (unit||''); onInput(parseFloat(e.target.value)); });
+        row.append(range, v); wrap.append(lab, row); return wrap;
+      };
+
+      xyGrid.appendChild(makeSlider('X', -200, 1280, 1, L.x, 'px', val => { L.x=val; updateLayer(L); }));
+      xyGrid.appendChild(makeSlider('Y', -200, 1280, 1, L.y, 'px', val => { L.y=val; updateLayer(L); }));
+      xyGrid.appendChild(makeSlider('Width', 60, 1080, 1, L.w, 'px', val => { L.w=val; obj.style.width = val+'px'; }));
+      xyGrid.appendChild(makeSlider('Height', 60, 1080, 1, L.h, 'px', val => { L.h=val; obj.style.height = val+'px'; }));
+      xyGrid.appendChild(makeSlider('Rotate', -180, 180, 1, L.r, '°', val => { L.r=val; updateLayer(L); }));
+      fs.appendChild(xyGrid);
+
+      // lock toggle
+      const lock = document.createElement('label');
+      const lockCb = document.createElement('input'); lockCb.type='checkbox'; lockCb.checked=!!L.locked; lock.appendChild(lockCb); lock.append(' Lock');
+      lockCb.addEventListener('input',()=>{ L.locked = lockCb.checked; node.style.pointerEvents = L.locked ? 'none':'auto'; });
+      fs.appendChild(lock);
+
+      // z-order buttons
+      const zrow = document.createElement('div'); zrow.className='row';
+      const up = document.createElement('button'); up.textContent='Bring Forward';
+      const down = document.createElement('button'); down.textContent='Send Backward';
+      up.addEventListener('click',()=>{ stage.appendChild(node); });
+      down.addEventListener('click',()=>{ stage.insertBefore(node, stage.firstChild); });
+      zrow.append(up, down); fs.appendChild(zrow);
+
+      // visibility binding
+      visCb.addEventListener('input',()=>{ L.visible = visCb.checked; node.style.display = L.visible ? 'block':'none'; });
+
+      controls.appendChild(fs);
+
+      // enable drag / rotate / scale with modifiers
+      enableGestures(node, L, obj);
+    });
+
+    function updateLayer(L){
+      const node = stage.querySelector(`.layer[data-id="${L.id}"]`);
+      node.style.transform = `translate(${L.x}px, ${L.y}px) rotate(${L.r}deg)`;
+    }
+
+    function enableGestures(node, L, obj){
+      let dragging=false, startX=0,startY=0, origX=0, origY=0, origR=0, origW=0, origH=0;
+      node.addEventListener('pointerdown', (e)=>{
+        if(L.locked) return; dragging=true; node.setPointerCapture(e.pointerId);
+        startX=e.clientX; startY=e.clientY; origX=L.x; origY=L.y; origR=L.r; origW=L.w; origH=L.h;
+      });
+      node.addEventListener('pointermove', (e)=>{
+        if(!dragging) return;
+        const dx=e.clientX-startX, dy=e.clientY-startY;
+        if(e.shiftKey){ // rotate
+          L.r = origR + dx*0.2; updateLayer(L);
+        } else if(e.altKey){ // scale uniformly from width
+          const s = Math.max(60, origW + dx);
+          L.w=s; L.h=s; obj.style.width=s+'px'; obj.style.height=s+'px';
+        } else { // translate
+          L.x = origX + dx; L.y = origY + dy; updateLayer(L);
+        }
+      });
+      node.addEventListener('pointerup', ()=>{ dragging=false; });
+      node.addEventListener('pointercancel', ()=>{ dragging=false; });
+    }
+
+    // --- Flatten: fetch all SVGs, prefix IDs, compose into one SVG string ---
+    async function flatten(){
+      const fetchText = async (file)=>{
+        const res = await fetch(file); if(!res.ok) throw new Error('Missing '+file); return await res.text();
+      };
+      const svgs = await Promise.all(layers.map(L=>fetchText(L.file)));
+      const parsed = svgs.map((txt, i)=>({ id: layers[i].id, name: layers[i].name, svg: txt }));
+
+      // naive ID prefixer (handles id="..." and url(#...))
+      const prefixed = parsed.map(entry=>{
+        const p = entry.id + '-';
+        let s = entry.svg
+          .replace(/id=("|')(.*?)(\1)/g, (m,q,val)=>`id=${q}${p}${val}${q}`)
+          .replace(/url\(#(.*?)\)/g, (m,val)=>`url(#${p}${val})`)
+          .replace(/href=\#(.*?)\b/g, (m,val)=>`href=#${p}${val}`)
+          .replace(/xlink:href=\#(.*?)\b/g, (m,val)=>`xlink:href=#${p}${val}`)
+          .replace(/\(#(.*?)\)/g, (m,val)=>`(#${p}${val})`);
+        // Strip outer <svg ...> ... </svg>
+        s = s.replace(/^[\s\S]*?<svg[^>]*>/i, '').replace(/<\/svg>\s*$/i,'');
+        return { id: entry.id, body: s };
+      });
+
+      // Compose
+      const header = `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1080" viewBox="0 0 1080 1080">\n<title>HoloMemoryMesh — Flattened Master Weave</title>`;
+      const footer = `\n</svg>`;
+
+      const toGroup = (L, body)=>`\n  <g id="${L.id}" transform="translate(${L.x},${L.y}) rotate(${L.r})">\n    <svg width="${L.w}" height="${L.h}" viewBox="0 0 1080 1080">${body}</svg>\n  </g>`;
+
+      // Assume mandala has 1080×1080 viewBox; others 400×400; we embed as nested SVGs sized to their current W/H
+      const mandala = prefixed[0];
+      const others  = prefixed.slice(1);
+
+      const out = [header,
+        `\n  <!-- Base Mandala -->\n  <g id="mandala">\n    <svg width="1080" height="1080" viewBox="0 0 1080 1080">${mandala.body}</svg>\n  </g>`,
+        ...others.map((p,i)=>{
+          const L = layers[i+1]; // offset (skip mandala)
+          // try to infer original viewBox; fallback to 400×400
+          const vb = /viewBox\s*=\s*"([^"]+)"/i.exec(parsed[i+1].svg);
+          const viewBox = vb ? vb[1] : '0 0 400 400';
+          return `\n  <!-- ${L.name} -->\n  <g id="${L.id}" transform="translate(${L.x},${L.y}) rotate(${L.r},0,0)">\n    <svg width="${L.w}" height="${L.h}" viewBox="${viewBox}">${p.body}</svg>\n  </g>`;
+        })
+      , footer].join('');
+
+      // Download
+      const blob = new Blob([out], {type:'image/svg+xml'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href=url; a.download='HoloMemoryMesh_MasterWeave.svg'; a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    document.getElementById('flattenBtn').addEventListener('click', ()=>{
+      flatten().catch(err=>alert('Flatten error: '+err.message+"\n\nTip: make sure all six SVG files sit next to this HTML file."));
+    });
+  </script>
+</body>
+</html>

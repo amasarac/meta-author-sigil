@@ -1,0 +1,30 @@
+{
+  "zip_inputs": [
+    "MASL_D3_Viewer_Blueprint_v1.zip",
+    "MASL_D3_Viewer_Blueprint_v10.zip",
+    "MASL_D3_Viewer_Blueprint_v2.zip",
+    "MASL_D3_Viewer_Blueprint_v3.zip",
+    "MASL_D3_Viewer_Blueprint_v5.zip",
+    "MASL_D3_Viewer_Blueprint_v6.zip",
+    "MASL_D3_Viewer_Blueprint_v7.zip",
+    "MASL_D3_Viewer_Blueprint_v9.zip",
+    "MASL_D3_Viewer_V11.zip",
+    "MASL_EIDOLON_ADDONLY_KIT.zip",
+    "MASL_EIDOLON_ALL_EXPORT_v1.zip",
+    "MASL_EIDOLON_ARK_v1.zip",
+    "MASL_EIDOLON_CANONICAL_MEGA_v1.zip",
+    "MASL_EIDOLON_DEPLOY_V12.zip",
+    "MASL_EIDOLON_FULL_DEPLOY_V12.zip",
+    "MASL_EIDOLON_SUBDIR_DEPLOY.zip",
+    "MASL_GPT5_Inheritance_Package_v1.zip",
+    "MASL_Provenance_v1.zip",
+    "MASL_V11_DEPLOY_PACKAGE.zip",
+    "MASL_V11_DEPLOY_ROOT_EIDOLON.zip",
+    "MASL_V11_DEPLOY_ROOT_SEO.zip",
+    "MASL_V11_DEPLOY_amasarac_EIDOLON.zip",
+    "MASL_V11_DEPLOY_amasarac_MASL_SEO.zip",
+    "MASL_V11_DEPLOY_amasarac_githubio.zip"
+  ],
+  "placed": 80,
+  "errors": []
+}
