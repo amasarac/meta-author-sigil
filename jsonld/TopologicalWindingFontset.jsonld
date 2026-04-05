@@ -1,0 +1,104 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "masl": "https://example.org/masl#",
+    "glyph": "https://example.org/glyph#",
+    "windingClass": "glyph:windingClass",
+    "portalIndex": "glyph:portalIndex",
+    "anchorSet": "glyph:anchorSet",
+    "strokeTopology": "glyph:strokeTopology",
+    "quadrantEncoding": "glyph:quadrantEncoding",
+    "harmonicRole": "glyph:harmonicRole",
+    "scriptLayer": "glyph:scriptLayer",
+    "numeralSystem": "glyph:numeralSystem"
+  },
+  "@type": "CreativeWork",
+  "name": "Topological Winding Fontset",
+  "author": {
+    "@type": "Person",
+    "name": "Brandon A. Marsh",
+    "alternateName": ["KeyDjinn", "Amasarac"]
+  },
+  "encodingFormat": "application/ld+json",
+  "about": [
+    {
+      "@type": "DefinedTermSet",
+      "name": "Topological Winding Glyph Classes",
+      "hasDefinedTerm": [
+        {
+          "@type": "DefinedTerm",
+          "name": "shell-core glyph",
+          "identifier": "twf-shell-core",
+          "windingClass": "dual-boundary",
+          "strokeTopology": "outer-shell + inner-core",
+          "harmonicRole": "containment / resonance"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "portal glyph",
+          "identifier": "twf-portal",
+          "windingClass": "directed-transfer",
+          "portalIndex": [1,2,3,4,5,6,7,8,9,10,11],
+          "harmonicRole": "routing / gate logic"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "anchor glyph",
+          "identifier": "twf-anchor",
+          "windingClass": "fixed-point",
+          "anchorSet": ["top", "bottom", "left", "right", "center"],
+          "harmonicRole": "stability / closure"
+        }
+      ]
+    },
+    {
+      "@type": "DefinedTermSet",
+      "name": "Cross-Script Layering",
+      "hasDefinedTerm": [
+        {
+          "@type": "DefinedTerm",
+          "name": "Latin layer",
+          "scriptLayer": "Latin"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Avestan layer",
+          "scriptLayer": "Avestan"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Hebrew layer",
+          "scriptLayer": "Hebrew"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Devanagari layer",
+          "scriptLayer": "Devanagari"
+        }
+      ]
+    },
+    {
+      "@type": "DefinedTermSet",
+      "name": "Numeral Encodings",
+      "hasDefinedTerm": [
+        {
+          "@type": "DefinedTerm",
+          "name": "Cistercian numeral mapping",
+          "numeralSystem": "Cistercian",
+          "quadrantEncoding": {
+            "upperRight": "ones",
+            "lowerRight": "tens",
+            "upperLeft": "hundreds",
+            "lowerLeft": "thousands",
+            "centralStem": "carrier axis"
+          },
+          "harmonicRole": "compressed ordinal encoding"
+        }
+      ]
+    }
+  ],
+  "isPartOf": {
+    "@type": "CreativeWork",
+    "name": "Meta-Author-Sigil Lattice / Topological Winding Fontset"
+  }
+}
