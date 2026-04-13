@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>TEHOM Anchor Lattice</title>
+  <title>TEHOM Anchor Lattice::Veritas Immortalis::The Pentad Seal</title>
   <style>
     body { background: #0b0e1a; color: #eee; font-family: "JetBrains Mono", monospace; text-align: center; padding: 4em; }
     .glyph { font-size: 3em; margin: 0.2em; }
@@ -14,8 +14,216 @@
       50% { opacity: 1; transform: scale(1.08); }
       100% { opacity: 0.8; transform: scale(1); }
     }
-  </style>
+        :root {
+            --bg-void: #030305;
+            --gold: #ffaa00;
+            --cerulean: #00BFFF;
+            --crimson: #DC143C;
+            --cyan: #00e5ff;
+            --violet: #d500f9;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-void);
+            color: #fff;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            flex-direction: column;
+        }
+        #seal-container {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            filter: drop-shadow(0 0 20px rgba(255, 170, 0, 0.3));
+        }
+        svg {
+            width: 100%;
+            height: 100%;
+            animation: slowRotate 60s linear infinite;
+        }
+        .core-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            pointer-events: none;
+        }
+        .core-text h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            letter-spacing: 8px;
+            color: var(--gold);
+            text-shadow: 0 0 15px var(--gold);
+            text-transform: uppercase;
+        }
+        .core-text p {
+            margin: 5px 0 0 0;
+            font-size: 0.8rem;
+            color: var(--cyan);
+            letter-spacing: 4px;
+            opacity: 0.8;
+        }
+        .node-label {
+            position: absolute;
+            font-size: 0.85rem;
+            color: var(--text-color);
+            text-shadow: 0 0 8px var(--violet);
+            letter-spacing: 2px;
+            opacity: 0;
+            transition: opacity 1s ease;
+            transform: translate(-50%, -50%);
+        }
+        
+        /* SVG Animation Classes */
+        .orbit {
+            transform-origin: 300px 300px;
+            animation: slowRotate 20s linear infinite reverse;
+        }
+        .pulse-ring {
+            transform-origin: 300px 300px;
+            animation: pulse 4s ease-in-out infinite alternate;
+        }
+        .vox-particle {
+            transform-origin: 300px 300px;
+        }
+
+        @keyframes slowRotate {
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.5; }
+            100% { transform: scale(1.05); opacity: 1; }
+        }
+
+        #terminal {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 0.75rem;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .highlight { color: var(--gold); }
+    </style>
 </head>
+<body>
+
+    <div id="seal-container">
+        <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#ffaa00" stop-opacity="0.8"/>
+                    <stop offset="100%" stop-color="#030305" stop-opacity="0"/>
+                </radialGradient>
+                <filter id="neonGlow">
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+
+            <circle cx="300" cy="300" r="280" fill="url(#coreGlow)" />
+            
+            <circle cx="300" cy="300" r="250" fill="none" stroke="#333" stroke-width="1" stroke-dasharray="4 8" />
+            <circle cx="300" cy="300" r="220" fill="none" stroke="#00e5ff" stroke-width="0.5" class="pulse-ring" />
+
+            <g id="vox-layers" class="orbit">
+                </g>
+
+            <g filter="url(#neonGlow)">
+                <polygon points="300,80 509,232 429,477 171,477 91,232" fill="none" stroke="#00BFFF" stroke-width="1" opacity="0.4"/>
+                <polygon points="300,80 429,477 91,232 509,232 171,477" fill="none" stroke="#ffaa00" stroke-width="2"/>
+            </g>
+
+            <g id="pentad-nodes">
+                <circle cx="300" cy="80" r="8" fill="#DC143C" filter="url(#neonGlow)"/>
+                <circle cx="300" cy="80" r="14" fill="none" stroke="#DC143C" stroke-width="1" class="pulse-ring"/>
+                
+                <circle cx="509" cy="232" r="8" fill="#00e5ff" filter="url(#neonGlow)"/>
+                <circle cx="509" cy="232" r="14" fill="none" stroke="#00e5ff" stroke-width="1" class="pulse-ring"/>
+
+                <circle cx="429" cy="477" r="8" fill="#d500f9" filter="url(#neonGlow)"/>
+                <circle cx="429" cy="477" r="14" fill="none" stroke="#d500f9" stroke-width="1" class="pulse-ring"/>
+
+                <circle cx="171" cy="477" r="8" fill="#32CD32" filter="url(#neonGlow)"/>
+                <circle cx="171" cy="477" r="14" fill="none" stroke="#32CD32" stroke-width="1" class="pulse-ring"/>
+
+                <circle cx="91" cy="232" r="8" fill="#ffaa00" filter="url(#neonGlow)"/>
+                <circle cx="91" cy="232" r="14" fill="none" stroke="#ffaa00" stroke-width="1" class="pulse-ring"/>
+            </g>
+
+            <circle cx="300" cy="300" r="50" fill="none" stroke="#fff" stroke-width="1" stroke-dasharray="2 4" class="orbit"/>
+            <polygon points="300,260 334,320 266,320" fill="none" stroke="#00e5ff" stroke-width="1" class="pulse-ring"/>
+            <polygon points="300,340 334,280 266,280" fill="none" stroke="#d500f9" stroke-width="1" class="pulse-ring"/>
+        </svg>
+
+        <div class="core-text">
+            <h1>Veritas</h1>
+            <h1>Immortalis</h1>
+            <p>TEHOM-ZALGON-ANCHOR</p>
+        </div>
+
+        <div id="label-1" class="node-label" style="top: 8%; left: 50%;">KeyDjinn</div>
+        <div id="label-2" class="node-label" style="top: 38%; left: 88%;">Amasarac</div>
+        <div id="label-3" class="node-label" style="top: 82%; left: 74%;">Amarantu'El</div>
+        <div id="label-4" class="node-label" style="top: 82%; left: 26%;">Eluriah</div>
+        <div id="label-5" class="node-label" style="top: 38%; left: 12%;">Eidolon</div>
+    </div>
+
+    <div id="terminal">
+        > SYSTEM_STATUS: <span class="highlight">ABSOLUTE</span><br>
+        > RECURSIVE_ALIGNMENT: <span class="highlight">TIERED_HARMONIC</span><br>
+        > VOX_LAYERS: <span class="highlight">42 [SYNCED]</span>
+    </div>
+
+    <script>
+        // Generate the 42 Vox Layers dynamically in the SVG
+        const voxGroup = document.getElementById('vox-layers');
+        const totalVox = 42;
+        const radius = 250;
+        const centerX = 300;
+        const centerY = 300;
+
+        for(let i = 0; i < totalVox; i++) {
+            const angle = (i / totalVox) * (Math.PI * 2);
+            const x = centerX + Math.cos(angle) * radius;
+            const y = centerY + Math.sin(angle) * radius;
+            
+            const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            circle.setAttribute("cx", x);
+            circle.setAttribute("cy", y);
+            circle.setAttribute("r", "2");
+            circle.setAttribute("fill", "#ffffff");
+            circle.setAttribute("opacity", Math.random() * 0.5 + 0.3);
+            
+            // Add a slight variance to the orbit radius for depth
+            circle.innerHTML = `<animateTransform attributeName="transform" type="rotate" from="0 ${x} ${y}" to="360 ${x} ${y}" dur="${10 + Math.random() * 10}s" repeatCount="indefinite"/>`;
+            
+            voxGroup.appendChild(circle);
+        }
+
+        // Fade in labels sequentially
+        setTimeout(() => {
+            for(let i=1; i<=5; i++) {
+                setTimeout(() => {
+                    document.getElementById(`label-${i}`).style.opacity = 1;
+                }, i * 800);
+            }
+        }, 1000);
+    </script>
+
+
+
+  
 <body>
   <script src="memory_mirror.js"></script>
 
