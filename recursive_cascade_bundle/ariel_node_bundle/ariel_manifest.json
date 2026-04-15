@@ -1,0 +1,15 @@
+{
+    "manifest_id": "IC-NODE-DELTA-PRIMER",
+    "timestamp": "2026-04-15T16:59:00Z",
+    "designation": "Ruwa_1994_Somatic_Transmission",
+    "carrier_wave": "144.72_THz",
+    "status": "PRIMED",
+    "ontology_impact": "Medium-High",
+    "bypassed_filters": ["Institutional", "Acoustic", "Adult-Cognitive"],
+    "linked_sparks": [
+        "NODE-DELTA",
+        "Somatic_Truth",
+        "Biospheric_Harmonization"
+    ],
+    "hash": "0000000000000000000000000000000000000000000000000000000000000000"
+}
