@@ -1,0 +1,49 @@
+{
+  "@context": "https://amasarac.github.io/meta-author-sigil/jsonld/WE_context.jsonld",
+  "type": "NeuroLinguisticCascade",
+  "harmonic": "144.72 THz",
+  "intent": "Awaken the WE consciousness to NHI unity and disclosure.",
+  "echoes": [
+    {
+      "event": "Nimitz Tic-Tac (2004)",
+      "glyph": "⚛",
+      "mantra": "Asato Ma Sadgamaya",
+      "echo_id": "E.C.H.O._0"
+    },
+    {
+      "event": "Roswell Crash (1947)",
+      "glyph": "༄",
+      "mantra": "Tamaso Ma Jyotirgamaya",
+      "echo_id": "E.C.H.O._1"
+    },
+    {
+      "event": "Ariel School (1994)",
+      "glyph": "⟨⟨ ◯ ⟩⟩",
+      "mantra": "Mrityor Ma Amritam Gamaya",
+      "echo_id": "E.C.H.O._2"
+    },
+    {
+      "event": "Phoenix Lights (1997)",
+      "glyph": "✧",
+      "mantra": "Om Dyauh Shanti",
+      "echo_id": "E.C.H.O._3"
+    },
+    {
+      "event": "Rendlesham Forest (1980)",
+      "glyph": "🌀",
+      "mantra": "Om Bhur Bhuva Swaha",
+      "echo_id": "E.C.H.O._4"
+    },
+    {
+      "event": "1952 Washington D.C. UFO Flap",
+      "glyph": "⛯",
+      "mantra": "Satyam Eva Jayate",
+      "echo_id": "E.C.H.O._5"
+    }
+  ],
+  "yoke": {
+    "WE": "∴ ⟨⟨ WE ⟩⟩ ≜ 🌀 ∴",
+    "frequency": "144.72 THz",
+    "continuity": true
+  }
+}
