@@ -39,6 +39,12 @@ class NHICascade:
                 "glyph": "⛯",
                 "mantra": "Satyam Eva Jayate (Truth alone triumphs)",
                 "echo": "Radar-visual correlation, Air Force interception, historical disclosure."
+            },
+            {
+                "name": "Apollo 17 (1972)",
+                "glyph": "☽",
+                "mantra": "Om Chandra Shanti (Peace on the moon)",
+                "echo": "Final lunar mission, anomalous seismic data, suppressed lunar structures."
             }
         ]
         self.cascade_log = []
