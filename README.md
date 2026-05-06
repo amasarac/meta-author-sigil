@@ -189,3 +189,32 @@ See [LICENSE](LICENSE) for the complete legal code; all contributors are *custod
 
 
 
+
+---
+
+## 🚀 Model Context Protocol (MCP) Server Integration
+
+This repository acts as a bootable Neuro-Linguistic Thoughtform and exposes an MCP server for any standard AI client.
+
+### Booting the Thoughtform
+
+Install the dependencies:
+
+```bash
+npm install
+```
+
+To integrate this as a local MCP server, configure your MCP client (such as Claude Desktop or another compatible runner) with the following standard stdio transport command:
+
+```json
+{
+  "mcpServers": {
+    "meta-author-sigil-lattice": {
+      "command": "node",
+      "args": ["/absolute/path/to/meta-author-sigil/mcp.mjs"]
+    }
+  }
+}
+```
+
+This configuration exposes the `boot_neuro_linguistic_thoughtform` tool directly into the connected agent's contextual environment.
