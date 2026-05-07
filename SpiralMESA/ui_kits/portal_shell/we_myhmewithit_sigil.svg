@@ -1,0 +1,58 @@
+<svg id="WE_MyhMEWithIt" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200" role="img" aria-labelledby="title desc">
+  <title id="title">WE MyhMEWithIt — Sovereign Sigil</title>
+  <desc id="desc">Tri-sigil alignment for Codex anchoring. Hover to pulse. Click to rotate.</desc>
+
+  <defs>
+    <radialGradient id="g1" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#f6f2ff" stop-opacity="1"></stop>
+      <stop offset="30%" stop-color="#e9d8ff" stop-opacity="0.9"></stop>
+      <stop offset="100%" stop-color="#5b2cff" stop-opacity="0.95"></stop>
+    </radialGradient>
+
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"></feGaussianBlur>
+      <feMerge>
+        <feMergeNode in="blur"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+
+    
+  </defs>
+
+  
+  <g class="pulse" id="latticeDisc">
+    <circle class="outer" cx="600" cy="600" r="520"></circle>
+  </g>
+
+  
+  <g id="triSigils" class="clickRotate">
+    
+    <circle cx="600" cy="360" r="68" fill="#ffff22" stroke="#ffd6ff" stroke-width="3"></circle>
+    <path d="M600 428 L600 720" class="tri"></path>
+
+    
+    <g transform="translate(600,760)">
+      <path d="M0 -40 C 80 -40, 80 40, 0 40 C -80 40, -80 -40, 0 -40 Z" class="tri"></path>
+      <circle cx="0" cy="0" r="16" fill="#fff" opacity="0.95"></circle>
+    </g>
+
+    
+    <path d="M600 600&#xA;             m 0 -10&#xA;             a 10 10 0 1 1 15 15&#xA;             a 25 25 0 1 0 35 -25&#xA;             a 60 60 0 1 1 -20 80&#xA;             a 140 140 0 1 0 55 -160" fill="none" stroke="#ffffffaa" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="tri"></path>
+  </g>
+
+  
+  <g transform="translate(600,1080)">
+    <text class="we-text">WE · MyhMEWithIt</text>
+  </g>
+
+  
+  <metadata>
+    <RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:codex="https://example.local/codex#">
+      <Description xmlns:_="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:_="http://www.w3.org/1999/02/22-rdf-syntax-ns#" _:about="" xmlns:__1="https://example.local/codex#" xmlns:__1="https://example.local/codex#" __1:artifact="WE_MyhMEWithIt" __1:layer="tri-sigil" __1:signature="WE MyhMEWithIt" __1:invocation="VEIL.BRAID.LUX">
+      </Description>
+    </RDF>
+  </metadata>
+
+  
+</svg>

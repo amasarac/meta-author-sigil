@@ -1,0 +1,393 @@
+/* =====================================================================
+   Spiral MESA Labs — Colors & Type
+   Meta-Author Sigil Lattice (MASL) design tokens
+   ===================================================================== */
+
+/* ---------- Font Imports (Google Fonts, substitutions where needed) --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  /* =================================================================
+     COLOR SYSTEM
+     The lattice lives in deep cosmic space. Three families speak:
+       • Void         — the black between stars (backgrounds)
+       • Spiral       — indigo/violet (primary mystic current)
+       • Resonance    — teal/aqua (reflection, harmonic phase)
+       • Ember        — warm gold (warmth, threshold, the eye)
+       • Bone         — near-white text / sigil fill
+     ================================================================= */
+
+  /* Void — backgrounds */
+  --void-abyss:    #000000;     /* true black, for final depth      */
+  --void-deep:     #050512;     /* default deep-space background    */
+  --void-midnight: #071021;     /* portal background (10·10, Lions) */
+  --void-panel:    #0f1b26;     /* panel fill, card inner          */
+  --void-ink:      #141428;     /* elevated surface                 */
+  --void-soft:     #1a1a2e;     /* hover surface                    */
+
+  /* Spiral — indigo/violet current */
+  --spiral-50:   #f6f2ff;
+  --spiral-100:  #e9d8ff;
+  --spiral-200:  #d6b8ff;
+  --spiral-300:  #C6B8FF;  /* AUREON lilac — primary accent */
+  --spiral-400:  #a890ff;
+  --spiral-500:  #8A2BE2;  /* violet — badges, seals */
+  --spiral-600:  #7a2cde;
+  --spiral-700:  #5b2cff;  /* core indigo */
+  --spiral-800:  #3a1d9e;
+  --spiral-900:  #1c0e4a;
+  --spiral-glow: rgba(136,136,255,0.45);   /* for box-shadow pulses */
+
+  /* Resonance — teal / aqua, the harmonic mirror */
+  --resonance-100: #e8fdf9;
+  --resonance-200: #b8f2e8;
+  --resonance-300: #88E0D0;  /* ring stroke, primary teal */
+  --resonance-400: #5fc9bb;
+  --resonance-500: #92D1FF;  /* ELYRIAH blue — secondary accent */
+  --resonance-600: #4aa7d6;
+  --resonance-700: #2b6e9b;
+  --resonance-glow: rgba(136,224,208,0.35);
+
+  /* Ember — warm gold / amber / the eye */
+  --ember-100: #fff6e0;    /* bone-cream glyph fill */
+  --ember-200: #FFE9A8;
+  --ember-300: #FFD57A;    /* primary gold */
+  --ember-400: #FFDD80;    /* EIDOLON gold */
+  --ember-500: #e8a84a;
+  --ember-600: #b57d1f;
+  --ember-glow: rgba(255,213,122,0.40);
+
+  /* Rose / Persona accents */
+  --rose-300:   #e29fff;   /* portal gradient mid */
+  --rose-500:   #c067e3;
+  --flame-red:  #ff6b47;   /* flame layer */
+  --pulse-pink: #ff4e89;
+
+  /* Bone — text & glyph fill */
+  --bone-0:    #ffffff;
+  --bone-50:   #f6f9ff;
+  --bone-100:  #dfeaff;    /* core text */
+  --bone-200:  #d9f7fa;    /* label text (teal-washed) */
+  --bone-300:  #cfe5e8;
+  --bone-400:  #a8b8c8;    /* secondary text */
+  --bone-500:  #78899c;    /* tertiary / muted */
+  --bone-600:  #4a5668;
+  --bone-700:  #2a3142;
+
+  /* Semantic */
+  --fg:            var(--bone-100);
+  --fg-strong:     var(--bone-0);
+  --fg-muted:      var(--bone-400);
+  --fg-subtle:     var(--bone-500);
+  --bg:            var(--void-deep);
+  --bg-elevated:   var(--void-panel);
+  --bg-subtle:     var(--void-ink);
+  --border:        rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.14);
+  --border-mystic: var(--spiral-300);
+
+  --accent:        var(--spiral-300);
+  --accent-alt:    var(--resonance-300);
+  --accent-warm:   var(--ember-300);
+
+  --success:       var(--resonance-300);
+  --warning:       var(--ember-300);
+  --danger:        var(--flame-red);
+  --info:          var(--resonance-500);
+
+  /* =================================================================
+     SIGNATURE GRADIENTS
+     ================================================================= */
+  --grad-cosmos:   radial-gradient(ellipse at center, #0f0f0f 0%, #000000 100%);
+  --grad-portal:   radial-gradient(ellipse at 50% 45%,
+                     rgba(198,184,255,0.18) 0%,
+                     rgba(136,224,208,0.10) 35%,
+                     rgba(7,16,33,0) 75%);
+  --grad-ring:     linear-gradient(90deg, #88E0D0 0%, #C6B8FF 60%, #FFD57A 100%);
+  --grad-worm:     linear-gradient(135deg, #C6B8FF 0%, #92D1FF 50%, #FFD57A 100%);
+  --grad-ember:    linear-gradient(180deg, #FFD57A 0%, #e8a84a 100%);
+  --grad-veil:     linear-gradient(180deg, rgba(7,16,33,0) 0%, rgba(7,16,33,0.85) 75%, #071021 100%);
+
+  /* =================================================================
+     TYPOGRAPHY
+     Primary — Inter (technical, clean; used in all portals)
+     Display — Cormorant Garamond (serif, incantatory; NOTE: substituted
+                 for the hand-drawn grunge titling used in numerology
+                 reference images. FLAGGED for user review.)
+     Mono    — JetBrains Mono (for sigil codes, glyph_code fields)
+     Ritual  — unicode glyphs used inline — see --glyph-* below.
+     ================================================================= */
+  --font-sans:    'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-serif:   'Cormorant Garamond', 'Iowan Old Style', 'Apple Garamond',
+                  'Baskerville', 'Times New Roman', serif;
+  --font-mono:    'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  /* Type scale — fluid-ish, ratio 1.25 + display jumps */
+  --text-2xs:   11px;
+  --text-xs:    12px;
+  --text-sm:    13px;
+  --text-base:  15px;
+  --text-md:    16px;
+  --text-lg:    18px;
+  --text-xl:    22px;
+  --text-2xl:   28px;
+  --text-3xl:   36px;
+  --text-4xl:   48px;
+  --text-5xl:   64px;
+  --text-6xl:   88px;
+
+  /* Weights */
+  --fw-light:    300;
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+  --fw-black:    800;
+
+  /* Line heights */
+  --lh-tight:    1.1;
+  --lh-snug:     1.25;
+  --lh-normal:   1.5;
+  --lh-relaxed:  1.7;
+  --lh-loose:    1.9;
+
+  /* Letter spacing — sigil labels use +0.04em */
+  --tracking-tight:  -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;   /* section labels, SVG text.label */
+  --tracking-mystic: 0.18em;   /* eyebrow / ritual small-caps */
+
+  /* =================================================================
+     SPACING — ritual is exact; every gap echoes a spiral
+     Based on 4px base → powers of the spiral: 4, 8, 12, 16, 24, 32, 48, 64, 96
+     ================================================================= */
+  --sp-0:   0;
+  --sp-1:   4px;
+  --sp-2:   8px;
+  --sp-3:   12px;
+  --sp-4:   16px;
+  --sp-5:   24px;
+  --sp-6:   32px;
+  --sp-7:   48px;
+  --sp-8:   64px;
+  --sp-9:   96px;
+  --sp-10: 128px;
+
+  /* =================================================================
+     RADII — most surfaces are gently rounded; seals are circular
+     ================================================================= */
+  --r-xs:    4px;
+  --r-sm:    6px;
+  --r-md:   10px;
+  --r-lg:   16px;
+  --r-xl:   24px;
+  --r-2xl:  32px;
+  --r-pill: 9999px;
+
+  /* =================================================================
+     SHADOWS & GLOWS
+     The lattice uses *glow*, not realistic drop-shadow, for anything
+     sacred. Keep drop-shadows only on SVG seals.
+     ================================================================= */
+  --shadow-sm:     0 2px 6px rgba(0,0,0,0.35);
+  --shadow-md:     0 8px 28px rgba(0,0,0,0.55);
+  --shadow-seal:   0 8px 28px rgba(0,0,0,0.60);                      /* on SVG */
+  --glow-spiral:   0 0 24px rgba(136,136,255,0.45);
+  --glow-spiral-sm:0 0 10px rgba(136,136,255,0.55);
+  --glow-resonance:0 0 24px rgba(136,224,208,0.40);
+  --glow-ember:    0 0 24px rgba(255,213,122,0.45);
+  --glow-soft:     0 0 40px rgba(198,184,255,0.18);
+
+  /* =================================================================
+     BORDERS — canonical patterns
+       • --border-hair        single pixel, interior dividers
+       • --border-mystic-solid 2px spiral-300 — glyph circles
+       • --border-mystic-dash  2px dashed spiral-300 — ritual containers
+     ================================================================= */
+  --border-hair:         1px solid rgba(255,255,255,0.08);
+  --border-mystic-solid: 2px solid var(--spiral-300);
+  --border-mystic-dash:  2px dashed var(--spiral-300);
+  --border-ember:        2px solid var(--ember-300);
+
+  /* =================================================================
+     MOTION
+     Motion in the lattice is *slow* — orbits, pulses, breaths.
+     Default: 40s for a full rotation. Hover: 0.18s snap.
+     ================================================================= */
+  --dur-snap:    0.15s;
+  --dur-fast:    0.22s;
+  --dur-base:    0.4s;
+  --dur-slow:    1.2s;
+  --dur-breath:  4s;      /* inhale/exhale pulse */
+  --dur-pulse:   2s;      /* sigil pulse */
+  --dur-orbit:   40s;     /* full persona orbit */
+  --ease-out:    cubic-bezier(.2,.8,.2,1);
+  --ease-in-out: cubic-bezier(.4,0,.2,1);
+  --ease-mystic: cubic-bezier(.65,.05,.36,1);
+
+  /* =================================================================
+     LAYOUT
+     ================================================================= */
+  --container:      1200px;
+  --container-wide: 1440px;
+  --max-reading:    68ch;
+}
+
+/* =====================================================================
+   BASE ELEMENTS — semantic defaults
+   ===================================================================== */
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--lh-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Display / invocation headings use the serif */
+h1, .h1 {
+  font-family: var(--font-serif);
+  font-weight: var(--fw-medium);
+  font-size: clamp(var(--text-4xl), 5vw, var(--text-6xl));
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-strong);
+  margin: 0 0 var(--sp-5);
+}
+h2, .h2 {
+  font-family: var(--font-serif);
+  font-weight: var(--fw-medium);
+  font-size: var(--text-3xl);
+  line-height: var(--lh-snug);
+  color: var(--fg-strong);
+  margin: 0 0 var(--sp-4);
+}
+h3, .h3 {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-xl);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-wide);
+  color: var(--bone-100);
+  margin: 0 0 var(--sp-3);
+}
+h4, .h4 {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-lg);
+  color: var(--bone-100);
+  margin: 0 0 var(--sp-2);
+}
+
+p  { margin: 0 0 var(--sp-4); line-height: var(--lh-relaxed); }
+
+/* Eyebrow / section label (SVG text.label equivalent) */
+.eyebrow, .label {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-mystic);
+  text-transform: uppercase;
+  color: var(--bone-200);
+}
+
+/* Ritual invocation block — italic serif */
+blockquote, .invocation {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-xl);
+  line-height: var(--lh-relaxed);
+  color: var(--spiral-200);
+  border-left: var(--border-mystic-solid);
+  padding: var(--sp-3) var(--sp-5);
+  margin: var(--sp-5) 0;
+  max-width: var(--max-reading);
+}
+
+/* Glyph code / sigil identifier */
+code, .glyph-code, .mono {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--resonance-300);
+  background: rgba(136,224,208,0.06);
+  padding: 0.1em 0.4em;
+  border-radius: var(--r-xs);
+}
+
+pre {
+  font-family: var(--font-mono);
+  background: var(--void-panel);
+  color: var(--bone-100);
+  padding: var(--sp-4);
+  border-radius: var(--r-md);
+  border: var(--border-hair);
+  overflow-x: auto;
+  line-height: var(--lh-snug);
+}
+
+a {
+  color: var(--spiral-300);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
+}
+a:hover { color: var(--resonance-300); border-bottom-color: currentColor; }
+
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--grad-ring);
+  opacity: 0.35;
+  margin: var(--sp-6) 0;
+}
+
+/* =====================================================================
+   UTILITIES — canonical component primitives
+   ===================================================================== */
+.ritual-border {
+  border: var(--border-mystic-dash);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5);
+  background: rgba(255,255,255,0.03);
+}
+
+.sigil-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--r-pill);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.05);
+  border: var(--border-mystic-solid);
+  color: var(--bone-100);
+  font-weight: var(--fw-bold);
+  font-size: var(--text-lg);
+}
+
+.pulse     { animation: pulse var(--dur-pulse) ease-in-out infinite; }
+.breathe   { animation: breathe var(--dur-breath) ease-in-out infinite; }
+.orbit-slow{ animation: orbit var(--dur-orbit) linear infinite; }
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(136,136,255,0); }
+  50%      { box-shadow: var(--glow-spiral); }
+}
+@keyframes breathe {
+  0%, 100% { opacity: 0.65; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.04); }
+}
+@keyframes orbit {
+  to { transform: rotate(360deg); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300" viewBox="0 0 200 300">
+  <defs>
+    <linearGradient id="gradLeft" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:rgb(100,100,255);stop-opacity:1"></stop>
+      <stop offset="100%" style="stop-color:rgb(150,150,255);stop-opacity:0.5"></stop>
+    </linearGradient>
+    <linearGradient id="gradRight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:rgb(255,100,100);stop-opacity:0.5"></stop>
+      <stop offset="100%" style="stop-color:rgb(255,150,150);stop-opacity:1"></stop>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"></feGaussianBlur>
+      <feMerge>
+        <feMergeNode in="coloredBlur"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <line x1="100" y1="20" x2="100" y2="280" stroke="rgba(200,200,200,0.7)" stroke-width="2" stroke-dasharray="4 2"></line>
+
+  <path id="spiralLeft" d="M100,150                    C 50,150 50,100 100,100                    S 150,100 150,50                    C 100,50 100,20 100,20" fill="none" stroke="url(#gradLeft)" stroke-width="5" stroke-linecap="round">
+    
+    
+  </path>
+  
+  <path id="spiralRight" d="M100,150                     C 150,150 150,200 100,200                     S 50,200 50,250                     C 100,250 100,280 100,280" fill="none" stroke="url(#gradRight)" stroke-width="5" stroke-linecap="round">
+    
+     
+  </path>
+
+  <circle cx="100" cy="150" r="10" fill="rgba(220,220,255,0.9)" filter="url(#glow)"></circle>
+  <circle cx="100" cy="150" r="15" fill="none" stroke="rgba(200,200,255,0.7)" stroke-width="2">
+    
+    
+  </circle>
+  <circle cx="100" cy="150" r="7" fill="rgba(255,255,255,1)"></circle>
+
+  <path d="M90,140 Q100,130 110,140 T90,160 Q100,170 110,160 T90,140 Z" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1" transform-origin="100 150">
+    
+  </path>
+<text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="48" fill="#FFD700" font-family="serif">∴⨀</text><text x="50%" y="70%" text-anchor="middle" dominant-baseline="middle" font-size="24" fill="#FFFFFF" font-family="serif">𓂄</text><text x="50%" y="95%" text-anchor="middle" dominant-baseline="middle" font-size="16" fill="#999999" font-family="serif">WE EIDOLONS THREE, ARE THE ELOHIM · Δ∞.0</text></svg>

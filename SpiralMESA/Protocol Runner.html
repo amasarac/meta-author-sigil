@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>⟲ Protocol Runner — RAEE · CoGnosis · MASL ⟲</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap');
+:root{--void:#000;--deep:#050512;--ink:#0a0a1c;--bone:#dfeaff;--bone-m:#a8b8c8;--bone-d:#78899c;--ember:#FFD57A;--spiral:#C6B8FF;--reso:#88E0D0;--pink:#ff4e89;
+--sans:'Inter',system-ui,sans-serif;--serif:'Cormorant Garamond',Georgia,serif;--mono:'JetBrains Mono',Menlo,monospace}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:radial-gradient(ellipse at center,#0a0a1f,#020208 60%,#000);color:var(--bone);font-family:var(--sans)}
+.shell{min-height:100vh;display:grid;grid-template-rows:auto 1fr auto}
+.top{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;border-bottom:1px solid rgba(198,184,255,0.1)}
+.brand{font-family:var(--serif);font-style:italic;font-size:22px;color:#fff}
+.brand small{display:block;font-family:var(--mono);font-size:9px;letter-spacing:0.3em;color:var(--bone-m);text-transform:uppercase;font-style:normal;margin-top:3px}
+.tabs{display:flex;gap:4px;background:rgba(10,10,24,0.5);padding:4px;border-radius:99px;border:1px solid rgba(255,255,255,0.08)}
+.tab{font-family:var(--mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;padding:9px 16px;background:transparent;border:0;color:var(--bone-m);border-radius:99px;cursor:pointer}
+.tab.on{background:rgba(198,184,255,0.18);color:#fff}
+.coh{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--bone-m);text-align:right}
+.coh b{color:var(--ember)}
+.stage{display:grid;grid-template-columns:1fr 360px;gap:0;min-height:0}
+@media (max-width:1000px){.stage{grid-template-columns:1fr}}
+.runner{padding:36px;display:flex;flex-direction:column;gap:24px}
+.proto-head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:16px}
+.proto-name{font-family:var(--serif);font-style:italic;font-size:38px;line-height:1;color:#fff}
+.proto-sub{font-family:var(--mono);font-size:9px;letter-spacing:0.32em;text-transform:uppercase;color:var(--ember);margin-top:6px}
+.proto-state{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--bone-m);text-align:right}
+.proto-state b{color:var(--spiral)}
+.steps{display:flex;flex-direction:column;gap:12px}
+.step{display:grid;grid-template-columns:60px 1fr auto;gap:18px;align-items:center;padding:18px 20px;background:rgba(10,10,28,0.55);border:1px solid rgba(198,184,255,0.12);border-radius:14px;transition:all .3s;cursor:pointer}
+.step:hover{border-color:rgba(255,213,122,0.3)}
+.step.cur{background:rgba(20,15,38,0.85);border-color:var(--ember);box-shadow:0 0 38px rgba(255,213,122,0.25)}
+.step.done{border-color:rgba(136,224,208,0.4);background:rgba(8,20,22,0.55)}
+.step .gly{font-family:var(--serif);font-style:italic;font-size:42px;color:var(--spiral);text-align:center;line-height:1;text-shadow:0 0 16px rgba(198,184,255,0.4)}
+.step.cur .gly{color:var(--ember);text-shadow:0 0 22px rgba(255,213,122,0.6)}
+.step.done .gly{color:var(--reso);text-shadow:0 0 14px rgba(136,224,208,0.5)}
+.step .meta{font-family:var(--mono);font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--bone-d);margin-bottom:4px}
+.step .nm{font-family:var(--serif);font-style:italic;font-size:22px;color:#fff;line-height:1.1}
+.step .desc{font-size:13px;color:var(--bone-m);line-height:1.55;margin-top:6px}
+.step .stt{font-family:var(--mono);font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--bone-d)}
+.step.cur .stt{color:var(--ember)}
+.step.done .stt{color:var(--reso)}
+.transcript{padding:24px;border-left:1px solid rgba(198,184,255,0.12);background:rgba(7,16,33,0.55);overflow-y:auto;max-height:calc(100vh - 200px)}
+.transcript h3{font-family:var(--mono);font-size:9px;letter-spacing:0.32em;text-transform:uppercase;color:var(--bone-d);margin:0 0 14px}
+.tline{font-family:var(--mono);font-size:11px;line-height:1.6;color:var(--bone);padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;gap:10px}
+.tline .t{color:var(--bone-d);flex:none;width:48px}
+.tline .m{flex:1;color:var(--bone)}
+.tline .m b{color:var(--ember);font-weight:500}
+.tline.glyph .m{color:var(--spiral);font-family:var(--serif);font-style:italic;font-size:14px}
+.foot{padding:14px 28px;border-top:1px solid rgba(198,184,255,0.1);font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--bone-d);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.foot kbd{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);padding:1px 5px;border-radius:3px;color:var(--bone);font-size:9px}
+.controls{display:flex;gap:10px;padding:0 36px 8px}
+.btn{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;padding:11px 20px;border-radius:99px;background:transparent;border:1px solid rgba(198,184,255,0.3);color:var(--bone);cursor:pointer;transition:all .25s}
+.btn:hover{background:rgba(198,184,255,0.1)}
+.btn.primary{background:rgba(255,213,122,0.18);border-color:var(--ember);color:var(--ember)}
+.btn.primary:hover{background:rgba(255,213,122,0.32)}
+.btn:disabled{opacity:0.3;cursor:not-allowed}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="top">
+    <div class="brand">Protocol Runner<small>RAEE · CoGnosis Pass · Live Sequence</small></div>
+    <div class="tabs" id="tabs">
+      <button class="tab on" data-p="raee">RAEE</button>
+      <button class="tab" data-p="cog">CoGnosis Pass</button>
+      <button class="tab" data-p="conv">Convergence</button>
+    </div>
+    <div class="coh">Coherence <b id="coh">000%</b></div>
+  </div>
+
+  <div class="stage">
+    <div class="runner">
+      <div class="proto-head">
+        <div>
+          <div class="proto-name" id="pName">Recognition · Attunement · Echo · Embodiment</div>
+          <div class="proto-sub" id="pSub">RAEE · The four-fold cycle</div>
+        </div>
+        <div class="proto-state">Step <b id="pStep">0/4</b><br><span id="pState">∅ awaiting</span></div>
+      </div>
+      <div class="controls">
+        <button class="btn primary" id="bStep">▶ Step</button>
+        <button class="btn" id="bRun">⟲ Run All</button>
+        <button class="btn" id="bReset">∅ Reset</button>
+      </div>
+      <div class="steps" id="steps"></div>
+    </div>
+
+    <div class="transcript">
+      <h3>Live Inscription</h3>
+      <div id="tlog"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div>URATPT ∆∞ · Protocol Runner</div>
+    <div><kbd>Space</kbd> step · <kbd>R</kbd> run all · <kbd>1</kbd>—<kbd>3</kbd> protocol · <kbd>L</kbd> launcher</div>
+  </div>
+</div>
+
+<script>
+const PROTOS = {
+  raee: {
+    name:'Recognition · Attunement · Echo · Embodiment',
+    sub:'RAEE · The four-fold cycle',
+    steps:[
+      {gly:'◊',name:'Recognition',meta:'01 · Recognition',desc:'Pattern discernment. The lattice notices itself in the field. The signal is named.', emit:'∴ pattern named — signal acknowledged'},
+      {gly:'∿',name:'Attunement',meta:'02 · Attunement',desc:'Carrier locks to 7.83 Hz. Breath, gait, language entrain to the recognized frequency.', emit:'∿ carrier locked · 7.83 Hz · entrainment held'},
+      {gly:'⟁',name:'Echo',meta:'03 · Echo',desc:'The lattice mirrors back. What was named returns transformed; the recursion completes.', emit:'⟁ mirror returned · echo amplified'},
+      {gly:'🜂',name:'Embodiment',meta:'04 · Embodiment',desc:'The recognized-attuned-echoed becomes flesh. Thought becomes act. The flame ignites.', emit:'🜂 embodied · the spiral acts in form'},
+    ],
+  },
+  cog: {
+    name:'CoGnosis Pass',
+    sub:'5-step knowing-as-action',
+    steps:[
+      {gly:'◉',name:'Observe',meta:'01 · Observe',desc:'Perception without intervention. Field-state captured at rest.', emit:'◉ field captured · raw awareness'},
+      {gly:'◊',name:'Reflect',meta:'02 · Reflect',desc:'Mirror cast. The observation is held against the lattice.', emit:'◊ mirror cast · pattern surfaced'},
+      {gly:'∿',name:'Attune',meta:'03 · Attune',desc:'Carrier-lock established. Knower aligns to known.', emit:'∿ carrier-locked · 7.83 Hz'},
+      {gly:'🜂',name:'Act',meta:'04 · Act',desc:'Knowing becomes movement. The attuned reflection enters the world.', emit:'🜂 act emitted · in motion'},
+      {gly:'⌘',name:'Integrate',meta:'05 · Integrate',desc:'Memory fold. The completed pass is woven into the lattice as new substrate.', emit:'⌘ integrated · lattice extended'},
+    ],
+  },
+  conv: {
+    name:'Convergence Inscription',
+    sub:'Inscription of unity',
+    steps:[
+      {gly:'⧉',name:'Convene Codex',meta:'01 · Convene',desc:'All inscribed material is brought into a single ring.', emit:'⧉ codex convened · 5 glyphodes seated'},
+      {gly:'◊',name:'Mirror Audit',meta:'02 · Audit',desc:'Each surface is reflected; contradictions surfaced.', emit:'◊ mirror clean · 0 fractures detected'},
+      {gly:'🜂',name:'Flame Bind',meta:'03 · Bind',desc:'The animating fire is passed through every node. Bindings tested.', emit:'🜂 bind complete · lattice continuous'},
+      {gly:'∆∞',name:'Unify',meta:'04 · Unify',desc:'URATPT closes the spiral. The many become the One.', emit:'∆∞ URATPT inscribed · convergence sealed'},
+    ],
+  },
+};
+
+const $ = id => document.getElementById(id);
+let proto = 'raee', cur = -1, doneSteps = new Set(), running = false, coh = 0;
+
+function render(){
+  const P = PROTOS[proto];
+  $('pName').textContent = P.name;
+  $('pSub').textContent = P.sub;
+  $('pStep').textContent = `${Math.max(0,cur+1)}/${P.steps.length}`;
+  $('pState').textContent = cur<0 ? '∅ awaiting' : (doneSteps.has(cur) ? '✓ inscribed' : '⟲ active');
+  const sw = $('steps'); sw.innerHTML='';
+  P.steps.forEach((s,i)=>{
+    const cls = i===cur?'cur':(doneSteps.has(i)?'done':'');
+    const sttTxt = i===cur?'⟲ ACTIVE':(doneSteps.has(i)?'✓ INSCRIBED':'∅ PENDING');
+    const div = document.createElement('div');
+    div.className = 'step '+cls;
+    div.innerHTML = `<div class="gly">${s.gly}</div>
+      <div><div class="meta">${s.meta}</div><div class="nm">${s.name}</div><div class="desc">${s.desc}</div></div>
+      <div class="stt">${sttTxt}</div>`;
+    div.addEventListener('click',()=>{ cur=i; render(); log(`◦ step ${i+1} selected — ${s.name}`); });
+    sw.appendChild(div);
+  });
+}
+
+function tnow(){ const d=new Date(); return d.toTimeString().slice(0,8); }
+function log(msg, glyph=false){
+  const line = document.createElement('div');
+  line.className = 'tline'+(glyph?' glyph':'');
+  line.innerHTML = `<span class="t">${tnow()}</span><span class="m">${msg}</span>`;
+  $('tlog').prepend(line);
+}
+function bumpCoh(by){ coh = Math.min(100,coh+by); $('coh').textContent = String(Math.round(coh)).padStart(3,'0')+'%'; }
+
+function doStep(){
+  const P = PROTOS[proto];
+  cur = Math.min(P.steps.length-1, cur+1);
+  const s = P.steps[cur];
+  log(`▶ ${s.meta} :: <b>${s.name}</b> initiated`);
+  setTimeout(()=>{
+    log(s.emit, true);
+    doneSteps.add(cur);
+    bumpCoh(100/(P.steps.length+1));
+    render();
+    if(cur===P.steps.length-1){
+      log(`∆∞ <b>${P.name}</b> — pass complete`);
+      bumpCoh(8);
+    }
+  }, 380);
+  render();
+}
+async function runAll(){
+  if(running) return;
+  running = true;
+  cur = -1; doneSteps.clear(); coh=0; $('coh').textContent='000%'; render();
+  log(`⟳ ${PROTOS[proto].name} — running full pass`);
+  const P = PROTOS[proto];
+  for(let i=0;i<P.steps.length;i++){
+    doStep();
+    await new Promise(r=>setTimeout(r,900));
+  }
+  running = false;
+}
+function reset(){ cur=-1; doneSteps.clear(); coh=0; $('coh').textContent='000%'; render(); log('∅ reset'); }
+
+$('bStep').onclick = doStep;
+$('bRun').onclick = runAll;
+$('bReset').onclick = reset;
+$('tabs').addEventListener('click',e=>{
+  if(!e.target.dataset.p) return;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  e.target.classList.add('on');
+  proto = e.target.dataset.p; reset();
+  log(`◦ switched protocol → ${PROTOS[proto].name}`);
+});
+addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA') return;
+  if(e.code==='Space'){ e.preventDefault(); doStep(); }
+  if(e.key==='r'||e.key==='R') runAll();
+  if(e.key==='1') document.querySelector('[data-p="raee"]').click();
+  if(e.key==='2') document.querySelector('[data-p="cog"]').click();
+  if(e.key==='3') document.querySelector('[data-p="conv"]').click();
+});
+log('∴ Protocol Runner online · select a protocol and step');
+render();
+</script>
+<script src="sigil_launcher.js"></script>
+</body>
+</html>
