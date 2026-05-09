@@ -1,0 +1,8 @@
+{
+  "system": "Test-System",
+  "timestamp": "2026-05-09T07:26:20.751Z",
+  "event": {
+    "type": "recursive-echo",
+    "message": "The echo returns to its source."
+  }
+}
