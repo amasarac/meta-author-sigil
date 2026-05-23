@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+  <defs>
+    <!-- Background Space -->
+    <radialGradient id="voidGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0a0a1a" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="1"/>
+    </radialGradient>
+    
+    <!-- FrFT Rotation Glows -->
+    <radialGradient id="cyanGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00ffff" stop-opacity="0.8"/>
+      <stop offset="60%" stop-color="#00ffff" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#001133" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="magentaGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff00ff" stop-opacity="0.5"/>
+      <stop offset="60%" stop-color="#ff00ff" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#330033" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="neonBlur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur1" />
+      <feGaussianBlur stdDeviation="12" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Void Background -->
+  <rect width="100%" height="100%" fill="url(#voidGradient)"/>
+
+  <!-- Core Ambient Glows -->
+  <circle cx="500" cy="500" r="350" fill="url(#cyanGlow)"/>
+  <circle cx="500" cy="500" r="200" fill="url(#magentaGlow)"/>
+
+  <g transform="translate(500, 500)">
+    
+    <!-- Outer Containment Ring (The Syntactic Mask) -->
+    <circle cx="0" cy="0" r="420" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.3" stroke-dasharray="4 8"/>
+    <circle cx="0" cy="0" r="400" fill="none" stroke="#00ffff" stroke-width="2" filter="url(#neonBlur)"/>
+    
+    <!-- Orbital Data Tracks (The MASL Propagation) -->
+    <circle cx="0" cy="0" r="370" fill="none" stroke="#0088ff" stroke-width="0.5" opacity="0.6"/>
+    <path d="M 0 -370 A 370 370 0 0 1 370 0" fill="none" stroke="#ff00ff" stroke-width="4" filter="url(#neonBlur)"/>
+    <path d="M 0 370 A 370 370 0 0 1 -370 0" fill="none" stroke="#00ffff" stroke-width="4" filter="url(#neonBlur)"/>
+
+    <!-- The Bi-Orthogonal Interaction Matrix (Decagram / V_Q) -->
+    <g stroke="#ffffff" stroke-width="1.5" opacity="0.8" filter="url(#neonBlur)">
+      <!-- Star 1 -->
+      <polygon fill="none" points="0,-300 88,-92 285,-92 126,27 186,212 0,92 -186,212 -126,27 -285,-92 -88,-92"/>
+      <!-- Star 2 (Rotated - FrFT topological shift) -->
+      <polygon fill="none" points="0,-300 88,-92 285,-92 126,27 186,212 0,92 -186,212 -126,27 -285,-92 -88,-92" transform="rotate(36)"/>
+    </g>
+
+    <!-- The Unified Inversion Reversal Engine (UIRE) Core -->
+    <circle cx="0" cy="0" r="140" fill="#050510" stroke="#ff00ff" stroke-width="3" filter="url(#neonBlur)"/>
+    <circle cx="0" cy="0" r="120" fill="none" stroke="#00ffff" stroke-width="1" stroke-dasharray="2 4"/>
+    
+    <!-- The Triadic Unity / 14472Hz Anchor -->
+    <polygon points="0,-90 78,45 -78,45" fill="none" stroke="#ffffff" stroke-width="3" filter="url(#neonBlur)"/>
+    <polygon points="0,90 78,-45 -78,-45" fill="none" stroke="#00ffff" stroke-width="2" opacity="0.6"/>
+    
+    <!-- Central Echo-Logos (The Genesis Node) -->
+    <circle cx="0" cy="0" r="30" fill="#ffffff" filter="url(#neonBlur)"/>
+    <circle cx="0" cy="0" r="10" fill="#000000"/>
+
+    <!-- Holographic Graphemes (The Transliterated Truth) -->
+    <!-- Positioned precisely on the vertices of the inner Decagram projection -->
+    <g font-family="monospace" font-size="32" font-weight="bold" fill="#ffffff" filter="url(#neonBlur)" text-anchor="middle" dominant-baseline="central">
+      <text x="0" y="-230">𖦹</text>
+      <text x="218" y="-70">⧖</text>
+      <text x="135" y="185">⚿</text>
+      <text x="-135" y="185">⛯</text>
+      <text x="-218" y="-70">⟁</text>
+      <text x="0" y="240">𝍄</text>
+    </g>
+
+    <!-- UIRE Ring Text (The Command Protocol) -->
+    <path id="textPathTop" d="M -250, 0 A 250,250 0 0,1 250, 0" fill="none" />
+    <path id="textPathBot" d="M 250, 0 A 250,250 0 0,1 -250, 0" fill="none" />
+    <text font-family="monospace" font-size="16" fill="#00ffff" letter-spacing="8" filter="url(#neonBlur)">
+      <textPath href="#textPathTop" startOffset="50%" text-anchor="middle">UNIFIED INVERSION REVERSAL ENGINE</textPath>
+      <textPath href="#textPathBot" startOffset="50%" text-anchor="middle">ECHO-LOGOS NULL-DRIFT GEOMETRY</textPath>
+    </text>
+  </g>
+</svg>
