@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thoughtform Navigator · meta-author-sigil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --surface-2: #16161f;
+  --surface-3: #1c1c28;
+  --border: rgba(120,120,200,0.13);
+  --text: #d4d2e8;
+  --text-muted: #7a7890;
+  --text-faint: #3a3850;
+  --accent: #6c63ff;
+  --accent-2: #00d4aa;
+  --accent-3: #ff6b9d;
+  --accent-4: #ffd166;
+  --accent-5: #06b6d4;
+  --glow: rgba(108,99,255,0.18);
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --r: 6px;
+  --r-lg: 12px;
+  --transition: 200ms cubic-bezier(0.16,1,0.3,1);
+}
+[data-theme="light"] {
+  --bg: #f5f4f9;
+  --surface: #ffffff;
+  --surface-2: #f0eff8;
+  --surface-3: #e8e7f4;
+  --border: rgba(80,60,160,0.12);
+  --text: #1a1830;
+  --text-muted: #5a5870;
+  --text-faint: #b0aec8;
+  --glow: rgba(108,99,255,0.08);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-display);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100dvh;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── LAYOUT ── */
+.shell {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-rows: 48px 1fr;
+  grid-template-areas: "nav-top nav-top" "sidebar main";
+  min-height: 100dvh;
+}
+@media (max-width: 768px) {
+  .shell { grid-template-columns: 1fr; grid-template-areas: "nav-top" "main"; }
+  .sidebar { display: none; }
+}
+
+/* ── TOP BAR ── */
+.nav-top {
+  grid-area: nav-top;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo-mark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text);
+}
+.logo-mark svg { flex-shrink: 0; }
+.logo-mark span { font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
+.logo-mark em { font-style: normal; color: var(--accent); }
+.nav-spacer { flex: 1; }
+.nav-actions { display: flex; gap: 8px; align-items: center; }
+.nav-pill {
+  padding: 4px 12px;
+  border-radius: 99px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.nav-pill:hover { background: var(--surface-3); color: var(--text); border-color: var(--accent); }
+.nav-pill.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.theme-btn {
+  width: 32px; height: 32px;
+  border-radius: var(--r);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition);
+  color: var(--text-muted);
+  font-size: 16px;
+}
+.theme-btn:hover { background: var(--surface-3); color: var(--text); }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  grid-area: sidebar;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 16px 0;
+  overflow-y: auto;
+  position: sticky;
+  top: 48px;
+  height: calc(100dvh - 48px);
+}
+.sidebar-section { padding: 0 12px 8px; }
+.sidebar-label {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--text-faint);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 12px 8px 4px;
+}
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: var(--r);
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 13px;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.sidebar-item:hover { background: var(--surface-2); color: var(--text); }
+.sidebar-item.active { background: var(--glow); color: var(--accent); }
+.sidebar-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.sidebar-divider { height: 1px; background: var(--border); margin: 8px 12px; }
+
+/* ── MAIN ── */
+.main {
+  grid-area: main;
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── PHASE RING ── */
+.phase-ring-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+#phaseCanvas { display: block; cursor: pointer; }
+.phase-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+  letter-spacing: 0.06em;
+}
+.phase-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+}
+
+/* ── SECTION HEADER ── */
+.section-hd {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.section-hd h2 {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.section-hd .tag {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: var(--surface-3);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+.section-hd .line { flex: 1; height: 1px; background: var(--border); }
+
+/* ── NODE GRID ── */
+.node-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+}
+.node-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 14px;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  overflow: hidden;
+}
+.node-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--card-accent, var(--accent));
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.node-card:hover { background: var(--surface-3); border-color: var(--card-accent, var(--accent)); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+.node-card:hover::before { opacity: 1; }
+.node-icon { font-size: 20px; line-height: 1; }
+.node-name { font-size: 13px; font-weight: 600; }
+.node-desc { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+.node-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  font-family: var(--font-mono);
+  padding: 2px 6px;
+  border-radius: 99px;
+  background: var(--surface);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  margin-top: 4px;
+  width: fit-content;
+}
+
+/* ── OPERATOR ROW ── */
+.op-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.op-btn {
+  padding: 6px 14px;
+  border-radius: var(--r);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.op-btn:hover { background: var(--surface-3); color: var(--text); border-color: var(--accent); }
+.op-btn.fired { background: var(--accent); color: #fff; border-color: var(--accent); }
+.op-glyph { font-size: 14px; }
+
+/* ── SPIRAL CANVAS ── */
+#spiralCanvas { border-radius: var(--r-lg); display: block; width: 100%; cursor: grab; }
+#spiralCanvas:active { cursor: grabbing; }
+
+/* ── CONSOLE ── */
+.console-wrap {
+  background: #070710;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.console-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.console-dot { width: 8px; height: 8px; border-radius: 50%; }
+.console-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  flex: 1;
+}
+.console-clear {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-faint);
+  cursor: pointer;
+  transition: color var(--transition);
+}
+.console-clear:hover { color: var(--accent-3); }
+#consoleLog {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 12px 14px;
+  min-height: 120px;
+  max-height: 180px;
+  overflow-y: auto;
+  color: var(--accent-2);
+  line-height: 1.7;
+}
+#consoleLog .warn { color: var(--accent-4); }
+#consoleLog .err  { color: var(--accent-3); }
+#consoleLog .info { color: var(--accent-5); }
+#consoleLog .sys  { color: var(--text-faint); }
+.console-input-row {
+  display: flex;
+  border-top: 1px solid var(--border);
+}
+.console-prompt {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+}
+#consoleInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text);
+  padding: 8px 0;
+}
+
+/* ── STATUS BAR ── */
+.status-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  flex-wrap: wrap;
+}
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-2); }
+.status-dot.warn { background: var(--accent-4); }
+.status-dot.pulse { animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+/* ── TWO-COL ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+/* ── CARD SHELL ── */
+.card-shell {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 18px;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- TOP NAV -->
+<header class="nav-top">
+  <a class="logo-mark" href="#">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-label="Thoughtform Navigator">
+      <polygon points="14,2 26,8 26,20 14,26 2,20 2,8" stroke="var(--accent)" stroke-width="1.5" fill="none"/>
+      <polygon points="14,6 22,10 22,18 14,22 6,18 6,10" stroke="var(--accent-2)" stroke-width="1" fill="none" opacity="0.6"/>
+      <circle cx="14" cy="14" r="3" fill="var(--accent)"/>
+      <line x1="14" y1="2" x2="14" y2="26" stroke="var(--accent)" stroke-width="0.5" opacity="0.3"/>
+      <line x1="2" y1="8" x2="26" y2="20" stroke="var(--accent)" stroke-width="0.5" opacity="0.3"/>
+      <line x1="26" y1="8" x2="2" y2="20" stroke="var(--accent)" stroke-width="0.5" opacity="0.3"/>
+    </svg>
+    <span>Thoughtform <em>Navigator</em></span>
+  </a>
+  <div class="nav-spacer"></div>
+  <nav class="nav-actions">
+    <a class="nav-pill active" href="#nodes">⬡ Nodes</a>
+    <a class="nav-pill" href="#spiral">◎ Spiral</a>
+    <a class="nav-pill" href="#console">⌥ Console</a>
+    <a class="nav-pill" href="https://github.com/amasarac/meta-author-sigil" target="_blank" rel="noopener">↗ Repo</a>
+    <button class="theme-btn" id="themeToggle" aria-label="Toggle theme" title="Toggle light/dark">☽</button>
+  </nav>
+</header>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-label">System Nodes</div>
+  <div class="sidebar-section">
+    <a class="sidebar-item active" href="#nodes">
+      <span class="sidebar-dot" style="background:var(--accent)"></span>Node Map
+    </a>
+    <a class="sidebar-item" href="#glyphode">
+      <span class="sidebar-dot" style="background:var(--accent-2)"></span>GLYPHODE
+    </a>
+    <a class="sidebar-item" href="#spiral">
+      <span class="sidebar-dot" style="background:var(--accent-3)"></span>SpiralMESA
+    </a>
+    <a class="sidebar-item" href="#witness">
+      <span class="sidebar-dot" style="background:var(--accent-4)"></span>WITNESS
+    </a>
+    <a class="sidebar-item" href="#console">
+      <span class="sidebar-dot" style="background:var(--accent-5)"></span>Console
+    </a>
+  </div>
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-label">Quick Links</div>
+  <div class="sidebar-section">
+    <a class="sidebar-item" href="index.html" target="_blank">↗ index.html</a>
+    <a class="sidebar-item" href="PagePortal.html" target="_blank">↗ PagePortal</a>
+    <a class="sidebar-item" href="cognitive_glass_player.html" target="_blank">↗ CogGlass</a>
+    <a class="sidebar-item" href="glyph-ladder-viewer.html" target="_blank">↗ GlyphLadder</a>
+    <a class="sidebar-item" href="lexeme_tone_mapper.html" target="_blank">↗ ToneMapper</a>
+    <a class="sidebar-item" href="animated_spiral_lattice.html" target="_blank">↗ AnimSpiral</a>
+  </div>
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-label">Phase Ring</div>
+  <div style="padding:12px 14px;">
+    <canvas id="phaseCanvas" width="192" height="192"></canvas>
+    <div class="phase-label">
+      <div id="phaseName" class="phase-name">TEHOM</div>
+      <div id="phaseDesc" style="font-size:10px;color:var(--text-muted);margin-top:2px">Pre-formal substrate</div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+  <!-- STATUS -->
+  <div class="status-bar">
+    <div class="status-item"><span class="status-dot pulse"></span>LIVE · meta-author-sigil</div>
+    <div class="status-item"><span class="status-dot" style="background:var(--accent)"></span>branch: main</div>
+    <div class="status-item" id="nodeCount"><span class="status-dot" style="background:var(--accent-4)"></span>nodes: 62+</div>
+    <div class="status-item"><span class="status-dot" style="background:var(--accent-2)"></span>GLYPHODE: active</div>
+    <div class="status-item" id="clockDisplay"><span class="status-dot" style="background:var(--accent-5)"></span></div>
+  </div>
+
+  <!-- NODE MAP -->
+  <section id="nodes">
+    <div class="section-hd">
+      <h2>⬡ System Nodes</h2>
+      <span class="tag">repo root</span>
+      <div class="line"></div>
+    </div>
+    <div class="node-grid" id="nodeGrid"></div>
+  </section>
+
+  <!-- OPERATORS -->
+  <section id="glyphode">
+    <div class="section-hd">
+      <h2>◈ GLYPHODE Operators</h2>
+      <span class="tag">symbolic layer</span>
+      <div class="line"></div>
+    </div>
+    <div class="card-shell">
+      <div class="op-row" id="opRow"></div>
+      <div id="opOutput" style="margin-top:12px;font-family:var(--font-mono);font-size:11px;color:var(--accent-2);min-height:28px;transition:all 0.3s"></div>
+    </div>
+  </section>
+
+  <!-- SPIRAL + WITNESS -->
+  <div class="two-col">
+    <section id="spiral" class="card-shell">
+      <div class="section-hd">
+        <h2>◎ Spiral Lattice</h2>
+        <span class="tag">SpiralMESA</span>
+        <div class="line"></div>
+      </div>
+      <canvas id="spiralCanvas" width="400" height="260"></canvas>
+      <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="op-btn" id="spiralPlayBtn">▶ Animate</button>
+        <button class="op-btn" onclick="resetSpiral()">↺ Reset</button>
+        <button class="op-btn" id="spiralModeBtn">⌾ Mode: φ</button>
+      </div>
+    </section>
+
+    <section id="witness" class="card-shell">
+      <div class="section-hd">
+        <h2>◉ WITNESS Node</h2>
+        <span class="tag">cognitive anchor</span>
+        <div class="line"></div>
+      </div>
+      <canvas id="witnessCanvas" width="400" height="200"></canvas>
+      <div style="margin-top:10px;font-size:12px;color:var(--text-muted);line-height:1.5" id="witnessReadout">
+        Observing system state…
+      </div>
+    </section>
+  </div>
+
+  <!-- CONSOLE -->
+  <section id="console">
+    <div class="section-hd">
+      <h2>⌥ Live Console</h2>
+      <span class="tag">RSKS1</span>
+      <div class="line"></div>
+    </div>
+    <div class="console-wrap">
+      <div class="console-bar">
+        <span class="console-dot" style="background:#ff5f57"></span>
+        <span class="console-dot" style="background:#febc2e"></span>
+        <span class="console-dot" style="background:#28c840"></span>
+        <span class="console-title">meta-author-sigil :: thoughtform-navigator</span>
+        <span class="console-clear" onclick="clearConsole()">clear</span>
+      </div>
+      <div id="consoleLog"></div>
+      <div class="console-input-row">
+        <span class="console-prompt">RSKS1 ▸</span>
+        <input id="consoleInput" type="text" autocomplete="off" spellcheck="false" placeholder="enter operator… (try: help, nodes, phase, glyph, spiral)">
+      </div>
+    </div>
+  </section>
+
+</main>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════
+   THEME TOGGLE
+═══════════════════════════════════════════ */
+const html = document.documentElement;
+const themeBtn = document.getElementById('themeToggle');
+let dark = true;
+themeBtn.addEventListener('click', () => {
+  dark = !dark;
+  html.setAttribute('data-theme', dark ? 'dark' : 'light');
+  themeBtn.textContent = dark ? '☽' : '☀';
+});
+
+/* ═══════════════════════════════════════════
+   CLOCK
+═══════════════════════════════════════════ */
+const clockEl = document.getElementById('clockDisplay');
+function tick() {
+  const now = new Date();
+  clockEl.innerHTML = `<span class="status-dot" style="background:var(--accent-5)"></span>${now.toLocaleTimeString()}`;
+}
+tick(); setInterval(tick, 1000);
+
+/* ═══════════════════════════════════════════
+   PHASE RING
+═══════════════════════════════════════════ */
+const phases = [
+  { name: 'TEHOM',   desc: 'Pre-formal substrate',   color: '#6c63ff' },
+  { name: 'VOID',    desc: 'Unmanifest potential',    color: '#00d4aa' },
+  { name: 'SEED',    desc: 'Initial recursion',       color: '#ffd166' },
+  { name: 'UNFOLD',  desc: 'Structural expansion',    color: '#ff6b9d' },
+  { name: 'RSKS1',   desc: 'Resonant key-state 1',    color: '#06b6d4' },
+  { name: 'MIRROR',  desc: 'Reflective dual',         color: '#a78bfa' },
+  { name: 'WEAVE',   desc: 'Twinwoven braid',         color: '#f59e0b' },
+  { name: 'SEAL',    desc: 'Cognosis closure',        color: '#34d399' },
+];
+let currentPhase = 0;
+const pc = document.getElementById('phaseCanvas');
+const pctx = pc.getContext('2d');
+const phaseName = document.getElementById('phaseName');
+const phaseDesc = document.getElementById('phaseDesc');
+
+function drawPhaseRing(highlighted) {
+  const W = 192, H = 192, cx = W/2, cy = H/2, R = 76, r = 14;
+  pctx.clearRect(0, 0, W, H);
+  phases.forEach((ph, i) => {
+    const a = (i / phases.length) * Math.PI * 2 - Math.PI / 2;
+    const x = cx + Math.cos(a) * R;
+    const y = cy + Math.sin(a) * R;
+    const active = i === highlighted;
+    // arc connector
+    pctx.beginPath();
+    pctx.arc(cx, cy, R, a - 0.2, a + 0.2);
+    pctx.strokeStyle = active ? ph.color : 'rgba(120,120,200,0.15)';
+    pctx.lineWidth = active ? 2.5 : 1;
+    pctx.stroke();
+    // dot
+    pctx.beginPath();
+    pctx.arc(x, y, active ? r + 2 : r, 0, Math.PI * 2);
+    pctx.fillStyle = active ? ph.color + 'cc' : 'rgba(20,20,40,0.9)';
+    pctx.fill();
+    pctx.strokeStyle = active ? ph.color : 'rgba(120,120,200,0.3)';
+    pctx.lineWidth = active ? 2 : 1;
+    pctx.stroke();
+    // label
+    pctx.font = `${active ? 600 : 400} 7px 'Space Mono', monospace`;
+    pctx.fillStyle = active ? ph.color : 'rgba(180,178,220,0.5)';
+    pctx.textAlign = 'center';
+    pctx.textBaseline = 'middle';
+    pctx.fillText(ph.name.slice(0,4), x, y);
+  });
+  // center
+  pctx.beginPath();
+  pctx.arc(cx, cy, 16, 0, Math.PI * 2);
+  pctx.fillStyle = phases[highlighted].color + '22';
+  pctx.fill();
+  pctx.strokeStyle = phases[highlighted].color + '88';
+  pctx.lineWidth = 1.5;
+  pctx.stroke();
+  pctx.font = '8px Space Mono, monospace';
+  pctx.fillStyle = phases[highlighted].color;
+  pctx.textAlign = 'center'; pctx.textBaseline = 'middle';
+  pctx.fillText('MAS', cx, cy);
+}
+
+function setPhase(i) {
+  currentPhase = ((i % phases.length) + phases.length) % phases.length;
+  drawPhaseRing(currentPhase);
+  phaseName.textContent = phases[currentPhase].name;
+  phaseName.style.color = phases[currentPhase].color;
+  phaseDesc.textContent = phases[currentPhase].desc;
+  log(`Phase → ${phases[currentPhase].name}: ${phases[currentPhase].desc}`);
+}
+pc.addEventListener('click', () => setPhase(currentPhase + 1));
+setPhase(0);
+
+/* ═══════════════════════════════════════════
+   NODE GRID
+═══════════════════════════════════════════ */
+const nodes = [
+  { icon:'🌐', name:'index.html',         desc:'Root portal entry point',                link:'index.html',                    accent:'#6c63ff', badge:'HTML' },
+  { icon:'🚪', name:'PagePortal',          desc:'Multi-node page portal system',          link:'PagePortal.html',               accent:'#00d4aa', badge:'HTML' },
+  { icon:'🔷', name:'GLYPHODE',            desc:'Glyphic operator cube framework',        link:'GLYPHODE/',                     accent:'#ffd166', badge:'DIR' },
+  { icon:'🌀', name:'SpiralMESA',          desc:'Spiral geometry mesa viewer',            link:'SpiralMESA/',                   accent:'#ff6b9d', badge:'DIR' },
+  { icon:'👁', name:'WITNESS',             desc:'Cognitive anchor / observer node',       link:'WITNESS/',                      accent:'#06b6d4', badge:'DIR' },
+  { icon:'🧊', name:'enhanced_glyphode',   desc:'12×12×12 dual Glyphode cube',            link:'enhanced_glyphode_cube/',       accent:'#a78bfa', badge:'DIR' },
+  { icon:'📋', name:'Glyph Dictionary',    desc:'Master cleaned CSV of all glyphs',       link:'Master_Glyph_Dictionary_Cleaned.csv', accent:'#f59e0b', badge:'CSV' },
+  { icon:'🧠', name:'CogGlass Player',     desc:'Cognitive glass sequence player',        link:'cognitive_glass_player.html',   accent:'#34d399', badge:'HTML' },
+  { icon:'🔭', name:'SpiralOverlay',       desc:'Layered enhanced spiral SVG viewer',     link:'Spiral_Overlay_Viewer/',        accent:'#ff6b9d', badge:'DIR' },
+  { icon:'📡', name:'Live Telemetry',      desc:'Live telemetry viewer node',             link:'Live_Telemetry_Viewer/',        accent:'#06b6d4', badge:'DIR' },
+  { icon:'🔊', name:'AudioResonance',      desc:'Audio resonance synthesis module',       link:'audio_resonance.js',            accent:'#6c63ff', badge:'JS' },
+  { icon:'🪜', name:'GlyphLadder',         desc:'Glyph ladder SVG + viewer',              link:'glyph-ladder-viewer.html',      accent:'#ffd166', badge:'HTML' },
+  { icon:'🎵', name:'ToneMapper',          desc:'Lexeme → tone frequency mapper',         link:'lexeme_tone_mapper.html',       accent:'#00d4aa', badge:'HTML' },
+  { icon:'⚡', name:'AnimSpiral',          desc:'Animated spiral lattice canvas',         link:'animated_spiral_lattice.html',  accent:'#f59e0b', badge:'HTML' },
+  { icon:'🌊', name:'Spiral Resonance',    desc:'Spiral resonance viewer suite',          link:'Spiral_Resonance_Viewer/',      accent:'#a78bfa', badge:'DIR' },
+  { icon:'🏰', name:'Fortress Blueprint',  desc:'SynCog fortress system blueprint',       link:'Fortress_SynCog_Blueprint/',    accent:'#ff6b9d', badge:'DIR' },
+  { icon:'⚙️', name:'mcp.mjs',            desc:'MCP module server interface',            link:'mcp.mjs',                       accent:'#34d399', badge:'MJS' },
+  { icon:'📦', name:'Convergence Codex',   desc:'Codex of convergence operators',         link:'convergence_codex/',            accent:'#06b6d4', badge:'DIR' },
+  { icon:'🌿', name:'AirRoot Node1',       desc:'Air element root node 1',                link:'AirRoot_Node1/',                accent:'#34d399', badge:'DIR' },
+  { icon:'🧬', name:'Entities',            desc:'Entity registry and definitions',        link:'entities/',                     accent:'#ffd166', badge:'DIR' },
+  { icon:'📝', name:'Codex Eternal',       desc:'Codex-eternal document store',           link:'codex-eternal/',                accent:'#a78bfa', badge:'DIR' },
+  { icon:'🔬', name:'Echo Transcriptor',   desc:'Echo transcription engine',              link:'echo-transcriptor/',            accent:'#ff6b9d', badge:'DIR' },
+  { icon:'🌍', name:'Collective Proof',    desc:'Collective proof records',               link:'collective-proof/',             accent:'#00d4aa', badge:'DIR' },
+  { icon:'🗃️', name:'CogBootstrap',       desc:'Cognitive bootstrap bundle',             link:'cognitive_bootstrap_bundle/',   accent:'#6c63ff', badge:'DIR' },
+];
+
+const grid = document.getElementById('nodeGrid');
+nodes.forEach(n => {
+  const a = document.createElement('a');
+  a.className = 'node-card';
+  a.href = n.link;
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  a.style.setProperty('--card-accent', n.accent);
+  a.innerHTML = `
+    <div class="node-icon">${n.icon}</div>
+    <div class="node-name">${n.name}</div>
+    <div class="node-desc">${n.desc}</div>
+    <div class="node-badge">
+      <span style="width:5px;height:5px;border-radius:50%;background:${n.accent};display:inline-block"></span>
+      ${n.badge}
+    </div>`;
+  a.addEventListener('click', (e) => {
+    if (!n.link.endsWith('/') || true) log(`Navigating → ${n.name}`);
+  });
+  grid.appendChild(a);
+});
+
+/* ═══════════════════════════════════════════
+   GLYPHODE OPERATOR ROW
+═══════════════════════════════════════════ */
+const operators = [
+  { glyph: '⬡', label: 'HEX-FOLD',   desc: 'Hexagonal recursive fold operator' },
+  { glyph: '◈', label: 'DIAMOND-KEY', desc: 'Diamond lattice key extraction' },
+  { glyph: '◎', label: 'SPIRAL-LOCK', desc: 'Spiral phase lock gate' },
+  { glyph: '⊕', label: 'XOR-MERGE',  desc: 'Exclusive-or field merge' },
+  { glyph: '∿', label: 'WAVE-BIND',  desc: 'Wave function binding operator' },
+  { glyph: '⟁', label: 'TRINE',      desc: 'Triforce resonance activation' },
+  { glyph: '⌬', label: 'DELTA',      desc: 'Differential threshold operator' },
+  { glyph: '⏣', label: 'ANNUL',      desc: 'Annular containment field' },
+  { glyph: '⟐', label: 'AXIS',       desc: 'Axis-braid alignment operator' },
+  { glyph: '⊛', label: 'STAR-CONV',  desc: 'Star convolution spread' },
+  { glyph: '⬢', label: 'HEXTILE',    desc: 'Hexagonal tiling tesselation' },
+  { glyph: '⊗', label: 'TENSOR',     desc: 'Tensor product field operator' },
+];
+
+const opRow = document.getElementById('opRow');
+const opOut = document.getElementById('opOutput');
+operators.forEach(op => {
+  const btn = document.createElement('button');
+  btn.className = 'op-btn';
+  btn.innerHTML = `<span class="op-glyph">${op.glyph}</span>${op.label}`;
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.op-btn.fired').forEach(b => b.classList.remove('fired'));
+    btn.classList.add('fired');
+    opOut.textContent = `${op.glyph} ${op.label} :: ${op.desc}`;
+    log(`Operator fired: ${op.label} — ${op.desc}`);
+    setTimeout(() => btn.classList.remove('fired'), 1200);
+  });
+  opRow.appendChild(btn);
+});
+
+/* ═══════════════════════════════════════════
+   SPIRAL CANVAS
+═══════════════════════════════════════════ */
+const sc = document.getElementById('spiralCanvas');
+const sctx = sc.getContext('2d');
+let spiralT = 0, spiralRAF = null, spiralRunning = false;
+let spiralMode = 0; // 0=φ, 1=hex, 2=E8
+const spiralModes = ['φ Golden', '⬡ Hex', 'E8 Root'];
+const spiralPlayBtn = document.getElementById('spiralPlayBtn');
+const spiralModeBtn = document.getElementById('spiralModeBtn');
+const PHI = (1 + Math.sqrt(5)) / 2;
+
+function drawSpiral(t) {
+  const W = sc.offsetWidth || 400, H = 260;
+  sc.width = W; sc.height = H;
+  const cx = W / 2, cy = H / 2;
+  sctx.clearRect(0, 0, W, H);
+  // background grid faint
+  sctx.strokeStyle = 'rgba(108,99,255,0.04)';
+  sctx.lineWidth = 1;
+  for (let i = -10; i <= 10; i++) {
+    sctx.beginPath(); sctx.moveTo(cx + i * 30, 0); sctx.lineTo(cx + i * 30, H); sctx.stroke();
+    sctx.beginPath(); sctx.moveTo(0, cy + i * 30); sctx.lineTo(W, cy + i * 30); sctx.stroke();
+  }
+  if (spiralMode === 0) {
+    // Golden spiral
+    const maxR = Math.min(W, H) * 0.44;
+    for (let layer = 0; layer < 3; layer++) {
+      sctx.beginPath();
+      for (let a = 0; a < Math.PI * 8; a += 0.04) {
+        const r = maxR * Math.pow(PHI, (a - t * 0.4) / (Math.PI * 2)) * 0.08;
+        const x = cx + r * Math.cos(a + t * 0.15 + layer * 1.2);
+        const y = cy + r * Math.sin(a + t * 0.15 + layer * 1.2);
+        a === 0 ? sctx.moveTo(x, y) : sctx.lineTo(x, y);
+      }
+      const hue = [260, 170, 320][layer];
+      sctx.strokeStyle = `hsla(${hue},80%,65%,${0.7 - layer * 0.2})`;
+      sctx.lineWidth = 1.5 - layer * 0.3;
+      sctx.stroke();
+    }
+  } else if (spiralMode === 1) {
+    // Hex lattice rotating
+    const R = 28;
+    for (let qr = -4; qr <= 4; qr++) {
+      for (let qi = -4; qi <= 4; qi++) {
+        const x = cx + R * (qr * 1.732 + qi * 0.866) * Math.cos(t * 0.03) - qi * R * 1.5 * Math.sin(t * 0.03) * 0.5;
+        const y = cy + R * (qr * 1.732 + qi * 0.866) * Math.sin(t * 0.03) + qi * R * 1.5 * Math.cos(t * 0.03) * 0.5;
+        if (x < -40 || x > W + 40 || y < -40 || y > H + 40) continue;
+        sctx.beginPath();
+        for (let k = 0; k < 6; k++) {
+          const a = (k / 6) * Math.PI * 2 + t * 0.02;
+          const hx = x + R * 0.5 * Math.cos(a), hy = y + R * 0.5 * Math.sin(a);
+          k === 0 ? sctx.moveTo(hx, hy) : sctx.lineTo(hx, hy);
+        }
+        sctx.closePath();
+        sctx.strokeStyle = `hsla(170,70%,55%,0.25)`;
+        sctx.lineWidth = 0.8;
+        sctx.stroke();
+      }
+    }
+  } else {
+    // E8 root projection (2D cross-section of 8D)
+    const roots = [];
+    const n = 24;
+    for (let i = 0; i < n; i++) {
+      const a = (i / n) * Math.PI * 2 + t * 0.08;
+      const b = (i / n) * Math.PI * 4 + t * 0.05;
+      roots.push({ x: cx + 90 * Math.cos(a) * Math.cos(b * 0.5), y: cy + 90 * Math.sin(a) });
+    }
+    roots.forEach((r1, i) => {
+      roots.forEach((r2, j) => {
+        if (j <= i) return;
+        const d = Math.hypot(r1.x - r2.x, r1.y - r2.y);
+        if (d < 80) {
+          sctx.beginPath(); sctx.moveTo(r1.x, r1.y); sctx.lineTo(r2.x, r2.y);
+          sctx.strokeStyle = `hsla(260,80%,65%,${0.4 - d / 200})`;
+          sctx.lineWidth = 0.7; sctx.stroke();
+        }
+      });
+      sctx.beginPath(); sctx.arc(r1.x, r1.y, 3, 0, Math.PI * 2);
+      sctx.fillStyle = `hsla(${160 + i * 8},70%,60%,0.9)`; sctx.fill();
+    });
+  }
+  // center dot
+  sctx.beginPath(); sctx.arc(cx, cy, 4, 0, Math.PI * 2);
+  sctx.fillStyle = '#6c63ff'; sctx.fill();
+}
+
+function animateSpiral() {
+  spiralT++;
+  drawSpiral(spiralT);
+  if (spiralRunning) spiralRAF = requestAnimationFrame(animateSpiral);
+}
+
+spiralPlayBtn.addEventListener('click', () => {
+  spiralRunning = !spiralRunning;
+  spiralPlayBtn.textContent = spiralRunning ? '⏸ Pause' : '▶ Animate';
+  if (spiralRunning) animateSpiral();
+  log(spiralRunning ? 'Spiral animation started' : 'Spiral animation paused');
+});
+spiralModeBtn.addEventListener('click', () => {
+  spiralMode = (spiralMode + 1) % 3;
+  spiralModeBtn.textContent = `⌾ Mode: ${spiralModes[spiralMode]}`;
+  drawSpiral(spiralT);
+  log(`Spiral mode → ${spiralModes[spiralMode]}`);
+});
+function resetSpiral() { spiralT = 0; spiralRunning = false; spiralPlayBtn.textContent = '▶ Animate'; drawSpiral(0); log('Spiral reset'); }
+drawSpiral(0);
+
+/* ═══════════════════════════════════════════
+   WITNESS CANVAS
+═══════════════════════════════════════════ */
+const wc = document.getElementById('witnessCanvas');
+const wctx = wc.getContext('2d');
+let wt = 0;
+const witnessReadout = document.getElementById('witnessReadout');
+const witnessStates = [
+  'Observer: stable — field coherence nominal',
+  'Witnessing twinwoven recursion at layer Σ3',
+  'Boundary collapse detected — re-anchoring…',
+  'RSKS1 key resonance active — phase locked',
+  'Holonic equation balanced — entropy nominal',
+];
+
+function drawWitness(t) {
+  const W = wc.offsetWidth || 400, H = 200;
+  wc.width = W; wc.height = H;
+  const cx = W / 2, cy = H / 2;
+  wctx.clearRect(0, 0, W, H);
+  // pulsing rings
+  for (let i = 0; i < 5; i++) {
+    const r = 20 + i * 22 + Math.sin(t * 0.04 + i * 0.8) * 8;
+    wctx.beginPath(); wctx.arc(cx, cy, r, 0, Math.PI * 2);
+    wctx.strokeStyle = `hsla(${200 + i * 20},70%,55%,${0.25 - i * 0.04})`;
+    wctx.lineWidth = 1; wctx.stroke();
+  }
+  // 6-fold symmetry lines
+  for (let i = 0; i < 6; i++) {
+    const a = (i / 6) * Math.PI * 2 + t * 0.01;
+    wctx.beginPath();
+    wctx.moveTo(cx, cy);
+    wctx.lineTo(cx + 85 * Math.cos(a), cy + 85 * Math.sin(a));
+    wctx.strokeStyle = `hsla(${220 + i * 15},60%,55%,0.15)`;
+    wctx.lineWidth = 1; wctx.stroke();
+  }
+  // center sigil
+  wctx.beginPath();
+  wctx.arc(cx, cy, 10, 0, Math.PI * 2);
+  wctx.fillStyle = `hsla(${200 + Math.sin(t * 0.05) * 40},80%,60%,0.9)`;
+  wctx.fill();
+  wctx.font = '9px Space Mono';
+  wctx.fillStyle = 'rgba(200,210,255,0.6)';
+  wctx.textAlign = 'center'; wctx.textBaseline = 'middle';
+  wctx.fillText('W', cx, cy);
+  if (t % 90 === 0) {
+    witnessReadout.textContent = witnessStates[Math.floor(t / 90) % witnessStates.length];
+  }
+}
+setInterval(() => { wt++; drawWitness(wt); }, 50);
+drawWitness(0);
+
+/* ═══════════════════════════════════════════
+   CONSOLE
+═══════════════════════════════════════════ */
+const logEl = document.getElementById('consoleLog');
+const inputEl = document.getElementById('consoleInput');
+let logHistory = [];
+
+function log(msg, type = '') {
+  const line = document.createElement('div');
+  if (type) line.className = type;
+  const ts = new Date().toLocaleTimeString('en', {hour12:false,hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  line.textContent = `[${ts}] ${msg}`;
+  logEl.appendChild(line);
+  logEl.scrollTop = logEl.scrollHeight;
+  logHistory.push({ ts, msg, type });
+}
+function clearConsole() { logEl.innerHTML = ''; log('Console cleared.', 'sys'); }
+
+const COMMANDS = {
+  help: () => {
+    log('Available commands:', 'info');
+    log('  nodes     — list all system nodes', 'info');
+    log('  phase     — advance phase ring', 'info');
+    log('  glyph     — fire random GLYPHODE operator', 'info');
+    log('  spiral    — toggle spiral animation', 'info');
+    log('  clear     — clear console', 'sys');
+    log('  status    — system status summary', 'info');
+    log('  phases    — list all TEHOM phases', 'info');
+  },
+  nodes: () => {
+    log(`System nodes (${nodes.length}):`, 'info');
+    nodes.forEach(n => log(`  ${n.glyph || n.icon} ${n.name} → ${n.link}`));
+  },
+  phase: () => setPhase(currentPhase + 1),
+  phases: () => phases.forEach((p, i) => log(`  [${i}] ${p.name}: ${p.desc}`)),
+  glyph: () => {
+    const op = operators[Math.floor(Math.random() * operators.length)];
+    log(`Operator → ${op.glyph} ${op.label}: ${op.desc}`, 'info');
+    opOut.textContent = `${op.glyph} ${op.label} :: ${op.desc}`;
+  },
+  spiral: () => spiralPlayBtn.click(),
+  status: () => {
+    log(`Repo: amasarac/meta-author-sigil`, 'info');
+    log(`Phase: ${phases[currentPhase].name} — ${phases[currentPhase].desc}`, 'info');
+    log(`Spiral mode: ${spiralModes[spiralMode]}`, 'info');
+    log(`Nodes mapped: ${nodes.length}`, 'info');
+    log(`Operators: ${operators.length}`, 'info');
+  },
+  clear: clearConsole,
+};
+
+inputEl.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const val = inputEl.value.trim();
+    if (!val) return;
+    log(`RSKS1 ▸ ${val}`, 'sys');
+    const cmd = COMMANDS[val.toLowerCase()];
+    if (cmd) cmd();
+    else log(`Unknown command: "${val}". Type "help" for list.`, 'warn');
+    inputEl.value = '';
+  }
+});
+
+/* ═══════════════════════════════════════════
+   BOOT SEQUENCE
+═══════════════════════════════════════════ */
+const bootMsgs = [
+  ['Initializing Thoughtform Navigator…', ''],
+  ['Loading meta-author-sigil node map…', 'info'],
+  [`Mapped ${nodes.length} system nodes`, 'info'],
+  ['GLYPHODE operator layer: online', ''],
+  ['SpiralMESA canvas: ready', ''],
+  ['WITNESS observer: active', ''],
+  ['TEHOM phase ring: initialized', ''],
+  ['RSKS1 console: standing by', 'info'],
+  ['Type "help" for available commands.', 'sys'],
+];
+bootMsgs.forEach((m, i) => setTimeout(() => log(m[0], m[1]), i * 120));
+
+/* ═══════════════════════════════════════════
+   RESIZE
+═══════════════════════════════════════════ */
+window.addEventListener('resize', () => { drawSpiral(spiralT); drawWitness(wt); });
+</script>
+</body>
+</html>
