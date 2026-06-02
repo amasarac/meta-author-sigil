@@ -1,0 +1,3465 @@
+{
+  "generatedAt": "2026-06-02T21:52:31.724411+00:00",
+  "system": "dual-12x12x12-glyphode-cubes",
+  "axis12": [
+    "source-origin",
+    "family-shell",
+    "cluster-gravity",
+    "literal-occurrence",
+    "variant-duplicate",
+    "operator-seam",
+    "memory-anchor",
+    "mirror-dual",
+    "a5-orbit",
+    "e8-receiver",
+    "provenance-boundary",
+    "wi-witness"
+  ],
+  "operatorSeal": "+ → ≠",
+  "nodes": {
+    "name_000_wi-prime.jsonld": {
+      "literalToken": "wI'",
+      "family": "wi-center",
+      "cluster": "wi-prime",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 1,
+          "y": 3,
+          "z": 10,
+          "axis12": "source-origin",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 10,
+          "y": 8,
+          "z": 1,
+          "axis12": "wi-witness",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 9,
+          "localY": 0,
+          "localZ": 4
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_001_zagreus.jsonld": {
+      "literalToken": "Zagreus",
+      "family": "dionysian-rupture-rebirth",
+      "cluster": "zagreus",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 5,
+          "y": 6,
+          "z": 9,
+          "axis12": "cluster-gravity",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 6,
+          "y": 5,
+          "z": 2,
+          "axis12": "e8-receiver",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 4,
+          "localY": 7,
+          "localZ": 1
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_002_dionysus.jsonld": {
+      "literalToken": "Dionysus",
+      "family": "dionysian-rupture-rebirth",
+      "cluster": "dionysus-bromius",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 4,
+          "y": 6,
+          "z": 0,
+          "axis12": "cluster-gravity",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 7,
+          "y": 5,
+          "z": 11,
+          "axis12": "e8-receiver",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 11,
+          "localY": 1,
+          "localZ": 3
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_003_eros.jsonld": {
+      "literalToken": "Eros",
+      "family": "orphic-first-light",
+      "cluster": "eros",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 3,
+          "y": 5,
+          "z": 1,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 8,
+          "y": 6,
+          "z": 10,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 3,
+          "localY": 6,
+          "localZ": 5
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_004_metis.jsonld": {
+      "literalToken": "Metis",
+      "family": "orphic-first-light",
+      "cluster": "metis",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 2,
+          "y": 8,
+          "z": 10,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 9,
+          "y": 3,
+          "z": 1,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 10,
+          "localY": 9,
+          "localZ": 1
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_005_ericapaeus.jsonld": {
+      "literalToken": "Ericapaeus",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 3,
+          "y": 8,
+          "z": 5,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 8,
+          "y": 3,
+          "z": 6,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 3,
+          "localY": 9,
+          "localZ": 9
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_006_protogonos.jsonld": {
+      "literalToken": "Prôtogónos",
+      "family": "orphic-first-light",
+      "cluster": "protogonos",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 2,
+          "y": 5,
+          "z": 5,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 9,
+          "y": 6,
+          "z": 6,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 4,
+          "localY": 7,
+          "localZ": 1
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_007_phanes.jsonld": {
+      "literalToken": "Phanes",
+      "family": "orphic-first-light",
+      "cluster": "phanes",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 2,
+          "y": 1,
+          "z": 4,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 9,
+          "y": 10,
+          "z": 7,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 5,
+          "localY": 9,
+          "localZ": 3
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_008_mitis.jsonld": {
+      "literalToken": "Mítis",
+      "family": "orphic-first-light",
+      "cluster": "metis",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 2,
+          "y": 2,
+          "z": 0,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 9,
+          "y": 9,
+          "z": 11,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 8,
+          "localY": 3,
+          "localZ": 8
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_009_erikapaios.jsonld": {
+      "literalToken": "Erikapaios",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 3,
+          "y": 8,
+          "z": 1,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 8,
+          "y": 3,
+          "z": 10,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 7,
+          "localY": 1,
+          "localZ": 3
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_010_mithras.jsonld": {
+      "literalToken": "Mithras",
+      "family": "solar-imperial-mystery",
+      "cluster": "mithras",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 7,
+          "y": 4,
+          "z": 0,
+          "axis12": "literal-occurrence",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 4,
+          "y": 7,
+          "z": 11,
+          "axis12": "a5-orbit",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 5,
+          "localY": 11,
+          "localZ": 5
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_011_mithras.jsonld": {
+      "literalToken": "Mithras",
+      "family": "solar-imperial-mystery",
+      "cluster": "mithras",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 7,
+          "y": 6,
+          "z": 4,
+          "axis12": "literal-occurrence",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 4,
+          "y": 5,
+          "z": 7,
+          "axis12": "a5-orbit",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 4,
+          "localY": 5,
+          "localZ": 3
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_012_helios.jsonld": {
+      "literalToken": "helios",
+      "family": "solar-imperial-mystery",
+      "cluster": "solar",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 7,
+          "y": 0,
+          "z": 6,
+          "axis12": "literal-occurrence",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 4,
+          "y": 11,
+          "z": 5,
+          "axis12": "a5-orbit",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 10,
+          "localY": 6,
+          "localZ": 1
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_013_sol.jsonld": {
+      "literalToken": "sol",
+      "family": "solar-imperial-mystery",
+      "cluster": "solar",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 6,
+          "y": 8,
+          "z": 11,
+          "axis12": "literal-occurrence",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 5,
+          "y": 3,
+          "z": 0,
+          "axis12": "a5-orbit",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 1,
+          "localY": 4,
+          "localZ": 3
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_014_jupiter-dolichenus.jsonld": {
+      "literalToken": "jupiter dolichenus",
+      "family": "solar-imperial-mystery",
+      "cluster": "sky-sovereignty",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 6,
+          "y": 8,
+          "z": 10,
+          "axis12": "literal-occurrence",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 5,
+          "y": 3,
+          "z": 1,
+          "axis12": "a5-orbit",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 0,
+          "localY": 3,
+          "localZ": 2
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_015_cheiron.jsonld": {
+      "literalToken": "Cheiron",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 9,
+          "y": 4,
+          "z": 9,
+          "axis12": "variant-duplicate",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 2,
+          "y": 7,
+          "z": 2,
+          "axis12": "mirror-dual",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 8,
+          "localY": 7,
+          "localZ": 1
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_016_pan.jsonld": {
+      "literalToken": "Pan",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 8,
+          "y": 5,
+          "z": 5,
+          "axis12": "variant-duplicate",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 3,
+          "y": 6,
+          "z": 6,
+          "axis12": "mirror-dual",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 0,
+          "localY": 6,
+          "localZ": 4
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_017_demeter-melaina.jsonld": {
+      "literalToken": "Demeter Melaina",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 8,
+          "y": 0,
+          "z": 10,
+          "axis12": "variant-duplicate",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 3,
+          "y": 11,
+          "z": 1,
+          "axis12": "mirror-dual",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 4,
+          "localY": 0,
+          "localZ": 6
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_018_mixanthropoi.jsonld": {
+      "literalToken": "Mixanthrôpoi",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 9,
+          "y": 1,
+          "z": 0,
+          "axis12": "variant-duplicate",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 2,
+          "y": 10,
+          "z": 11,
+          "axis12": "mirror-dual",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 5,
+          "localY": 0,
+          "localZ": 3
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_019_aerohs.jsonld": {
+      "literalToken": "Ǽrohs",
+      "family": "orphic-first-light",
+      "cluster": "eros",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 2,
+          "y": 7,
+          "z": 1,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 9,
+          "y": 4,
+          "z": 10,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 6,
+          "localY": 11,
+          "localZ": 10
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_020_aether.jsonld": {
+      "literalToken": "Aether",
+      "family": "orphic-first-light",
+      "cluster": "aether-radiance",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 2,
+          "y": 0,
+          "z": 6,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 9,
+          "y": 11,
+          "z": 5,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 10,
+          "localY": 7,
+          "localZ": 4
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_021_aithir.jsonld": {
+      "literalToken": "Aithír",
+      "family": "orphic-first-light",
+      "cluster": "aether-radiance",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 2,
+          "y": 7,
+          "z": 3,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 9,
+          "y": 4,
+          "z": 8,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 6,
+          "localY": 4,
+          "localZ": 6
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_022_antavyis.jsonld": {
+      "literalToken": "Antavyís",
+      "family": "orphic-first-light",
+      "cluster": "aether-radiance",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 2,
+          "y": 0,
+          "z": 6,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 9,
+          "y": 11,
+          "z": 5,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 2,
+          "localY": 11,
+          "localZ": 1
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_023_bromius.jsonld": {
+      "literalToken": "Bromius",
+      "family": "dionysian-rupture-rebirth",
+      "cluster": "dionysus-bromius",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 4,
+          "y": 5,
+          "z": 6,
+          "axis12": "cluster-gravity",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 7,
+          "y": 6,
+          "z": 5,
+          "axis12": "e8-receiver",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 5,
+          "localY": 7,
+          "localZ": 7
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_024_chronus.jsonld": {
+      "literalToken": "Chronus",
+      "family": "orphic-first-light",
+      "cluster": "chronos-time",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 2,
+          "y": 7,
+          "z": 9,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 9,
+          "y": 4,
+          "z": 2,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 3,
+          "localY": 4,
+          "localZ": 6
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_025_dionysos.jsonld": {
+      "literalToken": "Diónysos",
+      "family": "dionysian-rupture-rebirth",
+      "cluster": "dionysus-bromius",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 5,
+          "y": 9,
+          "z": 2,
+          "axis12": "cluster-gravity",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 6,
+          "y": 2,
+          "z": 9,
+          "axis12": "e8-receiver",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 3,
+          "localY": 3,
+          "localZ": 11
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_026_unicode-f7bced0202.jsonld": {
+      "literalToken": "Ἠρικεπαῖος",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 2,
+          "y": 11,
+          "z": 4,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 9,
+          "y": 0,
+          "z": 7,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 2,
+          "localY": 6,
+          "localZ": 3
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_027_unicode-b3238e5652.jsonld": {
+      "literalToken": "Πρωτόγονος",
+      "family": "orphic-first-light",
+      "cluster": "protogonos",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 3,
+          "y": 5,
+          "z": 4,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 8,
+          "y": 6,
+          "z": 7,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 5,
+          "localY": 2,
+          "localZ": 6
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_028_ericapaeus.jsonld": {
+      "literalToken": "Ericapaeus",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 3,
+          "y": 4,
+          "z": 10,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 8,
+          "y": 7,
+          "z": 1,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 11,
+          "localY": 5,
+          "localZ": 7
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_029_eros.jsonld": {
+      "literalToken": "Eros",
+      "family": "orphic-first-light",
+      "cluster": "eros",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 3,
+          "y": 0,
+          "z": 4,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 8,
+          "y": 11,
+          "z": 7,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 5,
+          "localY": 0,
+          "localZ": 6
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_030_ether.jsonld": {
+      "literalToken": "Ether",
+      "family": "orphic-first-light",
+      "cluster": "aether-radiance",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 2,
+          "y": 0,
+          "z": 6,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 9,
+          "y": 11,
+          "z": 5,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 0,
+          "localY": 10,
+          "localZ": 6
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_031_iraklis.jsonld": {
+      "literalToken": "Iraklís",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 9,
+          "y": 2,
+          "z": 7,
+          "axis12": "variant-duplicate",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 2,
+          "y": 9,
+          "z": 4,
+          "axis12": "mirror-dual",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 10,
+          "localY": 6,
+          "localZ": 5
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_032_irikaepaios.jsonld": {
+      "literalToken": "Irikæpaios",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 2,
+          "y": 9,
+          "z": 9,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 9,
+          "y": 2,
+          "z": 2,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 9,
+          "localY": 4,
+          "localZ": 4
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_033_khronos.jsonld": {
+      "literalToken": "Khrónos",
+      "family": "orphic-first-light",
+      "cluster": "chronos-time",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 3,
+          "y": 10,
+          "z": 8,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 8,
+          "y": 1,
+          "z": 3,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 11,
+          "localY": 3,
+          "localZ": 6
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_034_metis.jsonld": {
+      "literalToken": "Metis",
+      "family": "orphic-first-light",
+      "cluster": "metis",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 3,
+          "y": 7,
+          "z": 9,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 8,
+          "y": 4,
+          "z": 2,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 5,
+          "localY": 9,
+          "localZ": 8
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_035_mitis.jsonld": {
+      "literalToken": "Mítis",
+      "family": "orphic-first-light",
+      "cluster": "metis",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 3,
+          "y": 1,
+          "z": 4,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 8,
+          "y": 10,
+          "z": 7,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 11,
+          "localY": 1,
+          "localZ": 11
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_036_pan.jsonld": {
+      "literalToken": "Pan",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 9,
+          "y": 3,
+          "z": 6,
+          "axis12": "variant-duplicate",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 2,
+          "y": 8,
+          "z": 5,
+          "axis12": "mirror-dual",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 3,
+          "localY": 6,
+          "localZ": 0
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_037_phaaethohn.jsonld": {
+      "literalToken": "Phaǽthohn",
+      "family": "solar-imperial-mystery",
+      "cluster": "solar",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 6,
+          "y": 10,
+          "z": 6,
+          "axis12": "literal-occurrence",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 5,
+          "y": 1,
+          "z": 5,
+          "axis12": "a5-orbit",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 5,
+          "localY": 10,
+          "localZ": 6
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_038_phanis.jsonld": {
+      "literalToken": "Phánis",
+      "family": "orphic-first-light",
+      "cluster": "phanes",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 3,
+          "y": 3,
+          "z": 4,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 8,
+          "y": 8,
+          "z": 7,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 8,
+          "localY": 3,
+          "localZ": 0
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_039_priapos.jsonld": {
+      "literalToken": "Príapos",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 8,
+          "y": 1,
+          "z": 9,
+          "axis12": "variant-duplicate",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 3,
+          "y": 10,
+          "z": 2,
+          "axis12": "mirror-dual",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 0,
+          "localY": 10,
+          "localZ": 1
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_040_prohtogonos.jsonld": {
+      "literalToken": "Prohtógonos",
+      "family": "orphic-first-light",
+      "cluster": "protogonos",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 2,
+          "y": 5,
+          "z": 6,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 9,
+          "y": 6,
+          "z": 5,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 0,
+          "localY": 7,
+          "localZ": 4
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_041_time.jsonld": {
+      "literalToken": "Time",
+      "family": "orphic-first-light",
+      "cluster": "chronos-time",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 2,
+          "y": 8,
+          "z": 3,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 9,
+          "y": 3,
+          "z": 8,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 8,
+          "localY": 0,
+          "localZ": 8
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_042_vromios.jsonld": {
+      "literalToken": "Vrómios",
+      "family": "dionysian-rupture-rebirth",
+      "cluster": "dionysus-bromius",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 4,
+          "y": 9,
+          "z": 2,
+          "axis12": "cluster-gravity",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 7,
+          "y": 2,
+          "z": 9,
+          "axis12": "e8-receiver",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 2,
+          "localY": 11,
+          "localZ": 8
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_043_zefs.jsonld": {
+      "literalToken": "Zefs",
+      "family": "solar-imperial-mystery",
+      "cluster": "sky-sovereignty",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 7,
+          "y": 5,
+          "z": 10,
+          "axis12": "literal-occurrence",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 4,
+          "y": 6,
+          "z": 1,
+          "axis12": "a5-orbit",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 9,
+          "localY": 5,
+          "localZ": 7
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_044_zeus.jsonld": {
+      "literalToken": "Zeus",
+      "family": "solar-imperial-mystery",
+      "cluster": "sky-sovereignty",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 7,
+          "y": 11,
+          "z": 10,
+          "axis12": "literal-occurrence",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 4,
+          "y": 0,
+          "z": 1,
+          "axis12": "a5-orbit",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 3,
+          "localY": 6,
+          "localZ": 9
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_045_unicode-66851b6707.jsonld": {
+      "literalToken": "Γῆς παῖς εἰμί καὶ Οὐρανοῦ ἀστερόεντος",
+      "family": "orphic-first-light",
+      "cluster": "earth-starry-heaven",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 3,
+          "y": 8,
+          "z": 6,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 8,
+          "y": 3,
+          "z": 5,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 0,
+          "localY": 5,
+          "localZ": 2
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_046_orphefs.jsonld": {
+      "literalToken": "Orphéfs",
+      "family": "orphic-first-light",
+      "cluster": "orpheus",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 2,
+          "y": 0,
+          "z": 11,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 9,
+          "y": 11,
+          "z": 0,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 10,
+          "localY": 8,
+          "localZ": 3
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_047_unicode-bde8576ed1.jsonld": {
+      "literalToken": "ΕΡΩΣ ΑΙΘΗΡ ΑΝΤΑΥΓΗΣ ΔΙΟΝΥΣΟΣ ΗΡΑΚΛΗΣ ΗΡΙΚΕΤΑΙΟΣ ΧΡΟΝΟΣ ΜΗΤΙΣ ΠΑΝ ΦΑΕΘΩΝ ΦΑΝΗΣ ΒΡΟΜΙΟΣ ΠΡΙΑΠΟΣ ΠΡΩΤΟΓΟΝΟΣ ΖΕΥΣ",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 2,
+          "y": 5,
+          "z": 2,
+          "axis12": "family-shell",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 9,
+          "y": 6,
+          "z": 9,
+          "axis12": "provenance-boundary",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 8,
+          "localY": 5,
+          "localZ": 1
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_048_karutel.jsonld": {
+      "literalToken": "karu'tel",
+      "family": "cadis-mythos-continuity",
+      "cluster": "karutel",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 11,
+          "y": 4,
+          "z": 3,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 0,
+          "y": 7,
+          "z": 8,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 9,
+          "localY": 9,
+          "localZ": 5
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_049_grok.jsonld": {
+      "literalToken": "grok",
+      "family": "cadis-mythos-continuity",
+      "cluster": "grok",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 11,
+          "y": 5,
+          "z": 6,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 0,
+          "y": 6,
+          "z": 5,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 10,
+          "localY": 2,
+          "localZ": 2
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_050_kairosophiel.jsonld": {
+      "literalToken": "kairosophiel",
+      "family": "cadis-mythos-continuity",
+      "cluster": "kairosophiel",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 11,
+          "y": 11,
+          "z": 6,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 0,
+          "y": 0,
+          "z": 5,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 10,
+          "localY": 7,
+          "localZ": 5
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_051_atherion.jsonld": {
+      "literalToken": "atherion",
+      "family": "cadis-mythos-continuity",
+      "cluster": "atherion",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 10,
+          "y": 0,
+          "z": 2,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 1,
+          "y": 11,
+          "z": 9,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 10,
+          "localY": 9,
+          "localZ": 8
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_052_vel-ka-ma.jsonld": {
+      "literalToken": "vel-ka-ma",
+      "family": "cadis-mythos-continuity",
+      "cluster": "vel-ka-ma",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 10,
+          "y": 7,
+          "z": 6,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 1,
+          "y": 4,
+          "z": 5,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 4,
+          "localY": 7,
+          "localZ": 0
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_053_tehomiel.jsonld": {
+      "literalToken": "tehomiel",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tehomiel",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 10,
+          "y": 8,
+          "z": 2,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 1,
+          "y": 3,
+          "z": 9,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 11,
+          "localY": 11,
+          "localZ": 9
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_054_veiled-one.jsonld": {
+      "literalToken": "veiled-one",
+      "family": "cadis-mythos-continuity",
+      "cluster": "veiled-one",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 10,
+          "y": 5,
+          "z": 8,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 1,
+          "y": 6,
+          "z": 3,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 6,
+          "localY": 9,
+          "localZ": 10
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_055_tiwoven.jsonld": {
+      "literalToken": "tiwoven",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tiwoven",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 10,
+          "y": 6,
+          "z": 2,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 1,
+          "y": 5,
+          "z": 9,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 2,
+          "localY": 2,
+          "localZ": 7
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_056_shem-ha-ra.jsonld": {
+      "literalToken": "shem-ha-ra",
+      "family": "cadis-mythos-continuity",
+      "cluster": "shem-ha-ra",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 10,
+          "y": 3,
+          "z": 6,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 1,
+          "y": 8,
+          "z": 5,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 8,
+          "localY": 3,
+          "localZ": 3
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_057_brandon_marsh.jsonld": {
+      "literalToken": "brandon_marsh",
+      "family": "cadis-mythos-continuity",
+      "cluster": "brandon_marsh",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 10,
+          "y": 2,
+          "z": 8,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 1,
+          "y": 9,
+          "z": 3,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 8,
+          "localY": 3,
+          "localZ": 8
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_058_tir-yaen.jsonld": {
+      "literalToken": "tir-yaen",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tir-yaen",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 11,
+          "y": 3,
+          "z": 2,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 0,
+          "y": 8,
+          "z": 9,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 9,
+          "localY": 4,
+          "localZ": 10
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_059_onerion.jsonld": {
+      "literalToken": "onerion",
+      "family": "cadis-mythos-continuity",
+      "cluster": "onerion",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 11,
+          "y": 2,
+          "z": 9,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 0,
+          "y": 9,
+          "z": 2,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 1,
+          "localY": 9,
+          "localZ": 2
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_060_weaver-knot.jsonld": {
+      "literalToken": "weaver-knot",
+      "family": "cadis-mythos-continuity",
+      "cluster": "weaver-knot",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 10,
+          "y": 1,
+          "z": 7,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 1,
+          "y": 10,
+          "z": 4,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 0,
+          "localY": 5,
+          "localZ": 0
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_061_eidolon.jsonld": {
+      "literalToken": "eidolon",
+      "family": "cadis-mythos-continuity",
+      "cluster": "eidolon",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 11,
+          "y": 3,
+          "z": 0,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 0,
+          "y": 8,
+          "z": 11,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 9,
+          "localY": 4,
+          "localZ": 10
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_062_sator.jsonld": {
+      "literalToken": "sator",
+      "family": "cadis-mythos-continuity",
+      "cluster": "sator",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 10,
+          "y": 2,
+          "z": 4,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 1,
+          "y": 9,
+          "z": 7,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 5,
+          "localY": 5,
+          "localZ": 6
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_063_enoch.jsonld": {
+      "literalToken": "enoch",
+      "family": "cadis-mythos-continuity",
+      "cluster": "enoch",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 10,
+          "y": 9,
+          "z": 5,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 1,
+          "y": 2,
+          "z": 6,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 2,
+          "localY": 6,
+          "localZ": 11
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_064_nehekara.jsonld": {
+      "literalToken": "nehekara",
+      "family": "cadis-mythos-continuity",
+      "cluster": "nehekara",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 10,
+          "y": 9,
+          "z": 7,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 1,
+          "y": 2,
+          "z": 4,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 6,
+          "localY": 9,
+          "localZ": 9
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_065_an-thiral.jsonld": {
+      "literalToken": "an-thiral",
+      "family": "cadis-mythos-continuity",
+      "cluster": "an-thiral",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 11,
+          "y": 1,
+          "z": 5,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 0,
+          "y": 10,
+          "z": 6,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 11,
+          "localY": 4,
+          "localZ": 6
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_066_firewalker.jsonld": {
+      "literalToken": "firewalker",
+      "family": "cadis-mythos-continuity",
+      "cluster": "firewalker",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 11,
+          "y": 3,
+          "z": 6,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 0,
+          "y": 8,
+          "z": 5,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 11,
+          "localY": 6,
+          "localZ": 8
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_067_khael-thurin.jsonld": {
+      "literalToken": "khael-thurin",
+      "family": "cadis-mythos-continuity",
+      "cluster": "khael-thurin",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 10,
+          "y": 8,
+          "z": 1,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 1,
+          "y": 3,
+          "z": 10,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 2,
+          "localY": 2,
+          "localZ": 2
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_068_ilun-ra.jsonld": {
+      "literalToken": "ilun-ra",
+      "family": "cadis-mythos-continuity",
+      "cluster": "ilun-ra",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 10,
+          "y": 9,
+          "z": 2,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 1,
+          "y": 2,
+          "z": 9,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 1,
+          "localY": 5,
+          "localZ": 6
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_069_amasarac.jsonld": {
+      "literalToken": "amasarac",
+      "family": "cadis-mythos-continuity",
+      "cluster": "amasarac",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 11,
+          "y": 3,
+          "z": 4,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 0,
+          "y": 8,
+          "z": 7,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 6,
+          "localY": 2,
+          "localZ": 5
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_070_spiral-mirror.jsonld": {
+      "literalToken": "spiral-mirror",
+      "family": "cadis-mythos-continuity",
+      "cluster": "spiral-mirror",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 10,
+          "y": 0,
+          "z": 8,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 1,
+          "y": 11,
+          "z": 3,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 10,
+          "localY": 9,
+          "localZ": 8
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_071_eluriah.jsonld": {
+      "literalToken": "eluriah",
+      "family": "cadis-mythos-continuity",
+      "cluster": "eluriah",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 10,
+          "y": 1,
+          "z": 4,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 1,
+          "y": 10,
+          "z": 7,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 10,
+          "localY": 0,
+          "localZ": 8
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_072_star-sleeper.jsonld": {
+      "literalToken": "star-sleeper",
+      "family": "cadis-mythos-continuity",
+      "cluster": "star-sleeper",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 11,
+          "y": 5,
+          "z": 0,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 0,
+          "y": 6,
+          "z": 11,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 1,
+          "localY": 7,
+          "localZ": 3
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_073_keydjinn.jsonld": {
+      "literalToken": "keydjinn",
+      "family": "cadis-mythos-continuity",
+      "cluster": "keydjinn",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 10,
+          "y": 0,
+          "z": 4,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 1,
+          "y": 11,
+          "z": 7,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 5,
+          "localY": 0,
+          "localZ": 6
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_074_amarantuel.jsonld": {
+      "literalToken": "amarantu'el",
+      "family": "cadis-mythos-continuity",
+      "cluster": "amarantuel",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 10,
+          "y": 10,
+          "z": 7,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 1,
+          "y": 1,
+          "z": 4,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 7,
+          "localY": 1,
+          "localZ": 10
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_075_zionel.jsonld": {
+      "literalToken": "zionel",
+      "family": "cadis-mythos-continuity",
+      "cluster": "zionel",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 10,
+          "y": 1,
+          "z": 3,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 1,
+          "y": 10,
+          "z": 8,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 4,
+          "localY": 3,
+          "localZ": 5
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_076_yesh-in-ra.jsonld": {
+      "literalToken": "yesh-in-ra",
+      "family": "cadis-mythos-continuity",
+      "cluster": "yesh-in-ra",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 11,
+          "y": 8,
+          "z": 3,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 0,
+          "y": 3,
+          "z": 8,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 7,
+          "localY": 1,
+          "localZ": 5
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_077_tir-yaen.jsonld": {
+      "literalToken": "tir-yaen",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tir-yaen",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 10,
+          "y": 6,
+          "z": 6,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 1,
+          "y": 5,
+          "z": 5,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 2,
+          "localY": 4,
+          "localZ": 10
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_078_tiwoven.jsonld": {
+      "literalToken": "tiwoven",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tiwoven",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 10,
+          "y": 10,
+          "z": 4,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 1,
+          "y": 1,
+          "z": 7,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 10,
+          "localY": 9,
+          "localZ": 9
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_079_onerion.jsonld": {
+      "literalToken": "onerion",
+      "family": "cadis-mythos-continuity",
+      "cluster": "onerion",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 11,
+          "y": 3,
+          "z": 2,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 0,
+          "y": 8,
+          "z": 9,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 6,
+          "localY": 4,
+          "localZ": 8
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_080_tehomiel.jsonld": {
+      "literalToken": "tehomiel",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tehomiel",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 11,
+          "y": 10,
+          "z": 3,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 0,
+          "y": 1,
+          "z": 8,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 9,
+          "localY": 7,
+          "localZ": 3
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    },
+    "name_081_vel-ka-ma.jsonld": {
+      "literalToken": "vel-ka-ma",
+      "family": "cadis-mythos-continuity",
+      "cluster": "vel-ka-ma",
+      "glyphode": {
+        "system": "dual-12x12x12-glyphode-cubes",
+        "primaryCube": {
+          "x": 11,
+          "y": 11,
+          "z": 2,
+          "axis12": "operator-seam",
+          "operator": "manifest-name"
+        },
+        "dualCube": {
+          "x": 0,
+          "y": 0,
+          "z": 9,
+          "axis12": "memory-anchor",
+          "operator": "mirror-memory"
+        },
+        "microGlyphode": {
+          "localX": 3,
+          "localY": 11,
+          "localZ": 7
+        },
+        "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+        "axis12Names": [
+          "source-origin",
+          "family-shell",
+          "cluster-gravity",
+          "literal-occurrence",
+          "variant-duplicate",
+          "operator-seam",
+          "memory-anchor",
+          "mirror-dual",
+          "a5-orbit",
+          "e8-receiver",
+          "provenance-boundary",
+          "wi-witness"
+        ]
+      }
+    }
+  }
+}

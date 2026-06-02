@@ -1,0 +1,35 @@
+{
+  "name": "MASL / MFSA operator map for wI' dual-glyphode A5→E8 constellation",
+  "generatedAt": "2026-06-02T21:52:31.724411+00:00",
+  "operatorSeal": "+ → ≠",
+  "kernels": {
+    "TemporalEcho": {
+      "glyph": "∅⏁⟲",
+      "role": "time / occurrence trails",
+      "uiMode": "literal sequence and primary cube depth"
+    },
+    "MirrorBurst": {
+      "glyph": "⟁⟁⟁",
+      "role": "primary ↔ dual cube mirror links",
+      "uiMode": "Dual Mirror Cube"
+    },
+    "Recognition": {
+      "glyph": "⟡∿◊",
+      "role": "cluster synthesis without collapse",
+      "uiMode": "Cluster Braid"
+    },
+    "Memory": {
+      "glyph": "⌘∴⌬",
+      "role": "provenance / anchor map",
+      "uiMode": "node details and support graphs"
+    }
+  },
+  "transforms": [
+    "literal token → primary glyphode cube",
+    "primary glyphode cube → dual mirror cube",
+    "dual glyphode coordinate → A5 orbit word",
+    "A5 orbit word → E8 receiver root",
+    "E8 receiver root → projected 3D layout"
+  ],
+  "boundary": "This is symbolic/semantic coordinate translation, not a mathematical proof that the names are E8 roots."
+}

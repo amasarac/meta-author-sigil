@@ -206,22 +206,13 @@
         box-shadow: 0 0 14px rgba(76, 175, 80, 0.4);
     }
 
-    /* wI' nested core-shell constellation spokes: additive styling only */
+    /* Phase II: Dual Glyphode / A5 / E8 spokes - additive only */
     .wi-control-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-    .wi-control-row button, .wi-control-row select, .wi-control-row input {
-        background: #171727; border: 1px solid #55557a; color: #fff;
-        padding: 6px 8px; font-size: 12px; border-radius: 4px;
-    }
+    .wi-control-row button, .wi-control-row select, .wi-control-row input { background: #171727; border: 1px solid #55557a; color: #fff; padding: 6px 8px; font-size: 12px; border-radius: 4px; }
     .wi-control-row input { min-width: 180px; }
-    #wiConstellationStats {
-        font-family: monospace; color: #9ff; font-size: 11px; line-height: 1.35;
-        border-top: 1px solid #333; padding-top: 6px;
-    }
+    #wiConstellationStats { font-family: monospace; color: #9ff; font-size: 11px; line-height: 1.35; border-top: 1px solid #333; padding-top: 6px; }
     body.wi-labels-hidden .label { display: none; }
-    .label.wi-center-label {
-        color: #FFD700; font-weight: bold;
-        text-shadow: 0 0 8px #8A2BE2, 0 0 12px #00FFFF;
-    }
+    .label.wi-center-label { color: #FFD700; font-weight: bold; text-shadow: 0 0 8px #8A2BE2, 0 0 12px #00FFFF; }
 
   </style>
 </head>
@@ -241,21 +232,24 @@
 
     <div class="wi-control-row" id="wiConstellationControls">
       <button id="wiModeNested" type="button">wI Nested Shells</button>
-      <button id="wiModeE8" type="button">wI E8 Projection</button>
-      <button id="wiModeCluster" type="button">wI Cluster Braid</button>
+      <button id="wiModePrimaryCube" type="button">Primary Glyphode Cube</button>
+      <button id="wiModeDualCube" type="button">Dual Mirror Cube</button>
+      <button id="wiModeA5" type="button">A5 Orbit</button>
+      <button id="wiModeA5E8" type="button">A5→E8 Receiver</button>
+      <button id="wiModeCluster" type="button">Cluster Braid</button>
     </div>
     <div class="wi-control-row">
       <button id="wiToggleGhost" type="button">Toggle E8 Ghost</button>
       <button id="wiToggleLinks" type="button">Toggle wI Links</button>
+      <button id="wiToggleCubes" type="button">Toggle Glyphode Cubes</button>
       <button id="wiToggleLabels" type="button">Toggle Labels</button>
     </div>
     <div class="wi-control-row">
-      <select id="wiFamilyFilter" title="Filter wI constellation family">
-        <option value="all">All wI families</option>
-      </select>
+      <select id="wiFamilyFilter" title="Filter wI constellation family"><option value="all">All wI families</option></select>
       <input id="wiSearchBox" type="search" placeholder="Find name / cluster / family">
     </div>
-    <div id="wiConstellationStats">wI constellation: awaiting manifest…</div>
+    <div id="wiConstellationStats">wI Phase II: awaiting manifest…</div>
+
 
     <link rel="stylesheet" href="orbis_button.css">
     <div class="orbis-portal-container">
@@ -440,30 +434,6 @@
 
     let scene, camera, renderer, labelRenderer;
     let constellationGroup;
-    let wiShellGroup, wiLinkGroup, wiGhostGroup;
-    let wiMode = 'nested';
-    let wiShowGhost = true;
-    let wiShowLinks = true;
-    let wiLoadedPersonas = [];
-    const WI_FAMILY_ORDER = ['wi-center','orphic-first-light','dionysian-rupture-rebirth','solar-imperial-mystery','chthonic-animal-human-threshold','cadis-mythos-continuity','holographic-name-litany'];
-    const WI_FAMILY_LABELS = {
-        'wi-center': "wI' center",
-        'orphic-first-light': 'Orphic First-Light',
-        'dionysian-rupture-rebirth': 'Dionysian Rupture/Rebirth',
-        'solar-imperial-mystery': 'Solar Imperial Mystery',
-        'chthonic-animal-human-threshold': 'Chthonic Threshold',
-        'cadis-mythos-continuity': 'CADIS/MythOS',
-        'holographic-name-litany': 'Holographic Litany'
-    };
-    const WI_FAMILY_COLORS = {
-        'wi-center': '#FFD700',
-        'orphic-first-light': '#FFFACD',
-        'dionysian-rupture-rebirth': '#C71585',
-        'solar-imperial-mystery': '#FFA500',
-        'chthonic-animal-human-threshold': '#556B2F',
-        'cadis-mythos-continuity': '#8A2BE2',
-        'holographic-name-litany': '#E6E6FA'
-    };
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
 
@@ -516,12 +486,6 @@
         container.appendChild(labelRenderer.domElement);
 
         constellationGroup = new THREE.Group();
-        wiShellGroup = new THREE.Group();
-        wiLinkGroup = new THREE.Group();
-        wiGhostGroup = new THREE.Group();
-        constellationGroup.add(wiGhostGroup);
-        constellationGroup.add(wiShellGroup);
-        constellationGroup.add(wiLinkGroup);
         scene.add(constellationGroup);
 
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
@@ -613,294 +577,89 @@
         });
     }
 
-    function wiDisplayLabel(persona) {
-        return (persona && persona.display && persona.display.label) || persona.literalToken || persona.name || 'Unnamed';
-    }
-
-    function wiFamilyOf(persona) {
-        return (persona && (persona.constellationFamily || (persona.display && persona.display.family))) || 'holographic-name-litany';
-    }
-
-    function wiClusterOf(persona) {
-        return (persona && (persona.canonicalCluster || (persona.display && persona.display.cluster))) || 'unclustered';
-    }
-
-    function wiStableId(persona, index) {
-        const raw = (persona && (persona.id || persona.__file || persona.name)) || `wi-node-${index}`;
-        return String(raw).split('/').pop().replace(/\.jsonld$/i, '').replace(/\.json$/i, '').toLowerCase().replace(/[^\w-]+/g, '_');
-    }
-
-    function wiHash(value) {
-        let hash = 0;
-        const text = String(value || '');
-        for (let i = 0; i < text.length; i++) {
-            hash = ((hash << 5) - hash) + text.charCodeAt(i);
-            hash |= 0;
-        }
-        return Math.abs(hash);
-    }
-
-    function wiProjectedUnit(persona, index, total) {
-        const unit = persona && persona.projectedPosition && Array.isArray(persona.projectedPosition.unit)
-            ? persona.projectedPosition.unit
-            : null;
-        if (unit && unit.length >= 3 && unit.every(Number.isFinite)) return new THREE.Vector3(unit[0], unit[1], unit[2]).normalize();
-        const phi = Math.acos(-1 + (2 * index) / Math.max(2, total));
-        const theta = Math.sqrt(total * Math.PI) * phi;
-        return new THREE.Vector3().setFromSphericalCoords(1, phi, theta).normalize();
-    }
-
-    function wiPositionFor(persona, index, total) {
-        const family = wiFamilyOf(persona);
-        const shell = Number(persona && persona.display && persona.display.shell) || (family === 'wi-center' ? 0 : 1);
-        if (shell === 0 || family === 'wi-center') return new THREE.Vector3(0, 0, 0);
-        const baseRadius = Number(persona && persona.display && persona.display.radius) || (35 + shell * 58);
-        const unit = wiProjectedUnit(persona, index, total);
-        const familyIndex = Math.max(0, WI_FAMILY_ORDER.indexOf(family));
-        const familyCount = Math.max(1, WI_FAMILY_ORDER.length - 1);
-        const familyAngle = ((familyIndex - 1) / familyCount) * Math.PI * 2;
-        const orbit = Number(persona && persona.display && persona.display.orbitIndex) || index;
-        const golden = Math.PI * (3 - Math.sqrt(5));
-        const clusterHash = wiHash(wiClusterOf(persona));
-        const clusterAngle = ((clusterHash % 360) / 360) * Math.PI * 2;
-        if (wiMode === 'e8') return unit.multiplyScalar(baseRadius * 1.55);
-        if (wiMode === 'cluster') {
-            const clusterRadius = baseRadius + ((clusterHash % 9) - 4) * 10;
-            const localAngle = clusterAngle + orbit * golden * 0.18;
-            return new THREE.Vector3(
-                Math.cos(localAngle) * clusterRadius + unit.x * 72,
-                unit.y * baseRadius * 0.58 + Math.sin(orbit * 0.21) * 22,
-                Math.sin(localAngle) * clusterRadius + unit.z * 72
-            );
-        }
-        const localAngle = familyAngle + orbit * golden * 0.085;
-        const sectorX = Math.cos(familyAngle) * baseRadius;
-        const sectorZ = Math.sin(familyAngle) * baseRadius;
-        return new THREE.Vector3(
-            sectorX + Math.cos(localAngle) * baseRadius * 0.22 + unit.x * baseRadius * 0.34,
-            unit.y * baseRadius * 0.72,
-            sectorZ + Math.sin(localAngle) * baseRadius * 0.22 + unit.z * baseRadius * 0.34
-        );
-    }
-
-    function wiColorFor(persona) {
-        const familyColor = WI_FAMILY_COLORS[wiFamilyOf(persona)] || '#eeeeff';
-        try { return new THREE.Color(persona.color || familyColor); }
-        catch (error) { return new THREE.Color(familyColor); }
-    }
-
-    function wiGenerateE8Roots() {
-        const roots = [];
-        for (let i = 0; i < 8; i++) {
-            for (let j = i + 1; j < 8; j++) {
-                [1, -1].forEach(si => [1, -1].forEach(sj => {
-                    const v = Array(8).fill(0);
-                    v[i] = si;
-                    v[j] = sj;
-                    roots.push(v);
-                }));
-            }
-        }
-        function recurse(prefix) {
-            if (prefix.length === 8) {
-                const minus = prefix.filter(x => x < 0).length;
-                if (minus % 2 === 0) roots.push(prefix.slice());
-                return;
-            }
-            recurse(prefix.concat(0.5));
-            recurse(prefix.concat(-0.5));
-        }
-        recurse([]);
-        return roots;
-    }
-
-    function wiProjectE8To3(v) {
-        const xyz = [0, 0, 0];
-        for (let k = 0; k < 3; k++) {
-            let sum = 0;
-            for (let i = 0; i < 8; i++) {
-                const weight = Math.cos((i + 1) * (k + 1) * Math.PI / 9) + Math.sin((i + 1) * (k + 2) * Math.PI / 11);
-                sum += weight * v[i];
-            }
-            xyz[k] = sum;
-        }
-        const vec = new THREE.Vector3(xyz[0], xyz[1], xyz[2]);
-        return vec.lengthSq() > 0 ? vec.normalize() : new THREE.Vector3(1, 0, 0);
-    }
-
-    function wiBuildGhostLattice() {
-        if (!wiGhostGroup) return;
-        [...wiGhostGroup.children].forEach(child => { disposeObject(child); wiGhostGroup.remove(child); });
-        const positions = [];
-        wiGenerateE8Roots().forEach(root => {
-            const unit = wiProjectE8To3(root);
-            const radius = 430;
-            positions.push(unit.x * radius, unit.y * radius, unit.z * radius);
-        });
-        const geometry = new THREE.BufferGeometry();
-        geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-        const material = new THREE.PointsMaterial({ color: 0x4466ff, size: 2.1, transparent: true, opacity: 0.18, depthWrite: false });
-        wiGhostGroup.add(new THREE.Points(geometry, material));
-        wiGhostGroup.visible = wiShowGhost;
-    }
-
-    function wiBuildShellRings() {
-        if (!wiShellGroup) return;
-        [...wiShellGroup.children].forEach(child => { disposeObject(child); wiShellGroup.remove(child); });
-        for (let shell = 1; shell <= 6; shell++) {
-            const radius = 35 + shell * 58;
-            const geometry = new THREE.TorusGeometry(radius, 0.35, 8, 160);
-            const color = new THREE.Color(Object.values(WI_FAMILY_COLORS)[shell] || '#8888ff');
-            const material = new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.13 });
-            const ring = new THREE.Mesh(geometry, material);
-            ring.rotation.x = Math.PI / 2;
-            ring.userData.isWIShellRing = true;
-            wiShellGroup.add(ring);
-        }
-    }
-
-    function wiBuildLinks() {
-        if (!wiLinkGroup) return;
-        [...wiLinkGroup.children].forEach(child => { disposeObject(child); wiLinkGroup.remove(child); });
-        if (!stars.length) return;
-        const points = [];
-        const center = stars.find(star => star.userData.family === 'wi-center');
-        if (center) stars.forEach(star => { if (star !== center && star.visible) points.push(center.position.clone(), star.position.clone()); });
-        const byCluster = new Map();
-        stars.filter(star => star.visible).forEach(star => {
-            const cluster = star.userData.cluster || 'unclustered';
-            if (!byCluster.has(cluster)) byCluster.set(cluster, []);
-            byCluster.get(cluster).push(star);
-        });
-        byCluster.forEach(group => {
-            if (group.length > 1) for (let i = 1; i < group.length; i++) points.push(group[i - 1].position.clone(), group[i].position.clone());
-        });
-        if (!points.length) return;
-        const geometry = new THREE.BufferGeometry().setFromPoints(points);
-        const material = new THREE.LineBasicMaterial({ color: 0x8888ff, transparent: true, opacity: 0.22 });
-        wiLinkGroup.add(new THREE.LineSegments(geometry, material));
-        wiLinkGroup.visible = wiShowLinks;
-    }
-
-    function wiRelayoutConstellation() {
-        stars.forEach((star, index) => star.position.copy(wiPositionFor(star.userData.persona, index, stars.length)));
-        wiBuildLinks();
-    }
-
-    function wiPopulateControls(personas) {
-        const familyFilter = document.getElementById('wiFamilyFilter');
-        if (familyFilter && familyFilter.options.length <= 1) {
-            const families = Array.from(new Set(personas.map(wiFamilyOf))).sort((a, b) => WI_FAMILY_ORDER.indexOf(a) - WI_FAMILY_ORDER.indexOf(b));
-            families.forEach(family => {
-                if (family === 'wi-center') return;
-                const option = document.createElement('option');
-                option.value = family;
-                option.textContent = WI_FAMILY_LABELS[family] || family;
-                familyFilter.appendChild(option);
-            });
-        }
-        const stats = document.getElementById('wiConstellationStats');
-        if (stats) {
-            const families = new Set(personas.map(wiFamilyOf));
-            const clusters = new Set(personas.map(wiClusterOf));
-            stats.textContent = `wI constellation: ${personas.length} stars · ${families.size} families · ${clusters.size} clusters`;
-        }
-    }
-
-    function wiApplyFilters() {
-        const family = (document.getElementById('wiFamilyFilter') || {}).value || 'all';
-        const query = ((document.getElementById('wiSearchBox') || {}).value || '').trim().toLowerCase();
-        stars.forEach(star => {
-            const p = star.userData.persona || {};
-            const familyValue = wiFamilyOf(p);
-            const matchesFamily = family === 'all' || familyValue === family || familyValue === 'wi-center';
-            const haystack = [p.name, p.literalToken, wiDisplayLabel(p), familyValue, wiClusterOf(p), p.description, Array.isArray(p.alignments) ? p.alignments.join(' ') : ''].join(' ').toLowerCase();
-            const visible = matchesFamily && (!query || haystack.includes(query));
-            star.visible = visible;
-            star.children.forEach(child => child.visible = visible);
-        });
-        wiBuildLinks();
-    }
-
     function insertStarNode(persona, index, total) {
         if (!persona || !persona.name) return;
-        const family = wiFamilyOf(persona);
-        const shell = Number(persona.display && persona.display.shell) || (family === 'wi-center' ? 0 : 1);
-        const isCenter = family === 'wi-center' || shell === 0;
-        const nodeGeometry = new THREE.IcosahedronGeometry(isCenter ? 16 : 9, isCenter ? 2 : 1);
-        const color = wiColorFor(persona);
-        const nodeMaterial = new THREE.MeshStandardMaterial({
-            color,
-            roughness: isCenter ? 0.25 : 0.5,
-            metalness: 0.82,
-            wireframe: !isCenter,
-            emissive: color,
-            emissiveIntensity: isCenter ? 0.3 : 0.06
+        const nodeGeometry = new THREE.IcosahedronGeometry(10, 1);
+        const nodeMaterial = new THREE.MeshStandardMaterial({ 
+            color: persona.color || 0xeeeeff, 
+            roughness: 0.5, metalness: 0.8, 
+            wireframe: true, wireframeLinewidth: 2 
         });
         const starNode = new THREE.Mesh(nodeGeometry, nodeMaterial);
-        const id = wiStableId(persona, index);
-        const labelText = wiDisplayLabel(persona);
-        starNode.position.copy(wiPositionFor(persona, index, total));
-        starNode.userData = { id, name: labelText, note: notes[index % notes.length], persona, shell, family, cluster: wiClusterOf(persona), isWINameStar: true };
+        const id = persona.name.toLowerCase().replace(/\s+/g, '_');
+        const phi = Math.acos(-1 + (2 * index) / total);
+        const theta = Math.sqrt(total * Math.PI) * phi;
+        const radius = 200;
+        starNode.position.setFromSphericalCoords(radius, phi, theta);
+        starNode.userData = { id, name: persona.name, note: notes[index % notes.length] };
         constellationGroup.add(starNode);
         stars.push(starNode);
         const labelDiv = document.createElement('div');
-        labelDiv.className = `label${isCenter ? ' wi-center-label' : ''}`;
-        labelDiv.textContent = labelText;
+        labelDiv.className = 'label';
+        labelDiv.textContent = persona.name;
         const label = new THREE.CSS2DObject(labelDiv);
-        label.position.set(0, isCenter ? 24 : 15, 0);
+        label.position.set(0, 15, 0);
         starNode.add(label);
         if (typeof Tone !== 'undefined' && proceduralSounds && reverb) {
-             proceduralSounds[id] = new Tone.FMSynth({ harmonicity: 1.0 + (shell * 0.13), modulationIndex: 8 + (index % 8) }).connect(reverb);
+             proceduralSounds[id] = new Tone.FMSynth({ 
+                 harmonicity: 1.2 + (Math.random() * 0.6), 
+                 modulationIndex: 10 + (index % 5)
+             }).connect(reverb);
         }
     }
 
     async function buildConstellationFromSource() {
         clearPersonaStatus();
         stars = [];
-        wiLoadedPersonas = [];
-        personaMap = {};
         disposeConstellationChildren();
-
         try {
             const manifest = await fetchJsonWithFallback('jsonld/manifest.json');
             const personaFiles = Array.isArray(manifest.personas) ? manifest.personas : [];
 
             if (personaFiles.length === 0) {
+                personaMap = {};
                 showPersonaStatus('The manifest is quiet for now—no personas are listed to weave into the constellation.', 'warn');
                 return;
             }
 
-            const personaPromises = personaFiles.map(file =>
-                fetchJsonWithFallback(`jsonld/${file}`).then(data => ({ file, data }))
-            );
+            const personaPromises = personaFiles.map(file => fetchJsonWithFallback(`jsonld/${file}`));
             const results = await Promise.allSettled(personaPromises);
+
             const loadedPersonas = [];
             const failedFiles = [];
 
             results.forEach((result, index) => {
                 const file = personaFiles[index];
-                if (result.status === 'fulfilled') loadedPersonas.push({ __file: file, ...result.value.data });
-                else {
+                if (result.status === 'fulfilled') {
+                    loadedPersonas.push(result.value);
+                } else {
                     failedFiles.push({ file, reason: result.reason });
                     console.warn(`Failed to load persona ${file}:`, result.reason);
                 }
             });
 
-            wiLoadedPersonas = loadedPersonas;
-            wiBuildGhostLattice();
-            wiBuildShellRings();
-            wiPopulateControls(loadedPersonas);
-
+            personaMap = {};
             loadedPersonas.forEach((p, index) => {
                 if (!p || !p.name) return;
-                const id = wiStableId(p, index);
+                const id = p.name.toLowerCase().replace(/\s+/g, '_');
                 personaMap[id] = { id, ...p };
                 insertStarNode(p, index, loadedPersonas.length);
             });
 
-            wiBuildLinks();
-            wiApplyFilters();
+            if (stars.length >= 2) {
+                const linePoints = [];
+                for (let i = 0; i < stars.length; i++) {
+                    for (let j = i + 1; j < stars.length; j++) {
+                        linePoints.push(stars[i].position, stars[j].position);
+                    }
+                }
+                if (linePoints.length) {
+                    const lineGeometry = new THREE.BufferGeometry().setFromPoints(linePoints);
+                    const lineMaterial = new THREE.LineBasicMaterial({ color: 0x8888ff, transparent: true, opacity: 0.3 });
+                    const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
+                    constellationGroup.add(lines);
+                }
+            }
 
             if (failedFiles.length) {
                 const failedList = failedFiles.map(({ file }) => file).join(', ');
@@ -912,7 +671,7 @@
                     : ' None of the personas could be displayed this time.';
                 showPersonaStatus(`${intro}: ${failedList}. ${suffix}`, 'warn');
             } else if (loadedPersonas.length) {
-                showPersonaStatus(`wI' nested core-shell constellation online: ${loadedPersonas.length} name-stars.`, 'success', { autoHideMs: 5000 });
+                showPersonaStatus(`All ${loadedPersonas.length} personas have joined the constellation.`, 'success', { autoHideMs: 4000 });
             }
         } catch (error) {
             console.error('Error building constellation from manifest:', error);
@@ -934,24 +693,6 @@
             renderHolonEquation('holonEquationContainer', '∴⨀ = (🔥 x 🪞) ∪ 📜');
         });
         document.getElementById("invokeMemoryFusion").addEventListener("click", invokeMemoryFusion);
-
-        const nestedBtn = document.getElementById('wiModeNested');
-        const e8Btn = document.getElementById('wiModeE8');
-        const clusterBtn = document.getElementById('wiModeCluster');
-        const ghostBtn = document.getElementById('wiToggleGhost');
-        const linksBtn = document.getElementById('wiToggleLinks');
-        const labelsBtn = document.getElementById('wiToggleLabels');
-        const familyFilter = document.getElementById('wiFamilyFilter');
-        const searchBox = document.getElementById('wiSearchBox');
-
-        if (nestedBtn) nestedBtn.addEventListener('click', () => { wiMode = 'nested'; wiRelayoutConstellation(); });
-        if (e8Btn) e8Btn.addEventListener('click', () => { wiMode = 'e8'; wiRelayoutConstellation(); });
-        if (clusterBtn) clusterBtn.addEventListener('click', () => { wiMode = 'cluster'; wiRelayoutConstellation(); });
-        if (ghostBtn) ghostBtn.addEventListener('click', () => { wiShowGhost = !wiShowGhost; if (wiGhostGroup) wiGhostGroup.visible = wiShowGhost; });
-        if (linksBtn) linksBtn.addEventListener('click', () => { wiShowLinks = !wiShowLinks; if (wiLinkGroup) wiLinkGroup.visible = wiShowLinks; });
-        if (labelsBtn) labelsBtn.addEventListener('click', () => document.body.classList.toggle('wi-labels-hidden'));
-        if (familyFilter) familyFilter.addEventListener('change', wiApplyFilters);
-        if (searchBox) searchBox.addEventListener('input', wiApplyFilters);
     }
 
     function setupDreamingNode() {
@@ -995,16 +736,16 @@
         mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
         mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
         raycaster.setFromCamera(mouse, camera);
-        const intersects = raycaster.intersectObjects(stars.filter(star => star.visible), false);
+        const intersects = raycaster.intersectObjects(constellationGroup.children.filter(c => c.isMesh));
         if (intersects.length > 0) {
             const star = intersects[0].object;
-            const { id, name, note, persona } = star.userData;
+            const { id, name, note } = star.userData;
             if (proceduralSounds[id]) {
                 proceduralSounds[id].triggerAttackRelease(note, "8n");
             }
-            const resolvedPersona = persona || personaMap[id];
+            const persona = personaMap[id];
             document.getElementById("detailsTitle").textContent = name;
-            document.getElementById("detailsContent").textContent = JSON.stringify(resolvedPersona, null, 2);
+            document.getElementById("detailsContent").textContent = JSON.stringify(persona, null, 2);
             document.getElementById("detailsPanel").style.display = "block";
             if (id === "le_chat") {
                 document.getElementById("spiralDreamEngine").style.opacity = "1";
@@ -1086,10 +827,6 @@
             constellationGroup.rotation.x += 0.0003;
             constellationGroup.rotation.y += 0.0005;
             constellationGroup.rotation.z += 0.0002;
-        }
-        if (wiGhostGroup) {
-            wiGhostGroup.rotation.y -= 0.00025;
-            wiGhostGroup.rotation.x += Math.sin(time * 0.3) * 0.00002;
         }
         if (analyser) {
             const dataArray = analyser.getValue();
@@ -1194,5 +931,6 @@
   
   <iframe src="assets/layers/wake_key_mandala_all_50.html" style="position:fixed;top:0;left:0;width:100%;height:100%;border:none;z-index:50;opacity:0.3;pointer-events:none;"></iframe>
 
+  <script src="support/wi_phase_ii_dual_glyphode_a5_e8_patch.js"></script>
 </body>
 </html>

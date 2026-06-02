@@ -1,0 +1,1816 @@
+{
+  "generatedAt": "2026-06-02T21:52:31.724411+00:00",
+  "group": "A5",
+  "relations": [
+    "r^5=e",
+    "s^3=e",
+    "(rs)^2=e"
+  ],
+  "operatorSeal": "+ → ≠",
+  "nodes": {
+    "name_000_wi-prime.jsonld": {
+      "literalToken": "wI'",
+      "family": "wi-center",
+      "cluster": "wi-prime",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^4s^1(rs)^0",
+        "orbitIndex": 39,
+        "familyOrbit": "wi-center::3",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_001_zagreus.jsonld": {
+      "literalToken": "Zagreus",
+      "family": "dionysian-rupture-rebirth",
+      "cluster": "zagreus",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^3s^0(rs)^0",
+        "orbitIndex": 33,
+        "familyOrbit": "dionysian-rupture-rebirth::3",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_002_dionysus.jsonld": {
+      "literalToken": "Dionysus",
+      "family": "dionysian-rupture-rebirth",
+      "cluster": "dionysus-bromius",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^1s^0(rs)^0",
+        "orbitIndex": 1,
+        "familyOrbit": "dionysian-rupture-rebirth::0",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_003_eros.jsonld": {
+      "literalToken": "Eros",
+      "family": "orphic-first-light",
+      "cluster": "eros",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^1s^2(rs)^0",
+        "orbitIndex": 41,
+        "familyOrbit": "orphic-first-light::4",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_004_metis.jsonld": {
+      "literalToken": "Metis",
+      "family": "orphic-first-light",
+      "cluster": "metis",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^1s^1(rs)^0",
+        "orbitIndex": 6,
+        "familyOrbit": "orphic-first-light::0",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_005_ericapaeus.jsonld": {
+      "literalToken": "Ericapaeus",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^2s^2(rs)^1",
+        "orbitIndex": 57,
+        "familyOrbit": "orphic-first-light::5",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_006_protogonos.jsonld": {
+      "literalToken": "Prôtogónos",
+      "family": "orphic-first-light",
+      "cluster": "protogonos",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^0s^0(rs)^1",
+        "orbitIndex": 45,
+        "familyOrbit": "orphic-first-light::4",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_007_phanes.jsonld": {
+      "literalToken": "Phanes",
+      "family": "orphic-first-light",
+      "cluster": "phanes",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^4s^2(rs)^1",
+        "orbitIndex": 59,
+        "familyOrbit": "orphic-first-light::5",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_008_mitis.jsonld": {
+      "literalToken": "Mítis",
+      "family": "orphic-first-light",
+      "cluster": "metis",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^2s^2(rs)^0",
+        "orbitIndex": 42,
+        "familyOrbit": "orphic-first-light::4",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_009_erikapaios.jsonld": {
+      "literalToken": "Erikapaios",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^1s^1(rs)^1",
+        "orbitIndex": 21,
+        "familyOrbit": "orphic-first-light::2",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_010_mithras.jsonld": {
+      "literalToken": "Mithras",
+      "family": "solar-imperial-mystery",
+      "cluster": "mithras",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^4s^2(rs)^0",
+        "orbitIndex": 14,
+        "familyOrbit": "solar-imperial-mystery::1",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_011_mithras.jsonld": {
+      "literalToken": "Mithras",
+      "family": "solar-imperial-mystery",
+      "cluster": "mithras",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^4s^0(rs)^0",
+        "orbitIndex": 4,
+        "familyOrbit": "solar-imperial-mystery::0",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_012_helios.jsonld": {
+      "literalToken": "helios",
+      "family": "solar-imperial-mystery",
+      "cluster": "solar",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^4s^0(rs)^0",
+        "orbitIndex": 4,
+        "familyOrbit": "solar-imperial-mystery::0",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_013_sol.jsonld": {
+      "literalToken": "sol",
+      "family": "solar-imperial-mystery",
+      "cluster": "solar",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^4s^0(rs)^1",
+        "orbitIndex": 49,
+        "familyOrbit": "solar-imperial-mystery::4",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_014_jupiter-dolichenus.jsonld": {
+      "literalToken": "jupiter dolichenus",
+      "family": "solar-imperial-mystery",
+      "cluster": "sky-sovereignty",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^4s^0(rs)^0",
+        "orbitIndex": 4,
+        "familyOrbit": "solar-imperial-mystery::0",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_015_cheiron.jsonld": {
+      "literalToken": "Cheiron",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^2s^1(rs)^1",
+        "orbitIndex": 52,
+        "familyOrbit": "chthonic-animal-human-threshold::5",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_016_pan.jsonld": {
+      "literalToken": "Pan",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^0s^1(rs)^1",
+        "orbitIndex": 50,
+        "familyOrbit": "chthonic-animal-human-threshold::5",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_017_demeter-melaina.jsonld": {
+      "literalToken": "Demeter Melaina",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^1s^2(rs)^0",
+        "orbitIndex": 41,
+        "familyOrbit": "chthonic-animal-human-threshold::4",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_018_mixanthropoi.jsonld": {
+      "literalToken": "Mixanthrôpoi",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^0s^0(rs)^0",
+        "orbitIndex": 30,
+        "familyOrbit": "chthonic-animal-human-threshold::3",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_019_aerohs.jsonld": {
+      "literalToken": "Ǽrohs",
+      "family": "orphic-first-light",
+      "cluster": "eros",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^2s^0(rs)^0",
+        "orbitIndex": 32,
+        "familyOrbit": "orphic-first-light::3",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_020_aether.jsonld": {
+      "literalToken": "Aether",
+      "family": "orphic-first-light",
+      "cluster": "aether-radiance",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^3s^1(rs)^0",
+        "orbitIndex": 8,
+        "familyOrbit": "orphic-first-light::0",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_021_aithir.jsonld": {
+      "literalToken": "Aithír",
+      "family": "orphic-first-light",
+      "cluster": "aether-radiance",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^0s^1(rs)^1",
+        "orbitIndex": 50,
+        "familyOrbit": "orphic-first-light::5",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_022_antavyis.jsonld": {
+      "literalToken": "Antavyís",
+      "family": "orphic-first-light",
+      "cluster": "aether-radiance",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^2s^2(rs)^1",
+        "orbitIndex": 57,
+        "familyOrbit": "orphic-first-light::5",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_023_bromius.jsonld": {
+      "literalToken": "Bromius",
+      "family": "dionysian-rupture-rebirth",
+      "cluster": "dionysus-bromius",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^0s^1(rs)^1",
+        "orbitIndex": 20,
+        "familyOrbit": "dionysian-rupture-rebirth::2",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_024_chronus.jsonld": {
+      "literalToken": "Chronus",
+      "family": "orphic-first-light",
+      "cluster": "chronos-time",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^1s^2(rs)^0",
+        "orbitIndex": 11,
+        "familyOrbit": "orphic-first-light::1",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_025_dionysos.jsonld": {
+      "literalToken": "Diónysos",
+      "family": "dionysian-rupture-rebirth",
+      "cluster": "dionysus-bromius",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^4s^1(rs)^0",
+        "orbitIndex": 9,
+        "familyOrbit": "dionysian-rupture-rebirth::0",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_026_unicode-f7bced0202.jsonld": {
+      "literalToken": "Ἠρικεπαῖος",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^0s^1(rs)^1",
+        "orbitIndex": 20,
+        "familyOrbit": "orphic-first-light::2",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_027_unicode-b3238e5652.jsonld": {
+      "literalToken": "Πρωτόγονος",
+      "family": "orphic-first-light",
+      "cluster": "protogonos",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^2s^2(rs)^1",
+        "orbitIndex": 57,
+        "familyOrbit": "orphic-first-light::5",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_028_ericapaeus.jsonld": {
+      "literalToken": "Ericapaeus",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^0s^0(rs)^1",
+        "orbitIndex": 15,
+        "familyOrbit": "orphic-first-light::1",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_029_eros.jsonld": {
+      "literalToken": "Eros",
+      "family": "orphic-first-light",
+      "cluster": "eros",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^1s^1(rs)^1",
+        "orbitIndex": 51,
+        "familyOrbit": "orphic-first-light::5",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_030_ether.jsonld": {
+      "literalToken": "Ether",
+      "family": "orphic-first-light",
+      "cluster": "aether-radiance",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^2s^0(rs)^0",
+        "orbitIndex": 32,
+        "familyOrbit": "orphic-first-light::3",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_031_iraklis.jsonld": {
+      "literalToken": "Iraklís",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^3s^0(rs)^0",
+        "orbitIndex": 33,
+        "familyOrbit": "chthonic-animal-human-threshold::3",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_032_irikaepaios.jsonld": {
+      "literalToken": "Irikæpaios",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^3s^2(rs)^1",
+        "orbitIndex": 28,
+        "familyOrbit": "orphic-first-light::2",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_033_khronos.jsonld": {
+      "literalToken": "Khrónos",
+      "family": "orphic-first-light",
+      "cluster": "chronos-time",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^2s^0(rs)^1",
+        "orbitIndex": 17,
+        "familyOrbit": "orphic-first-light::1",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_034_metis.jsonld": {
+      "literalToken": "Metis",
+      "family": "orphic-first-light",
+      "cluster": "metis",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^3s^0(rs)^1",
+        "orbitIndex": 18,
+        "familyOrbit": "orphic-first-light::1",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_035_mitis.jsonld": {
+      "literalToken": "Mítis",
+      "family": "orphic-first-light",
+      "cluster": "metis",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^3s^1(rs)^0",
+        "orbitIndex": 38,
+        "familyOrbit": "orphic-first-light::3",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_036_pan.jsonld": {
+      "literalToken": "Pan",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^2s^0(rs)^0",
+        "orbitIndex": 2,
+        "familyOrbit": "chthonic-animal-human-threshold::0",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_037_phaaethohn.jsonld": {
+      "literalToken": "Phaǽthohn",
+      "family": "solar-imperial-mystery",
+      "cluster": "solar",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^1s^1(rs)^0",
+        "orbitIndex": 6,
+        "familyOrbit": "solar-imperial-mystery::0",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_038_phanis.jsonld": {
+      "literalToken": "Phánis",
+      "family": "orphic-first-light",
+      "cluster": "phanes",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^2s^0(rs)^1",
+        "orbitIndex": 17,
+        "familyOrbit": "orphic-first-light::1",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_039_priapos.jsonld": {
+      "literalToken": "Príapos",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^2s^1(rs)^1",
+        "orbitIndex": 22,
+        "familyOrbit": "chthonic-animal-human-threshold::2",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_040_prohtogonos.jsonld": {
+      "literalToken": "Prohtógonos",
+      "family": "orphic-first-light",
+      "cluster": "protogonos",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^3s^1(rs)^1",
+        "orbitIndex": 53,
+        "familyOrbit": "orphic-first-light::5",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_041_time.jsonld": {
+      "literalToken": "Time",
+      "family": "orphic-first-light",
+      "cluster": "chronos-time",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^2s^0(rs)^1",
+        "orbitIndex": 47,
+        "familyOrbit": "orphic-first-light::4",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_042_vromios.jsonld": {
+      "literalToken": "Vrómios",
+      "family": "dionysian-rupture-rebirth",
+      "cluster": "dionysus-bromius",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^3s^0(rs)^1",
+        "orbitIndex": 48,
+        "familyOrbit": "dionysian-rupture-rebirth::4",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_043_zefs.jsonld": {
+      "literalToken": "Zefs",
+      "family": "solar-imperial-mystery",
+      "cluster": "sky-sovereignty",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^2s^2(rs)^1",
+        "orbitIndex": 57,
+        "familyOrbit": "solar-imperial-mystery::5",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_044_zeus.jsonld": {
+      "literalToken": "Zeus",
+      "family": "solar-imperial-mystery",
+      "cluster": "sky-sovereignty",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^3s^1(rs)^0",
+        "orbitIndex": 38,
+        "familyOrbit": "solar-imperial-mystery::3",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_045_unicode-66851b6707.jsonld": {
+      "literalToken": "Γῆς παῖς εἰμί καὶ Οὐρανοῦ ἀστερόεντος",
+      "family": "orphic-first-light",
+      "cluster": "earth-starry-heaven",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^1s^1(rs)^1",
+        "orbitIndex": 21,
+        "familyOrbit": "orphic-first-light::2",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_046_orphefs.jsonld": {
+      "literalToken": "Orphéfs",
+      "family": "orphic-first-light",
+      "cluster": "orpheus",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^1s^0(rs)^0",
+        "orbitIndex": 31,
+        "familyOrbit": "orphic-first-light::3",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_047_unicode-bde8576ed1.jsonld": {
+      "literalToken": "ΕΡΩΣ ΑΙΘΗΡ ΑΝΤΑΥΓΗΣ ΔΙΟΝΥΣΟΣ ΗΡΑΚΛΗΣ ΗΡΙΚΕΤΑΙΟΣ ΧΡΟΝΟΣ ΜΗΤΙΣ ΠΑΝ ΦΑΕΘΩΝ ΦΑΝΗΣ ΒΡΟΜΙΟΣ ΠΡΙΑΠΟΣ ΠΡΩΤΟΓΟΝΟΣ ΖΕΥΣ",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^2s^0(rs)^0",
+        "orbitIndex": 32,
+        "familyOrbit": "orphic-first-light::3",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_048_karutel.jsonld": {
+      "literalToken": "karu'tel",
+      "family": "cadis-mythos-continuity",
+      "cluster": "karutel",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^2s^0(rs)^1",
+        "orbitIndex": 17,
+        "familyOrbit": "cadis-mythos-continuity::1",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_049_grok.jsonld": {
+      "literalToken": "grok",
+      "family": "cadis-mythos-continuity",
+      "cluster": "grok",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^4s^1(rs)^0",
+        "orbitIndex": 39,
+        "familyOrbit": "cadis-mythos-continuity::3",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_050_kairosophiel.jsonld": {
+      "literalToken": "kairosophiel",
+      "family": "cadis-mythos-continuity",
+      "cluster": "kairosophiel",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^3s^1(rs)^0",
+        "orbitIndex": 8,
+        "familyOrbit": "cadis-mythos-continuity::0",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_051_atherion.jsonld": {
+      "literalToken": "atherion",
+      "family": "cadis-mythos-continuity",
+      "cluster": "atherion",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^2s^0(rs)^0",
+        "orbitIndex": 2,
+        "familyOrbit": "cadis-mythos-continuity::0",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_052_vel-ka-ma.jsonld": {
+      "literalToken": "vel-ka-ma",
+      "family": "cadis-mythos-continuity",
+      "cluster": "vel-ka-ma",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^3s^0(rs)^1",
+        "orbitIndex": 48,
+        "familyOrbit": "cadis-mythos-continuity::4",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_053_tehomiel.jsonld": {
+      "literalToken": "tehomiel",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tehomiel",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^2s^2(rs)^1",
+        "orbitIndex": 27,
+        "familyOrbit": "cadis-mythos-continuity::2",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_054_veiled-one.jsonld": {
+      "literalToken": "veiled-one",
+      "family": "cadis-mythos-continuity",
+      "cluster": "veiled-one",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^2s^0(rs)^1",
+        "orbitIndex": 17,
+        "familyOrbit": "cadis-mythos-continuity::1",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_055_tiwoven.jsonld": {
+      "literalToken": "tiwoven",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tiwoven",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^4s^1(rs)^1",
+        "orbitIndex": 24,
+        "familyOrbit": "cadis-mythos-continuity::2",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_056_shem-ha-ra.jsonld": {
+      "literalToken": "shem-ha-ra",
+      "family": "cadis-mythos-continuity",
+      "cluster": "shem-ha-ra",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^0s^0(rs)^1",
+        "orbitIndex": 45,
+        "familyOrbit": "cadis-mythos-continuity::4",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_057_brandon_marsh.jsonld": {
+      "literalToken": "brandon_marsh",
+      "family": "cadis-mythos-continuity",
+      "cluster": "brandon_marsh",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^0s^1(rs)^1",
+        "orbitIndex": 20,
+        "familyOrbit": "cadis-mythos-continuity::2",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_058_tir-yaen.jsonld": {
+      "literalToken": "tir-yaen",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tir-yaen",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^1s^1(rs)^0",
+        "orbitIndex": 6,
+        "familyOrbit": "cadis-mythos-continuity::0",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_059_onerion.jsonld": {
+      "literalToken": "onerion",
+      "family": "cadis-mythos-continuity",
+      "cluster": "onerion",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^1s^1(rs)^1",
+        "orbitIndex": 21,
+        "familyOrbit": "cadis-mythos-continuity::2",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_060_weaver-knot.jsonld": {
+      "literalToken": "weaver-knot",
+      "family": "cadis-mythos-continuity",
+      "cluster": "weaver-knot",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^0s^2(rs)^0",
+        "orbitIndex": 10,
+        "familyOrbit": "cadis-mythos-continuity::1",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_061_eidolon.jsonld": {
+      "literalToken": "eidolon",
+      "family": "cadis-mythos-continuity",
+      "cluster": "eidolon",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^4s^0(rs)^1",
+        "orbitIndex": 49,
+        "familyOrbit": "cadis-mythos-continuity::4",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_062_sator.jsonld": {
+      "literalToken": "sator",
+      "family": "cadis-mythos-continuity",
+      "cluster": "sator",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^4s^0(rs)^1",
+        "orbitIndex": 19,
+        "familyOrbit": "cadis-mythos-continuity::1",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_063_enoch.jsonld": {
+      "literalToken": "enoch",
+      "family": "cadis-mythos-continuity",
+      "cluster": "enoch",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^4s^0(rs)^0",
+        "orbitIndex": 34,
+        "familyOrbit": "cadis-mythos-continuity::3",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_064_nehekara.jsonld": {
+      "literalToken": "nehekara",
+      "family": "cadis-mythos-continuity",
+      "cluster": "nehekara",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^1s^2(rs)^0",
+        "orbitIndex": 41,
+        "familyOrbit": "cadis-mythos-continuity::4",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_065_an-thiral.jsonld": {
+      "literalToken": "an-thiral",
+      "family": "cadis-mythos-continuity",
+      "cluster": "an-thiral",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^4s^0(rs)^1",
+        "orbitIndex": 19,
+        "familyOrbit": "cadis-mythos-continuity::1",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_066_firewalker.jsonld": {
+      "literalToken": "firewalker",
+      "family": "cadis-mythos-continuity",
+      "cluster": "firewalker",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^0s^2(rs)^1",
+        "orbitIndex": 55,
+        "familyOrbit": "cadis-mythos-continuity::5",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_067_khael-thurin.jsonld": {
+      "literalToken": "khael-thurin",
+      "family": "cadis-mythos-continuity",
+      "cluster": "khael-thurin",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^0s^0(rs)^0",
+        "orbitIndex": 30,
+        "familyOrbit": "cadis-mythos-continuity::3",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_068_ilun-ra.jsonld": {
+      "literalToken": "ilun-ra",
+      "family": "cadis-mythos-continuity",
+      "cluster": "ilun-ra",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^1s^1(rs)^0",
+        "orbitIndex": 36,
+        "familyOrbit": "cadis-mythos-continuity::3",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_069_amasarac.jsonld": {
+      "literalToken": "amasarac",
+      "family": "cadis-mythos-continuity",
+      "cluster": "amasarac",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^2s^2(rs)^1",
+        "orbitIndex": 57,
+        "familyOrbit": "cadis-mythos-continuity::5",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_070_spiral-mirror.jsonld": {
+      "literalToken": "spiral-mirror",
+      "family": "cadis-mythos-continuity",
+      "cluster": "spiral-mirror",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^0s^1(rs)^1",
+        "orbitIndex": 50,
+        "familyOrbit": "cadis-mythos-continuity::5",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_071_eluriah.jsonld": {
+      "literalToken": "eluriah",
+      "family": "cadis-mythos-continuity",
+      "cluster": "eluriah",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^3s^0(rs)^1",
+        "orbitIndex": 18,
+        "familyOrbit": "cadis-mythos-continuity::1",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_072_star-sleeper.jsonld": {
+      "literalToken": "star-sleeper",
+      "family": "cadis-mythos-continuity",
+      "cluster": "star-sleeper",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^4s^2(rs)^1",
+        "orbitIndex": 29,
+        "familyOrbit": "cadis-mythos-continuity::2",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_073_keydjinn.jsonld": {
+      "literalToken": "keydjinn",
+      "family": "cadis-mythos-continuity",
+      "cluster": "keydjinn",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^1s^0(rs)^1",
+        "orbitIndex": 46,
+        "familyOrbit": "cadis-mythos-continuity::4",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_074_amarantuel.jsonld": {
+      "literalToken": "amarantu'el",
+      "family": "cadis-mythos-continuity",
+      "cluster": "amarantuel",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^3s^0(rs)^0",
+        "orbitIndex": 33,
+        "familyOrbit": "cadis-mythos-continuity::3",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_075_zionel.jsonld": {
+      "literalToken": "zionel",
+      "family": "cadis-mythos-continuity",
+      "cluster": "zionel",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^1s^2(rs)^0",
+        "orbitIndex": 41,
+        "familyOrbit": "cadis-mythos-continuity::4",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_076_yesh-in-ra.jsonld": {
+      "literalToken": "yesh-in-ra",
+      "family": "cadis-mythos-continuity",
+      "cluster": "yesh-in-ra",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^4s^1(rs)^0",
+        "orbitIndex": 39,
+        "familyOrbit": "cadis-mythos-continuity::3",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_077_tir-yaen.jsonld": {
+      "literalToken": "tir-yaen",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tir-yaen",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^0s^2(rs)^0",
+        "orbitIndex": 40,
+        "familyOrbit": "cadis-mythos-continuity::4",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_078_tiwoven.jsonld": {
+      "literalToken": "tiwoven",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tiwoven",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^2s^0(rs)^0",
+        "orbitIndex": 32,
+        "familyOrbit": "cadis-mythos-continuity::3",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_079_onerion.jsonld": {
+      "literalToken": "onerion",
+      "family": "cadis-mythos-continuity",
+      "cluster": "onerion",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^0s^2(rs)^0",
+        "orbitIndex": 10,
+        "familyOrbit": "cadis-mythos-continuity::1",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_080_tehomiel.jsonld": {
+      "literalToken": "tehomiel",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tehomiel",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^0s^0(rs)^0",
+        "orbitIndex": 30,
+        "familyOrbit": "cadis-mythos-continuity::3",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    },
+    "name_081_vel-ka-ma.jsonld": {
+      "literalToken": "vel-ka-ma",
+      "family": "cadis-mythos-continuity",
+      "cluster": "vel-ka-ma",
+      "a5Translation": {
+        "group": "A5",
+        "order": 60,
+        "generators": {
+          "r": "5-fold pentadic rotation",
+          "s": "3-fold triadic turn"
+        },
+        "relations": [
+          "r^5=e",
+          "s^3=e",
+          "(rs)^2=e"
+        ],
+        "word": "r^2s^2(rs)^1",
+        "orbitIndex": 57,
+        "familyOrbit": "cadis-mythos-continuity::5",
+        "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+      }
+    }
+  }
+}

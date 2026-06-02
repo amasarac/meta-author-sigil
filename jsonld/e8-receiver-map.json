@@ -1,0 +1,3617 @@
+{
+  "generatedAt": "2026-06-02T21:52:31.724411+00:00",
+  "rootSystem": "E8",
+  "rootCountAvailable": 240,
+  "translation": "dual glyphode cube → A5 word/orbit → E8 receiver root",
+  "operatorSeal": "+ → ≠",
+  "nodes": {
+    "name_000_wi-prime.jsonld": {
+      "literalToken": "wI'",
+      "family": "wi-center",
+      "cluster": "wi-prime",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 156,
+        "rootVector": [
+          0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          0.5,
+          -0.5
+        ],
+        "projection3": [
+          -0.024911,
+          0.137378,
+          0.990205
+        ],
+        "projection12": [
+          -0.638125,
+          -0.172244,
+          1.281707,
+          2.235423,
+          2.072579,
+          -1.377199,
+          -3.073045,
+          -0.486847,
+          3.995233,
+          3.245233,
+          -0.189037,
+          -2.281707
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_001_zagreus.jsonld": {
+      "literalToken": "Zagreus",
+      "family": "dionysian-rupture-rebirth",
+      "cluster": "zagreus",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 133,
+        "rootVector": [
+          0.5,
+          0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          -0.5
+        ],
+        "projection3": [
+          0.939063,
+          0.120962,
+          0.32176
+        ],
+        "projection12": [
+          1.171824,
+          2.369432,
+          1.290872,
+          -0.412787,
+          0.718108,
+          0.613636,
+          -0.867625,
+          -1.628597,
+          0.386364,
+          0.090909,
+          -2.317167,
+          -3.908906
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_002_dionysus.jsonld": {
+      "literalToken": "Dionysus",
+      "family": "dionysian-rupture-rebirth",
+      "cluster": "dionysus-bromius",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 6,
+        "rootVector": [
+          -1.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "projection3": [
+          0.003089,
+          -0.482142,
+          -0.876088
+        ],
+        "projection12": [
+          -0.546386,
+          -0.887239,
+          -2.809017,
+          -2.118966,
+          -2.51796,
+          -0.809017,
+          -0.941858,
+          0.76004,
+          0.809017,
+          2.699778,
+          2.300784,
+          2.809017
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_003_eros.jsonld": {
+      "literalToken": "Eros",
+      "family": "orphic-first-light",
+      "cluster": "eros",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 167,
+        "rootVector": [
+          0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5
+        ],
+        "projection3": [
+          0.841703,
+          0.28895,
+          -0.456118
+        ],
+        "projection12": [
+          -1.16996,
+          2.413954,
+          0.645344,
+          -0.38002,
+          0.090909,
+          2.877199,
+          1.660432,
+          1.081278,
+          -0.259165,
+          -0.354472,
+          -2.466219,
+          -1.645344
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_004_metis.jsonld": {
+      "literalToken": "Metis",
+      "family": "orphic-first-light",
+      "cluster": "metis",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 28,
+        "rootVector": [
+          0.0,
+          1.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "projection3": [
+          0.894519,
+          0.340262,
+          -0.289926
+        ],
+        "projection12": [
+          2.150801,
+          2.037222,
+          0.818182,
+          -0.841784,
+          -2.881596,
+          -3.436216,
+          -2.71904,
+          -0.628131,
+          0.818182,
+          1.445381,
+          0.685341,
+          0.181818
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_005_ericapaeus.jsonld": {
+      "literalToken": "Ericapaeus",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 233,
+        "rootVector": [
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          0.5,
+          -0.5,
+          -0.5
+        ],
+        "projection3": [
+          -0.416328,
+          -0.887256,
+          0.198615
+        ],
+        "projection12": [
+          -2.526295,
+          -0.467642,
+          -1.554435,
+          -0.189037,
+          1.972506,
+          3.26796,
+          -0.486847,
+          -1.800318,
+          -0.649926,
+          2.072579,
+          0.962696,
+          0.554435
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_006_protogonos.jsonld": {
+      "literalToken": "Prôtogónos",
+      "family": "orphic-first-light",
+      "cluster": "protogonos",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 186,
+        "rootVector": [
+          -0.5,
+          0.5,
+          0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          0.5,
+          -0.5
+        ],
+        "projection3": [
+          0.853275,
+          -0.395083,
+          -0.34034
+        ],
+        "projection12": [
+          -0.251818,
+          0.29592,
+          -0.745418,
+          -0.507219,
+          -0.718108,
+          -1.159091,
+          -2.525,
+          -1.036756,
+          0.159091,
+          0.636364,
+          0.669889,
+          3.363452
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_007_phanes.jsonld": {
+      "literalToken": "Phanes",
+      "family": "orphic-first-light",
+      "cluster": "phanes",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 3,
+        "rootVector": [
+          -1.0,
+          -1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "projection3": [
+          -0.706686,
+          -0.601278,
+          -0.372908
+        ],
+        "projection12": [
+          -3.697187,
+          -3.379005,
+          -2.081744,
+          -0.277182,
+          0.818182,
+          1.081744,
+          0.777182,
+          0.933625,
+          1.53629,
+          2.254398,
+          2.069988,
+          1.081744
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_008_mitis.jsonld": {
+      "literalToken": "Mítis",
+      "family": "orphic-first-light",
+      "cluster": "metis",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 176,
+        "rootVector": [
+          -0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          -0.5
+        ],
+        "projection3": [
+          0.351562,
+          -0.929986,
+          -0.107378
+        ],
+        "projection12": [
+          1.330858,
+          -1.727682,
+          -4.272542,
+          -1.589895,
+          0.636364,
+          0.75,
+          -2.355869,
+          -1.41308,
+          0.25,
+          1.445381,
+          0.132668,
+          1.654508
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_009_erikapaios.jsonld": {
+      "literalToken": "Erikapaios",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 93,
+        "rootVector": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "projection3": [
+          0.575145,
+          -0.614442,
+          -0.540064
+        ],
+        "projection12": [
+          0.185341,
+          1.228205,
+          -1.936216,
+          -1.832619,
+          -0.454545,
+          3.745233,
+          1.437148,
+          -1.437148,
+          -3.745233,
+          0.454545,
+          1.832619,
+          1.936216
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_010_mithras.jsonld": {
+      "literalToken": "Mithras",
+      "family": "solar-imperial-mystery",
+      "cluster": "mithras",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 66,
+        "rootVector": [
+          0.0,
+          0.0,
+          -1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "projection3": [
+          -0.73534,
+          -0.036314,
+          0.676725
+        ],
+        "projection12": [
+          -0.867159,
+          -2.355403,
+          -1.0,
+          2.514437,
+          2.699778,
+          1.0,
+          -0.309949,
+          0.309949,
+          -1.0,
+          -2.699778,
+          -2.514437,
+          1.0
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_011_mithras.jsonld": {
+      "literalToken": "Mithras",
+      "family": "solar-imperial-mystery",
+      "cluster": "mithras",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 27,
+        "rootVector": [
+          -1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "projection3": [
+          0.144811,
+          -0.911872,
+          -0.384083
+        ],
+        "projection12": [
+          -1.140818,
+          0.195438,
+          -2.081744,
+          -2.833551,
+          -0.090909,
+          1.081744,
+          -0.979079,
+          -0.822636,
+          1.53629,
+          1.345307,
+          -0.486381,
+          1.081744
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_012_helios.jsonld": {
+      "literalToken": "helios",
+      "family": "solar-imperial-mystery",
+      "cluster": "solar",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 28,
+        "rootVector": [
+          0.0,
+          1.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "projection3": [
+          0.894519,
+          0.340262,
+          -0.289926
+        ],
+        "projection12": [
+          3.059892,
+          0.582676,
+          0.090909,
+          -1.750875,
+          -1.427051,
+          -2.708943,
+          -1.809949,
+          -2.082676,
+          0.090909,
+          0.53629,
+          2.139886,
+          0.909091
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_013_sol.jsonld": {
+      "literalToken": "sol",
+      "family": "solar-imperial-mystery",
+      "cluster": "solar",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 209,
+        "rootVector": [
+          -0.5,
+          -0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          -0.5,
+          -0.5
+        ],
+        "projection3": [
+          0.213755,
+          -0.87179,
+          -0.440785
+        ],
+        "projection12": [
+          0.410852,
+          -0.136773,
+          -2.272542,
+          -3.626184,
+          -0.454545,
+          1.368034,
+          1.036756,
+          0.17783,
+          2.25,
+          2.336142,
+          0.689037,
+          -1.345492
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_014_jupiter-dolichenus.jsonld": {
+      "literalToken": "jupiter dolichenus",
+      "family": "solar-imperial-mystery",
+      "cluster": "sky-sovereignty",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 30,
+        "rootVector": [
+          0.0,
+          -1.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "projection3": [
+          -0.097159,
+          -0.586981,
+          -0.803749
+        ],
+        "projection12": [
+          -0.078222,
+          -0.128131,
+          -0.181818,
+          -1.230795,
+          -1.263562,
+          -0.818182,
+          1.173585,
+          2.537222,
+          3.436216,
+          2.336142,
+          1.023602,
+          -0.818182
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_015_cheiron.jsonld": {
+      "literalToken": "Cheiron",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 223,
+        "rootVector": [
+          -0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          0.5
+        ],
+        "projection3": [
+          -0.379124,
+          0.528985,
+          -0.759236
+        ],
+        "projection12": [
+          -1.604517,
+          -0.159557,
+          2.099889,
+          -0.801798,
+          -2.154324,
+          -2.195381,
+          1.686739,
+          1.173119,
+          1.195381,
+          0.98167,
+          3.168116,
+          0.518145
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_016_pan.jsonld": {
+      "literalToken": "Pan",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 216,
+        "rootVector": [
+          -0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          0.5,
+          0.5,
+          0.5,
+          -0.5
+        ],
+        "projection3": [
+          -0.411203,
+          -0.876136,
+          0.251592
+        ],
+        "projection12": [
+          -0.139057,
+          -2.095773,
+          -2.554435,
+          -0.928997,
+          1.708943,
+          0.649926,
+          -1.160432,
+          -0.763097,
+          1.968108,
+          1.972506,
+          1.33902,
+          1.554435
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_017_demeter-melaina.jsonld": {
+      "literalToken": "Demeter Melaina",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 181,
+        "rootVector": [
+          -0.5,
+          0.5,
+          0.5,
+          0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          -0.5
+        ],
+        "projection3": [
+          0.770354,
+          -0.342015,
+          -0.538127
+        ],
+        "projection12": [
+          1.443619,
+          0.300375,
+          -0.336327,
+          -3.349934,
+          -0.618034,
+          -1.377199,
+          -0.991301,
+          -2.050375,
+          2.377199,
+          1.972506,
+          1.165435,
+          -2.281707
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_018_mixanthropoi.jsonld": {
+      "literalToken": "Mixanthrôpoi",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 138,
+        "rootVector": [
+          0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          0.5,
+          -0.5
+        ],
+        "projection3": [
+          0.377682,
+          0.37346,
+          0.84728
+        ],
+        "projection12": [
+          1.294568,
+          0.546795,
+          0.154508,
+          0.611747,
+          2.436216,
+          1.559017,
+          -0.583142,
+          -2.433159,
+          -2.559017,
+          -3.063415,
+          -0.994531,
+          2.463525
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_019_aerohs.jsonld": {
+      "literalToken": "Ǽrohs",
+      "family": "orphic-first-light",
+      "cluster": "eros",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 147,
+        "rootVector": [
+          0.5,
+          -0.5,
+          0.5,
+          0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          -0.5
+        ],
+        "projection3": [
+          0.789533,
+          -0.29594,
+          -0.537641
+        ],
+        "projection12": [
+          0.766256,
+          2.468574,
+          -1.47269,
+          -2.316236,
+          -1.081744,
+          3.186216,
+          1.78763,
+          1.135898,
+          -0.568182,
+          0.636364,
+          -0.711821,
+          0.47269
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_020_aether.jsonld": {
+      "literalToken": "Aether",
+      "family": "orphic-first-light",
+      "cluster": "aether-radiance",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 52,
+        "rootVector": [
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "projection3": [
+          0.626136,
+          -0.305608,
+          -0.717327
+        ],
+        "projection12": [
+          1.755329,
+          -0.669131,
+          -1.718108,
+          -2.255329,
+          -1.427051,
+          -0.899926,
+          0.341784,
+          0.978148,
+          1.899926,
+          1.445381,
+          0.726341,
+          -0.899926
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_021_aithir.jsonld": {
+      "literalToken": "Aithír",
+      "family": "orphic-first-light",
+      "cluster": "aether-radiance",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 221,
+        "rootVector": [
+          -0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          -0.5
+        ],
+        "projection3": [
+          -0.013828,
+          -0.884986,
+          -0.465412
+        ],
+        "projection12": [
+          -2.208114,
+          0.659557,
+          -0.800037,
+          -0.507219,
+          -0.272727,
+          0.704545,
+          -1.977682,
+          -0.673119,
+          1.913489,
+          4.681449,
+          1.644514,
+          -0.199963
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_022_antavyis.jsonld": {
+      "literalToken": "Antavyís",
+      "family": "orphic-first-light",
+      "cluster": "aether-radiance",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 10,
+        "rootVector": [
+          -1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "projection3": [
+          -0.136731,
+          -0.68081,
+          -0.719585
+        ],
+        "projection12": [
+          -1.136364,
+          -2.647278,
+          -2.527125,
+          -2.028988,
+          -0.618034,
+          -0.090909,
+          0.672653,
+          0.647278,
+          1.090909,
+          0.636364,
+          0.5,
+          -0.090909
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_023_bromius.jsonld": {
+      "literalToken": "Bromius",
+      "family": "dionysian-rupture-rebirth",
+      "cluster": "dionysus-bromius",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 103,
+        "rootVector": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -1.0,
+          -1.0,
+          0.0
+        ],
+        "projection3": [
+          0.562113,
+          0.370358,
+          -0.739502
+        ],
+        "projection12": [
+          -0.941858,
+          2.800784,
+          1.899926,
+          -1.70542,
+          -2.336142,
+          0.718108,
+          2.118966,
+          0.135432,
+          -1.718108,
+          -0.53629,
+          1.069057,
+          0.718108
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_024_chronus.jsonld": {
+      "literalToken": "Chronus",
+      "family": "orphic-first-light",
+      "cluster": "chronos-time",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 68,
+        "rootVector": [
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "projection3": [
+          -0.213066,
+          0.652888,
+          -0.72687
+        ],
+        "projection12": [
+          0.503523,
+          -0.809949,
+          0.636364,
+          0.805494,
+          -2.699778,
+          -3.254398,
+          -0.053688,
+          1.855403,
+          0.636364,
+          1.445381,
+          2.514437,
+          0.363636
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_025_dionysos.jsonld": {
+      "literalToken": "Diónysos",
+      "family": "dionysian-rupture-rebirth",
+      "cluster": "dionysus-bromius",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 61,
+        "rootVector": [
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "projection3": [
+          0.582086,
+          0.371632,
+          -0.723233
+        ],
+        "projection12": [
+          0.718108,
+          2.445381,
+          0.172653,
+          -1.718108,
+          -3.872432,
+          -1.172653,
+          0.718108,
+          2.445381,
+          0.172653,
+          0.090909,
+          0.172653,
+          2.445381
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_026_unicode-f7bced0202.jsonld": {
+      "literalToken": "Ἠρικεπαῖος",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 106,
+        "rootVector": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -1.0,
+          0.0,
+          1.0
+        ],
+        "projection3": [
+          -0.33428,
+          0.791101,
+          -0.512265
+        ],
+        "projection12": [
+          -1.305494,
+          0.726341,
+          1.53629,
+          1.614511,
+          -3.427051,
+          -1.53629,
+          1.755329,
+          3.391693,
+          -2.081744,
+          -1.790687,
+          -0.021852,
+          2.081744
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_027_unicode-b3238e5652.jsonld": {
+      "literalToken": "Πρωτόγονος",
+      "family": "orphic-first-light",
+      "cluster": "protogonos",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 15,
+        "rootVector": [
+          -1.0,
+          0.0,
+          0.0,
+          0.0,
+          -1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "projection3": [
+          -0.748415,
+          0.154323,
+          -0.645027
+        ],
+        "projection12": [
+          -2.846239,
+          -0.76004,
+          0.03629,
+          0.180886,
+          -1.527125,
+          -1.845307,
+          -1.432693,
+          0.887239,
+          1.845307,
+          2.072579,
+          0.364568,
+          -0.03629
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_028_ericapaeus.jsonld": {
+      "literalToken": "Ericapaeus",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 88,
+        "rootVector": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "projection3": [
+          -0.184547,
+          -0.892794,
+          0.410927
+        ],
+        "projection12": [
+          0.854472,
+          -2.390761,
+          -2.108869,
+          0.145528,
+          2.699778,
+          1.299852,
+          -0.954545,
+          -2.390761,
+          -0.299852,
+          1.263562,
+          1.581744,
+          -0.509165
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_029_eros.jsonld": {
+      "literalToken": "Eros",
+      "family": "orphic-first-light",
+      "cluster": "eros",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 233,
+        "rootVector": [
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          0.5,
+          -0.5,
+          -0.5
+        ],
+        "projection3": [
+          -0.416328,
+          -0.887256,
+          0.198615
+        ],
+        "projection12": [
+          -2.526295,
+          -1.922187,
+          -1.736253,
+          -0.189037,
+          3.427051,
+          3.449778,
+          -0.486847,
+          -3.254864,
+          -0.831744,
+          2.072579,
+          2.417241,
+          0.736253
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_030_ether.jsonld": {
+      "literalToken": "Ether",
+      "family": "orphic-first-light",
+      "cluster": "aether-radiance",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 158,
+        "rootVector": [
+          0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          0.5
+        ],
+        "projection3": [
+          -0.363516,
+          0.915797,
+          0.170794
+        ],
+        "projection12": [
+          -1.125437,
+          -0.991358,
+          2.363452,
+          3.031753,
+          0.190983,
+          -2.458943,
+          -0.499534,
+          1.359392,
+          1.458943,
+          0.636364,
+          1.334565,
+          0.254582
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_031_iraklis.jsonld": {
+      "literalToken": "Iraklís",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 163,
+        "rootVector": [
+          0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          0.5
+        ],
+        "projection3": [
+          -0.115933,
+          0.030219,
+          -0.992797
+        ],
+        "projection12": [
+          0.560835,
+          -0.523193,
+          0.618219,
+          -0.801798,
+          0.636364,
+          2.095307,
+          4.643034,
+          0.809483,
+          -2.095307,
+          -3.063415,
+          0.3664,
+          -0.618219
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_032_irikaepaios.jsonld": {
+      "literalToken": "Irikæpaios",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 144,
+        "rootVector": [
+          0.5,
+          -0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          -0.5
+        ],
+        "projection3": [
+          0.323767,
+          -0.908851,
+          0.262992
+        ],
+        "projection12": [
+          1.435386,
+          -0.059483,
+          -1.827162,
+          -0.338088,
+          0.98167,
+          0.922653,
+          -0.604063,
+          1.273193,
+          2.695381,
+          1.445381,
+          -2.053605,
+          -1.790872
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_033_khronos.jsonld": {
+      "literalToken": "Khrónos",
+      "family": "orphic-first-light",
+      "cluster": "chronos-time",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 101,
+        "rootVector": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          -1.0,
+          0.0
+        ],
+        "projection3": [
+          0.494,
+          -0.8688,
+          0.033923
+        ],
+        "projection12": [
+          -0.123676,
+          1.091841,
+          -0.354472,
+          -0.523602,
+          -0.009165,
+          1.354472,
+          -0.680886,
+          -1.573511,
+          -0.354472,
+          2.881596,
+          1.159966,
+          -2.263562
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_034_metis.jsonld": {
+      "literalToken": "Metis",
+      "family": "orphic-first-light",
+      "cluster": "metis",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 106,
+        "rootVector": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -1.0,
+          0.0,
+          1.0
+        ],
+        "projection3": [
+          -0.33428,
+          0.791101,
+          -0.512265
+        ],
+        "projection12": [
+          -1.123676,
+          -0.000932,
+          2.445381,
+          1.432693,
+          -2.699778,
+          -2.445381,
+          1.937148,
+          2.66442,
+          -1.172653,
+          -1.972506,
+          0.70542,
+          1.172653
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_035_mitis.jsonld": {
+      "literalToken": "Mítis",
+      "family": "orphic-first-light",
+      "cluster": "metis",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 187,
+        "rootVector": [
+          -0.5,
+          0.5,
+          0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          0.5
+        ],
+        "projection3": [
+          0.258119,
+          0.39177,
+          -0.883114
+        ],
+        "projection12": [
+          -0.408261,
+          -0.431352,
+          0.072764,
+          -0.689037,
+          -1.608869,
+          -0.977273,
+          -0.17783,
+          -1.764028,
+          -2.640761,
+          0.454545,
+          4.353457,
+          3.54527
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_036_pan.jsonld": {
+      "literalToken": "Pan",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 44,
+        "rootVector": [
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "projection3": [
+          0.075226,
+          0.515926,
+          0.853324
+        ],
+        "projection12": [
+          2.283642,
+          -0.954545,
+          0.090909,
+          0.672653,
+          0.454545,
+          -2.708943,
+          -2.028988,
+          -0.954545,
+          0.090909,
+          -2.254398,
+          -1.192733,
+          0.909091
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_037_phaaethohn.jsonld": {
+      "literalToken": "Phaǽthohn",
+      "family": "solar-imperial-mystery",
+      "cluster": "solar",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 61,
+        "rootVector": [
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "projection3": [
+          0.582086,
+          0.371632,
+          -0.723233
+        ],
+        "projection12": [
+          0.899926,
+          2.627199,
+          0.899926,
+          -1.899926,
+          -4.05425,
+          -1.899926,
+          0.899926,
+          2.627199,
+          0.899926,
+          -0.090909,
+          -0.009165,
+          1.718108
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_038_phanis.jsonld": {
+      "literalToken": "Phánis",
+      "family": "orphic-first-light",
+      "cluster": "phanes",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 106,
+        "rootVector": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -1.0,
+          0.0,
+          1.0
+        ],
+        "projection3": [
+          -0.33428,
+          0.791101,
+          -0.512265
+        ],
+        "projection12": [
+          -1.123676,
+          -0.728205,
+          1.53629,
+          1.432693,
+          -1.972506,
+          -1.53629,
+          1.937148,
+          1.937148,
+          -2.081744,
+          -1.972506,
+          1.432693,
+          2.081744
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_039_priapos.jsonld": {
+      "literalToken": "Príapos",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 127,
+        "rootVector": [
+          0.5,
+          0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          0.5
+        ],
+        "projection3": [
+          0.415273,
+          0.898988,
+          -0.139172
+        ],
+        "projection12": [
+          1.274489,
+          1.855812,
+          3.908906,
+          0.293565,
+          -1.608869,
+          -3.004398,
+          0.091375,
+          -1.124142,
+          -0.613636,
+          -0.454545,
+          2.461764,
+          -0.290872
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_040_prohtogonos.jsonld": {
+      "literalToken": "Prohtógonos",
+      "family": "orphic-first-light",
+      "cluster": "protogonos",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 12,
+        "rootVector": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "projection3": [
+          0.748415,
+          -0.154323,
+          0.645027
+        ],
+        "projection12": [
+          1.755329,
+          0.578222,
+          -0.218108,
+          0.910023,
+          1.708943,
+          2.027125,
+          0.341784,
+          -1.069057,
+          -2.027125,
+          -0.98167,
+          -0.18275,
+          0.218108
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_041_time.jsonld": {
+      "literalToken": "Time",
+      "family": "orphic-first-light",
+      "cluster": "chronos-time",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 229,
+        "rootVector": [
+          -0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          -0.5
+        ],
+        "projection3": [
+          -0.226818,
+          -0.924252,
+          -0.307102
+        ],
+        "projection12": [
+          -2.434454,
+          0.172244,
+          -1.609054,
+          -0.780878,
+          0.354472,
+          2.513562,
+          0.000466,
+          0.486847,
+          1.104472,
+          2.254398,
+          -1.428997,
+          -2.00898
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_042_vromios.jsonld": {
+      "literalToken": "Vrómios",
+      "family": "dionysian-rupture-rebirth",
+      "cluster": "dionysus-bromius",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 234,
+        "rootVector": [
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          0.5,
+          -0.5
+        ],
+        "projection3": [
+          -0.767043,
+          -0.6023,
+          0.221088
+        ],
+        "projection12": [
+          -2.675347,
+          -0.559483,
+          -1.290872,
+          0.607293,
+          0.98167,
+          2.004398,
+          -0.078687,
+          0.773193,
+          -0.386364,
+          -0.53629,
+          -1.19727,
+          2.908906
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_043_zefs.jsonld": {
+      "literalToken": "Zefs",
+      "family": "solar-imperial-mystery",
+      "cluster": "sky-sovereignty",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 31,
+        "rootVector": [
+          0.0,
+          -1.0,
+          -1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "projection3": [
+          -0.894519,
+          -0.340262,
+          0.289926
+        ],
+        "projection12": [
+          -2.514437,
+          -1.673585,
+          0.818182,
+          1.20542,
+          2.51796,
+          1.799852,
+          2.355403,
+          0.991767,
+          0.818182,
+          -1.081744,
+          -1.048977,
+          -1.818182
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_044_zeus.jsonld": {
+      "literalToken": "Zeus",
+      "family": "solar-imperial-mystery",
+      "cluster": "sky-sovereignty",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 196,
+        "rootVector": [
+          -0.5,
+          0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          0.5,
+          0.5,
+          -0.5
+        ],
+        "projection3": [
+          -0.253493,
+          -0.776619,
+          0.576719
+        ],
+        "projection12": [
+          0.121915,
+          0.217699,
+          -0.336327,
+          -0.380952,
+          -0.190983,
+          -1.377199,
+          -1.755795,
+          0.532301,
+          2.377199,
+          -0.272727,
+          -3.62173,
+          -2.281707
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_045_unicode-66851b6707.jsonld": {
+      "literalToken": "Γῆς παῖς εἰμί καὶ Οὐρανοῦ ἀστερόεντος",
+      "family": "orphic-first-light",
+      "cluster": "earth-starry-heaven",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 129,
+        "rootVector": [
+          0.5,
+          0.5,
+          -0.5,
+          0.5,
+          0.5,
+          0.5,
+          -0.5,
+          0.5
+        ],
+        "projection3": [
+          0.75423,
+          -0.209694,
+          0.622227
+        ],
+        "projection12": [
+          1.448074,
+          0.341375,
+          -0.372616,
+          0.61998,
+          0.354472,
+          1.468108,
+          0.660432,
+          -0.991301,
+          -3.086142,
+          -1.163489,
+          -0.393639,
+          -1.245418
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_046_orphefs.jsonld": {
+      "literalToken": "Orphéfs",
+      "family": "orphic-first-light",
+      "cluster": "orpheus",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 170,
+        "rootVector": [
+          0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          0.5,
+          0.5
+        ],
+        "projection3": [
+          -0.770354,
+          0.342015,
+          0.538127
+        ],
+        "projection12": [
+          -1.625437,
+          -2.300375,
+          2.154508,
+          3.531753,
+          2.618034,
+          -0.440983,
+          0.809483,
+          0.050375,
+          -0.559017,
+          -1.790687,
+          0.834565,
+          0.463525
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_047_unicode-bde8576ed1.jsonld": {
+      "literalToken": "ΕΡΩΣ ΑΙΘΗΡ ΑΝΤΑΥΓΗΣ ΔΙΟΝΥΣΟΣ ΗΡΑΚΛΗΣ ΗΡΙΚΕΤΑΙΟΣ ΧΡΟΝΟΣ ΜΗΤΙΣ ΠΑΝ ΦΑΕΘΩΝ ΦΑΝΗΣ ΒΡΟΜΙΟΣ ΠΡΙΑΠΟΣ ΠΡΩΤΟΓΟΝΟΣ ΖΕΥΣ",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 175,
+        "rootVector": [
+          0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          0.5
+        ],
+        "projection3": [
+          -0.351562,
+          0.929986,
+          0.107378
+        ],
+        "projection12": [
+          -2.603585,
+          1.000409,
+          2.636179,
+          2.862622,
+          0.090909,
+          0.886364,
+          1.083142,
+          0.685807,
+          -1.886364,
+          -0.172653,
+          0.594605,
+          -0.018145
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_048_karutel.jsonld": {
+      "literalToken": "karu'tel",
+      "family": "cadis-mythos-continuity",
+      "cluster": "karutel",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 116,
+        "rootVector": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          -0.5,
+          0.5,
+          0.5,
+          -0.5
+        ],
+        "projection3": [
+          0.914951,
+          0.095104,
+          0.392199
+        ],
+        "projection12": [
+          3.74088,
+          0.923119,
+          -0.800037,
+          -1.334565,
+          0.272727,
+          -0.913489,
+          -1.359392,
+          -0.409557,
+          1.913489,
+          -0.190983,
+          -2.122662,
+          -1.817997
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_049_grok.jsonld": {
+      "literalToken": "grok",
+      "family": "cadis-mythos-continuity",
+      "cluster": "grok",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 205,
+        "rootVector": [
+          -0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          -0.5
+        ],
+        "projection3": [
+          0.172448,
+          0.032461,
+          0.984484
+        ],
+        "projection12": [
+          -0.402619,
+          0.878597,
+          0.745418,
+          -1.003696,
+          0.899926,
+          0.159091,
+          -1.423994,
+          -3.119432,
+          -0.159091,
+          0.618034,
+          0.530003,
+          -0.745418
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_050_kairosophiel.jsonld": {
+      "literalToken": "kairosophiel",
+      "family": "cadis-mythos-continuity",
+      "cluster": "kairosophiel",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 82,
+        "rootVector": [
+          0.0,
+          0.0,
+          0.0,
+          -1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "projection3": [
+          -0.610397,
+          0.277244,
+          0.741992
+        ],
+        "projection12": [
+          0.086455,
+          -0.413545,
+          0.899926,
+          2.060824,
+          0.618034,
+          -1.899926,
+          -1.560824,
+          0.604528,
+          0.899926,
+          -1.0,
+          -0.895472,
+          1.718108
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_051_atherion.jsonld": {
+      "literalToken": "atherion",
+      "family": "cadis-mythos-continuity",
+      "cluster": "atherion",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 59,
+        "rootVector": [
+          0.0,
+          0.0,
+          -1.0,
+          0.0,
+          -1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "projection3": [
+          -0.580642,
+          0.657234,
+          0.48052
+        ],
+        "projection12": [
+          -1.299852,
+          -0.690983,
+          1.48167,
+          1.299852,
+          1.809017,
+          0.327347,
+          0.509165,
+          -0.690983,
+          -0.327347,
+          -1.627199,
+          -1.118034,
+          -1.48167
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_052_vel-ka-ma.jsonld": {
+      "literalToken": "vel-ka-ma",
+      "family": "cadis-mythos-continuity",
+      "cluster": "vel-ka-ma",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 4,
+        "rootVector": [
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "projection3": [
+          0.884375,
+          0.465221,
+          0.038083
+        ],
+        "projection12": [
+          3.709875,
+          2.250875,
+          0.899926,
+          -1.044523,
+          -1.081744,
+          -0.899926,
+          0.487312,
+          0.603597,
+          0.899926,
+          -0.009165,
+          -0.046386,
+          -0.899926
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_053_tehomiel.jsonld": {
+      "literalToken": "tehomiel",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tehomiel",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 161,
+        "rootVector": [
+          0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          0.5,
+          0.5,
+          -0.5,
+          -0.5
+        ],
+        "projection3": [
+          0.345684,
+          -0.916623,
+          0.20076
+        ],
+        "projection12": [
+          1.411784,
+          0.841375,
+          -2.099889,
+          -1.961764,
+          1.972506,
+          4.813415,
+          2.433159,
+          -0.491301,
+          -1.195381,
+          -0.818182,
+          -1.702656,
+          -1.518145
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_054_veiled-one.jsonld": {
+      "literalToken": "veiled-one",
+      "family": "cadis-mythos-continuity",
+      "cluster": "veiled-one",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 122,
+        "rootVector": [
+          0.5,
+          0.5,
+          0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          0.5,
+          0.5
+        ],
+        "projection3": [
+          0.226818,
+          0.924252,
+          0.307102
+        ],
+        "projection12": [
+          2.616273,
+          0.191392,
+          1.609054,
+          0.59906,
+          -0.718108,
+          -2.513562,
+          0.181352,
+          -0.12321,
+          -1.104472,
+          -2.436216,
+          1.065361,
+          2.00898
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_055_tiwoven.jsonld": {
+      "literalToken": "tiwoven",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tiwoven",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 151,
+        "rootVector": [
+          0.5,
+          -0.5,
+          0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          0.5
+        ],
+        "projection3": [
+          0.373997,
+          0.578505,
+          -0.724885
+        ],
+        "projection12": [
+          1.242653,
+          1.513097,
+          0.827162,
+          -1.483617,
+          -2.51796,
+          0.077347,
+          3.515835,
+          2.845773,
+          -0.077347,
+          -0.818182,
+          0.139128,
+          -0.827162
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_056_shem-ha-ra.jsonld": {
+      "literalToken": "shem-ha-ra",
+      "family": "cadis-mythos-continuity",
+      "cluster": "shem-ha-ra",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 236,
+        "rootVector": [
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          0.5,
+          -0.5
+        ],
+        "projection3": [
+          -0.768289,
+          -0.314498,
+          0.557515
+        ],
+        "projection12": [
+          -1.893454,
+          -2.150392,
+          -0.254582,
+          0.8254,
+          2.881596,
+          0.159091,
+          -1.105812,
+          -0.817716,
+          2.458943,
+          0.799852,
+          -0.415378,
+          -0.745418
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_057_brandon_marsh.jsonld": {
+      "literalToken": "brandon_marsh",
+      "family": "cadis-mythos-continuity",
+      "cluster": "brandon_marsh",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 137,
+        "rootVector": [
+          0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          0.5,
+          -0.5,
+          -0.5
+        ],
+        "projection3": [
+          0.598626,
+          -0.100753,
+          0.794667
+        ],
+        "projection12": [
+          1.807256,
+          1.002273,
+          0.800037,
+          -0.548219,
+          3.063415,
+          1.913489,
+          -0.627665,
+          -4.643034,
+          -1.913489,
+          -0.818182,
+          0.801798,
+          -0.800037
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_058_tir-yaen.jsonld": {
+      "literalToken": "tir-yaen",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tir-yaen",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 82,
+        "rootVector": [
+          0.0,
+          0.0,
+          0.0,
+          -1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "projection3": [
+          -0.610397,
+          0.277244,
+          0.741992
+        ],
+        "projection12": [
+          0.086455,
+          -1.868091,
+          0.172653,
+          2.060824,
+          2.072579,
+          -1.172653,
+          -1.560824,
+          -0.850017,
+          0.172653,
+          -1.0,
+          0.559074,
+          2.445381
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_059_onerion.jsonld": {
+      "literalToken": "onerion",
+      "family": "cadis-mythos-continuity",
+      "cluster": "onerion",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 143,
+        "rootVector": [
+          0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5
+        ],
+        "projection3": [
+          0.619784,
+          0.755509,
+          0.212306
+        ],
+        "projection12": [
+          0.680057,
+          3.120307,
+          3.908906,
+          -0.42102,
+          0.636364,
+          -0.386364,
+          0.054153,
+          -2.525,
+          -0.613636,
+          -1.809017,
+          -0.507219,
+          -1.290872
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_060_weaver-knot.jsonld": {
+      "literalToken": "weaver-knot",
+      "family": "cadis-mythos-continuity",
+      "cluster": "weaver-knot",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 100,
+        "rootVector": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "projection3": [
+          -0.562113,
+          -0.370358,
+          0.739502
+        ],
+        "projection12": [
+          1.487312,
+          -3.709875,
+          -1.53629,
+          1.159966,
+          3.245233,
+          -1.081744,
+          -1.573511,
+          -1.044523,
+          2.081744,
+          -0.009165,
+          -0.159966,
+          -1.081744
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_061_eidolon.jsonld": {
+      "literalToken": "eidolon",
+      "family": "cadis-mythos-continuity",
+      "cluster": "eidolon",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 17,
+        "rootVector": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "projection3": [
+          0.610537,
+          0.791198,
+          -0.03536
+        ],
+        "projection12": [
+          2.082676,
+          2.332619,
+          1.618034,
+          -0.417324,
+          -0.354472,
+          1.0,
+          2.478148,
+          0.685341,
+          -2.0,
+          -3.427051,
+          -1.128131,
+          1.0
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_062_sator.jsonld": {
+      "literalToken": "sator",
+      "family": "cadis-mythos-continuity",
+      "cluster": "sator",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 138,
+        "rootVector": [
+          0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          0.5,
+          -0.5
+        ],
+        "projection3": [
+          0.377682,
+          0.37346,
+          0.84728
+        ],
+        "projection12": [
+          1.476386,
+          0.728613,
+          0.881781,
+          0.429929,
+          2.254398,
+          0.831744,
+          -0.401324,
+          -2.251341,
+          -1.831744,
+          -3.245233,
+          -1.176349,
+          1.736253
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_063_enoch.jsonld": {
+      "literalToken": "enoch",
+      "family": "cadis-mythos-continuity",
+      "cluster": "enoch",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 199,
+        "rootVector": [
+          -0.5,
+          0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5
+        ],
+        "projection3": [
+          0.670805,
+          0.078495,
+          -0.737468
+        ],
+        "projection12": [
+          -0.001761,
+          2.745756,
+          0.563599,
+          -2.904554,
+          -2.254398,
+          0.340909,
+          1.181352,
+          0.395006,
+          -0.340909,
+          -1.627199,
+          -2.279946,
+          -0.563599
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_064_nehekara.jsonld": {
+      "literalToken": "nehekara",
+      "family": "cadis-mythos-continuity",
+      "cluster": "nehekara",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 228,
+        "rootVector": [
+          -0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "projection3": [
+          -0.954811,
+          -0.273618,
+          0.116054
+        ],
+        "projection12": [
+          -0.979909,
+          -2.81129,
+          -0.881781,
+          0.720872,
+          0.172653,
+          -0.831744,
+          1.455011,
+          2.834017,
+          1.831744,
+          -0.818182,
+          -1.610815,
+          -1.736253
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_065_an-thiral.jsonld": {
+      "literalToken": "an-thiral",
+      "family": "cadis-mythos-continuity",
+      "cluster": "an-thiral",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 141,
+        "rootVector": [
+          0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          0.5
+        ],
+        "projection3": [
+          -0.07805,
+          0.796238,
+          0.599927
+        ],
+        "projection12": [
+          1.010926,
+          0.046795,
+          2.372616,
+          1.557128,
+          1.627199,
+          -0.468108,
+          -0.172187,
+          -2.933159,
+          -2.149926,
+          -1.0,
+          1.652747,
+          -1.372616
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_066_firewalker.jsonld": {
+      "literalToken": "firewalker",
+      "family": "cadis-mythos-continuity",
+      "cluster": "firewalker",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 46,
+        "rootVector": [
+          0.0,
+          -1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "projection3": [
+          -0.874671,
+          -0.347835,
+          0.337582
+        ],
+        "projection12": [
+          -0.309017,
+          -3.119898,
+          -0.909091,
+          0.647278,
+          2.072579,
+          -0.090909,
+          1.5,
+          2.210807,
+          2.708943,
+          -1.0,
+          -0.854472,
+          -0.090909
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_067_khael-thurin.jsonld": {
+      "literalToken": "khael-thurin",
+      "family": "cadis-mythos-continuity",
+      "cluster": "khael-thurin",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 187,
+        "rootVector": [
+          -0.5,
+          0.5,
+          0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          0.5
+        ],
+        "projection3": [
+          0.258119,
+          0.39177,
+          -0.883114
+        ],
+        "projection12": [
+          0.864466,
+          0.841375,
+          -0.47269,
+          -1.961764,
+          -2.881596,
+          -0.431818,
+          1.094898,
+          -0.491301,
+          -3.186216,
+          -0.818182,
+          3.08073,
+          4.090724
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_068_ilun-ra.jsonld": {
+      "literalToken": "ilun-ra",
+      "family": "cadis-mythos-continuity",
+      "cluster": "ilun-ra",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 212,
+        "rootVector": [
+          -0.5,
+          -0.5,
+          0.5,
+          0.5,
+          -0.5,
+          0.5,
+          0.5,
+          -0.5
+        ],
+        "projection3": [
+          -0.237952,
+          -0.945087,
+          -0.224028
+        ],
+        "projection12": [
+          0.498239,
+          -0.728613,
+          -2.790872,
+          -2.066293,
+          -0.636364,
+          0.077347,
+          -0.127665,
+          2.251341,
+          3.540687,
+          1.608869,
+          -1.779946,
+          -0.827162
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_069_amasarac.jsonld": {
+      "literalToken": "amasarac",
+      "family": "cadis-mythos-continuity",
+      "cluster": "amasarac",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 57,
+        "rootVector": [
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          -1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "projection3": [
+          0.521448,
+          0.713247,
+          -0.468371
+        ],
+        "projection12": [
+          1.5,
+          0.854472,
+          0.845307,
+          -1.5,
+          -1.972506,
+          -2.654324,
+          -0.309017,
+          0.854472,
+          2.654324,
+          1.427051,
+          0.954545,
+          -0.845307
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_070_spiral-mirror.jsonld": {
+      "literalToken": "spiral-mirror",
+      "family": "cadis-mythos-continuity",
+      "cluster": "spiral-mirror",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 30,
+        "rootVector": [
+          0.0,
+          -1.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "projection3": [
+          -0.097159,
+          -0.586981,
+          -0.803749
+        ],
+        "projection12": [
+          0.649051,
+          -1.582676,
+          -0.545455,
+          -1.958068,
+          0.190983,
+          -0.454545,
+          1.900858,
+          1.082676,
+          3.072579,
+          1.608869,
+          2.478148,
+          -0.454545
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_071_eluriah.jsonld": {
+      "literalToken": "eluriah",
+      "family": "cadis-mythos-continuity",
+      "cluster": "eluriah",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 143,
+        "rootVector": [
+          0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5
+        ],
+        "projection3": [
+          0.619784,
+          0.755509,
+          0.212306
+        ],
+        "projection12": [
+          0.498239,
+          2.938488,
+          2.999815,
+          -0.239202,
+          0.818182,
+          0.522727,
+          -0.127665,
+          -2.706818,
+          -1.522727,
+          -1.627199,
+          -0.3254,
+          -0.381781
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_072_star-sleeper.jsonld": {
+      "literalToken": "star-sleeper",
+      "family": "cadis-mythos-continuity",
+      "cluster": "star-sleeper",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 188,
+        "rootVector": [
+          -0.5,
+          0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          0.5,
+          -0.5
+        ],
+        "projection3": [
+          0.115933,
+          -0.030219,
+          0.992797
+        ],
+        "projection12": [
+          1.075528,
+          -0.20408,
+          -1.345492,
+          -0.834565,
+          0.090909,
+          -1.368034,
+          -3.00667,
+          -1.536756,
+          1.368034,
+          1.427051,
+          0.360872,
+          1.345492
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_073_keydjinn.jsonld": {
+      "literalToken": "keydjinn",
+      "family": "cadis-mythos-continuity",
+      "cluster": "keydjinn",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 17,
+        "rootVector": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "projection3": [
+          0.610537,
+          0.791198,
+          -0.03536
+        ],
+        "projection12": [
+          1.900858,
+          1.787165,
+          2.345307,
+          -0.235506,
+          0.190983,
+          0.272727,
+          2.296329,
+          0.139886,
+          -1.272727,
+          -3.245233,
+          -0.582676,
+          0.272727
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_074_amarantuel.jsonld": {
+      "literalToken": "amarantu'el",
+      "family": "cadis-mythos-continuity",
+      "cluster": "amarantuel",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 206,
+        "rootVector": [
+          -0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          -0.5
+        ],
+        "projection3": [
+          -0.333308,
+          0.77795,
+          0.532635
+        ],
+        "projection12": [
+          -0.915307,
+          1.514028,
+          1.736253,
+          0.15627,
+          -0.818182,
+          -1.831744,
+          -1.379471,
+          0.181352,
+          0.831744,
+          -1.627199,
+          -2.357236,
+          0.881781
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_075_zionel.jsonld": {
+      "literalToken": "zionel",
+      "family": "cadis-mythos-continuity",
+      "cluster": "zionel",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 239,
+        "rootVector": [
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5
+        ],
+        "projection3": [
+          -0.636858,
+          0.244102,
+          -0.731318
+        ],
+        "projection12": [
+          -2.562585,
+          0.377665,
+          1.00898,
+          -1.152747,
+          0.818182,
+          1.513562,
+          1.285881,
+          -0.955011,
+          0.104472,
+          -0.009165,
+          0.926406,
+          0.609054
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_076_yesh-in-ra.jsonld": {
+      "literalToken": "yesh-in-ra",
+      "family": "cadis-mythos-continuity",
+      "cluster": "yesh-in-ra",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 232,
+        "rootVector": [
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "projection3": [
+          -0.878796,
+          -0.322959,
+          0.351306
+        ],
+        "projection12": [
+          -1.07175,
+          -3.632994,
+          -1.918071,
+          1.312713,
+          1.972506,
+          1.013562,
+          0.967699,
+          0.365034,
+          -1.013562,
+          -1.0,
+          0.962696,
+          1.918071
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_077_tir-yaen.jsonld": {
+      "literalToken": "tir-yaen",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tir-yaen",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 237,
+        "rootVector": [
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          0.5
+        ],
+        "projection3": [
+          -0.988743,
+          0.05035,
+          0.140895
+        ],
+        "projection12": [
+          -2.231716,
+          -1.604937,
+          0.745418,
+          0.8254,
+          0.718108,
+          0.159091,
+          1.05954,
+          -0.272261,
+          -0.159091,
+          0.799852,
+          1.995463,
+          -0.745418
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_078_tiwoven.jsonld": {
+      "literalToken": "tiwoven",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tiwoven",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 206,
+        "rootVector": [
+          -0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          -0.5
+        ],
+        "projection3": [
+          -0.333308,
+          0.77795,
+          0.532635
+        ],
+        "projection12": [
+          -0.915307,
+          1.514028,
+          1.190798,
+          0.15627,
+          -0.818182,
+          -1.28629,
+          -1.379471,
+          0.181352,
+          0.28629,
+          -1.627199,
+          -2.357236,
+          1.427236
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_079_onerion.jsonld": {
+      "literalToken": "onerion",
+      "family": "cadis-mythos-continuity",
+      "cluster": "onerion",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 119,
+        "rootVector": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5
+        ],
+        "projection3": [
+          0.878796,
+          0.322959,
+          -0.351306
+        ],
+        "projection12": [
+          3.07175,
+          3.632994,
+          0.827162,
+          -3.312713,
+          -1.972506,
+          0.077347,
+          1.032301,
+          -0.365034,
+          -0.077347,
+          -1.0,
+          -0.962696,
+          -0.827162
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_080_tehomiel.jsonld": {
+      "literalToken": "tehomiel",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tehomiel",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 200,
+        "rootVector": [
+          -0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          0.5,
+          0.5,
+          -0.5
+        ],
+        "projection3": [
+          -0.373997,
+          -0.578505,
+          0.724885
+        ],
+        "projection12": [
+          0.575528,
+          -0.604006,
+          -1.918071,
+          -0.334565,
+          1.608869,
+          1.013562,
+          -1.697653,
+          -1.936682,
+          -1.013562,
+          -1.0,
+          -1.048219,
+          1.918071
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    },
+    "name_081_vel-ka-ma.jsonld": {
+      "literalToken": "vel-ka-ma",
+      "family": "cadis-mythos-continuity",
+      "cluster": "vel-ka-ma",
+      "e8Receiver": {
+        "role": "receiver-lattice-coordinate",
+        "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+        "rootSystem": "E8",
+        "rootCountAvailable": 240,
+        "rootIndex": 69,
+        "rootVector": [
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "projection3": [
+          0.900272,
+          -0.333335,
+          -0.279998
+        ],
+        "projection12": [
+          2.478148,
+          3.082676,
+          -1.636364,
+          -3.787165,
+          -1.809017,
+          0.636364,
+          -0.582676,
+          0.417324,
+          1.98167,
+          1.427051,
+          -1.169131,
+          0.636364
+        ],
+        "goldenScale": "phi=(1+sqrt(5))/2",
+        "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+        "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+      }
+    }
+  }
+}

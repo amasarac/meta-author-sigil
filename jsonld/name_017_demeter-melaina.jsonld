@@ -89,7 +89,12 @@
     "preserveExactToken": true,
     "totalOccurrencesOfToken": 1,
     "occurrenceNumberForThisToken": 1,
-    "shell": 4
+    "shell": 4,
+    "phaseII": "dual-glyphode-a5-e8-spokes",
+    "baseGeometry": "dual glyphode cube",
+    "translator": "A5",
+    "receiverLattice": "E8",
+    "witnessCenter": "wI'"
   },
   "display": {
     "visible": true,
@@ -99,7 +104,31 @@
     "orbitIndex": 17,
     "radius": 255,
     "cluster": "chthonic-threshold",
-    "family": "chthonic-animal-human-threshold"
+    "family": "chthonic-animal-human-threshold",
+    "primaryCube": {
+      "x": 8,
+      "y": 0,
+      "z": 10,
+      "axis12": "variant-duplicate",
+      "operator": "manifest-name"
+    },
+    "dualCube": {
+      "x": 3,
+      "y": 11,
+      "z": 1,
+      "axis12": "mirror-dual",
+      "operator": "mirror-memory"
+    },
+    "a5OrbitIndex": 41,
+    "e8ReceiverRootIndex": 181,
+    "projectionModes": [
+      "nested-shells",
+      "primary-glyphode-cube",
+      "dual-mirror-cube",
+      "a5-orbit",
+      "a5-to-e8-receiver",
+      "cluster-braid"
+    ]
   },
   "e8RootIndex": 17,
   "e8VectorSeed": [
@@ -128,5 +157,98 @@
     "https://amasarac.github.io/meta-author-sigil/jsonld/name_000_wi-prime.jsonld"
   ],
   "partOf": "https://amasarac.github.io/meta-author-sigil/jsonld/literal-name-token-constellation.jsonld",
-  "provenanceBoundary": "This node is a visible literal-occurrence star. Relations indicate symbolic resonance, not equivalence collapse."
+  "provenanceBoundary": "This node is a visible literal-occurrence star. Relations indicate symbolic resonance, not equivalence collapse.",
+  "glyphode": {
+    "system": "dual-12x12x12-glyphode-cubes",
+    "primaryCube": {
+      "x": 8,
+      "y": 0,
+      "z": 10,
+      "axis12": "variant-duplicate",
+      "operator": "manifest-name"
+    },
+    "dualCube": {
+      "x": 3,
+      "y": 11,
+      "z": 1,
+      "axis12": "mirror-dual",
+      "operator": "mirror-memory"
+    },
+    "microGlyphode": {
+      "localX": 4,
+      "localY": 0,
+      "localZ": 6
+    },
+    "coordinateLaw": "primaryCube names the visible literal occurrence; dualCube mirrors it into memory/witness space",
+    "axis12Names": [
+      "source-origin",
+      "family-shell",
+      "cluster-gravity",
+      "literal-occurrence",
+      "variant-duplicate",
+      "operator-seam",
+      "memory-anchor",
+      "mirror-dual",
+      "a5-orbit",
+      "e8-receiver",
+      "provenance-boundary",
+      "wi-witness"
+    ]
+  },
+  "a5Translation": {
+    "group": "A5",
+    "order": 60,
+    "generators": {
+      "r": "5-fold pentadic rotation",
+      "s": "3-fold triadic turn"
+    },
+    "relations": [
+      "r^5=e",
+      "s^3=e",
+      "(rs)^2=e"
+    ],
+    "word": "r^1s^2(rs)^0",
+    "orbitIndex": 41,
+    "familyOrbit": "chthonic-animal-human-threshold::4",
+    "semanticRole": "A5 translator between dual glyphode cube coordinates and E8 receiver roots"
+  },
+  "e8Receiver": {
+    "role": "receiver-lattice-coordinate",
+    "method": "A5-mediated dual-glyphode-to-E8 receiver mapping",
+    "rootSystem": "E8",
+    "rootCountAvailable": 240,
+    "rootIndex": 181,
+    "rootVector": [
+      -0.5,
+      0.5,
+      0.5,
+      0.5,
+      -0.5,
+      0.5,
+      -0.5,
+      -0.5
+    ],
+    "projection3": [
+      0.770354,
+      -0.342015,
+      -0.538127
+    ],
+    "projection12": [
+      1.443619,
+      0.300375,
+      -0.336327,
+      -3.349934,
+      -0.618034,
+      -1.377199,
+      -0.991301,
+      -2.050375,
+      2.377199,
+      1.972506,
+      1.165435,
+      -2.281707
+    ],
+    "goldenScale": "phi=(1+sqrt(5))/2",
+    "innerProductLaw": "<π(x),π(y)> ≈ φ·<x,y> as a symbolic receiver constraint, not a formal proof claim",
+    "boundary": "E8 receives the translated symmetry; the literal name remains a name-star and is not collapsed into an E8 root."
+  }
 }
