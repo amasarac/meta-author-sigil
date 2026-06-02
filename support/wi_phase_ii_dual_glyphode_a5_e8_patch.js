@@ -1,34 +1,232 @@
-
 // Phase II additive spokes for existing Meta-Author-Sigil index.
+// Lexical-scope fix: existing index declares constellationGroup/stars/personaMap with let,
+// so they are global lexical bindings, NOT window.constellationGroup/window.stars.
 (function(){
   const F=['wi-center','orphic-first-light','dionysian-rupture-rebirth','solar-imperial-mystery','chthonic-animal-human-threshold','cadis-mythos-continuity','holographic-name-litany'];
   const L={'wi-center':"wI' center",'orphic-first-light':'Orphic First-Light','dionysian-rupture-rebirth':'Dionysian Rupture/Rebirth','solar-imperial-mystery':'Solar Imperial Mystery','chthonic-animal-human-threshold':'Chthonic Threshold','cadis-mythos-continuity':'CADIS/MythOS','holographic-name-litany':'Holographic Litany'};
   const C={'wi-center':'#FFD700','orphic-first-light':'#FFFACD','dionysian-rupture-rebirth':'#C71585','solar-imperial-mystery':'#FFA500','chthonic-animal-human-threshold':'#556B2F','cadis-mythos-continuity':'#8A2BE2','holographic-name-litany':'#E6E6FA'};
-  let mode='nested', showGhost=true, showLinks=true, showCubes=true, ghostG, shellG, linkG, cubeG, loaded=[];
-  const ready=()=>typeof THREE!=='undefined' && typeof window.buildConstellationFromSource==='function';
+  let mode='nested', showGhost=true, showLinks=true, showCubes=true, ghostG=null, shellG=null, linkG=null, cubeG=null, loaded=[];
+
+  const ready=()=> typeof THREE!=='undefined'
+    && typeof buildConstellationFromSource==='function'
+    && typeof insertStarNode==='function'
+    && typeof setupUI==='function';
+
+  const sceneReady=()=> typeof constellationGroup!=='undefined'
+    && constellationGroup
+    && typeof constellationGroup.add==='function';
+
   function label(p){return (p&&p.display&&p.display.label)||p.literalToken||p.name||'Unnamed'}
   function fam(p){return (p&&(p.constellationFamily||(p.display&&p.display.family)))||'holographic-name-litany'}
   function clu(p){return (p&&(p.canonicalCluster||(p.display&&p.display.cluster)))||'unclustered'}
   function sid(p,i){return String((p&&(p.id||p.__file||p.name))||`wi-${i}`).split('/').pop().replace(/\.json(ld)?$/i,'').toLowerCase().replace(/[^\w-]+/g,'_')}
   function h(v){let x=0,s=String(v||''); for(let i=0;i<s.length;i++){x=((x<<5)-x)+s.charCodeAt(i); x|=0} return Math.abs(x)}
-  function ensure(){ if(!window.constellationGroup) return; if(!ghostG){ghostG=new THREE.Group();shellG=new THREE.Group();linkG=new THREE.Group();cubeG=new THREE.Group(); constellationGroup.add(ghostG); constellationGroup.add(shellG); constellationGroup.add(linkG); constellationGroup.add(cubeG);} }
-  function clear(g){ if(!g) return; [...g.children].forEach(ch=>{ if(window.disposeObject) disposeObject(ch); g.remove(ch); }); }
-  function vCube(c,off=0){ if(!c) return new THREE.Vector3(); return new THREE.Vector3((Number(c.x||0)-5.5)*38+off,(Number(c.y||0)-5.5)*38,(Number(c.z||0)-5.5)*38); }
-  function unit(p,i,t){ const a=p&&p.e8Receiver&&Array.isArray(p.e8Receiver.projection3)?p.e8Receiver.projection3:(p&&p.projectedPosition&&Array.isArray(p.projectedPosition.unit)?p.projectedPosition.unit:null); if(a&&a.length>=3) return new THREE.Vector3(a[0],a[1],a[2]).normalize(); const phi=Math.acos(-1+(2*i)/Math.max(2,t)), th=Math.sqrt(t*Math.PI)*phi; return new THREE.Vector3().setFromSphericalCoords(1,phi,th).normalize(); }
-  function pos(p,i,t){ const family=fam(p), shell=Number(p&&p.display&&p.display.shell)||(family==='wi-center'?0:1); if(shell===0||family==='wi-center') return new THREE.Vector3(); const u=unit(p,i,t), radius=Number(p&&p.display&&p.display.radius)||(35+shell*58), orbit=Number(p&&p.display&&p.display.orbitIndex)||i, golden=Math.PI*(3-Math.sqrt(5)), ch=h(clu(p)); if(mode==='primaryCube') return vCube(p.glyphode&&p.glyphode.primaryCube); if(mode==='dualCube') return vCube(p.glyphode&&p.glyphode.dualCube); if(mode==='a5'){const oi=Number(p.a5Translation&&p.a5Translation.orbitIndex)||0, th=(oi%60)/60*Math.PI*2, r=80+shell*45; return new THREE.Vector3(Math.cos(th)*r,u.y*150,Math.sin(th)*r)} if(mode==='a5e8') return u.multiplyScalar(radius*1.7); if(mode==='cluster'){const th=(ch%360)/360*Math.PI*2+orbit*golden*.18, r=radius+((ch%9)-4)*10; return new THREE.Vector3(Math.cos(th)*r+u.x*72,u.y*radius*.58+Math.sin(orbit*.21)*22,Math.sin(th)*r+u.z*72)} const fi=Math.max(0,F.indexOf(family)), fa=((fi-1)/Math.max(1,F.length-1))*Math.PI*2, la=fa+orbit*golden*.085; return new THREE.Vector3(Math.cos(fa)*radius+Math.cos(la)*radius*.22+u.x*radius*.34,u.y*radius*.72,Math.sin(fa)*radius+Math.sin(la)*radius*.22+u.z*radius*.34); }
-  function e8roots(){const r=[]; for(let i=0;i<8;i++)for(let j=i+1;j<8;j++)for(const si of [1,-1])for(const sj of [1,-1]){const v=Array(8).fill(0);v[i]=si;v[j]=sj;r.push(v)} function rec(p){if(p.length===8){if(p.filter(x=>x<0).length%2===0)r.push(p.slice());return} rec(p.concat(.5));rec(p.concat(-.5))} rec([]); return r;}
-  function pr(v){const xyz=[0,0,0]; for(let k=0;k<3;k++)for(let i=0;i<8;i++)xyz[k]+=v[i]*(Math.cos((i+1)*(k+1)*Math.PI/9)+Math.sin((i+1)*(k+2)*Math.PI/11)); const q=new THREE.Vector3(xyz[0],xyz[1],xyz[2]); return q.lengthSq()?q.normalize():new THREE.Vector3(1,0,0)}
-  function buildGhost(){ensure(); clear(ghostG); const pts=[]; e8roots().forEach(root=>{const u=pr(root); pts.push(u.x*430,u.y*430,u.z*430)}); const g=new THREE.BufferGeometry(); g.setAttribute('position',new THREE.Float32BufferAttribute(pts,3)); ghostG.add(new THREE.Points(g,new THREE.PointsMaterial({color:0x4466ff,size:2.1,transparent:true,opacity:.18,depthWrite:false}))); ghostG.visible=showGhost;}
-  function buildShells(){ensure(); clear(shellG); clear(cubeG); for(let s=1;s<=6;s++){const ring=new THREE.Mesh(new THREE.TorusGeometry(35+s*58,.35,8,160),new THREE.MeshBasicMaterial({color:0x8888ff,transparent:true,opacity:.12})); ring.rotation.x=Math.PI/2; shellG.add(ring)} [-260,260].forEach((off,i)=>{const cube=new THREE.Mesh(new THREE.BoxGeometry(11*38,11*38,11*38),new THREE.MeshBasicMaterial({color:i?0xffd700:0x00ffff,transparent:true,opacity:.055,wireframe:true})); cube.position.x=off; cubeG.add(cube)}); cubeG.visible=showCubes;}
-  function buildLinks(){ensure(); clear(linkG); if(!window.stars||!stars.length)return; const pts=[], center=stars.find(s=>s.userData.family==='wi-center'); if(center)stars.forEach(s=>{if(s!==center&&s.visible)pts.push(center.position.clone(),s.position.clone())}); const m=new Map(); stars.forEach(s=>{if(!s.visible)return; const c=s.userData.cluster||'unclustered'; if(!m.has(c))m.set(c,[]); m.get(c).push(s)}); m.forEach(g=>{for(let i=1;i<g.length;i++)pts.push(g[i-1].position.clone(),g[i].position.clone())}); if(!pts.length)return; linkG.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color:0x8888ff,transparent:true,opacity:.22}))); linkG.visible=showLinks;}
-  function relayout(){ if(!window.stars)return; stars.forEach((s,i)=>s.position.copy(pos(s.userData.persona,i,stars.length))); buildLinks(); stats(); }
-  function stats(){ const el=document.getElementById('wiConstellationStats'); if(!el)return; const fs=new Set(loaded.map(fam)), cs=new Set(loaded.map(clu)); el.textContent=`wI Phase II: ${loaded.length} stars · ${fs.size} families · ${cs.size} clusters · ${mode}`; }
-  function filter(){ const f=(document.getElementById('wiFamilyFilter')||{}).value||'all', q=((document.getElementById('wiSearchBox')||{}).value||'').toLowerCase().trim(); stars.forEach(s=>{const p=s.userData.persona, ff=fam(p), hay=[p.name,p.literalToken,label(p),ff,clu(p),p.description].join(' ').toLowerCase(); const vis=(f==='all'||ff===f||ff==='wi-center')&&(!q||hay.includes(q)); s.visible=vis; s.children.forEach(c=>c.visible=vis)}); buildLinks(); }
-  function controls(){ const add=(id,m)=>{const e=document.getElementById(id); if(e)e.onclick=()=>{mode=m; relayout();}}; add('wiModeNested','nested'); add('wiModePrimaryCube','primaryCube'); add('wiModeDualCube','dualCube'); add('wiModeA5','a5'); add('wiModeA5E8','a5e8'); add('wiModeCluster','cluster'); const ghost=document.getElementById('wiToggleGhost'); if(ghost)ghost.onclick=()=>{showGhost=!showGhost;if(ghostG)ghostG.visible=showGhost}; const links=document.getElementById('wiToggleLinks'); if(links)links.onclick=()=>{showLinks=!showLinks;if(linkG)linkG.visible=showLinks}; const cubes=document.getElementById('wiToggleCubes'); if(cubes)cubes.onclick=()=>{showCubes=!showCubes;if(cubeG)cubeG.visible=showCubes}; const labels=document.getElementById('wiToggleLabels'); if(labels)labels.onclick=()=>document.body.classList.toggle('wi-labels-hidden'); const famsel=document.getElementById('wiFamilyFilter'); if(famsel)famsel.onchange=filter; const search=document.getElementById('wiSearchBox'); if(search)search.oninput=filter; }
-  function addFamilyOptions(){ const sel=document.getElementById('wiFamilyFilter'); if(!sel||sel.options.length>1)return; Array.from(new Set(loaded.map(fam))).sort((a,b)=>F.indexOf(a)-F.indexOf(b)).forEach(x=>{if(x==='wi-center')return; const o=document.createElement('option'); o.value=x; o.textContent=L[x]||x; sel.appendChild(o);}); }
-  function patch(){ if(!ready()) return setTimeout(patch,50); controls(); window.insertStarNode=function(p,i,t){ if(!p||!p.name)return; ensure(); const family=fam(p), shell=Number(p.display&&p.display.shell)||(family==='wi-center'?0:1), center=family==='wi-center'||shell===0, col=new THREE.Color(p.color||C[family]||'#eeeeff'); const node=new THREE.Mesh(new THREE.IcosahedronGeometry(center?16:9,center?2:1),new THREE.MeshStandardMaterial({color:col,roughness:center?.25:.5,metalness:.82,wireframe:!center,emissive:col,emissiveIntensity:center?.3:.06})); const id=sid(p,i), txt=label(p); node.position.copy(pos(p,i,t)); node.userData={id,name:txt,note:notes[i%notes.length],persona:p,shell,family,cluster:clu(p),isWINameStar:true}; constellationGroup.add(node); stars.push(node); const div=document.createElement('div'); div.className=`label${center?' wi-center-label':''}`; div.textContent=txt; const lab=new THREE.CSS2DObject(div); lab.position.set(0,center?24:15,0); node.add(lab); if(typeof Tone!=='undefined'&&proceduralSounds&&reverb) proceduralSounds[id]=new Tone.FMSynth({harmonicity:1+shell*.13,modulationIndex:8+(i%8)}).connect(reverb); };
-    window.buildConstellationFromSource=async function(){ clearPersonaStatus(); stars=[]; personaMap={}; loaded=[]; disposeConstellationChildren(); ensure(); try{const man=await fetchJsonWithFallback('jsonld/manifest.json'), files=Array.isArray(man.personas)?man.personas:[]; const res=await Promise.allSettled(files.map(file=>fetchJsonWithFallback(`jsonld/${file}`).then(data=>({file,data})))); const fail=[]; res.forEach((r,i)=>{if(r.status==='fulfilled')loaded.push({__file:files[i],...r.value.data}); else fail.push(files[i])}); buildGhost(); buildShells(); addFamilyOptions(); loaded.forEach((p,i)=>{const id=sid(p,i); personaMap[id]={id,...p}; insertStarNode(p,i,loaded.length)}); buildLinks(); filter(); stats(); showPersonaStatus(fail.length?`wI Phase II online with ${loaded.length} stars; ${fail.length} failed.`:`wI Phase II online: Dual Glyphode → A5 → E8 with ${loaded.length} name-stars.`, fail.length?'warn':'success', {autoHideMs:6000});}catch(e){console.error(e);showPersonaStatus('The wI Phase II constellation faltered while loading.','warn')}};
-    window.onCanvasClick=function(event){ mouse.x=(event.clientX/window.innerWidth)*2-1; mouse.y=-(event.clientY/window.innerHeight)*2+1; raycaster.setFromCamera(mouse,camera); const hit=raycaster.intersectObjects(stars.filter(s=>s.visible),false); if(hit.length){const st=hit[0].object,{id,name,note,persona}=st.userData; if(audioContext&&proceduralSounds[id])proceduralSounds[id].triggerAttackRelease(note,'8n'); document.getElementById('detailsTitle').textContent=name; document.getElementById('detailsContent').textContent=JSON.stringify(persona||personaMap[id],null,2); document.getElementById('detailsPanel').style.display='block';}};
+
+  function ensure(){
+    if(!sceneReady()) return false;
+    if(!ghostG){ ghostG=new THREE.Group(); ghostG.name='wi-e8-ghost-lattice'; constellationGroup.add(ghostG); }
+    if(!shellG){ shellG=new THREE.Group(); shellG.name='wi-shell-rings'; constellationGroup.add(shellG); }
+    if(!linkG){ linkG=new THREE.Group(); linkG.name='wi-relation-links'; constellationGroup.add(linkG); }
+    if(!cubeG){ cubeG=new THREE.Group(); cubeG.name='wi-dual-glyphode-cubes'; constellationGroup.add(cubeG); }
+    return true;
   }
-  patch();
+
+  function clear(g){
+    if(!g||!g.children) return;
+    [...g.children].forEach(ch=>{
+      try{ if(typeof disposeObject==='function') disposeObject(ch); } catch(e){}
+      try{
+        ch.traverse&&ch.traverse(n=>{
+          if(n.geometry&&n.geometry.dispose) n.geometry.dispose();
+          if(n.material){
+            if(Array.isArray(n.material)) n.material.forEach(m=>m&&m.dispose&&m.dispose());
+            else if(n.material.dispose) n.material.dispose();
+          }
+          if(n.element&&n.element.parentNode) n.element.parentNode.removeChild(n.element);
+        });
+      } catch(e){}
+      g.remove(ch);
+    });
+  }
+
+  function vCube(c,off=0){
+    if(!c) return new THREE.Vector3();
+    return new THREE.Vector3((Number(c.x||0)-5.5)*38+off,(Number(c.y||0)-5.5)*38,(Number(c.z||0)-5.5)*38);
+  }
+
+  function unit(p,i,t){
+    const a=p&&p.e8Receiver&&Array.isArray(p.e8Receiver.projection3)
+      ? p.e8Receiver.projection3
+      : (p&&p.projectedPosition&&Array.isArray(p.projectedPosition.unit)?p.projectedPosition.unit:null);
+    if(a&&a.length>=3&&a.every(Number.isFinite)) return new THREE.Vector3(a[0],a[1],a[2]).normalize();
+    const phi=Math.acos(-1+(2*i)/Math.max(2,t)), th=Math.sqrt(t*Math.PI)*phi;
+    return new THREE.Vector3().setFromSphericalCoords(1,phi,th).normalize();
+  }
+
+  function pos(p,i,t){
+    const family=fam(p), shell=Number(p&&p.display&&p.display.shell)||(family==='wi-center'?0:1);
+    if(shell===0||family==='wi-center') return new THREE.Vector3();
+    const u=unit(p,i,t), radius=Number(p&&p.display&&p.display.radius)||(35+shell*58), orbit=Number(p&&p.display&&p.display.orbitIndex)||i, golden=Math.PI*(3-Math.sqrt(5)), ch=h(clu(p));
+    if(mode==='primaryCube') return vCube(p.glyphode&&p.glyphode.primaryCube);
+    if(mode==='dualCube') return vCube(p.glyphode&&p.glyphode.dualCube);
+    if(mode==='a5'){const oi=Number(p.a5Translation&&p.a5Translation.orbitIndex)||0, th=(oi%60)/60*Math.PI*2, r=80+shell*45; return new THREE.Vector3(Math.cos(th)*r,u.y*150,Math.sin(th)*r)}
+    if(mode==='a5e8') return u.multiplyScalar(radius*1.7);
+    if(mode==='cluster'){const th=(ch%360)/360*Math.PI*2+orbit*golden*.18, r=radius+((ch%9)-4)*10; return new THREE.Vector3(Math.cos(th)*r+u.x*72,u.y*radius*.58+Math.sin(orbit*.21)*22,Math.sin(th)*r+u.z*72)}
+    const fi=Math.max(0,F.indexOf(family)), fa=((fi-1)/Math.max(1,F.length-1))*Math.PI*2, la=fa+orbit*golden*.085;
+    return new THREE.Vector3(Math.cos(fa)*radius+Math.cos(la)*radius*.22+u.x*radius*.34,u.y*radius*.72,Math.sin(fa)*radius+Math.sin(la)*radius*.22+u.z*radius*.34);
+  }
+
+  function e8roots(){
+    const r=[];
+    for(let i=0;i<8;i++)for(let j=i+1;j<8;j++)for(const si of [1,-1])for(const sj of [1,-1]){const v=Array(8).fill(0);v[i]=si;v[j]=sj;r.push(v)}
+    function rec(p){if(p.length===8){if(p.filter(x=>x<0).length%2===0)r.push(p.slice());return} rec(p.concat(.5));rec(p.concat(-.5))}
+    rec([]); return r;
+  }
+
+  function pr(v){
+    const xyz=[0,0,0];
+    for(let k=0;k<3;k++)for(let i=0;i<8;i++)xyz[k]+=v[i]*(Math.cos((i+1)*(k+1)*Math.PI/9)+Math.sin((i+1)*(k+2)*Math.PI/11));
+    const q=new THREE.Vector3(xyz[0],xyz[1],xyz[2]);
+    return q.lengthSq()?q.normalize():new THREE.Vector3(1,0,0);
+  }
+
+  function buildGhost(){
+    if(!ensure()||!ghostG) return;
+    clear(ghostG);
+    const pts=[];
+    e8roots().forEach(root=>{const u=pr(root); pts.push(u.x*430,u.y*430,u.z*430)});
+    const g=new THREE.BufferGeometry();
+    g.setAttribute('position',new THREE.Float32BufferAttribute(pts,3));
+    ghostG.add(new THREE.Points(g,new THREE.PointsMaterial({color:0x4466ff,size:2.1,transparent:true,opacity:.18,depthWrite:false})));
+    ghostG.visible=showGhost;
+  }
+
+  function buildShells(){
+    if(!ensure()||!shellG||!cubeG) return;
+    clear(shellG); clear(cubeG);
+    for(let s=1;s<=6;s++){
+      const ring=new THREE.Mesh(new THREE.TorusGeometry(35+s*58,.35,8,160),new THREE.MeshBasicMaterial({color:0x8888ff,transparent:true,opacity:.12}));
+      ring.rotation.x=Math.PI/2; shellG.add(ring);
+    }
+    [-260,260].forEach((off,i)=>{
+      const cube=new THREE.Mesh(new THREE.BoxGeometry(11*38,11*38,11*38),new THREE.MeshBasicMaterial({color:i?0xffd700:0x00ffff,transparent:true,opacity:.055,wireframe:true}));
+      cube.position.x=off; cubeG.add(cube);
+    });
+    cubeG.visible=showCubes;
+  }
+
+  function buildLinks(){
+    if(!ensure()||!linkG) return;
+    clear(linkG);
+    if(typeof stars==='undefined'||!stars||!stars.length) return;
+    const pts=[], center=stars.find(s=>s.userData.family==='wi-center');
+    if(center) stars.forEach(s=>{if(s!==center&&s.visible)pts.push(center.position.clone(),s.position.clone())});
+    const m=new Map();
+    stars.forEach(s=>{if(!s.visible)return; const c=s.userData.cluster||'unclustered'; if(!m.has(c))m.set(c,[]); m.get(c).push(s)});
+    m.forEach(g=>{for(let i=1;i<g.length;i++)pts.push(g[i-1].position.clone(),g[i].position.clone())});
+    if(!pts.length) return;
+    linkG.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color:0x8888ff,transparent:true,opacity:.22})));
+    linkG.visible=showLinks;
+  }
+
+  function relayout(){
+    if(typeof stars==='undefined'||!stars) return;
+    stars.forEach((s,i)=>s.position.copy(pos(s.userData.persona,i,stars.length)));
+    buildLinks(); stats();
+  }
+
+  function stats(){
+    const el=document.getElementById('wiConstellationStats'); if(!el)return;
+    const fs=new Set(loaded.map(fam)), cs=new Set(loaded.map(clu));
+    el.textContent=`wI Phase II: ${loaded.length} stars · ${fs.size} families · ${cs.size} clusters · ${mode}`;
+  }
+
+  function filter(){
+    if(typeof stars==='undefined'||!stars) return;
+    const f=(document.getElementById('wiFamilyFilter')||{}).value||'all', q=((document.getElementById('wiSearchBox')||{}).value||'').toLowerCase().trim();
+    stars.forEach(s=>{
+      const p=s.userData.persona, ff=fam(p), hay=[p.name,p.literalToken,label(p),ff,clu(p),p.description].join(' ').toLowerCase();
+      const vis=(f==='all'||ff===f||ff==='wi-center')&&(!q||hay.includes(q));
+      s.visible=vis; s.children.forEach(c=>c.visible=vis);
+    });
+    buildLinks();
+  }
+
+  function controls(){
+    const add=(id,m)=>{const e=document.getElementById(id); if(e)e.onclick=()=>{mode=m; relayout();}};
+    add('wiModeNested','nested'); add('wiModePrimaryCube','primaryCube'); add('wiModeDualCube','dualCube'); add('wiModeA5','a5'); add('wiModeA5E8','a5e8'); add('wiModeCluster','cluster');
+    const ghost=document.getElementById('wiToggleGhost'); if(ghost)ghost.onclick=()=>{showGhost=!showGhost;if(ghostG)ghostG.visible=showGhost};
+    const links=document.getElementById('wiToggleLinks'); if(links)links.onclick=()=>{showLinks=!showLinks;if(linkG)linkG.visible=showLinks};
+    const cubes=document.getElementById('wiToggleCubes'); if(cubes)cubes.onclick=()=>{showCubes=!showCubes;if(cubeG)cubeG.visible=showCubes};
+    const labels=document.getElementById('wiToggleLabels'); if(labels)labels.onclick=()=>document.body.classList.toggle('wi-labels-hidden');
+    const famsel=document.getElementById('wiFamilyFilter'); if(famsel)famsel.onchange=filter;
+    const search=document.getElementById('wiSearchBox'); if(search)search.oninput=filter;
+  }
+
+  function addFamilyOptions(){
+    const sel=document.getElementById('wiFamilyFilter'); if(!sel||sel.options.length>1)return;
+    Array.from(new Set(loaded.map(fam))).sort((a,b)=>F.indexOf(a)-F.indexOf(b)).forEach(x=>{
+      if(x==='wi-center')return;
+      const o=document.createElement('option'); o.value=x; o.textContent=L[x]||x; sel.appendChild(o);
+    });
+  }
+
+  function install(){
+    if(!ready()) return setTimeout(install,50);
+    controls();
+
+    insertStarNode=function(p,i,t){
+      if(!p||!p.name) return;
+      if(!ensure()) return;
+      const family=fam(p), shell=Number(p.display&&p.display.shell)||(family==='wi-center'?0:1), center=family==='wi-center'||shell===0, col=new THREE.Color(p.color||C[family]||'#eeeeff');
+      const node=new THREE.Mesh(new THREE.IcosahedronGeometry(center?16:9,center?2:1),new THREE.MeshStandardMaterial({color:col,roughness:center?.25:.5,metalness:.82,wireframe:!center,emissive:col,emissiveIntensity:center?.3:.06}));
+      const id=sid(p,i), txt=label(p);
+      node.position.copy(pos(p,i,t));
+      node.userData={id,name:txt,note:notes[i%notes.length],persona:p,shell,family,cluster:clu(p),isWINameStar:true};
+      constellationGroup.add(node);
+      stars.push(node);
+      const div=document.createElement('div'); div.className=`label${center?' wi-center-label':''}`; div.textContent=txt;
+      const lab=new THREE.CSS2DObject(div); lab.position.set(0,center?24:15,0); node.add(lab);
+      if(typeof Tone!=='undefined'&&proceduralSounds&&reverb) proceduralSounds[id]=new Tone.FMSynth({harmonicity:1+shell*.13,modulationIndex:8+(i%8)}).connect(reverb);
+    };
+
+    buildConstellationFromSource=async function(){
+      clearPersonaStatus();
+      stars=[]; personaMap={}; loaded=[];
+      disposeConstellationChildren();
+      ensure();
+      try{
+        const man=await fetchJsonWithFallback('jsonld/manifest.json'), files=Array.isArray(man.personas)?man.personas:[];
+        const res=await Promise.allSettled(files.map(file=>fetchJsonWithFallback(`jsonld/${file}`).then(data=>({file,data}))));
+        const fail=[];
+        res.forEach((r,i)=>{if(r.status==='fulfilled')loaded.push({__file:files[i],...r.value.data}); else fail.push(files[i])});
+        buildGhost(); buildShells(); addFamilyOptions();
+        loaded.forEach((p,i)=>{const id=sid(p,i); personaMap[id]={id,...p}; insertStarNode(p,i,loaded.length)});
+        buildLinks(); filter(); stats();
+        showPersonaStatus(fail.length?`wI Phase II online with ${loaded.length} stars; ${fail.length} failed.`:`wI Phase II online: Dual Glyphode → A5 → E8 with ${loaded.length} name-stars.`, fail.length?'warn':'success', {autoHideMs:6000});
+      }catch(e){
+        console.error(e);
+        showPersonaStatus('The wI Phase II constellation faltered while loading.','warn');
+      }
+    };
+
+    onCanvasClick=function(event){
+      if(typeof stars==='undefined'||!stars) return;
+      mouse.x=(event.clientX/window.innerWidth)*2-1; mouse.y=-(event.clientY/window.innerHeight)*2+1;
+      raycaster.setFromCamera(mouse,camera);
+      const hit=raycaster.intersectObjects(stars.filter(s=>s.visible),false);
+      if(hit.length){
+        const st=hit[0].object,{id,name,note,persona}=st.userData;
+        if(audioContext&&proceduralSounds[id]) proceduralSounds[id].triggerAttackRelease(note,'8n');
+        document.getElementById('detailsTitle').textContent=name;
+        document.getElementById('detailsContent').textContent=JSON.stringify(persona||personaMap[id],null,2);
+        document.getElementById('detailsPanel').style.display='block';
+      }
+    };
+
+    window.wiPhaseII = { relayout, buildGhost, buildShells, buildLinks, filter, stats, get mode(){return mode}, setMode:m=>{mode=m;relayout();} };
+    console.info('[wI Phase II] lexical-scope fixed patch installed');
+  }
+
+  install();
 })();
