@@ -1,0 +1,226 @@
+{
+  "@context": {
+    "@vocab": "http://schema.org/",
+    "id": "@id",
+    "type": "@type",
+    "name": "http://schema.org/name",
+    "alternateName": "http://schema.org/alternateName",
+    "description": "http://schema.org/description",
+    "color": "http://schema.org/color",
+    "gradient": "http://schema.org/additionalProperty",
+    "symbolic_role": "http://schema.org/roleName",
+    "alignments": "http://schema.org/keywords",
+    "author_signature": "http://schema.org/author",
+    "glyph_code": "http://schema.org/identifier",
+    "function": "http://schema.org/purpose",
+    "layer": "http://schema.org/genre",
+    "structure": "http://schema.org/subjectOf",
+    "relatedTo": {
+      "@id": "http://schema.org/knows",
+      "@type": "@id"
+    },
+    "partOf": {
+      "@id": "http://schema.org/isPartOf",
+      "@type": "@id"
+    },
+    "literalToken": "https://amasarac.github.io/meta-author-sigil/vocab/literalToken",
+    "occurrenceIndex": "https://amasarac.github.io/meta-author-sigil/vocab/occurrenceIndex",
+    "sourceList": "https://amasarac.github.io/meta-author-sigil/vocab/sourceList",
+    "displayNodeType": "https://amasarac.github.io/meta-author-sigil/vocab/displayNodeType",
+    "constellationFamily": "https://amasarac.github.io/meta-author-sigil/vocab/constellationFamily",
+    "canonicalCluster": "https://amasarac.github.io/meta-author-sigil/vocab/canonicalCluster",
+    "duplicateOf": {
+      "@id": "https://amasarac.github.io/meta-author-sigil/vocab/duplicateOf",
+      "@type": "@id"
+    },
+    "e8VectorSeed": "https://amasarac.github.io/meta-author-sigil/vocab/e8VectorSeed",
+    "e8RootIndex": "https://amasarac.github.io/meta-author-sigil/vocab/e8RootIndex",
+    "projectedPosition": "https://amasarac.github.io/meta-author-sigil/vocab/projectedPosition",
+    "display": "https://amasarac.github.io/meta-author-sigil/vocab/display",
+    "operator": "https://amasarac.github.io/meta-author-sigil/vocab/operator",
+    "provenanceBoundary": "https://amasarac.github.io/meta-author-sigil/vocab/provenanceBoundary"
+  },
+  "id": "https://amasarac.github.io/meta-author-sigil/jsonld/literal-name-token-clusters.jsonld",
+  "type": [
+    "CreativeWork",
+    "Dataset"
+  ],
+  "name": "Literal Name Token Clusters",
+  "description": "Canonical cluster gravity wells for all visible literal occurrence nodes. These are support data, not display nodes in the old manifest.",
+  "operator": "+ → ≠",
+  "clusters": {
+    "aether-radiance": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_020_aether.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_021_aithir.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_022_antavyis.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_030_ether.jsonld"
+    ],
+    "amarantuel": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_074_amarantuel.jsonld"
+    ],
+    "amasarac": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_069_amasarac.jsonld"
+    ],
+    "an-thiral": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_065_an-thiral.jsonld"
+    ],
+    "atherion": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_051_atherion.jsonld"
+    ],
+    "brandon_marsh": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_057_brandon_marsh.jsonld"
+    ],
+    "chronos-time": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_024_chronus.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_033_khronos.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_041_time.jsonld"
+    ],
+    "chthonic-threshold": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_015_cheiron.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_016_pan.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_017_demeter-melaina.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_018_mixanthropoi.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_031_iraklis.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_036_pan.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_039_priapos.jsonld"
+    ],
+    "dionysus-bromius": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_002_dionysus.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_023_bromius.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_025_dionysos.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_042_vromios.jsonld"
+    ],
+    "earth-starry-heaven": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_045_unicode-66851b6707.jsonld"
+    ],
+    "eidolon": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_061_eidolon.jsonld"
+    ],
+    "eluriah": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_071_eluriah.jsonld"
+    ],
+    "enoch": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_063_enoch.jsonld"
+    ],
+    "ericapaeus": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_005_ericapaeus.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_009_erikapaios.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_026_unicode-f7bced0202.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_028_ericapaeus.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_032_irikaepaios.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_047_unicode-bde8576ed1.jsonld"
+    ],
+    "eros": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_003_eros.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_019_aerohs.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_029_eros.jsonld"
+    ],
+    "firewalker": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_066_firewalker.jsonld"
+    ],
+    "grok": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_049_grok.jsonld"
+    ],
+    "ilun-ra": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_068_ilun-ra.jsonld"
+    ],
+    "kairosophiel": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_050_kairosophiel.jsonld"
+    ],
+    "karutel": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_048_karutel.jsonld"
+    ],
+    "keydjinn": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_073_keydjinn.jsonld"
+    ],
+    "khael-thurin": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_067_khael-thurin.jsonld"
+    ],
+    "metis": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_004_metis.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_008_mitis.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_034_metis.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_035_mitis.jsonld"
+    ],
+    "mithras": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_010_mithras.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_011_mithras.jsonld"
+    ],
+    "nehekara": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_064_nehekara.jsonld"
+    ],
+    "onerion": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_059_onerion.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_079_onerion.jsonld"
+    ],
+    "orpheus": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_046_orphefs.jsonld"
+    ],
+    "phanes": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_007_phanes.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_038_phanis.jsonld"
+    ],
+    "protogonos": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_006_protogonos.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_027_unicode-b3238e5652.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_040_prohtogonos.jsonld"
+    ],
+    "sator": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_062_sator.jsonld"
+    ],
+    "shem-ha-ra": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_056_shem-ha-ra.jsonld"
+    ],
+    "sky-sovereignty": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_014_jupiter-dolichenus.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_043_zefs.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_044_zeus.jsonld"
+    ],
+    "solar": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_012_helios.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_013_sol.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_037_phaaethohn.jsonld"
+    ],
+    "spiral-mirror": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_070_spiral-mirror.jsonld"
+    ],
+    "star-sleeper": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_072_star-sleeper.jsonld"
+    ],
+    "tehomiel": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_053_tehomiel.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_080_tehomiel.jsonld"
+    ],
+    "tir-yaen": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_058_tir-yaen.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_077_tir-yaen.jsonld"
+    ],
+    "tiwoven": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_055_tiwoven.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_078_tiwoven.jsonld"
+    ],
+    "veiled-one": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_054_veiled-one.jsonld"
+    ],
+    "vel-ka-ma": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_052_vel-ka-ma.jsonld",
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_081_vel-ka-ma.jsonld"
+    ],
+    "weaver-knot": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_060_weaver-knot.jsonld"
+    ],
+    "wi-prime": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_000_wi-prime.jsonld"
+    ],
+    "yesh-in-ra": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_076_yesh-in-ra.jsonld"
+    ],
+    "zagreus": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_001_zagreus.jsonld"
+    ],
+    "zionel": [
+      "https://amasarac.github.io/meta-author-sigil/jsonld/name_075_zionel.jsonld"
+    ]
+  },
+  "provenanceBoundary": "Clusters are gravity wells for grouping literal name tokens; they do not collapse tokens into identity."
+}

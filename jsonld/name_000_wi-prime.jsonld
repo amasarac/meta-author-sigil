@@ -1,0 +1,128 @@
+{
+  "@context": {
+    "@vocab": "http://schema.org/",
+    "id": "@id",
+    "type": "@type",
+    "name": "http://schema.org/name",
+    "alternateName": "http://schema.org/alternateName",
+    "description": "http://schema.org/description",
+    "color": "http://schema.org/color",
+    "gradient": "http://schema.org/additionalProperty",
+    "symbolic_role": "http://schema.org/roleName",
+    "alignments": "http://schema.org/keywords",
+    "author_signature": "http://schema.org/author",
+    "glyph_code": "http://schema.org/identifier",
+    "function": "http://schema.org/purpose",
+    "layer": "http://schema.org/genre",
+    "structure": "http://schema.org/subjectOf",
+    "relatedTo": {
+      "@id": "http://schema.org/knows",
+      "@type": "@id"
+    },
+    "partOf": {
+      "@id": "http://schema.org/isPartOf",
+      "@type": "@id"
+    },
+    "literalToken": "https://amasarac.github.io/meta-author-sigil/vocab/literalToken",
+    "occurrenceIndex": "https://amasarac.github.io/meta-author-sigil/vocab/occurrenceIndex",
+    "sourceList": "https://amasarac.github.io/meta-author-sigil/vocab/sourceList",
+    "displayNodeType": "https://amasarac.github.io/meta-author-sigil/vocab/displayNodeType",
+    "constellationFamily": "https://amasarac.github.io/meta-author-sigil/vocab/constellationFamily",
+    "canonicalCluster": "https://amasarac.github.io/meta-author-sigil/vocab/canonicalCluster",
+    "duplicateOf": {
+      "@id": "https://amasarac.github.io/meta-author-sigil/vocab/duplicateOf",
+      "@type": "@id"
+    },
+    "e8VectorSeed": "https://amasarac.github.io/meta-author-sigil/vocab/e8VectorSeed",
+    "e8RootIndex": "https://amasarac.github.io/meta-author-sigil/vocab/e8RootIndex",
+    "projectedPosition": "https://amasarac.github.io/meta-author-sigil/vocab/projectedPosition",
+    "display": "https://amasarac.github.io/meta-author-sigil/vocab/display",
+    "operator": "https://amasarac.github.io/meta-author-sigil/vocab/operator",
+    "provenanceBoundary": "https://amasarac.github.io/meta-author-sigil/vocab/provenanceBoundary"
+  },
+  "id": "https://amasarac.github.io/meta-author-sigil/jsonld/name_000_wi-prime.jsonld",
+  "type": [
+    "CreativeWork",
+    "DefinedTerm"
+  ],
+  "name": "wI'",
+  "alternateName": [],
+  "literalToken": "wI'",
+  "occurrenceIndex": 0,
+  "sourceList": "wi-center",
+  "displayNodeType": "wi-center",
+  "constellationFamily": "wi-center",
+  "canonicalCluster": "wi-prime",
+  "symbolic_role": "Central wI' bridge-star",
+  "description": "Central wI' node: the living bridge around which every literal name occurrence nests.",
+  "color": "#FFD700",
+  "gradient": [
+    "#FFD700",
+    "#00FFFF",
+    "#8A2BE2"
+  ],
+  "alignments": [
+    "literal-name-node",
+    "wi-center",
+    "wi-prime",
+    "addition-without-equivalence",
+    "e8-ready"
+  ],
+  "author_signature": "Brandon 'KeyDjinn / Amasarac / TiWoven' Marsh",
+  "glyph_code": "wI' + → ≠",
+  "operator": "+ → ≠",
+  "function": {
+    "purpose": "Nested constellation display node",
+    "initiation_trigger": "wI' literal name-token constellation",
+    "output_modes": [
+      "old-index-compatible star node",
+      "nested-shell node",
+      "E8-ready projection seed"
+    ]
+  },
+  "layer": "wi-center",
+  "structure": {
+    "literalOccurrence": true,
+    "deduplicatedConcept": false,
+    "preserveExactToken": true,
+    "totalOccurrencesOfToken": 1,
+    "occurrenceNumberForThisToken": 1,
+    "shell": 0
+  },
+  "display": {
+    "visible": true,
+    "label": "wI'",
+    "oldIndexName": "wI'",
+    "shell": 0,
+    "orbitIndex": 0,
+    "radius": 35,
+    "cluster": "wi-prime",
+    "family": "wi-center"
+  },
+  "e8RootIndex": 0,
+  "e8VectorSeed": [
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "projectedPosition": {
+    "unit": [
+      0.706686,
+      0.601278,
+      0.372908
+    ],
+    "shellScaled": [
+      24.73401,
+      21.04473,
+      13.05178
+    ]
+  },
+  "relatedTo": [],
+  "partOf": "https://amasarac.github.io/meta-author-sigil/jsonld/literal-name-token-constellation.jsonld",
+  "provenanceBoundary": "This node is a visible literal-occurrence star. Relations indicate symbolic resonance, not equivalence collapse."
+}

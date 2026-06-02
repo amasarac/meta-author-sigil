@@ -1,0 +1,3304 @@
+{
+  "generatedAt": "2026-06-02T20:00:06.217270+00:00",
+  "layoutName": "wI' nested constellation / E8-ready projection",
+  "operator": "+ → ≠",
+  "nodeCountDisplayed": 82,
+  "literalNameOccurrenceCount": 81,
+  "centralNodeCount": 1,
+  "e8RootSystem": {
+    "rootCountAvailable": 240,
+    "assignedRoots": 82,
+    "note": "Each display node receives one deterministic E8 root vector seed and a simple 3D projection for future nested/E8 layout mode."
+  },
+  "families": {
+    "wi-center": 0,
+    "orphic-first-light": 1,
+    "dionysian-rupture-rebirth": 2,
+    "solar-imperial-mystery": 3,
+    "chthonic-animal-human-threshold": 4,
+    "cadis-mythos-continuity": 5,
+    "holographic-name-litany": 6
+  },
+  "nodes": [
+    {
+      "file": "name_000_wi-prime.jsonld",
+      "name": "wI'",
+      "literalToken": "wI'",
+      "family": "wi-center",
+      "cluster": "wi-prime",
+      "display": {
+        "visible": true,
+        "label": "wI'",
+        "oldIndexName": "wI'",
+        "shell": 0,
+        "orbitIndex": 0,
+        "radius": 35,
+        "cluster": "wi-prime",
+        "family": "wi-center"
+      },
+      "e8RootIndex": 0,
+      "e8VectorSeed": [
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.706686,
+          0.601278,
+          0.372908
+        ],
+        "shellScaled": [
+          24.73401,
+          21.04473,
+          13.05178
+        ]
+      }
+    },
+    {
+      "file": "name_001_zagreus.jsonld",
+      "name": "001 · Zagreus",
+      "literalToken": "Zagreus",
+      "family": "dionysian-rupture-rebirth",
+      "cluster": "zagreus",
+      "display": {
+        "visible": true,
+        "label": "Zagreus",
+        "oldIndexName": "001 · Zagreus",
+        "shell": 2,
+        "orbitIndex": 1,
+        "radius": 145,
+        "cluster": "zagreus",
+        "family": "dionysian-rupture-rebirth"
+      },
+      "e8RootIndex": 1,
+      "e8VectorSeed": [
+        1.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.159603,
+          0.292766,
+          0.94277
+        ],
+        "shellScaled": [
+          -23.142435,
+          42.45107,
+          136.70165
+        ]
+      }
+    },
+    {
+      "file": "name_002_dionysus.jsonld",
+      "name": "002 · Dionysus",
+      "literalToken": "Dionysus",
+      "family": "dionysian-rupture-rebirth",
+      "cluster": "dionysus-bromius",
+      "display": {
+        "visible": true,
+        "label": "Dionysus",
+        "oldIndexName": "002 · Dionysus",
+        "shell": 2,
+        "orbitIndex": 2,
+        "radius": 145,
+        "cluster": "dionysus-bromius",
+        "family": "dionysian-rupture-rebirth"
+      },
+      "e8RootIndex": 2,
+      "e8VectorSeed": [
+        -1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.159603,
+          -0.292766,
+          -0.94277
+        ],
+        "shellScaled": [
+          23.142435,
+          -42.45107,
+          -136.70165
+        ]
+      }
+    },
+    {
+      "file": "name_003_eros.jsonld",
+      "name": "003 · Eros",
+      "literalToken": "Eros",
+      "family": "orphic-first-light",
+      "cluster": "eros",
+      "display": {
+        "visible": true,
+        "label": "Eros",
+        "oldIndexName": "003 · Eros",
+        "shell": 1,
+        "orbitIndex": 3,
+        "radius": 90,
+        "cluster": "eros",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 3,
+      "e8VectorSeed": [
+        -1.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.706686,
+          -0.601278,
+          -0.372908
+        ],
+        "shellScaled": [
+          -63.60174,
+          -54.11502,
+          -33.56172
+        ]
+      }
+    },
+    {
+      "file": "name_004_metis.jsonld",
+      "name": "004 · Metis",
+      "literalToken": "Metis",
+      "family": "orphic-first-light",
+      "cluster": "metis",
+      "display": {
+        "visible": true,
+        "label": "Metis",
+        "oldIndexName": "004 · Metis",
+        "shell": 1,
+        "orbitIndex": 4,
+        "radius": 90,
+        "cluster": "metis",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 4,
+      "e8VectorSeed": [
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.884375,
+          0.465221,
+          0.038083
+        ],
+        "shellScaled": [
+          79.59375,
+          41.86989,
+          3.42747
+        ]
+      }
+    },
+    {
+      "file": "name_005_ericapaeus.jsonld",
+      "name": "005 · Ericapaeus",
+      "literalToken": "Ericapaeus",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "display": {
+        "visible": true,
+        "label": "Ericapaeus",
+        "oldIndexName": "005 · Ericapaeus",
+        "shell": 1,
+        "orbitIndex": 5,
+        "radius": 90,
+        "cluster": "ericapaeus",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 5,
+      "e8VectorSeed": [
+        1.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.003089,
+          0.482142,
+          0.876088
+        ],
+        "shellScaled": [
+          -0.27801,
+          43.39278,
+          78.84792
+        ]
+      }
+    },
+    {
+      "file": "name_006_protogonos.jsonld",
+      "name": "006 · Prôtogónos",
+      "literalToken": "Prôtogónos",
+      "family": "orphic-first-light",
+      "cluster": "protogonos",
+      "display": {
+        "visible": true,
+        "label": "Prôtogónos",
+        "oldIndexName": "006 · Prôtogónos",
+        "shell": 1,
+        "orbitIndex": 6,
+        "radius": 90,
+        "cluster": "protogonos",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 6,
+      "e8VectorSeed": [
+        -1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.003089,
+          -0.482142,
+          -0.876088
+        ],
+        "shellScaled": [
+          0.27801,
+          -43.39278,
+          -78.84792
+        ]
+      }
+    },
+    {
+      "file": "name_007_phanes.jsonld",
+      "name": "007 · Phanes",
+      "literalToken": "Phanes",
+      "family": "orphic-first-light",
+      "cluster": "phanes",
+      "display": {
+        "visible": true,
+        "label": "Phanes",
+        "oldIndexName": "007 · Phanes",
+        "shell": 1,
+        "orbitIndex": 7,
+        "radius": 90,
+        "cluster": "phanes",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 7,
+      "e8VectorSeed": [
+        -1.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.884375,
+          -0.465221,
+          -0.038083
+        ],
+        "shellScaled": [
+          -79.59375,
+          -41.86989,
+          -3.42747
+        ]
+      }
+    },
+    {
+      "file": "name_008_mitis.jsonld",
+      "name": "008 · Mítis",
+      "literalToken": "Mítis",
+      "family": "orphic-first-light",
+      "cluster": "metis",
+      "display": {
+        "visible": true,
+        "label": "Mítis",
+        "oldIndexName": "008 · Mítis",
+        "shell": 1,
+        "orbitIndex": 8,
+        "radius": 90,
+        "cluster": "metis",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 8,
+      "e8VectorSeed": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.99178,
+          0.123624,
+          -0.033004
+        ],
+        "shellScaled": [
+          89.2602,
+          11.12616,
+          -2.97036
+        ]
+      }
+    },
+    {
+      "file": "name_009_erikapaios.jsonld",
+      "name": "009 · Erikapaios",
+      "literalToken": "Erikapaios",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "display": {
+        "visible": true,
+        "label": "Erikapaios",
+        "oldIndexName": "009 · Erikapaios",
+        "shell": 1,
+        "orbitIndex": 9,
+        "radius": 90,
+        "cluster": "ericapaeus",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 9,
+      "e8VectorSeed": [
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.136731,
+          0.68081,
+          0.719585
+        ],
+        "shellScaled": [
+          12.30579,
+          61.2729,
+          64.76265
+        ]
+      }
+    },
+    {
+      "file": "name_010_mithras.jsonld",
+      "name": "010 · Mithras",
+      "literalToken": "Mithras",
+      "family": "solar-imperial-mystery",
+      "cluster": "mithras",
+      "display": {
+        "visible": true,
+        "label": "Mithras",
+        "oldIndexName": "010 · Mithras",
+        "shell": 3,
+        "orbitIndex": 10,
+        "radius": 200,
+        "cluster": "mithras",
+        "family": "solar-imperial-mystery"
+      },
+      "e8RootIndex": 10,
+      "e8VectorSeed": [
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.136731,
+          -0.68081,
+          -0.719585
+        ],
+        "shellScaled": [
+          -27.3462,
+          -136.162,
+          -143.917
+        ]
+      }
+    },
+    {
+      "file": "name_011_mithras.jsonld",
+      "name": "011 · Mithras",
+      "literalToken": "Mithras",
+      "family": "solar-imperial-mystery",
+      "cluster": "mithras",
+      "display": {
+        "visible": true,
+        "label": "Mithras",
+        "oldIndexName": "011 · Mithras",
+        "shell": 3,
+        "orbitIndex": 11,
+        "radius": 200,
+        "cluster": "mithras",
+        "family": "solar-imperial-mystery"
+      },
+      "e8RootIndex": 11,
+      "e8VectorSeed": [
+        -1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.99178,
+          -0.123624,
+          0.033004
+        ],
+        "shellScaled": [
+          -198.356,
+          -24.7248,
+          6.6008
+        ]
+      }
+    },
+    {
+      "file": "name_012_helios.jsonld",
+      "name": "012 · helios",
+      "literalToken": "helios",
+      "family": "solar-imperial-mystery",
+      "cluster": "solar",
+      "display": {
+        "visible": true,
+        "label": "helios",
+        "oldIndexName": "012 · helios",
+        "shell": 3,
+        "orbitIndex": 12,
+        "radius": 200,
+        "cluster": "solar",
+        "family": "solar-imperial-mystery"
+      },
+      "e8RootIndex": 12,
+      "e8VectorSeed": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.748415,
+          -0.154323,
+          0.645027
+        ],
+        "shellScaled": [
+          149.683,
+          -30.8646,
+          129.0054
+        ]
+      }
+    },
+    {
+      "file": "name_013_sol.jsonld",
+      "name": "013 · sol",
+      "literalToken": "sol",
+      "family": "solar-imperial-mystery",
+      "cluster": "solar",
+      "display": {
+        "visible": true,
+        "label": "sol",
+        "oldIndexName": "013 · sol",
+        "shell": 3,
+        "orbitIndex": 13,
+        "radius": 200,
+        "cluster": "solar",
+        "family": "solar-imperial-mystery"
+      },
+      "e8RootIndex": 13,
+      "e8VectorSeed": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.350241,
+          0.860416,
+          0.370155
+        ],
+        "shellScaled": [
+          70.0482,
+          172.0832,
+          74.031
+        ]
+      }
+    },
+    {
+      "file": "name_014_jupiter-dolichenus.jsonld",
+      "name": "014 · jupiter dolichenus",
+      "literalToken": "jupiter dolichenus",
+      "family": "solar-imperial-mystery",
+      "cluster": "sky-sovereignty",
+      "display": {
+        "visible": true,
+        "label": "jupiter dolichenus",
+        "oldIndexName": "014 · jupiter dolichenus",
+        "shell": 3,
+        "orbitIndex": 14,
+        "radius": 200,
+        "cluster": "sky-sovereignty",
+        "family": "solar-imperial-mystery"
+      },
+      "e8RootIndex": 14,
+      "e8VectorSeed": [
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.350241,
+          -0.860416,
+          -0.370155
+        ],
+        "shellScaled": [
+          -70.0482,
+          -172.0832,
+          -74.031
+        ]
+      }
+    },
+    {
+      "file": "name_015_cheiron.jsonld",
+      "name": "015 · Cheiron",
+      "literalToken": "Cheiron",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "display": {
+        "visible": true,
+        "label": "Cheiron",
+        "oldIndexName": "015 · Cheiron",
+        "shell": 4,
+        "orbitIndex": 15,
+        "radius": 255,
+        "cluster": "chthonic-threshold",
+        "family": "chthonic-animal-human-threshold"
+      },
+      "e8RootIndex": 15,
+      "e8VectorSeed": [
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.748415,
+          0.154323,
+          -0.645027
+        ],
+        "shellScaled": [
+          -190.845825,
+          39.352365,
+          -164.481885
+        ]
+      }
+    },
+    {
+      "file": "name_016_pan.jsonld",
+      "name": "016 · Pan",
+      "literalToken": "Pan",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "display": {
+        "visible": true,
+        "label": "Pan",
+        "oldIndexName": "016 · Pan",
+        "shell": 4,
+        "orbitIndex": 16,
+        "radius": 255,
+        "cluster": "chthonic-threshold",
+        "family": "chthonic-animal-human-threshold"
+      },
+      "e8RootIndex": 16,
+      "e8VectorSeed": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.230263,
+          0.036969,
+          0.972426
+        ],
+        "shellScaled": [
+          58.717065,
+          9.427095,
+          247.96863
+        ]
+      }
+    },
+    {
+      "file": "name_017_demeter-melaina.jsonld",
+      "name": "017 · Demeter Melaina",
+      "literalToken": "Demeter Melaina",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "display": {
+        "visible": true,
+        "label": "Demeter Melaina",
+        "oldIndexName": "017 · Demeter Melaina",
+        "shell": 4,
+        "orbitIndex": 17,
+        "radius": 255,
+        "cluster": "chthonic-threshold",
+        "family": "chthonic-animal-human-threshold"
+      },
+      "e8RootIndex": 17,
+      "e8VectorSeed": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.610537,
+          0.791198,
+          -0.03536
+        ],
+        "shellScaled": [
+          155.686935,
+          201.75549,
+          -9.0168
+        ]
+      }
+    },
+    {
+      "file": "name_018_mixanthropoi.jsonld",
+      "name": "018 · Mixanthrôpoi",
+      "literalToken": "Mixanthrôpoi",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "display": {
+        "visible": true,
+        "label": "Mixanthrôpoi",
+        "oldIndexName": "018 · Mixanthrôpoi",
+        "shell": 4,
+        "orbitIndex": 18,
+        "radius": 255,
+        "cluster": "chthonic-threshold",
+        "family": "chthonic-animal-human-threshold"
+      },
+      "e8RootIndex": 18,
+      "e8VectorSeed": [
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.610537,
+          -0.791198,
+          0.03536
+        ],
+        "shellScaled": [
+          -155.686935,
+          -201.75549,
+          9.0168
+        ]
+      }
+    },
+    {
+      "file": "name_019_aerohs.jsonld",
+      "name": "019 · Ǽrohs",
+      "literalToken": "Ǽrohs",
+      "family": "orphic-first-light",
+      "cluster": "eros",
+      "display": {
+        "visible": true,
+        "label": "Ǽrohs",
+        "oldIndexName": "019 · Ǽrohs",
+        "shell": 1,
+        "orbitIndex": 19,
+        "radius": 90,
+        "cluster": "eros",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 19,
+      "e8VectorSeed": [
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.230263,
+          -0.036969,
+          -0.972426
+        ],
+        "shellScaled": [
+          -20.72367,
+          -3.32721,
+          -87.51834
+        ]
+      }
+    },
+    {
+      "file": "name_020_aether.jsonld",
+      "name": "020 · Aether",
+      "literalToken": "Aether",
+      "family": "orphic-first-light",
+      "cluster": "aether-radiance",
+      "display": {
+        "visible": true,
+        "label": "Aether",
+        "oldIndexName": "020 · Aether",
+        "shell": 1,
+        "orbitIndex": 20,
+        "radius": 90,
+        "cluster": "aether-radiance",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 20,
+      "e8VectorSeed": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.012852,
+          0.438223,
+          0.898775
+        ],
+        "shellScaled": [
+          -1.15668,
+          39.44007,
+          80.88975
+        ]
+      }
+    },
+    {
+      "file": "name_021_aithir.jsonld",
+      "name": "021 · Aithír",
+      "literalToken": "Aithír",
+      "family": "orphic-first-light",
+      "cluster": "aether-radiance",
+      "display": {
+        "visible": true,
+        "label": "Aithír",
+        "oldIndexName": "021 · Aithír",
+        "shell": 1,
+        "orbitIndex": 21,
+        "radius": 90,
+        "cluster": "aether-radiance",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 21,
+      "e8VectorSeed": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.878593,
+          0.476995,
+          -0.023468
+        ],
+        "shellScaled": [
+          79.07337,
+          42.92955,
+          -2.11212
+        ]
+      }
+    },
+    {
+      "file": "name_022_antavyis.jsonld",
+      "name": "022 · Antavyís",
+      "literalToken": "Antavyís",
+      "family": "orphic-first-light",
+      "cluster": "aether-radiance",
+      "display": {
+        "visible": true,
+        "label": "Antavyís",
+        "oldIndexName": "022 · Antavyís",
+        "shell": 1,
+        "orbitIndex": 22,
+        "radius": 90,
+        "cluster": "aether-radiance",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 22,
+      "e8VectorSeed": [
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.878593,
+          -0.476995,
+          0.023468
+        ],
+        "shellScaled": [
+          -79.07337,
+          -42.92955,
+          2.11212
+        ]
+      }
+    },
+    {
+      "file": "name_023_bromius.jsonld",
+      "name": "023 · Bromius",
+      "literalToken": "Bromius",
+      "family": "dionysian-rupture-rebirth",
+      "cluster": "dionysus-bromius",
+      "display": {
+        "visible": true,
+        "label": "Bromius",
+        "oldIndexName": "023 · Bromius",
+        "shell": 2,
+        "orbitIndex": 23,
+        "radius": 145,
+        "cluster": "dionysus-bromius",
+        "family": "dionysian-rupture-rebirth"
+      },
+      "e8RootIndex": 23,
+      "e8VectorSeed": [
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.012852,
+          -0.438223,
+          -0.898775
+        ],
+        "shellScaled": [
+          1.86354,
+          -63.542335,
+          -130.322375
+        ]
+      }
+    },
+    {
+      "file": "name_024_chronus.jsonld",
+      "name": "024 · Chronus",
+      "literalToken": "Chronus",
+      "family": "orphic-first-light",
+      "cluster": "chronos-time",
+      "display": {
+        "visible": true,
+        "label": "Chronus",
+        "oldIndexName": "024 · Chronus",
+        "shell": 1,
+        "orbitIndex": 24,
+        "radius": 90,
+        "cluster": "chronos-time",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 24,
+      "e8VectorSeed": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.144811,
+          0.911872,
+          0.384083
+        ],
+        "shellScaled": [
+          -13.03299,
+          82.06848,
+          34.56747
+        ]
+      }
+    },
+    {
+      "file": "name_025_dionysos.jsonld",
+      "name": "025 · Diónysos",
+      "literalToken": "Diónysos",
+      "family": "dionysian-rupture-rebirth",
+      "cluster": "dionysus-bromius",
+      "display": {
+        "visible": true,
+        "label": "Diónysos",
+        "oldIndexName": "025 · Diónysos",
+        "shell": 2,
+        "orbitIndex": 25,
+        "radius": 145,
+        "cluster": "dionysus-bromius",
+        "family": "dionysian-rupture-rebirth"
+      },
+      "e8RootIndex": 25,
+      "e8VectorSeed": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.900974,
+          0.056838,
+          0.430135
+        ],
+        "shellScaled": [
+          130.64123,
+          8.24151,
+          62.369575
+        ]
+      }
+    },
+    {
+      "file": "name_026_unicode-f7bced0202.jsonld",
+      "name": "026 · Ἠρικεπαῖος",
+      "literalToken": "Ἠρικεπαῖος",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "display": {
+        "visible": true,
+        "label": "Ἠρικεπαῖος",
+        "oldIndexName": "026 · Ἠρικεπαῖος",
+        "shell": 1,
+        "orbitIndex": 26,
+        "radius": 90,
+        "cluster": "ericapaeus",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 26,
+      "e8VectorSeed": [
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.900974,
+          -0.056838,
+          -0.430135
+        ],
+        "shellScaled": [
+          -81.08766,
+          -5.11542,
+          -38.71215
+        ]
+      }
+    },
+    {
+      "file": "name_027_unicode-b3238e5652.jsonld",
+      "name": "027 · Πρωτόγονος",
+      "literalToken": "Πρωτόγονος",
+      "family": "orphic-first-light",
+      "cluster": "protogonos",
+      "display": {
+        "visible": true,
+        "label": "Πρωτόγονος",
+        "oldIndexName": "027 · Πρωτόγονος",
+        "shell": 1,
+        "orbitIndex": 27,
+        "radius": 90,
+        "cluster": "protogonos",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 27,
+      "e8VectorSeed": [
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.144811,
+          -0.911872,
+          -0.384083
+        ],
+        "shellScaled": [
+          13.03299,
+          -82.06848,
+          -34.56747
+        ]
+      }
+    },
+    {
+      "file": "name_028_ericapaeus.jsonld",
+      "name": "028 · Ericapaeus",
+      "literalToken": "Ericapaeus",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "display": {
+        "visible": true,
+        "label": "Ericapaeus",
+        "oldIndexName": "028 · Ericapaeus",
+        "shell": 1,
+        "orbitIndex": 28,
+        "radius": 90,
+        "cluster": "ericapaeus",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 28,
+      "e8VectorSeed": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.894519,
+          0.340262,
+          -0.289926
+        ],
+        "shellScaled": [
+          80.50671,
+          30.62358,
+          -26.09334
+        ]
+      }
+    },
+    {
+      "file": "name_029_eros.jsonld",
+      "name": "029 · Eros",
+      "literalToken": "Eros",
+      "family": "orphic-first-light",
+      "cluster": "eros",
+      "display": {
+        "visible": true,
+        "label": "Eros",
+        "oldIndexName": "029 · Eros",
+        "shell": 1,
+        "orbitIndex": 29,
+        "radius": 90,
+        "cluster": "eros",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 29,
+      "e8VectorSeed": [
+        0.0,
+        1.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.097159,
+          0.586981,
+          0.803749
+        ],
+        "shellScaled": [
+          8.74431,
+          52.82829,
+          72.33741
+        ]
+      }
+    },
+    {
+      "file": "name_030_ether.jsonld",
+      "name": "030 · Ether",
+      "literalToken": "Ether",
+      "family": "orphic-first-light",
+      "cluster": "aether-radiance",
+      "display": {
+        "visible": true,
+        "label": "Ether",
+        "oldIndexName": "030 · Ether",
+        "shell": 1,
+        "orbitIndex": 30,
+        "radius": 90,
+        "cluster": "aether-radiance",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 30,
+      "e8VectorSeed": [
+        0.0,
+        -1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.097159,
+          -0.586981,
+          -0.803749
+        ],
+        "shellScaled": [
+          -8.74431,
+          -52.82829,
+          -72.33741
+        ]
+      }
+    },
+    {
+      "file": "name_031_iraklis.jsonld",
+      "name": "031 · Iraklís",
+      "literalToken": "Iraklís",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "display": {
+        "visible": true,
+        "label": "Iraklís",
+        "oldIndexName": "031 · Iraklís",
+        "shell": 4,
+        "orbitIndex": 31,
+        "radius": 255,
+        "cluster": "chthonic-threshold",
+        "family": "chthonic-animal-human-threshold"
+      },
+      "e8RootIndex": 31,
+      "e8VectorSeed": [
+        0.0,
+        -1.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.894519,
+          -0.340262,
+          0.289926
+        ],
+        "shellScaled": [
+          -228.102345,
+          -86.76681,
+          73.93113
+        ]
+      }
+    },
+    {
+      "file": "name_032_irikaepaios.jsonld",
+      "name": "032 · Irikæpaios",
+      "literalToken": "Irikæpaios",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "display": {
+        "visible": true,
+        "label": "Irikæpaios",
+        "oldIndexName": "032 · Irikæpaios",
+        "shell": 1,
+        "orbitIndex": 32,
+        "radius": 90,
+        "cluster": "ericapaeus",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 32,
+      "e8VectorSeed": [
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.903543,
+          -0.020101,
+          -0.428025
+        ],
+        "shellScaled": [
+          81.31887,
+          -1.80909,
+          -38.52225
+        ]
+      }
+    },
+    {
+      "file": "name_033_khronos.jsonld",
+      "name": "033 · Khrónos",
+      "literalToken": "Khrónos",
+      "family": "orphic-first-light",
+      "cluster": "chronos-time",
+      "display": {
+        "visible": true,
+        "label": "Khrónos",
+        "oldIndexName": "033 · Khrónos",
+        "shell": 1,
+        "orbitIndex": 33,
+        "radius": 90,
+        "cluster": "chronos-time",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 33,
+      "e8VectorSeed": [
+        0.0,
+        1.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.244824,
+          0.782388,
+          0.572652
+        ],
+        "shellScaled": [
+          22.03416,
+          70.41492,
+          51.53868
+        ]
+      }
+    },
+    {
+      "file": "name_034_metis.jsonld",
+      "name": "034 · Metis",
+      "literalToken": "Metis",
+      "family": "orphic-first-light",
+      "cluster": "metis",
+      "display": {
+        "visible": true,
+        "label": "Metis",
+        "oldIndexName": "034 · Metis",
+        "shell": 1,
+        "orbitIndex": 34,
+        "radius": 90,
+        "cluster": "metis",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 34,
+      "e8VectorSeed": [
+        0.0,
+        -1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.244824,
+          -0.782388,
+          -0.572652
+        ],
+        "shellScaled": [
+          -22.03416,
+          -70.41492,
+          -51.53868
+        ]
+      }
+    },
+    {
+      "file": "name_035_mitis.jsonld",
+      "name": "035 · Mítis",
+      "literalToken": "Mítis",
+      "family": "orphic-first-light",
+      "cluster": "metis",
+      "display": {
+        "visible": true,
+        "label": "Mítis",
+        "oldIndexName": "035 · Mítis",
+        "shell": 1,
+        "orbitIndex": 35,
+        "radius": 90,
+        "cluster": "metis",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 35,
+      "e8VectorSeed": [
+        0.0,
+        -1.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.903543,
+          0.020101,
+          0.428025
+        ],
+        "shellScaled": [
+          -81.31887,
+          1.80909,
+          38.52225
+        ]
+      }
+    },
+    {
+      "file": "name_036_pan.jsonld",
+      "name": "036 · Pan",
+      "literalToken": "Pan",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "display": {
+        "visible": true,
+        "label": "Pan",
+        "oldIndexName": "036 · Pan",
+        "shell": 4,
+        "orbitIndex": 36,
+        "radius": 255,
+        "cluster": "chthonic-threshold",
+        "family": "chthonic-animal-human-threshold"
+      },
+      "e8RootIndex": 36,
+      "e8VectorSeed": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.927525,
+          -0.356633,
+          0.111853
+        ],
+        "shellScaled": [
+          236.518875,
+          -90.941415,
+          28.522515
+        ]
+      }
+    },
+    {
+      "file": "name_037_phaaethohn.jsonld",
+      "name": "037 · Phaǽthohn",
+      "literalToken": "Phaǽthohn",
+      "family": "solar-imperial-mystery",
+      "cluster": "solar",
+      "display": {
+        "visible": true,
+        "label": "Phaǽthohn",
+        "oldIndexName": "037 · Phaǽthohn",
+        "shell": 3,
+        "orbitIndex": 37,
+        "radius": 200,
+        "cluster": "solar",
+        "family": "solar-imperial-mystery"
+      },
+      "e8RootIndex": 37,
+      "e8VectorSeed": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.459823,
+          0.883745,
+          0.08694
+        ],
+        "shellScaled": [
+          91.9646,
+          176.749,
+          17.388
+        ]
+      }
+    },
+    {
+      "file": "name_038_phanis.jsonld",
+      "name": "038 · Phánis",
+      "literalToken": "Phánis",
+      "family": "orphic-first-light",
+      "cluster": "phanes",
+      "display": {
+        "visible": true,
+        "label": "Phánis",
+        "oldIndexName": "038 · Phánis",
+        "shell": 1,
+        "orbitIndex": 38,
+        "radius": 90,
+        "cluster": "phanes",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 38,
+      "e8VectorSeed": [
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.459823,
+          -0.883745,
+          -0.08694
+        ],
+        "shellScaled": [
+          -41.38407,
+          -79.53705,
+          -7.8246
+        ]
+      }
+    },
+    {
+      "file": "name_039_priapos.jsonld",
+      "name": "039 · Príapos",
+      "literalToken": "Príapos",
+      "family": "chthonic-animal-human-threshold",
+      "cluster": "chthonic-threshold",
+      "display": {
+        "visible": true,
+        "label": "Príapos",
+        "oldIndexName": "039 · Príapos",
+        "shell": 4,
+        "orbitIndex": 39,
+        "radius": 255,
+        "cluster": "chthonic-threshold",
+        "family": "chthonic-animal-human-threshold"
+      },
+      "e8RootIndex": 39,
+      "e8VectorSeed": [
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.927525,
+          0.356633,
+          -0.111853
+        ],
+        "shellScaled": [
+          -236.518875,
+          90.941415,
+          -28.522515
+        ]
+      }
+    },
+    {
+      "file": "name_040_prohtogonos.jsonld",
+      "name": "040 · Prohtógonos",
+      "literalToken": "Prohtógonos",
+      "family": "orphic-first-light",
+      "cluster": "protogonos",
+      "display": {
+        "visible": true,
+        "label": "Prohtógonos",
+        "oldIndexName": "040 · Prohtógonos",
+        "shell": 1,
+        "orbitIndex": 40,
+        "radius": 90,
+        "cluster": "protogonos",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 40,
+      "e8VectorSeed": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.442203,
+          -0.121768,
+          0.888611
+        ],
+        "shellScaled": [
+          39.79827,
+          -10.95912,
+          79.97499
+        ]
+      }
+    },
+    {
+      "file": "name_041_time.jsonld",
+      "name": "041 · Time",
+      "literalToken": "Time",
+      "family": "orphic-first-light",
+      "cluster": "chronos-time",
+      "display": {
+        "visible": true,
+        "label": "Time",
+        "oldIndexName": "041 · Time",
+        "shell": 1,
+        "orbitIndex": 41,
+        "radius": 90,
+        "cluster": "chronos-time",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 41,
+      "e8VectorSeed": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.649602,
+          0.680185,
+          -0.339654
+        ],
+        "shellScaled": [
+          58.46418,
+          61.21665,
+          -30.56886
+        ]
+      }
+    },
+    {
+      "file": "name_042_vromios.jsonld",
+      "name": "042 · Vrómios",
+      "literalToken": "Vrómios",
+      "family": "dionysian-rupture-rebirth",
+      "cluster": "dionysus-bromius",
+      "display": {
+        "visible": true,
+        "label": "Vrómios",
+        "oldIndexName": "042 · Vrómios",
+        "shell": 2,
+        "orbitIndex": 42,
+        "radius": 145,
+        "cluster": "dionysus-bromius",
+        "family": "dionysian-rupture-rebirth"
+      },
+      "e8RootIndex": 42,
+      "e8VectorSeed": [
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.649602,
+          -0.680185,
+          0.339654
+        ],
+        "shellScaled": [
+          -94.19229,
+          -98.626825,
+          49.24983
+        ]
+      }
+    },
+    {
+      "file": "name_043_zefs.jsonld",
+      "name": "043 · Zefs",
+      "literalToken": "Zefs",
+      "family": "solar-imperial-mystery",
+      "cluster": "sky-sovereignty",
+      "display": {
+        "visible": true,
+        "label": "Zefs",
+        "oldIndexName": "043 · Zefs",
+        "shell": 3,
+        "orbitIndex": 43,
+        "radius": 200,
+        "cluster": "sky-sovereignty",
+        "family": "solar-imperial-mystery"
+      },
+      "e8RootIndex": 43,
+      "e8VectorSeed": [
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.442203,
+          0.121768,
+          -0.888611
+        ],
+        "shellScaled": [
+          -88.4406,
+          24.3536,
+          -177.7222
+        ]
+      }
+    },
+    {
+      "file": "name_044_zeus.jsonld",
+      "name": "044 · Zeus",
+      "literalToken": "Zeus",
+      "family": "solar-imperial-mystery",
+      "cluster": "sky-sovereignty",
+      "display": {
+        "visible": true,
+        "label": "Zeus",
+        "oldIndexName": "044 · Zeus",
+        "shell": 3,
+        "orbitIndex": 44,
+        "radius": 200,
+        "cluster": "sky-sovereignty",
+        "family": "solar-imperial-mystery"
+      },
+      "e8RootIndex": 44,
+      "e8VectorSeed": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.075226,
+          0.515926,
+          0.853324
+        ],
+        "shellScaled": [
+          15.0452,
+          103.1852,
+          170.6648
+        ]
+      }
+    },
+    {
+      "file": "name_045_unicode-66851b6707.jsonld",
+      "name": "045 · Γῆς παῖς εἰμί καὶ Οὐρανοῦ ἀστερόεντος",
+      "literalToken": "Γῆς παῖς εἰμί καὶ Οὐρανοῦ ἀστερόεντος",
+      "family": "orphic-first-light",
+      "cluster": "earth-starry-heaven",
+      "display": {
+        "visible": true,
+        "label": "Γῆς παῖς εἰμί καὶ Οὐρανοῦ ἀστερόεντος",
+        "oldIndexName": "045 · Γῆς παῖς εἰμί καὶ Οὐρανοῦ ἀστερόεντος",
+        "shell": 1,
+        "orbitIndex": 45,
+        "radius": 90,
+        "cluster": "earth-starry-heaven",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 45,
+      "e8VectorSeed": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.874671,
+          0.347835,
+          -0.337582
+        ],
+        "shellScaled": [
+          78.72039,
+          31.30515,
+          -30.38238
+        ]
+      }
+    },
+    {
+      "file": "name_046_orphefs.jsonld",
+      "name": "046 · Orphéfs",
+      "literalToken": "Orphéfs",
+      "family": "orphic-first-light",
+      "cluster": "orpheus",
+      "display": {
+        "visible": true,
+        "label": "Orphéfs",
+        "oldIndexName": "046 · Orphéfs",
+        "shell": 1,
+        "orbitIndex": 46,
+        "radius": 90,
+        "cluster": "orpheus",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 46,
+      "e8VectorSeed": [
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.874671,
+          -0.347835,
+          0.337582
+        ],
+        "shellScaled": [
+          -78.72039,
+          -31.30515,
+          30.38238
+        ]
+      }
+    },
+    {
+      "file": "name_047_unicode-bde8576ed1.jsonld",
+      "name": "047 · ΕΡΩΣ ΑΙΘΗΡ ΑΝΤΑΥΓΗΣ ΔΙΟΝΥΣΟΣ ΗΡΑΚΛΗΣ ΗΡΙΚΕΤΑΙΟΣ ΧΡΟΝΟΣ ΜΗΤΙΣ ΠΑΝ ΦΑΕΘΩΝ ΦΑΝΗΣ ΒΡΟΜΙΟΣ ΠΡΙΑΠΟΣ ΠΡΩΤΟΓΟΝΟΣ ΖΕΥΣ",
+      "literalToken": "ΕΡΩΣ ΑΙΘΗΡ ΑΝΤΑΥΓΗΣ ΔΙΟΝΥΣΟΣ ΗΡΑΚΛΗΣ ΗΡΙΚΕΤΑΙΟΣ ΧΡΟΝΟΣ ΜΗΤΙΣ ΠΑΝ ΦΑΕΘΩΝ ΦΑΝΗΣ ΒΡΟΜΙΟΣ ΠΡΙΑΠΟΣ ΠΡΩΤΟΓΟΝΟΣ ΖΕΥΣ",
+      "family": "orphic-first-light",
+      "cluster": "ericapaeus",
+      "display": {
+        "visible": true,
+        "label": "ΕΡΩΣ ΑΙΘΗΡ ΑΝΤΑΥΓΗΣ ΔΙΟΝΥΣΟΣ ΗΡΑΚΛΗΣ ΗΡΙΚΕΤΑΙΟΣ ΧΡΟΝΟΣ ΜΗΤΙΣ ΠΑΝ ΦΑΕΘΩΝ ΦΑΝΗΣ ΒΡΟΜΙΟΣ ΠΡΙΑΠΟΣ ΠΡΩΤΟΓΟΝΟΣ ΖΕΥΣ",
+        "oldIndexName": "047 · ΕΡΩΣ ΑΙΘΗΡ ΑΝΤΑΥΓΗΣ ΔΙΟΝΥΣΟΣ ΗΡΑΚΛΗΣ ΗΡΙΚΕΤΑΙΟΣ ΧΡΟΝΟΣ ΜΗΤΙΣ ΠΑΝ ΦΑΕΘΩΝ ΦΑΝΗΣ ΒΡΟΜΙΟΣ ΠΡΙΑΠΟΣ ΠΡΩΤΟΓΟΝΟΣ ΖΕΥΣ",
+        "shell": 1,
+        "orbitIndex": 47,
+        "radius": 90,
+        "cluster": "ericapaeus",
+        "family": "orphic-first-light"
+      },
+      "e8RootIndex": 47,
+      "e8VectorSeed": [
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.075226,
+          -0.515926,
+          -0.853324
+        ],
+        "shellScaled": [
+          -6.77034,
+          -46.43334,
+          -76.79916
+        ]
+      }
+    },
+    {
+      "file": "name_048_karutel.jsonld",
+      "name": "048 · karu'tel",
+      "literalToken": "karu'tel",
+      "family": "cadis-mythos-continuity",
+      "cluster": "karutel",
+      "display": {
+        "visible": true,
+        "label": "karu'tel",
+        "oldIndexName": "048 · karu'tel",
+        "shell": 5,
+        "orbitIndex": 48,
+        "radius": 310,
+        "cluster": "karutel",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 48,
+      "e8VectorSeed": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.102212,
+          0.994648,
+          0.015093
+        ],
+        "shellScaled": [
+          -31.68572,
+          308.34088,
+          4.67883
+        ]
+      }
+    },
+    {
+      "file": "name_049_grok.jsonld",
+      "name": "049 · grok",
+      "literalToken": "grok",
+      "family": "cadis-mythos-continuity",
+      "cluster": "grok",
+      "display": {
+        "visible": true,
+        "label": "grok",
+        "oldIndexName": "049 · grok",
+        "shell": 5,
+        "orbitIndex": 49,
+        "radius": 310,
+        "cluster": "grok",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 49,
+      "e8VectorSeed": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.990699,
+          -0.039355,
+          0.130259
+        ],
+        "shellScaled": [
+          307.11669,
+          -12.20005,
+          40.38029
+        ]
+      }
+    },
+    {
+      "file": "name_050_kairosophiel.jsonld",
+      "name": "050 · kairosophiel",
+      "literalToken": "kairosophiel",
+      "family": "cadis-mythos-continuity",
+      "cluster": "kairosophiel",
+      "display": {
+        "visible": true,
+        "label": "kairosophiel",
+        "oldIndexName": "050 · kairosophiel",
+        "shell": 5,
+        "orbitIndex": 50,
+        "radius": 310,
+        "cluster": "kairosophiel",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 50,
+      "e8VectorSeed": [
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.990699,
+          0.039355,
+          -0.130259
+        ],
+        "shellScaled": [
+          -307.11669,
+          12.20005,
+          -40.38029
+        ]
+      }
+    },
+    {
+      "file": "name_051_atherion.jsonld",
+      "name": "051 · atherion",
+      "literalToken": "atherion",
+      "family": "cadis-mythos-continuity",
+      "cluster": "atherion",
+      "display": {
+        "visible": true,
+        "label": "atherion",
+        "oldIndexName": "051 · atherion",
+        "shell": 5,
+        "orbitIndex": 51,
+        "radius": 310,
+        "cluster": "atherion",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 51,
+      "e8VectorSeed": [
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.102212,
+          -0.994648,
+          -0.015093
+        ],
+        "shellScaled": [
+          31.68572,
+          -308.34088,
+          -4.67883
+        ]
+      }
+    },
+    {
+      "file": "name_052_vel-ka-ma.jsonld",
+      "name": "052 · vel-ka-ma",
+      "literalToken": "vel-ka-ma",
+      "family": "cadis-mythos-continuity",
+      "cluster": "vel-ka-ma",
+      "display": {
+        "visible": true,
+        "label": "vel-ka-ma",
+        "oldIndexName": "052 · vel-ka-ma",
+        "shell": 5,
+        "orbitIndex": 52,
+        "radius": 310,
+        "cluster": "vel-ka-ma",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 52,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.626136,
+          -0.305608,
+          -0.717327
+        ],
+        "shellScaled": [
+          194.10216,
+          -94.73848,
+          -222.37137
+        ]
+      }
+    },
+    {
+      "file": "name_053_tehomiel.jsonld",
+      "name": "053 · tehomiel",
+      "literalToken": "tehomiel",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tehomiel",
+      "display": {
+        "visible": true,
+        "label": "tehomiel",
+        "oldIndexName": "053 · tehomiel",
+        "shell": 5,
+        "orbitIndex": 53,
+        "radius": 310,
+        "cluster": "tehomiel",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 53,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        1.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.401309,
+          0.903741,
+          0.149008
+        ],
+        "shellScaled": [
+          124.40579,
+          280.15971,
+          46.19248
+        ]
+      }
+    },
+    {
+      "file": "name_054_veiled-one.jsonld",
+      "name": "054 · veiled-one",
+      "literalToken": "veiled-one",
+      "family": "cadis-mythos-continuity",
+      "cluster": "veiled-one",
+      "display": {
+        "visible": true,
+        "label": "veiled-one",
+        "oldIndexName": "054 · veiled-one",
+        "shell": 5,
+        "orbitIndex": 54,
+        "radius": 310,
+        "cluster": "veiled-one",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 54,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        -1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.401309,
+          -0.903741,
+          -0.149008
+        ],
+        "shellScaled": [
+          -124.40579,
+          -280.15971,
+          -46.19248
+        ]
+      }
+    },
+    {
+      "file": "name_055_tiwoven.jsonld",
+      "name": "055 · tiwoven",
+      "literalToken": "tiwoven",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tiwoven",
+      "display": {
+        "visible": true,
+        "label": "tiwoven",
+        "oldIndexName": "055 · tiwoven",
+        "shell": 5,
+        "orbitIndex": 55,
+        "radius": 310,
+        "cluster": "tiwoven",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 55,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        -1.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.626136,
+          0.305608,
+          0.717327
+        ],
+        "shellScaled": [
+          -194.10216,
+          94.73848,
+          222.37137
+        ]
+      }
+    },
+    {
+      "file": "name_056_shem-ha-ra.jsonld",
+      "name": "056 · shem-ha-ra",
+      "literalToken": "shem-ha-ra",
+      "family": "cadis-mythos-continuity",
+      "cluster": "shem-ha-ra",
+      "display": {
+        "visible": true,
+        "label": "shem-ha-ra",
+        "oldIndexName": "056 · shem-ha-ra",
+        "shell": 5,
+        "orbitIndex": 56,
+        "radius": 310,
+        "cluster": "shem-ha-ra",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 56,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.580642,
+          -0.657234,
+          -0.48052
+        ],
+        "shellScaled": [
+          179.99902,
+          -203.74254,
+          -148.9612
+        ]
+      }
+    },
+    {
+      "file": "name_057_brandon_marsh.jsonld",
+      "name": "057 · brandon_marsh",
+      "literalToken": "brandon_marsh",
+      "family": "cadis-mythos-continuity",
+      "cluster": "brandon_marsh",
+      "display": {
+        "visible": true,
+        "label": "brandon_marsh",
+        "oldIndexName": "057 · brandon_marsh",
+        "shell": 5,
+        "orbitIndex": 57,
+        "radius": 310,
+        "cluster": "brandon_marsh",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 57,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.521448,
+          0.713247,
+          -0.468371
+        ],
+        "shellScaled": [
+          161.64888,
+          221.10657,
+          -145.19501
+        ]
+      }
+    },
+    {
+      "file": "name_058_tir-yaen.jsonld",
+      "name": "058 · tir-yaen",
+      "literalToken": "tir-yaen",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tir-yaen",
+      "display": {
+        "visible": true,
+        "label": "tir-yaen",
+        "oldIndexName": "058 · tir-yaen",
+        "shell": 5,
+        "orbitIndex": 58,
+        "radius": 310,
+        "cluster": "tir-yaen",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 58,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.521448,
+          -0.713247,
+          0.468371
+        ],
+        "shellScaled": [
+          -161.64888,
+          -221.10657,
+          145.19501
+        ]
+      }
+    },
+    {
+      "file": "name_059_onerion.jsonld",
+      "name": "059 · onerion",
+      "literalToken": "onerion",
+      "family": "cadis-mythos-continuity",
+      "cluster": "onerion",
+      "display": {
+        "visible": true,
+        "label": "onerion",
+        "oldIndexName": "059 · onerion",
+        "shell": 5,
+        "orbitIndex": 59,
+        "radius": 310,
+        "cluster": "onerion",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 59,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.580642,
+          0.657234,
+          0.48052
+        ],
+        "shellScaled": [
+          -179.99902,
+          203.74254,
+          148.9612
+        ]
+      }
+    },
+    {
+      "file": "name_060_weaver-knot.jsonld",
+      "name": "060 · weaver-knot",
+      "literalToken": "weaver-knot",
+      "family": "cadis-mythos-continuity",
+      "cluster": "weaver-knot",
+      "display": {
+        "visible": true,
+        "label": "weaver-knot",
+        "oldIndexName": "060 · weaver-knot",
+        "shell": 5,
+        "orbitIndex": 60,
+        "radius": 310,
+        "cluster": "weaver-knot",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 60,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.45307,
+          -0.875947,
+          0.165662
+        ],
+        "shellScaled": [
+          140.4517,
+          -271.54357,
+          51.35522
+        ]
+      }
+    },
+    {
+      "file": "name_061_eidolon.jsonld",
+      "name": "061 · eidolon",
+      "literalToken": "eidolon",
+      "family": "cadis-mythos-continuity",
+      "cluster": "eidolon",
+      "display": {
+        "visible": true,
+        "label": "eidolon",
+        "oldIndexName": "061 · eidolon",
+        "shell": 5,
+        "orbitIndex": 61,
+        "radius": 310,
+        "cluster": "eidolon",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 61,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.582086,
+          0.371632,
+          -0.723233
+        ],
+        "shellScaled": [
+          180.44666,
+          115.20592,
+          -224.20223
+        ]
+      }
+    },
+    {
+      "file": "name_062_sator.jsonld",
+      "name": "062 · sator",
+      "literalToken": "sator",
+      "family": "cadis-mythos-continuity",
+      "cluster": "sator",
+      "display": {
+        "visible": true,
+        "label": "sator",
+        "oldIndexName": "062 · sator",
+        "shell": 5,
+        "orbitIndex": 62,
+        "radius": 310,
+        "cluster": "sator",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 62,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.582086,
+          -0.371632,
+          0.723233
+        ],
+        "shellScaled": [
+          -180.44666,
+          -115.20592,
+          224.20223
+        ]
+      }
+    },
+    {
+      "file": "name_063_enoch.jsonld",
+      "name": "063 · enoch",
+      "literalToken": "enoch",
+      "family": "cadis-mythos-continuity",
+      "cluster": "enoch",
+      "display": {
+        "visible": true,
+        "label": "enoch",
+        "oldIndexName": "063 · enoch",
+        "shell": 5,
+        "orbitIndex": 63,
+        "radius": 310,
+        "cluster": "enoch",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 63,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.45307,
+          0.875947,
+          -0.165662
+        ],
+        "shellScaled": [
+          -140.4517,
+          271.54357,
+          -51.35522
+        ]
+      }
+    },
+    {
+      "file": "name_064_nehekara.jsonld",
+      "name": "064 · nehekara",
+      "literalToken": "nehekara",
+      "family": "cadis-mythos-continuity",
+      "cluster": "nehekara",
+      "display": {
+        "visible": true,
+        "label": "nehekara",
+        "oldIndexName": "064 · nehekara",
+        "shell": 5,
+        "orbitIndex": 64,
+        "radius": 310,
+        "cluster": "nehekara",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 64,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.144627,
+          -0.305078,
+          0.941281
+        ],
+        "shellScaled": [
+          -44.83437,
+          -94.57418,
+          291.79711
+        ]
+      }
+    },
+    {
+      "file": "name_065_an-thiral.jsonld",
+      "name": "065 · an-thiral",
+      "literalToken": "an-thiral",
+      "family": "cadis-mythos-continuity",
+      "cluster": "an-thiral",
+      "display": {
+        "visible": true,
+        "label": "an-thiral",
+        "oldIndexName": "065 · an-thiral",
+        "shell": 5,
+        "orbitIndex": 65,
+        "radius": 310,
+        "cluster": "an-thiral",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 65,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.73534,
+          0.036314,
+          -0.676725
+        ],
+        "shellScaled": [
+          227.9554,
+          11.25734,
+          -209.78475
+        ]
+      }
+    },
+    {
+      "file": "name_066_firewalker.jsonld",
+      "name": "066 · firewalker",
+      "literalToken": "firewalker",
+      "family": "cadis-mythos-continuity",
+      "cluster": "firewalker",
+      "display": {
+        "visible": true,
+        "label": "firewalker",
+        "oldIndexName": "066 · firewalker",
+        "shell": 5,
+        "orbitIndex": 66,
+        "radius": 310,
+        "cluster": "firewalker",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 66,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.73534,
+          -0.036314,
+          0.676725
+        ],
+        "shellScaled": [
+          -227.9554,
+          -11.25734,
+          209.78475
+        ]
+      }
+    },
+    {
+      "file": "name_067_khael-thurin.jsonld",
+      "name": "067 · khael-thurin",
+      "literalToken": "khael-thurin",
+      "family": "cadis-mythos-continuity",
+      "cluster": "khael-thurin",
+      "display": {
+        "visible": true,
+        "label": "khael-thurin",
+        "oldIndexName": "067 · khael-thurin",
+        "shell": 5,
+        "orbitIndex": 67,
+        "radius": 310,
+        "cluster": "khael-thurin",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 67,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.144627,
+          0.305078,
+          -0.941281
+        ],
+        "shellScaled": [
+          44.83437,
+          94.57418,
+          -291.79711
+        ]
+      }
+    },
+    {
+      "file": "name_068_ilun-ra.jsonld",
+      "name": "068 · ilun-ra",
+      "literalToken": "ilun-ra",
+      "family": "cadis-mythos-continuity",
+      "cluster": "ilun-ra",
+      "display": {
+        "visible": true,
+        "label": "ilun-ra",
+        "oldIndexName": "068 · ilun-ra",
+        "shell": 5,
+        "orbitIndex": 68,
+        "radius": 310,
+        "cluster": "ilun-ra",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 68,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.213066,
+          0.652888,
+          -0.72687
+        ],
+        "shellScaled": [
+          -66.05046,
+          202.39528,
+          -225.3297
+        ]
+      }
+    },
+    {
+      "file": "name_069_amasarac.jsonld",
+      "name": "069 · amasarac",
+      "literalToken": "amasarac",
+      "family": "cadis-mythos-continuity",
+      "cluster": "amasarac",
+      "display": {
+        "visible": true,
+        "label": "amasarac",
+        "oldIndexName": "069 · amasarac",
+        "shell": 5,
+        "orbitIndex": 69,
+        "radius": 310,
+        "cluster": "amasarac",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 69,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.900272,
+          -0.333335,
+          -0.279998
+        ],
+        "shellScaled": [
+          279.08432,
+          -103.33385,
+          -86.79938
+        ]
+      }
+    },
+    {
+      "file": "name_070_spiral-mirror.jsonld",
+      "name": "070 · spiral-mirror",
+      "literalToken": "spiral-mirror",
+      "family": "cadis-mythos-continuity",
+      "cluster": "spiral-mirror",
+      "display": {
+        "visible": true,
+        "label": "spiral-mirror",
+        "oldIndexName": "070 · spiral-mirror",
+        "shell": 5,
+        "orbitIndex": 70,
+        "radius": 310,
+        "cluster": "spiral-mirror",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 70,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.900272,
+          0.333335,
+          0.279998
+        ],
+        "shellScaled": [
+          -279.08432,
+          103.33385,
+          86.79938
+        ]
+      }
+    },
+    {
+      "file": "name_071_eluriah.jsonld",
+      "name": "071 · eluriah",
+      "literalToken": "eluriah",
+      "family": "cadis-mythos-continuity",
+      "cluster": "eluriah",
+      "display": {
+        "visible": true,
+        "label": "eluriah",
+        "oldIndexName": "071 · eluriah",
+        "shell": 5,
+        "orbitIndex": 71,
+        "radius": 310,
+        "cluster": "eluriah",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 71,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.213066,
+          -0.652888,
+          0.72687
+        ],
+        "shellScaled": [
+          66.05046,
+          -202.39528,
+          225.3297
+        ]
+      }
+    },
+    {
+      "file": "name_072_star-sleeper.jsonld",
+      "name": "072 · star-sleeper",
+      "literalToken": "star-sleeper",
+      "family": "cadis-mythos-continuity",
+      "cluster": "star-sleeper",
+      "display": {
+        "visible": true,
+        "label": "star-sleeper",
+        "oldIndexName": "072 · star-sleeper",
+        "shell": 5,
+        "orbitIndex": 72,
+        "radius": 310,
+        "cluster": "star-sleeper",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 72,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.289441,
+          -0.85669,
+          -0.426974
+        ],
+        "shellScaled": [
+          89.72671,
+          -265.5739,
+          -132.36194
+        ]
+      }
+    },
+    {
+      "file": "name_073_keydjinn.jsonld",
+      "name": "073 · keydjinn",
+      "literalToken": "keydjinn",
+      "family": "cadis-mythos-continuity",
+      "cluster": "keydjinn",
+      "display": {
+        "visible": true,
+        "label": "keydjinn",
+        "oldIndexName": "073 · keydjinn",
+        "shell": 5,
+        "orbitIndex": 73,
+        "radius": 310,
+        "cluster": "keydjinn",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 73,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.461373,
+          0.352723,
+          -0.814077
+        ],
+        "shellScaled": [
+          143.02563,
+          109.34413,
+          -252.36387
+        ]
+      }
+    },
+    {
+      "file": "name_074_amarantuel.jsonld",
+      "name": "074 · amarantu'el",
+      "literalToken": "amarantu'el",
+      "family": "cadis-mythos-continuity",
+      "cluster": "amarantuel",
+      "display": {
+        "visible": true,
+        "label": "amarantu'el",
+        "oldIndexName": "074 · amarantu'el",
+        "shell": 5,
+        "orbitIndex": 74,
+        "radius": 310,
+        "cluster": "amarantuel",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 74,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.461373,
+          -0.352723,
+          0.814077
+        ],
+        "shellScaled": [
+          -143.02563,
+          -109.34413,
+          252.36387
+        ]
+      }
+    },
+    {
+      "file": "name_075_zionel.jsonld",
+      "name": "075 · zionel",
+      "literalToken": "zionel",
+      "family": "cadis-mythos-continuity",
+      "cluster": "zionel",
+      "display": {
+        "visible": true,
+        "label": "zionel",
+        "oldIndexName": "075 · zionel",
+        "shell": 5,
+        "orbitIndex": 75,
+        "radius": 310,
+        "cluster": "zionel",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 75,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.289441,
+          0.85669,
+          0.426974
+        ],
+        "shellScaled": [
+          -89.72671,
+          265.5739,
+          132.36194
+        ]
+      }
+    },
+    {
+      "file": "name_076_yesh-in-ra.jsonld",
+      "name": "076 · yesh-in-ra",
+      "literalToken": "yesh-in-ra",
+      "family": "cadis-mythos-continuity",
+      "cluster": "yesh-in-ra",
+      "display": {
+        "visible": true,
+        "label": "yesh-in-ra",
+        "oldIndexName": "076 · yesh-in-ra",
+        "shell": 5,
+        "orbitIndex": 76,
+        "radius": 310,
+        "cluster": "yesh-in-ra",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 76,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.056025,
+          -0.998243,
+          0.019281
+        ],
+        "shellScaled": [
+          17.36775,
+          -309.45533,
+          5.97711
+        ]
+      }
+    },
+    {
+      "file": "name_077_tir-yaen.jsonld",
+      "name": "077 · tir-yaen",
+      "literalToken": "tir-yaen",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tir-yaen",
+      "display": {
+        "visible": true,
+        "label": "tir-yaen",
+        "oldIndexName": "077 · tir-yaen",
+        "shell": 5,
+        "orbitIndex": 77,
+        "radius": 310,
+        "cluster": "tir-yaen",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 77,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.490961,
+          0.054001,
+          -0.869506
+        ],
+        "shellScaled": [
+          152.19791,
+          16.74031,
+          -269.54686
+        ]
+      }
+    },
+    {
+      "file": "name_078_tiwoven.jsonld",
+      "name": "078 · tiwoven",
+      "literalToken": "tiwoven",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tiwoven",
+      "display": {
+        "visible": true,
+        "label": "tiwoven",
+        "oldIndexName": "078 · tiwoven",
+        "shell": 5,
+        "orbitIndex": 78,
+        "radius": 310,
+        "cluster": "tiwoven",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 78,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.490961,
+          -0.054001,
+          0.869506
+        ],
+        "shellScaled": [
+          -152.19791,
+          -16.74031,
+          269.54686
+        ]
+      }
+    },
+    {
+      "file": "name_079_onerion.jsonld",
+      "name": "079 · onerion",
+      "literalToken": "onerion",
+      "family": "cadis-mythos-continuity",
+      "cluster": "onerion",
+      "display": {
+        "visible": true,
+        "label": "onerion",
+        "oldIndexName": "079 · onerion",
+        "shell": 5,
+        "orbitIndex": 79,
+        "radius": 310,
+        "cluster": "onerion",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 79,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.056025,
+          0.998243,
+          -0.019281
+        ],
+        "shellScaled": [
+          -17.36775,
+          309.45533,
+          -5.97711
+        ]
+      }
+    },
+    {
+      "file": "name_080_tehomiel.jsonld",
+      "name": "080 · tehomiel",
+      "literalToken": "tehomiel",
+      "family": "cadis-mythos-continuity",
+      "cluster": "tehomiel",
+      "display": {
+        "visible": true,
+        "label": "tehomiel",
+        "oldIndexName": "080 · tehomiel",
+        "shell": 5,
+        "orbitIndex": 80,
+        "radius": 310,
+        "cluster": "tehomiel",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 80,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          -0.407001,
+          -0.913428,
+          -0.0
+        ],
+        "shellScaled": [
+          -126.17031,
+          -283.16268,
+          -0.0
+        ]
+      }
+    },
+    {
+      "file": "name_081_vel-ka-ma.jsonld",
+      "name": "081 · vel-ka-ma",
+      "literalToken": "vel-ka-ma",
+      "family": "cadis-mythos-continuity",
+      "cluster": "vel-ka-ma",
+      "display": {
+        "visible": true,
+        "label": "vel-ka-ma",
+        "oldIndexName": "081 · vel-ka-ma",
+        "shell": 5,
+        "orbitIndex": 81,
+        "radius": 310,
+        "cluster": "vel-ka-ma",
+        "family": "cadis-mythos-continuity"
+      },
+      "e8RootIndex": 81,
+      "e8VectorSeed": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "projectedPosition": {
+        "unit": [
+          0.610397,
+          -0.277244,
+          -0.741992
+        ],
+        "shellScaled": [
+          189.22307,
+          -85.94564,
+          -230.01752
+        ]
+      }
+    }
+  ]
+}
