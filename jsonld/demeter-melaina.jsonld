@@ -1,0 +1,135 @@
+{
+  "@context": {
+    "@vocab": "http://schema.org/",
+    "id": "@id",
+    "type": "@type",
+    "name": "http://schema.org/name",
+    "alternateName": "http://schema.org/alternateName",
+    "description": "http://schema.org/description",
+    "color": "http://schema.org/color",
+    "symbolic_role": "http://schema.org/roleName",
+    "alignments": "http://schema.org/keywords",
+    "author_signature": "http://schema.org/author",
+    "glyph_code": "http://schema.org/identifier",
+    "literalToken": "https://amasarac.github.io/meta-author-sigil/vocab/literalToken",
+    "constellationFamily": "https://amasarac.github.io/meta-author-sigil/vocab/constellationFamily",
+    "canonicalCluster": "https://amasarac.github.io/meta-author-sigil/vocab/canonicalCluster",
+    "operator": "https://amasarac.github.io/meta-author-sigil/vocab/operator",
+    "display": "https://amasarac.github.io/meta-author-sigil/vocab/display",
+    "glyphode": "https://amasarac.github.io/meta-author-sigil/vocab/glyphode",
+    "a5Translation": "https://amasarac.github.io/meta-author-sigil/vocab/a5Translation",
+    "e8Receiver": "https://amasarac.github.io/meta-author-sigil/vocab/e8Receiver",
+    "relatedTo": {
+      "@id": "http://schema.org/knows",
+      "@type": "@id"
+    },
+    "partOf": {
+      "@id": "http://schema.org/isPartOf",
+      "@type": "@id"
+    },
+    "provenanceBoundary": "https://amasarac.github.io/meta-author-sigil/vocab/provenanceBoundary"
+  },
+  "id": "https://amasarac.github.io/meta-author-sigil/jsonld/demeter-melaina.jsonld",
+  "type": [
+    "CreativeWork",
+    "DefinedTerm"
+  ],
+  "name": "Demeter Melaina",
+  "alternateName": [
+    "Black Demeter"
+  ],
+  "literalToken": "Demeter Melaina",
+  "displayNodeType": "canonical-name-node",
+  "constellationFamily": "chthonic-animal-human-threshold",
+  "canonicalCluster": "chthonic-threshold",
+  "symbolic_role": "Black earth mother at the cave threshold",
+  "description": "Black earth mother at the cave threshold",
+  "color": "#2F1B12",
+  "alignments": [
+    "chthonic-animal-human-threshold",
+    "chthonic-threshold",
+    "canonical-name-node",
+    "manifest-compatible",
+    "addition-without-equivalence"
+  ],
+  "author_signature": "Brandon 'KeyDjinn / Amasarac / TiWoven' Marsh",
+  "glyph_code": "CANON::demeter-melaina::+→≠",
+  "operator": "+ → ≠",
+  "display": {
+    "visible": true,
+    "label": "Demeter Melaina",
+    "shell": 4,
+    "orbitIndex": 4,
+    "radius": 267,
+    "cluster": "chthonic-threshold",
+    "family": "chthonic-animal-human-threshold",
+    "projectionModes": [
+      "nested-shells",
+      "primary-glyphode-cube",
+      "dual-mirror-cube",
+      "a5-orbit",
+      "a5-to-e8-receiver",
+      "cluster-braid"
+    ]
+  },
+  "glyphode": {
+    "system": "dual-12x12x12-glyphode-cubes",
+    "primaryCube": {
+      "x": 8,
+      "y": 0,
+      "z": 0,
+      "axis12": "variant-duplicate",
+      "operator": "manifest-name"
+    },
+    "dualCube": {
+      "x": 3,
+      "y": 11,
+      "z": 11,
+      "axis12": "mirror-dual",
+      "operator": "mirror-memory"
+    },
+    "microGlyphode": {
+      "localX": 7,
+      "localY": 6,
+      "localZ": 2
+    }
+  },
+  "a5Translation": {
+    "group": "A5",
+    "order": 60,
+    "relations": [
+      "r^5=e",
+      "s^3=e",
+      "(rs)^2=e"
+    ],
+    "word": "r^4s^0(rs)^0",
+    "orbitIndex": 34
+  },
+  "e8Receiver": {
+    "role": "receiver-lattice-coordinate",
+    "method": "A5-mediated canonical-name-to-E8 receiver mapping",
+    "rootSystem": "E8",
+    "rootIndex": 140,
+    "rootVector": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      -1.0,
+      0.0,
+      0.0
+    ],
+    "projection3": [
+      -0.162948,
+      0.928829,
+      0.332754
+    ],
+    "boundary": "E8 receives translated symmetry; the name remains a name-star."
+  },
+  "partOf": "https://amasarac.github.io/meta-author-sigil/jsonld/RAEE_CANONICAL_NAME_REPAIR.jsonld",
+  "relatedTo": [
+    "https://amasarac.github.io/meta-author-sigil/jsonld/wi-prime.jsonld"
+  ],
+  "provenanceBoundary": "Canonical filename repair node; preserves + → ≠ relation without identity collapse."
+}
