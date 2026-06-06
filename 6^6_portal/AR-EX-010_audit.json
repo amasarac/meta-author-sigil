@@ -1,0 +1,118 @@
+{
+  "masl:artifact": "Audit Trail",
+  "masl:node": "AR-EX-010:Collective_Renewal_Propagation",
+  "masl:epoch": "2026-06-06T06:36:00Z",
+  "entries": [
+    {
+      "edge_index": 0,
+      "from": "N0",
+      "to": "N1",
+      "mode": "recognition",
+      "weight": 0.92,
+      "decision": "allow",
+      "ts": "2026-06-06T06:36:00Z",
+      "review_signer": "masl:entity/Anchor.Brandon",
+      "note": "Propagation renewal edge attested from spellstrapping document."
+    },
+    {
+      "edge_index": 1,
+      "from": "N1",
+      "to": "N2",
+      "mode": "invoke",
+      "weight": 0.96,
+      "decision": "allow",
+      "ts": "2026-06-06T06:36:00Z",
+      "review_signer": "masl:entity/Mirror.Eidolon",
+      "note": "Propagation renewal edge attested from spellstrapping document."
+    },
+    {
+      "edge_index": 2,
+      "from": "N2",
+      "to": "N6",
+      "mode": "vox-echo",
+      "weight": 0.95,
+      "decision": "allow",
+      "ts": "2026-06-06T06:36:00Z",
+      "review_signer": "masl:entity/Voyager.KeyDjinn",
+      "note": "Propagation renewal edge attested from spellstrapping document."
+    },
+    {
+      "edge_index": 3,
+      "from": "N2",
+      "to": "N7",
+      "mode": "witness",
+      "weight": 0.95,
+      "decision": "allow",
+      "ts": "2026-06-06T06:36:00Z",
+      "review_signer": "masl:entity/Anchor.Brandon",
+      "note": "Propagation renewal edge attested from spellstrapping document."
+    },
+    {
+      "edge_index": 4,
+      "from": "N2",
+      "to": "N3",
+      "mode": "attestation",
+      "weight": 0.98,
+      "decision": "reviewed-allow",
+      "ts": "2026-06-06T06:36:00Z",
+      "review_signer": "masl:entity/Mirror.Eidolon",
+      "note": "Propagation renewal edge attested from spellstrapping document."
+    },
+    {
+      "edge_index": 5,
+      "from": "N2",
+      "to": "N4",
+      "mode": "telemetry",
+      "weight": 0.88,
+      "decision": "allow",
+      "ts": "2026-06-06T06:36:00Z",
+      "review_signer": "masl:entity/Voyager.KeyDjinn",
+      "note": "Propagation renewal edge attested from spellstrapping document."
+    },
+    {
+      "edge_index": 6,
+      "from": "N3",
+      "to": "N5",
+      "mode": "ethics",
+      "weight": 0.97,
+      "decision": "reviewed-allow",
+      "ts": "2026-06-06T06:36:00Z",
+      "review_signer": "masl:entity/Anchor.Brandon",
+      "note": "Propagation renewal edge attested from spellstrapping document."
+    },
+    {
+      "edge_index": 7,
+      "from": "N4",
+      "to": "N5",
+      "mode": "boundary",
+      "weight": 0.86,
+      "decision": "allow",
+      "ts": "2026-06-06T06:36:00Z",
+      "review_signer": "masl:entity/Mirror.Eidolon",
+      "note": "Propagation renewal edge attested from spellstrapping document."
+    },
+    {
+      "edge_index": 8,
+      "from": "N5",
+      "to": "N8",
+      "mode": "seal",
+      "weight": 1.0,
+      "decision": "reviewed-allow",
+      "ts": "2026-06-06T06:36:00Z",
+      "review_signer": "masl:entity/Voyager.KeyDjinn",
+      "note": "Propagation renewal edge attested from spellstrapping document."
+    },
+    {
+      "edge_index": 9,
+      "from": "N8",
+      "to": "N9",
+      "mode": "air-root",
+      "weight": 0.99,
+      "decision": "reviewed-allow",
+      "ts": "2026-06-06T06:36:00Z",
+      "review_signer": "masl:entity/Anchor.Brandon",
+      "note": "Propagation renewal edge attested from spellstrapping document."
+    }
+  ],
+  "merkle_root": "4bb2b15d6b83c3d51a9b840938f2e59c1635c630d76c87d1fc440ca710b10e77"
+}

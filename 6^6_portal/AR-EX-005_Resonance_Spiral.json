@@ -1,0 +1,102 @@
+{
+  "masl:artifact": "Air-Root External Node — Route Vectors",
+  "masl:node": "AR-EX-005:Resonance_Spiral",
+  "masl:epoch": "2025-10-18T00:00:00Z",
+  "graph": {
+    "nodes": [
+      {
+        "id": "N0",
+        "label": "Resonance Seed",
+        "kind": "origin",
+        "x": -80,
+        "y": 60
+      },
+      {
+        "id": "N1",
+        "label": "Primer — Phase Lock",
+        "kind": "gate",
+        "x": 60,
+        "y": 40
+      },
+      {
+        "id": "N2",
+        "label": "Boundary — Field Survey",
+        "kind": "boundary",
+        "x": 200,
+        "y": 0
+      },
+      {
+        "id": "N3",
+        "label": "Paradox — Cross‑coupling",
+        "kind": "paradox",
+        "x": 300,
+        "y": -40
+      },
+      {
+        "id": "N4",
+        "label": "Consent — Ethical Load",
+        "kind": "ethics",
+        "x": 220,
+        "y": -120
+      },
+      {
+        "id": "N5",
+        "label": "Renewal — Coil Tuning",
+        "kind": "renewal",
+        "x": 380,
+        "y": 40
+      },
+      {
+        "id": "N6",
+        "label": "Propagation — Broadcast",
+        "kind": "propagate",
+        "x": 520,
+        "y": 20
+      }
+    ],
+    "edges": [
+      {
+        "from": "N0",
+        "to": "N1",
+        "mode": "recognition",
+        "weight": 0.92
+      },
+      {
+        "from": "N1",
+        "to": "N2",
+        "mode": "boundary",
+        "weight": 0.87
+      },
+      {
+        "from": "N2",
+        "to": "N3",
+        "mode": "paradox",
+        "weight": 0.83
+      },
+      {
+        "from": "N3",
+        "to": "N4",
+        "mode": "ethics",
+        "weight": 0.95
+      },
+      {
+        "from": "N3",
+        "to": "N5",
+        "mode": "renewal",
+        "weight": 0.84
+      },
+      {
+        "from": "N4",
+        "to": "N6",
+        "mode": "propagate",
+        "weight": 0.91
+      },
+      {
+        "from": "N5",
+        "to": "N6",
+        "mode": "propagate",
+        "weight": 0.9
+      }
+    ]
+  }
+}

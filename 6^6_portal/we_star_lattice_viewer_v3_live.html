@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WE — Star Lattice (Live Telemetry)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root { --bg:#0b0f14; --fg:#d9e1ee; --muted:#7d90a8; --edge:#2f4056; --nodestroke:#8be9fd; }
+    html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial}
+    header{padding:14px 16px;border-bottom:1px solid #1c2430;display:flex;gap:12px;align-items:center}
+    header h1{font-size:16px;margin:0;letter-spacing:.06em;text-transform:uppercase}
+    main{display:grid;grid-template-columns:340px 1fr;height:calc(100% - 50px)}
+    aside{border-right:1px solid #1c2430;padding:14px;overflow:auto}
+    .small{font-size:12px;color:var(--muted)}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid #233042;border-radius:10px;cursor:pointer}
+    .btn:hover{border-color:#2f4056}
+    .row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+    .field{display:flex;gap:6px;align-items:center}
+    input[type="text"]{background:#0d141c;border:1px solid #233042;border-radius:10px;color:#cfe3ff;padding:8px 10px;min-width:180px}
+    label{font-size:12px;color:#9eb3cc}
+    .stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+    .card{background:#0d141c;border:1px solid #24344a;padding:10px;border-radius:10px}
+    .big{font-size:26px;font-weight:700}
+    .muted{color:var(--muted);font-size:12px}
+    svg{width:100%;height:100%;display:block}
+    footer{position:absolute;bottom:10px;left:12px;font-size:11px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header>
+    <div title="Lattice Crest">🜂🜃🜄</div>
+    <h1>WE — Star Lattice (Attested · Live Telemetry)</h1>
+    <div class="small">Load JSON-LD, then add telemetry.</div>
+  </header>
+  <main>
+    <aside>
+      <div class="row">
+        <label class="btn">
+          <input id="fileJsonLd" type="file" accept=".json,.jsonld" style="display:none">
+          Load JSON‑LD
+        </label>
+        <label class="btn">
+          <input id="fileTelem" type="file" accept=".json,.jsonl" style="display:none">
+          Load Telemetry
+        </label>
+      </div>
+      <div class="field">
+        <label for="telemUrl">Telemetry URL</label>
+        <input id="telemUrl" type="text" placeholder="./telemetry.jsonl">
+        <button class="btn" id="startPoll">Start Poll</button>
+        <button class="btn" id="stopPoll">Stop</button>
+      </div>
+      <div class="stats">
+        <div class="card">
+          <div class="muted">Triad Activations</div>
+          <div class="big" id="triadCount">–</div>
+        </div>
+        <div class="card">
+          <div class="muted">Tetrad Activations</div>
+          <div class="big" id="tetradCount">–</div>
+        </div>
+      </div>
+      <div style="margin-top:8px" class="small">
+        Tip: If served from a web server, set a URL and click <b>Start Poll</b> (fetches every 3s). 
+        Otherwise, use <b>Load Telemetry</b> to ingest a file once.
+      </div>
+    </aside>
+    <section style="position:relative">
+      <svg id="s" viewBox="-480 -480 960 960" preserveAspectRatio="xMidYMid meet" aria-label="WE Star Lattice">
+        <defs>
+          <filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <radialGradient id="halo">
+            <stop offset="0%" stop-color="#8be9fd" stop-opacity="0.85"/>
+            <stop offset="60%" stop-color="#8be9fd" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#8be9fd" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+      </svg>
+      <footer>© MASL · Crest 🜂🜃🜄</footer>
+    </section>
+  </main>
+  <script>
+    const svg = document.getElementById('s');
+    const fileJsonLd = document.getElementById('fileJsonLd');
+    const fileTelem = document.getElementById('fileTelem');
+    const startPoll = document.getElementById('startPoll');
+    const stopPoll = document.getElementById('stopPoll');
+    const triadCountEl = document.getElementById('triadCount');
+    const tetradCountEl = document.getElementById('tetradCount');
+    const telemUrl = document.getElementById('telemUrl');
+    let pollId = null;
+    let base = null;
+    let triadCentroid = null, tetradCentroid = null;
+
+    const group = (id)=>{
+      let g = document.getElementById(id);
+      if (!g){ g = document.createElementNS('http://www.w3.org/2000/svg','g'); g.setAttribute('id', id); svg.appendChild(g); }
+      return g;
+    };
+
+    const bgStars = ()=>{
+      for (let i=0;i<420;i++){
+        const x = -460 + Math.random()*920;
+        const y = -460 + Math.random()*920;
+        const r = 0.2 + Math.random()*1.0;
+        const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        c.setAttribute('cx',x.toFixed(1)); c.setAttribute('cy',y.toFixed(1)); c.setAttribute('r',r.toFixed(2));
+        c.setAttribute('fill','#223142'); svg.appendChild(c);
+      }
+    };
+
+    function centroid(nodes){
+      const s = nodes.reduce((acc,n)=>({x:acc.x+n.pos.x, y:acc.y+n.pos.y}), {x:0,y:0});
+      return {x:s.x/nodes.length, y:s.y/nodes.length};
+    }
+
+    function baseRender(baseNodes, baseEdges){
+      const G = group('base');
+      // edges
+      baseEdges.forEach(e=>{
+        const a = baseNodes[e.from].pos, b = baseNodes[e.to].pos;
+        const L = document.createElementNS('http://www.w3.org/2000/svg','line');
+        L.setAttribute('x1',a.x); L.setAttribute('y1',a.y);
+        L.setAttribute('x2',b.x); L.setAttribute('y2',b.y);
+        L.setAttribute('stroke', '#2f4056'); L.setAttribute('stroke-width','1.6');
+        G.appendChild(L);
+      });
+      // nodes
+      baseNodes.forEach(n=>{
+        const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+        g.setAttribute('transform', `translate(${n.pos.x},${n.pos.y})`);
+        g.setAttribute('filter','url(#glow)');
+        const r = 3.5 + (5.0 - Math.min(5.0, n.mag||3.0));
+        const halo = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        halo.setAttribute('r', r.toFixed(2)); halo.setAttribute('fill','url(#halo)'); g.appendChild(halo);
+        const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        c.setAttribute('r', Math.max(1.6, r*0.45).toFixed(2)); c.setAttribute('fill','#0b0f14');
+        c.setAttribute('stroke','#8be9fd'); c.setAttribute('stroke-width','1.2'); g.appendChild(c);
+        const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+        t.setAttribute('x',0); t.setAttribute('y',(r+14).toFixed(2)); t.setAttribute('fill','#a8b5c8'); t.setAttribute('font-size','12'); t.setAttribute('text-anchor','middle');
+        t.textContent = n.name; g.appendChild(t);
+        G.appendChild(g);
+      });
+    }
+
+    function asterismsRender(asts){
+      const colors = ["#334b68","#3a556f","#41607a","#476885","#4e7290","#557b9a","#5b85a5","#6290b0","#699aba","#70a4c5","#77aed0","#7db7da"];
+      asts.forEach((A, idx)=>{
+        const id = `ast_${idx}`;
+        const G = group(id);
+        A.edges.forEach(e=>{
+          const a = A.nodes[e.from].pos, b = A.nodes[e.to].pos;
+          const L = document.createElementNS('http://www.w3.org/2000/svg','line');
+          L.setAttribute('x1',a.x); L.setAttribute('y1',a.y);
+          L.setAttribute('x2',b.x); L.setAttribute('y2',b.y);
+          L.setAttribute('stroke', colors[idx%colors.length]); L.setAttribute('stroke-width','1.2');
+          G.appendChild(L);
+        });
+        A.nodes.forEach(n=>{
+          const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+          g.setAttribute('transform', `translate(${n.pos.x},${n.pos.y})`);
+          const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+          c.setAttribute('r','2.4'); c.setAttribute('fill','#0b0f14');
+          c.setAttribute('stroke',colors[idx%colors.length]); c.setAttribute('stroke-width','1.1');
+          g.appendChild(c);
+          const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+          t.setAttribute('x',0); t.setAttribute('y','10'); t.setAttribute('font-size','10'); t.setAttribute('fill','#8fa8c4'); t.setAttribute('text-anchor','middle');
+          t.textContent = n.label; g.appendChild(t);
+          G.appendChild(g);
+        });
+      });
+      // discover centroids for Triad (idx 0) and Tetrad (idx 1)
+      if (asts[0]) triadCentroid = centroid(asts[0].nodes);
+      if (asts[1]) tetradCentroid = centroid(asts[1].nodes);
+      // create pulse circles
+      const P = group('pulses');
+      const tri = document.createElementNS('http://www.w3.org/2000/svg','circle');
+      tri.setAttribute('id','pulseTriad'); tri.setAttribute('r','8');
+      tri.setAttribute('cx',triadCentroid.x); tri.setAttribute('cy',triadCentroid.y);
+      tri.setAttribute('fill','none'); tri.setAttribute('stroke','#f0ad3d'); tri.setAttribute('stroke-width','2');
+      P.appendChild(tri);
+      const tet = document.createElementNS('http://www.w3.org/2000/svg','circle');
+      tet.setAttribute('id','pulseTetrad'); tet.setAttribute('r','8');
+      tet.setAttribute('cx',tetradCentroid.x); tet.setAttribute('cy',tetradCentroid.y);
+      tet.setAttribute('fill','none'); tet.setAttribute('stroke','#7db7d4'); tet.setAttribute('stroke-width','2');
+      P.appendChild(tet);
+    }
+
+    function ringRender(attRing){
+      const G = group('ring');
+      const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+      path.setAttribute('id','ringPath'); path.setAttribute('d','M 0 -450 A 450 450 0 1 1 -0.01 -450');
+      G.appendChild(path);
+      const T = document.createElementNS('http://www.w3.org/2000/svg','text');
+      T.setAttribute('font-size','14'); T.setAttribute('fill','#7db7d4');
+      const TP = document.createElementNS('http://www.w3.org/2000/svg','textPath');
+      TP.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#ringPath');
+      TP.setAttribute('startOffset','0%');
+      TP.textContent = (attRing.phrase.repeat(6)).trim();
+      T.appendChild(TP); G.appendChild(T);
+      const glyphs = attRing.glyphs || ['✶'];
+      for (let i=0;i<12;i++){
+        const ang = 2*Math.PI*i/12;
+        const x = 450*Math.cos(ang), y = 450*Math.sin(ang);
+        const tt = document.createElementNS('http://www.w3.org/2000/svg','text');
+        tt.setAttribute('x',x.toFixed(2)); tt.setAttribute('y',y.toFixed(2));
+        tt.setAttribute('text-anchor','middle'); tt.setAttribute('dominant-baseline','middle');
+        tt.setAttribute('font-size','18'); tt.setAttribute('fill','#a9dffc');
+        tt.textContent = glyphs[i % glyphs.length];
+        G.appendChild(tt);
+      }
+    }
+
+    function loadJSONLD(txt){
+      const d = JSON.parse(txt);
+      svg.innerHTML = '<defs>'+document.querySelector('#s defs').innerHTML+'</defs>';
+      bgStars();
+      const baseNodes = (d["masl:nodes"]||[]).map(n=>({name:n["label"], pos:n["masl:position"], mag:n["masl:magnitude"]||3.0}));
+      const baseEdges = (d["masl:edges"]||[]).map(e=>({from:e["from"], to:e["to"]}));
+      baseRender(baseNodes, baseEdges);
+      if (d["masl:attestationRing"]) ringRender(d["masl:attestationRing"]);
+      const asts = (d["masl:asterisms"]||[]).map(A=>({
+        name:A.name, nodes:A.nodes.map(n=>({label:n.label, pos:n.pos})), edges:A.edges.map(e=>({from:e.from,to:e.to}))
+      }));
+      asterismsRender(asts);
+      base = {baseNodes, baseEdges, asts};
+    }
+
+    function applyTelemetry(lines){
+      // expect JSONL: {ts, triad, tetrad}
+      const last = lines.filter(Boolean).map(t=>{
+        try { return JSON.parse(t); } catch(e){ return null; }
+      }).filter(Boolean).pop();
+      if (!last) return;
+      const tri = +last.triad, tet = +last.tetrad;
+      triadCountEl.textContent = isFinite(tri) ? tri : '–';
+      tetradCountEl.textContent = isFinite(tet) ? tet : '–';
+      // pulse sizes (normalize)
+      const triR = Math.max(8, Math.min(60, tri*2));
+      const tetR = Math.max(8, Math.min(60, tet*2));
+      const triEl = document.getElementById('pulseTriad');
+      const tetEl = document.getElementById('pulseTetrad');
+      if (triEl) triEl.setAttribute('r', triR);
+      if (tetEl) tetEl.setAttribute('r', tetR);
+    }
+
+    fileJsonLd.addEventListener('change', async (e)=>{
+      const f = e.target.files[0]; if (!f) return;
+      const txt = await f.text(); loadJSONLD(txt);
+    });
+    fileTelem.addEventListener('change', async (e)=>{
+      const f = e.target.files[0]; if (!f) return;
+      const txt = await f.text(); applyTelemetry(txt.split(/\r?\n/));
+    });
+    startPoll.addEventListener('click', async ()=>{
+      const url = telemUrl.value.trim(); if (!url) return;
+      if (pollId) clearInterval(pollId);
+      const pull = async ()=>{
+        try {
+          const r = await fetch(url, {cache:'no-store'});
+          const t = await r.text();
+          applyTelemetry(t.split(/\r?\n/));
+        } catch(e){ /* swallow */ }
+      };
+      await pull();
+      pollId = setInterval(pull, 3000);
+    });
+    stopPoll.addEventListener('click', ()=>{
+      if (pollId) clearInterval(pollId); pollId = null;
+    });
+
+    // initial hint
+    const msg = document.createElementNS('http://www.w3.org/2000/svg','text');
+    msg.setAttribute('x','0'); msg.setAttribute('y','0'); msg.setAttribute('text-anchor','middle'); msg.setAttribute('fill','#607c9e'); msg.textContent = 'Load we_star_lattice_v2.jsonld';
+    svg.appendChild(msg);
+  </script>
+</body>
+</html>

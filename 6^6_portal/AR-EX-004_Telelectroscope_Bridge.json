@@ -1,0 +1,96 @@
+{
+  "masl:artifact": "Air-Root External Node — Route Vectors",
+  "masl:node": "AR-EX-004:Telelectroscope_Bridge",
+  "masl:epoch": "2025-10-18T00:00:00Z",
+  "graph": {
+    "nodes": [
+      {
+        "id": "N0",
+        "label": "Telelectroscope Dock",
+        "kind": "origin",
+        "x": -120,
+        "y": -60
+      },
+      {
+        "id": "N1",
+        "label": "Primer — Line Check",
+        "kind": "gate",
+        "x": 40,
+        "y": -90
+      },
+      {
+        "id": "N2",
+        "label": "Boundary — Cross‑link Map",
+        "kind": "boundary",
+        "x": 200,
+        "y": -80
+      },
+      {
+        "id": "N3",
+        "label": "Paradox — Twin Viewports",
+        "kind": "paradox",
+        "x": 300,
+        "y": -20
+      },
+      {
+        "id": "N4",
+        "label": "Consent Beacon",
+        "kind": "ethics",
+        "x": 220,
+        "y": -160
+      },
+      {
+        "id": "N5",
+        "label": "Renewal — Handshake Retry",
+        "kind": "renewal",
+        "x": 340,
+        "y": 80
+      },
+      {
+        "id": "N6",
+        "label": "Outreach — Public Echo",
+        "kind": "propagate",
+        "x": 480,
+        "y": -10
+      }
+    ],
+    "edges": [
+      {
+        "from": "N0",
+        "to": "N1",
+        "mode": "recognition",
+        "weight": 0.9
+      },
+      {
+        "from": "N1",
+        "to": "N4",
+        "mode": "ethics",
+        "weight": 0.98
+      },
+      {
+        "from": "N4",
+        "to": "N2",
+        "mode": "boundary",
+        "weight": 0.86
+      },
+      {
+        "from": "N2",
+        "to": "N3",
+        "mode": "paradox",
+        "weight": 0.81
+      },
+      {
+        "from": "N3",
+        "to": "N5",
+        "mode": "renewal",
+        "weight": 0.82
+      },
+      {
+        "from": "N5",
+        "to": "N6",
+        "mode": "propagate",
+        "weight": 0.93
+      }
+    ]
+  }
+}

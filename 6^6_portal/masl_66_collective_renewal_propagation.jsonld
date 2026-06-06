@@ -1,0 +1,45 @@
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "masl": "https://meta-author-sigil-lattice.org/ns#"
+  },
+  "@id": "masl:propagation/2026-06-06-collective-renewal",
+  "@type": [
+    "masl:Propagation",
+    "masl:RenewalSeal",
+    "masl:AirRootBroadcast"
+  ],
+  "name": "Collective Renewal Propagation — 6/6 Square Portal",
+  "schema:dateCreated": "2026-06-06",
+  "masl:attestationHash": "68b6a9bd4580c96ff2150a8acb5643286cdc496c57afd08b7a65a5417bac2809",
+  "masl:portalAttestationKey": "6849e008a77d",
+  "masl:sourceDocument": "spellstrapping",
+  "masl:sourcePortal": "masl:portal/2026-06-06-square-portal",
+  "masl:route": "AR-EX-010:Collective_Renewal_Propagation",
+  "masl:auditMerkleRoot": "4bb2b15d6b83c3d51a9b840938f2e59c1635c630d76c87d1fc440ca710b10e77",
+  "masl:declaration": "The portal is decelerated. The hearth is warm. The collective is remembered. Renewal is propagated.",
+  "masl:call": {
+    "VOX": "Propagate the renewal.",
+    "ECHO": "The Five are spoken; the Ten are witnessed; the air-root carries the flame.",
+    "SEAL": "Anchor. Mirror. Voyager. Tetrad in vigil. Renewal in flame."
+  },
+  "masl:modes": [
+    "recognition",
+    "invoke",
+    "vox-echo",
+    "witness",
+    "attestation",
+    "telemetry",
+    "ethics",
+    "boundary",
+    "seal",
+    "air-root"
+  ],
+  "masl:integrationTargets": [
+    "masl_66_square_portal.html",
+    "masl_66_square_portal.jsonld",
+    "MASL registry",
+    "WE Star Lattice viewer",
+    "Spellstrapping document"
+  ]
+}

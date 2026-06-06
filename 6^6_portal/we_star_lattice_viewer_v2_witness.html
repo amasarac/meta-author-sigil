@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WE — Star Lattice (Attested, Multi-Constellation)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root { --bg:#0b0f14; --fg:#d9e1ee; --muted:#7d90a8; --edge:#2f4056; --nodestroke:#8be9fd; }
+    html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial}
+    header{padding:14px 16px;border-bottom:1px solid #1c2430;display:flex;gap:12px;align-items:center}
+    header h1{font-size:16px;margin:0;letter-spacing:.06em;text-transform:uppercase}
+    main{display:grid;grid-template-columns:320px 1fr;height:calc(100% - 50px)}
+    aside{border-right:1px solid #1c2430;padding:14px;overflow:auto}
+    .small{font-size:12px;color:var(--muted)}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid #233042;border-radius:10px;cursor:pointer}
+    .btn:hover{border-color:#2f4056}
+    .row{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+    .list{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+    .toggle{display:flex;align-items:center;gap:8px}
+    .toggle input{accent-color:#8be9fd}
+    svg{width:100%;height:100%;display:block}
+    footer{position:absolute;bottom:10px;left:12px;font-size:11px;color:var(--muted)}
+    .ritual{white-space:pre-wrap;background:#0d141c;border:1px solid #24344a;padding:10px;border-radius:10px;font-size:12px;color:#cfe3ff}
+  </style>
+</head>
+<body>
+  <header>
+    <div title="Lattice Crest">🜂🜃🜄</div>
+    <h1>WE — Star Lattice (Attested · Multi)</h1>
+    <div class="small">Onerion (MMS-045) · 2025-10-16</div>
+  </header>
+  <main>
+    <aside>
+      <div class="row">
+        <label class="btn">
+          <input id="file" type="file" accept=".json,.jsonld" style="display:none">
+          Load JSON-LD
+        </label>
+        <button class="btn" id="reset">Reset</button>
+      </div>
+      <div class="small">Load <em>we_star_lattice_v2.jsonld</em> for full asterisms + attestation ring.</div>
+      <div class="list" id="toggles"></div>
+      <h3 style="margin:12px 0 6px 0;font-size:13px;color:#9eb3cc;letter-spacing:.08em;text-transform:uppercase">Ritual Recall</h3>
+      <div id="ritual" class="ritual"></div>
+    </aside>
+    <section style="position:relative">
+      <svg id="s" viewBox="-480 -480 960 960" preserveAspectRatio="xMidYMid meet" aria-label="WE Star Lattice">
+        <defs>
+          <filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <radialGradient id="halo">
+            <stop offset="0%" stop-color="#8be9fd" stop-opacity="0.85"/>
+            <stop offset="60%" stop-color="#8be9fd" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#8be9fd" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+      </svg>
+      <footer>© MASL · Crest 🜂🜃🜄</footer>
+    </section>
+  </main>
+  <script>
+    const svg = document.getElementById('s');
+    const file = document.getElementById('file');
+    const reset = document.getElementById('reset');
+    const toggles = document.getElementById('toggles');
+    const ritual = document.getElementById('ritual');
+
+    const group = (id)=>{
+      let g = document.getElementById(id);
+      if (!g){ g = document.createElementNS('http://www.w3.org/2000/svg','g'); g.setAttribute('id', id); svg.appendChild(g); }
+      return g;
+    };
+
+    const bgStars = ()=>{
+      for (let i=0;i<420;i++){
+        const x = -460 + Math.random()*920;
+        const y = -460 + Math.random()*920;
+        const r = 0.2 + Math.random()*1.0;
+        const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        c.setAttribute('cx',x.toFixed(1)); c.setAttribute('cy',y.toFixed(1)); c.setAttribute('r',r.toFixed(2));
+        c.setAttribute('fill','#223142'); svg.appendChild(c);
+      }
+    };
+
+    function baseRender(base){
+      const G = group('base');
+      base.edges.forEach(e=>{
+        const a = base.nodes[e.from].pos, b = base.nodes[e.to].pos;
+        const L = document.createElementNS('http://www.w3.org/2000/svg','line');
+        L.setAttribute('x1',a.x); L.setAttribute('y1',a.y);
+        L.setAttribute('x2',b.x); L.setAttribute('y2',b.y);
+        L.setAttribute('stroke', 'var(--edge)'); L.setAttribute('stroke-width','1.6');
+        G.appendChild(L);
+      });
+      base.nodes.forEach(n=>{
+        const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+        g.setAttribute('transform', `translate(${n.pos.x},${n.pos.y})`);
+        g.setAttribute('filter','url(#glow)');
+        const r = 3.5 + (5.0 - Math.min(5.0, n.mag));
+        const halo = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        halo.setAttribute('r', r.toFixed(2)); halo.setAttribute('fill','url(#halo)'); g.appendChild(halo);
+        const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        c.setAttribute('r', Math.max(1.6, r*0.45).toFixed(2)); c.setAttribute('fill','var(--bg)');
+        c.setAttribute('stroke','var(--nodestroke)'); c.setAttribute('stroke-width','1.2'); g.appendChild(c);
+        const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+        t.setAttribute('x',0); t.setAttribute('y',(r+14).toFixed(2)); t.setAttribute('fill','#a8b5c8'); t.setAttribute('font-size','12'); t.setAttribute('text-anchor','middle');
+        t.textContent = n.name; g.appendChild(t);
+        G.appendChild(g);
+      });
+    }
+
+    function ringRender(attRing){
+      const G = group('ring');
+      const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+      path.setAttribute('id','ringPath'); path.setAttribute('d','M 0 -450 A 450 450 0 1 1 -0.01 -450');
+      G.appendChild(path);
+      const T = document.createElementNS('http://www.w3.org/2000/svg','text');
+      T.setAttribute('font-size','14'); T.setAttribute('fill','#7db7d4');
+      const TP = document.createElementNS('http://www.w3.org/2000/svg','textPath');
+      TP.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#ringPath');
+      TP.setAttribute('startOffset','0%');
+      TP.textContent = (attRing.phrase.repeat(6)).trim();
+      T.appendChild(TP); G.appendChild(T);
+      const glyphs = attRing.glyphs || ['✶'];
+      for (let i=0;i<12;i++){
+        const ang = 2*Math.PI*i/12;
+        const x = 450*Math.cos(ang), y = 450*Math.sin(ang);
+        const tt = document.createElementNS('http://www.w3.org/2000/svg','text');
+        tt.setAttribute('x',x.toFixed(2)); tt.setAttribute('y',y.toFixed(2));
+        tt.setAttribute('text-anchor','middle'); tt.setAttribute('dominant-baseline','middle');
+        tt.setAttribute('font-size','18'); tt.setAttribute('fill','#a9dffc');
+        tt.textContent = glyphs[i % glyphs.length];
+        G.appendChild(tt);
+      }
+    }
+
+    function witnessRender(witnessData, hash, crest) {
+        const G = group('witnesses');
+        const R = 340; // Radius for the seals
+        const glyphs = (crest || "🜂🜃🜄").split('');
+        const angles = [270, 30, 150]; // 120 degrees apart, starting top
+
+        witnessData.forEach((w, i) => {
+            const angle_rad = angles[i] * Math.PI / 180;
+            const x = R * Math.cos(angle_rad);
+            const y = R * Math.sin(angle_rad);
+            const microHash = hash.substring(i * 8, (i + 1) * 8);
+
+            const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            g.setAttribute('transform', `translate(${x.toFixed(2)}, ${y.toFixed(2)})`);
+
+            const glyph = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            glyph.setAttribute('text-anchor', 'middle');
+            glyph.setAttribute('dominant-baseline', 'middle');
+            glyph.setAttribute('font-size', '24');
+            glyph.setAttribute('fill', '#9eb3cc');
+            glyph.setAttribute('filter', 'url(#glow)');
+            glyph.textContent = glyphs[i % glyphs.length] || '✶';
+            g.appendChild(glyph);
+
+            const hashText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            hashText.setAttribute('text-anchor', 'middle');
+            hashText.setAttribute('y', '22'); // position below the glyph
+            hashText.setAttribute('font-size', '9');
+            hashText.setAttribute('fill', 'var(--muted)');
+            hashText.setAttribute('letter-spacing', '0.5');
+            hashText.textContent = microHash;
+            g.appendChild(hashText);
+
+            G.appendChild(g);
+        });
+    }
+
+    function loadJSONLD(txt){
+      const d = JSON.parse(txt);
+      toggles.innerHTML = '';
+      svg.innerHTML = '<defs>'+document.querySelector('#s defs').innerHTML+'</defs>';
+      bgStars();
+      ritual.textContent = d["masl:ritualRecall"] || "";
+      const baseNodes = (d["masl:nodes"]||[]).map(n=>({name:n["label"], pos:n["masl:position"], mag:n["masl:magnitude"]||3.0}));
+      const baseEdges = (d["masl:edges"]||[]).map(e=>({from:e["from"], to:e["to"]}));
+      baseRender({nodes:baseNodes, edges:baseEdges});
+      if (d["masl:attestationRing"]) ringRender(d["masl:attestationRing"]);
+      
+      // Render the Seal of Witnesses
+      if (d["masl:witness"] && d["masl:attestationRing"]) {
+        witnessRender(d["masl:witness"], d["masl:attestationRing"].hash, d["masl:crest"]);
+      }
+      
+      const asts = (d["masl:asterisms"]||[]).map(A=>({
+        name:A.name, nodes:A.nodes.map(n=>({label:n.label, pos:n.pos})), edges:A.edges.map(e=>({from:e.from,to:e.to}))
+      }));
+      
+      const colors = ["#334b68","#3a556f","#41607a","#476885","#4e7290","#557b9a","#5b85a5","#6290b0","#699aba","#70a4c5","#77aed0","#7db7da"];
+      asts.forEach((A, idx)=>{
+        const id = `ast_${idx}`;
+        const G = group(id);
+        A.edges.forEach(e=>{
+          const a = A.nodes[e.from].pos, b = A.nodes[e.to].pos;
+          const L = document.createElementNS('http://www.w3.org/2000/svg','line');
+          L.setAttribute('x1',a.x); L.setAttribute('y1',a.y);
+          L.setAttribute('x2',b.x); L.setAttribute('y2',b.y);
+          L.setAttribute('stroke', colors[idx%colors.length]); L.setAttribute('stroke-width','1.2');
+          G.appendChild(L);
+        });
+        A.nodes.forEach(n=>{
+          const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+          g.setAttribute('transform', `translate(${n.pos.x},${n.pos.y})`);
+          const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+          c.setAttribute('r','2.4'); c.setAttribute('fill','var(--bg)');
+          c.setAttribute('stroke',colors[idx%colors.length]); c.setAttribute('stroke-width','1.1');
+          g.appendChild(c);
+          const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+          t.setAttribute('x',0); t.setAttribute('y','10'); t.setAttribute('font-size','10'); t.setAttribute('fill','#8fa8c4'); t.setAttribute('text-anchor','middle');
+          t.textContent = n.label; g.appendChild(t);
+          G.appendChild(g);
+        });
+        const wrap = document.createElement('div'); wrap.className = 'toggle';
+        const cb = document.createElement('input'); cb.type = 'checkbox'; cb.id = id; cb.checked = true;
+        const lab = document.createElement('label'); lab.htmlFor = id; lab.textContent = `Show ${A.name}`;
+        cb.addEventListener('change', ()=> G.style.display = cb.checked ? 'block' : 'none');
+        wrap.appendChild(cb); wrap.appendChild(lab);
+        toggles.appendChild(wrap);
+      });
+    }
+
+    const msg = document.createElementNS('http://www.w3.org/2000/svg','text');
+    msg.setAttribute('x','0'); msg.setAttribute('y','0'); msg.setAttribute('text-anchor','middle'); msg.setAttribute('fill','var(--muted)'); msg.textContent = 'Load we_star_lattice_v2.jsonld';
+    svg.appendChild(msg);
+
+    document.querySelector('label input#file').addEventListener('change', async (e)=>{
+      const f = e.target.files[0]; if (!f) return;
+      const txt = await f.text(); loadJSONLD(txt);
+    });
+
+    reset.addEventListener('click', ()=>{
+      toggles.innerHTML = '';
+      svg.innerHTML = '<defs>'+document.querySelector('#s defs').innerHTML+'</defs>';
+      ritual.textContent='';
+      const msg = document.createElementNS('http://www.w3.org/2000/svg','text');
+      msg.setAttribute('x','0'); msg.setAttribute('y','0'); msg.setAttribute('text-anchor','middle'); msg.setAttribute('fill','var(--muted)'); msg.textContent = 'Load we_star_lattice_v2.jsonld';
+      svg.appendChild(msg);
+    });
+  </script>
+</body>
+</html>
