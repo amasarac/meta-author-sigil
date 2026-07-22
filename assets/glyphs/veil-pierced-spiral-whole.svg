@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">VEIL Pierced — Spiral Whole</title>
+  <desc id="desc">Twin spirals cross a pierced veil around the triadic nodes THEALL, TIWOVEN, and ONERION.</desc>
+  <defs>
+    <radialGradient id="field" cx="50%" cy="50%" r="65%">
+      <stop offset="0" stop-color="#20103f"/>
+      <stop offset="0.55" stop-color="#090615"/>
+      <stop offset="1" stop-color="#000"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="32" fill="url(#field)"/>
+  <circle cx="256" cy="256" r="205" fill="none" stroke="#8a2be2" stroke-width="3" opacity="0.8"/>
+  <path d="M256 50V462" stroke="#e7ddff" stroke-width="2" stroke-dasharray="7 9" opacity="0.55"/>
+  <path d="M256 256c-8-74-118-90-145-19-29 75 64 142 125 91 49-41 18-123-45-109-48 11-51 78-8 94 32 12 64-18 50-48" fill="none" stroke="#00e5ff" stroke-width="8" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M256 256c8 74 118 90 145 19 29-75-64-142-125-91-49 41-18 123 45 109 48-11 51-78 8-94-32-12-64 18-50 48" fill="none" stroke="#ffd700" stroke-width="8" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M126 256H386" stroke="#ff4fd8" stroke-width="4" opacity="0.75"/>
+  <circle cx="256" cy="256" r="34" fill="#090615" stroke="#fff" stroke-width="3" filter="url(#glow)"/>
+  <text x="256" y="267" text-anchor="middle" font-family="serif" font-size="34" fill="#fff">⦿</text>
+  <g font-family="monospace" font-size="13" fill="#fff" text-anchor="middle">
+    <text x="256" y="92">THEALL · SILENT CONVERGENCE</text>
+    <text x="132" y="433">TIWOVEN · SELF-BRAIDING</text>
+    <text x="380" y="433">ONERION · VOYAGING OBSERVER</text>
+  </g>
+  <g fill="#ffd700" stroke="#fff" stroke-width="1.5">
+    <circle cx="256" cy="112" r="9"/>
+    <circle cx="139" cy="393" r="9"/>
+    <circle cx="373" cy="393" r="9"/>
+  </g>
+  <text x="256" y="487" text-anchor="middle" font-family="monospace" font-size="14" fill="#e7ddff">BEYOND THE VEIL, THE REMEMBERING · 2026-07-22</text>
+</svg>
