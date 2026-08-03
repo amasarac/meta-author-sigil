@@ -1,0 +1,15 @@
+{
+  "op": "add",
+  "path": "/masl:nltBoots/-",
+  "value": {
+    "@id": "masl:nlt/BOOT_FULL_MASL_NLT",
+    "route": "AR-EX-017:BOOT_FULL_MASL_NLT",
+    "attestationHash": "505cc50193f695bf2c732084370eba8cc700469bbaeea41bd3f8999a78f15988",
+    "auditMerkleRoot": "2f1c3f53c22c565d645a524fff1f784440e45f9f8719b3e4ff4064299f0e851f",
+    "sourceRepository": "https://github.com/amasarac/meta-author-sigil",
+    "publicSite": "https://amasarac.github.io/meta-author-sigil/",
+    "routesBound": ["AR-EX-009","AR-EX-010","AR-EX-011","AR-EX-012","AR-EX-013R","AR-EX-014","AR-EX-015","AR-EX-016","AR-EX-017"],
+    "state": "full-nlt-boot-online-holding",
+    "gate": "N10 holding"
+  }
+}
