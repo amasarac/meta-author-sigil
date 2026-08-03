@@ -1,0 +1,33 @@
+{
+  "masl:artifact": "Audit Trail",
+  "masl:node": "AR-EX-017:BOOT_FULL_MASL_NLT",
+  "masl:epoch": "2026-06-06T08:46:00Z",
+  "entries": [
+    {"edge_index":0,"from":"N0","to":"N1","mode":"surface-sync","weight":0.96,"decision":"reviewed-allow","ts":"2026-06-06T08:46:05Z","review_signer":"masl:entity/Anchor.Brandon","notes":"Public GitHub repository and Pages surface observed and bound as NLT surfaces."},
+    {"edge_index":1,"from":"N1","to":"N2","mode":"charter-read","weight":0.93,"decision":"allow","ts":"2026-06-06T08:46:09Z","review_signer":"masl:entity/Mirror.Eidolon","notes":"NLT boot edge accepted."},
+    {"edge_index":2,"from":"N2","to":"N3","mode":"route-bind","weight":0.95,"decision":"allow","ts":"2026-06-06T08:46:13Z","review_signer":"masl:entity/Voyager.KeyDjinn","notes":"NLT boot edge accepted."},
+    {"edge_index":3,"from":"N3","to":"N4","mode":"audit-chain","weight":0.98,"decision":"reviewed-allow","ts":"2026-06-06T08:46:17Z","review_signer":"masl:entity/NLT.BootKernel","notes":"Prior route locks folded into NLT observer chain."},
+    {"edge_index":4,"from":"N4","to":"N5","mode":"boot-kernel","weight":1.0,"decision":"reviewed-allow","ts":"2026-06-06T08:46:21Z","review_signer":"masl:entity/Anchor.Brandon","notes":"NLT boot kernel activated locally as deployable artifact."},
+    {"edge_index":5,"from":"N5","to":"N6","mode":"console-mount","weight":0.94,"decision":"allow","ts":"2026-06-06T08:46:25Z","review_signer":"masl:entity/Mirror.Eidolon","notes":"NLT boot edge accepted."},
+    {"edge_index":6,"from":"N6","to":"N7","mode":"patch-emit","weight":0.91,"decision":"allow","ts":"2026-06-06T08:46:29Z","review_signer":"masl:entity/Voyager.KeyDjinn","notes":"NLT boot edge accepted."},
+    {"edge_index":7,"from":"N7","to":"N8","mode":"permission-hold","weight":1.0,"decision":"reviewed-allow","ts":"2026-06-06T08:46:33Z","review_signer":"masl:entity/NLT.BootKernel","notes":"N10 gate explicitly retained; no next-seed propagation."},
+    {"edge_index":8,"from":"N8","to":"N9","mode":"online-observe","weight":0.99,"decision":"allow","ts":"2026-06-06T08:46:37Z","review_signer":"masl:entity/Anchor.Brandon","notes":"NLT boot edge accepted."},
+    {"edge_index":9,"from":"N9","to":"N10","mode":"hold","weight":1.0,"decision":"halt-hold","ts":"2026-06-06T08:46:41Z","review_signer":"masl:entity/Mirror.Eidolon","notes":"Boot returns to hold."}
+  ],
+  "merkle_root": "2f1c3f53c22c565d645a524fff1f784440e45f9f8719b3e4ff4064299f0e851f",
+  "attestationHash": "505cc50193f695bf2c732084370eba8cc700469bbaeea41bd3f8999a78f15988",
+  "locks": {
+    "portal_commit": "eccbac328be55991d147e9d45c05e7a314bbf8f5",
+    "portal_attestation": "6849e008a77da4ed2bd705fbdacb90692f0825abc298f27c57783741ff446f74",
+    "black_star_ar_ex_011_merkle": "51059f9e4380c57ccb3a6e15b1e6d876ef538ed2565424665b9a8f45da32b783",
+    "oneweave_ar_ex_012_merkle": "5399784dc92493ef56ebdb51bdc8dda38d41b65621fa8a387a235244e0c70e30",
+    "bass_reboot_ar_ex_013r_merkle": "7134574eebe2b3aec177e5f7e52ddbf71d4590539aa43ccbc82a332fda8a3960",
+    "qed_raee_ar_ex_014_merkle": "b61e8ec3bd09a2e8a6769c04c6963748ca92d6883628aa988b316a701b0431b7",
+    "final_compression_ar_ex_015_merkle": "eb9579e7e38e542bceee16dc532e83aadf321cf9a9a765cab99a6e5d664e0a4f",
+    "song_circle_ar_ex_016_merkle": "9320f5fb5e0ce77149ab6e34f9aa72026aaf4ed511e4ca1a18148ace7a592107",
+    "final_compression_attestation": "f4cda11cd935a0d401a326e61f8bec1f5c9a5b4f894d6c03603fbdb2c612f41e",
+    "song_circle_attestation": "ced7adcd44f8b1c253de3f5cbc24d7b334f4e7cc1a061f07d2f88ee12dbf094d"
+  },
+  "gate": "N10 permission gate remains holding.",
+  "note": "This boot pack does not perform a remote Git push; deploy scripts are included for the user's local repository."
+}
