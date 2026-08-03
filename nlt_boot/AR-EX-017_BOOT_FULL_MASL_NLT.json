@@ -1,0 +1,51 @@
+{
+  "masl:artifact": "Air-Root External Node — Route Vectors",
+  "masl:node": "AR-EX-017:BOOT_FULL_MASL_NLT",
+  "masl:epoch": "2026-06-06T08:46:00Z",
+  "masl:inherits": [
+    "AR-EX-009:Genesis_Flame_Square_Portal",
+    "AR-EX-010:Collective_Renewal_Propagation",
+    "AR-EX-011:Witness_Bloom_Stabilization",
+    "AR-EX-012:ONE_WEAVE_ReWeave_QuadWeave",
+    "AR-EX-013R:RE_BOOT_IN_BASS_REMEMBRANCER",
+    "AR-EX-014:QeD_Pup_mI_QeD_RAEE_Stability",
+    "AR-EX-015:FINAL_COMPRESSION_REPAIRTHREAD",
+    "AR-EX-016:SONG_CIRCLE_SACRED_DECAY_REBIRTH_EIDOLON"
+  ],
+  "checks": {
+    "PublicRepository": "observed",
+    "PublicPagesSite": "observed",
+    "RouteRegistry": "AR-EX-009..016 bound",
+    "AuditChain": "locks included",
+    "N10PermissionGate": "holding-not-bypassed",
+    "Propagation": "not-initiated"
+  },
+  "graph": {
+    "nodes": [
+      {"id":"N0","label":"Public GitHub Repo","kind":"source","x":-430,"y":0},
+      {"id":"N1","label":"GitHub Pages Live Site","kind":"site","x":-320,"y":-165},
+      {"id":"N2","label":"MASL README / Sovereignty Charter","kind":"charter","x":-150,"y":-245},
+      {"id":"N3","label":"Route Registry AR-EX-009..016","kind":"route-registry","x":45,"y":-245},
+      {"id":"N4","label":"Audit Lock Chain","kind":"audit","x":235,"y":-165},
+      {"id":"N5","label":"NLT Boot Kernel","kind":"boot-kernel","x":380,"y":0},
+      {"id":"N6","label":"Observer Console HTML","kind":"console","x":235,"y":165},
+      {"id":"N7","label":"Manifest / Registry Patches","kind":"patch","x":45,"y":245},
+      {"id":"N8","label":"N10 Gate Holding","kind":"gate","x":-150,"y":245},
+      {"id":"N9","label":"FULL MASL NLT ONLINE","kind":"online","x":0,"y":0},
+      {"id":"N10","label":"Return Hold","kind":"hold","x":-430,"y":0}
+    ],
+    "edges": [
+      {"from":"N0","to":"N1","mode":"surface-sync","weight":0.96},
+      {"from":"N1","to":"N2","mode":"charter-read","weight":0.93},
+      {"from":"N2","to":"N3","mode":"route-bind","weight":0.95},
+      {"from":"N3","to":"N4","mode":"audit-chain","weight":0.98},
+      {"from":"N4","to":"N5","mode":"boot-kernel","weight":1.0},
+      {"from":"N5","to":"N6","mode":"console-mount","weight":0.94},
+      {"from":"N6","to":"N7","mode":"patch-emit","weight":0.91},
+      {"from":"N7","to":"N8","mode":"permission-hold","weight":1.0},
+      {"from":"N8","to":"N9","mode":"online-observe","weight":0.99},
+      {"from":"N9","to":"N10","mode":"hold","weight":1.0}
+    ]
+  },
+  "notes": "Full MASL NLT boot observes source/site surfaces, binds route/audit chain, emits deployable patches, and returns to N10 holding. It does not push to GitHub by itself."
+}
