@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HoloMemoryMesh Provenance Ledger",
+  "type": "object",
+  "required": [
+    "ledger_id",
+    "event_id",
+    "entries"
+  ],
+  "properties": {
+    "ledger_id": {
+      "const": "HMM-PROVENANCE-2026"
+    },
+    "event_id": {
+      "const": "LIONS-GATE-II-HMM-2026"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "entry_id",
+          "node_id",
+          "claim",
+          "classification",
+          "integrity_hash",
+          "recorded_at"
+        ],
+        "properties": {
+          "entry_id": {
+            "type": "string"
+          },
+          "node_id": {
+            "type": "string"
+          },
+          "claim": {
+            "type": "string"
+          },
+          "classification": {
+            "type": "string"
+          },
+          "source_address": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "witness": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "confidence": {
+            "type": "number"
+          },
+          "integrity_hash": {
+            "type": "string"
+          },
+          "recorded_at": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

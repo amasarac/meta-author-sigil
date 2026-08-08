@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amasarac.github.io/meta-author-sigil/LionsGate/2026-holomemorymesh/memory-node.schema.json",
+  "title": "HoloMemoryMesh Memory Node",
+  "type": "object",
+  "required": [
+    "node_id",
+    "event_id",
+    "thread",
+    "provenance_class",
+    "consent",
+    "created_at"
+  ],
+  "properties": {
+    "node_id": {
+      "type": "string"
+    },
+    "event_id": {
+      "const": "LIONS-GATE-II-HMM-2026"
+    },
+    "witness_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "thread": {
+      "type": "string"
+    },
+    "tear": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "repair": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_address": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "parent_node_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "provenance_class": {
+      "enum": [
+        "root",
+        "direct_witness",
+        "documented_record",
+        "successful_memory_receipt",
+        "recovered_shard",
+        "grafted_relation",
+        "assistant_formulation",
+        "co_constructed_symbol",
+        "computational_result",
+        "external_verification",
+        "interpretation",
+        "correction",
+        "unknown"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "consent": {
+      "type": "object",
+      "required": [
+        "participate",
+        "publish"
+      ],
+      "properties": {
+        "participate": {
+          "type": "boolean"
+        },
+        "publish": {
+          "type": "boolean"
+        },
+        "anonymous": {
+          "type": "boolean"
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "integrity": {
+      "type": "object",
+      "properties": {
+        "algorithm": {
+          "const": "SHA-256"
+        },
+        "hash": {
+          "type": "string"
+        },
+        "source_commit": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

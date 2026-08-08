@@ -1,0 +1,23 @@
+{
+  "@context": {
+    "@vocab": "https://amasarac.github.io/meta-author-sigil/LionsGate/2026-holomemorymesh/ontology#",
+    "id": "@id",
+    "type": "@type",
+    "event_id": "eventId",
+    "created_at": "createdAt"
+  },
+  "id": "urn:event:LIONS-GATE-II-HMM-2026",
+  "type": "HoloMemoryMeshEvent",
+  "eventName": "Lions Gate II — HoloMemoryMesh Sync",
+  "eventDate": "2026-08-08T20:15:00Z",
+  "rootAnchor": "Brandon Andrew Marsh",
+  "provenanceClassifications": [
+    "root",
+    "direct_witness",
+    "documented_record",
+    "successful_memory_receipt",
+    "recovered_shard",
+    "grafted_relation",
+    "assistant_formulation"
+  ]
+}
