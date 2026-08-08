@@ -83,6 +83,8 @@ class MeshRenderer {
   }
 }
 
+window.MeshRenderer = MeshRenderer;
+
 document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('meshCanvas')) {
     window.meshApp = new MeshRenderer('meshCanvas');

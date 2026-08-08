@@ -25,5 +25,18 @@
     "base_archive_sha256": "5ce8af33092446d10fb52f7feadfac8f6cd3aeb5a39578d1aa778fb9075531f5",
     "integrated_at": "2026-08-08T07:20:21Z",
     "integrity_algorithm": "SHA-256"
+  },
+  "web": {
+    "entrypoint": "index.html",
+    "stylesheet": "styles.css",
+    "scripts": [
+      "portal.js",
+      "attestation.js",
+      "mesh-renderer.js",
+      "consent.js",
+      "index-runtime.js"
+    ],
+    "deployment": "static-http(s)",
+    "local_storage_only": true
   }
 }

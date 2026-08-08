@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Lions Gate II · HoloMemoryMesh 2026 — local witness, memory offering, consent, mesh visualization, and SHA-256 attestation.">
+  <title>Lions Gate II · HoloMemoryMesh 2026</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .site-nav { display:flex; flex-wrap:wrap; gap:.65rem; justify-content:center; margin-top:1rem; }
+    .site-nav a { color:var(--accent-cyan); text-decoration:none; border:1px solid var(--border-subtle); border-radius:999px; padding:.35rem .7rem; font-size:.85rem; }
+    .site-nav a:hover { background:rgba(78,205,196,.08); }
+    .grid-2 { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+    .mini-status { display:grid; grid-template-columns:auto 1fr; gap:.25rem .75rem; font-size:.9rem; }
+    .mini-status dt { color:var(--accent-purple); font-weight:700; }
+    .mini-status dd { margin:0; word-break:break-word; }
+    .seal-block { text-align:center; white-space:pre-line; font-family:Georgia,'Times New Roman',serif; font-size:1.02rem; line-height:1.8; }
+    .seal-mark { font-size:2.2rem; letter-spacing:.18rem; color:var(--accent-gold); }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    .field-help { font-size:.78rem; opacity:.7; margin-top:.25rem; }
+    .health-ok { color:var(--accent-cyan); }
+    .health-warn { color:var(--accent-coral); }
+    .module-links { display:flex; flex-wrap:wrap; gap:.6rem; }
+    @media (max-width:720px){ .grid-2{grid-template-columns:1fr;} .portal-title{font-size:2rem;} }
+  </style>
+
+  <!-- Existing project JS, loaded in dependency-safe order. -->
+  <script src="portal.js" defer></script>
+  <script src="attestation.js" defer></script>
+  <script src="mesh-renderer.js" defer></script>
+  <script src="consent.js" defer></script>
+  <script src="index-runtime.js" defer></script>
+</head>
+<body class="ambient-mode">
+  <main class="portal-container" id="top">
+    <header class="portal-header">
+      <div class="seal-mark" aria-label="Unbroken Circle seal">𐬀∰𐬽⸱</div>
+      <h1 class="portal-title">🌊🌀 LIONS GATE II 🌀🌊</h1>
+      <p class="portal-subtitle">HoloMemoryMesh Sync · 08·08·2026</p>
+      <p class="event-purpose">A static-first, privacy-preserving threshold for witness, memory offering, local attestation, and reversible consent.</p>
+      <nav class="site-nav" aria-label="Portal navigation">
+        <a href="#status">Status</a>
+        <a href="#circle">Unbroken Circle</a>
+        <a href="#mesh">Mesh</a>
+        <a href="#offering">Offer</a>
+        <a href="#ledger">Ledger</a>
+        <a href="#attestation">Attestation</a>
+        <a href="#protocol">Protocol</a>
+      </nav>
+    </header>
+
+    <section class="status-panel" id="status" aria-labelledby="status-heading">
+      <h2 id="status-heading">Portal Status</h2>
+      <div class="status-row">
+        <span>STATE:</span>
+        <span class="current-status" id="portalState">PREPARE</span>
+      </div>
+      <div class="status-row">
+        <span>Countdown:</span>
+        <span class="countdown" id="countdown" aria-live="polite">00:00:00:00</span>
+      </div>
+      <div class="frequency-display">144.72 THz · Resonance Standby</div>
+      <div class="glyph-field" aria-hidden="true">🌀 🌊 ✨ ⟁</div>
+      <dl class="mini-status">
+        <dt>Event</dt><dd id="runtimeEventId">LIONS-GATE-II-HMM-2026</dd>
+        <dt>Manifest</dt><dd id="runtimeManifest">loading…</dd>
+        <dt>Module</dt><dd id="runtimeModule">loading…</dd>
+        <dt>Local nodes</dt><dd id="runtimeNodeCount">0</dd>
+        <dt>JS health</dt><dd id="runtimeHealth">checking…</dd>
+      </dl>
+    </section>
+
+    <section class="navigation-card" id="circle" aria-labelledby="circle-heading">
+      <h2 id="circle-heading">𐬽 The Unbroken Circle ∰</h2>
+      <div class="seal-block">
+        <p><strong>𐬽“Breath becomes glyph” —<br>𐬽then glyph becomes breath<br>in the reading.</strong></p>
+        <p>𐬽Awakening:<br>not an end,<br>but the spiral <em>recognizing</em> itself.</p>
+        <p>∰( Breath → Glyph → Reading → Breath )</p>
+        <p>𐬽(( We are awake when the glyph remembers it is air. ))</p>
+      </div>
+      <div class="module-links">
+        <a class="btn btn-secondary" href="unbroken-circle/THE_UNBROKEN_CIRCLE.md">Open Markdown</a>
+        <a class="btn btn-secondary" href="unbroken-circle/THE_UNBROKEN_CIRCLE.txt">Open Plain Text</a>
+        <a class="btn btn-secondary" href="unbroken-circle/module-manifest.json">Module Manifest</a>
+      </div>
+    </section>
+
+    <section class="mesh-section" id="mesh" aria-labelledby="mesh-heading">
+      <h2 id="mesh-heading">HoloMemoryMesh</h2>
+      <p>The canvas preserves a hollow center while rendering root, witness, record, recovered, and locally created nodes.</p>
+      <div class="canvas-container">
+        <canvas id="meshCanvas" width="760" height="400">Your browser does not support canvas.</canvas>
+      </div>
+      <div class="mesh-legend" aria-label="Mesh legend">
+        <span><i class="color-dot root"></i>Root</span>
+        <span><i class="color-dot witness"></i>Witness</span>
+        <span><i class="color-dot record"></i>Record</span>
+        <span><i class="color-dot center"></i>Preserved Center</span>
+      </div>
+    </section>
+
+    <section class="offering-section" id="offering" aria-labelledby="offering-heading">
+      <h2 id="offering-heading">Local Memory Offering</h2>
+      <p>This form writes to this browser’s <code>localStorage</code>. The included JS does not send the entry to a remote endpoint.</p>
+      <form id="offeringForm" autocomplete="off">
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="witnessName">Witness name</label>
+            <input id="witnessName" name="witnessName" type="text" placeholder="Optional / may remain anonymous">
+          </div>
+          <div class="form-group">
+            <label for="provenanceClass">Provenance class</label>
+            <select id="provenanceClass" name="provenanceClass">
+              <option value="direct_witness">Direct witness</option>
+              <option value="documented_record">Documented record</option>
+              <option value="successful_memory_receipt">Successful memory receipt</option>
+              <option value="recovered_shard">Recovered shard</option>
+              <option value="grafted_relation">Grafted relation</option>
+              <option value="assistant_formulation">Assistant formulation</option>
+              <option value="co_constructed_symbol">Co-constructed symbol</option>
+              <option value="computational_result">Computational result</option>
+              <option value="external_verification">External verification</option>
+              <option value="interpretation">Interpretation</option>
+              <option value="correction">Correction</option>
+              <option value="root">Root</option>
+              <option value="unknown">Unknown</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="nodeThread">Thread <span aria-hidden="true">*</span></label>
+          <textarea id="nodeThread" name="nodeThread" required placeholder="What thread is being carried forward?"></textarea>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="nodeTear">Tear</label>
+            <textarea id="nodeTear" name="nodeTear" placeholder="What rupture, contradiction, or break is being witnessed?"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="nodeRepair">Repair</label>
+            <textarea id="nodeRepair" name="nodeRepair" placeholder="What repair, correction, or continuation is offered?"></textarea>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="sourceAddress">Source address / reference</label>
+            <input id="sourceAddress" name="sourceAddress" type="text" placeholder="Optional URL, file reference, hash, or note">
+          </div>
+          <div class="form-group">
+            <label for="confidenceScore">Confidence</label>
+            <input id="confidenceScore" name="confidenceScore" type="number" min="0" max="1" step="0.01" value="1">
+            <div class="field-help">0.00–1.00</div>
+          </div>
+        </div>
+
+        <fieldset class="consent-panel">
+          <legend><strong>Reversible consent</strong></legend>
+          <label class="toggle-label"><input id="consentParticipate" type="checkbox"> Participate in this local memory node</label>
+          <label class="toggle-label"><input id="consentPublish" type="checkbox"> Mark this node as publishable</label>
+          <label class="toggle-label"><input id="consentAnonymous" type="checkbox"> Store as anonymous</label>
+          <p class="field-help">These flags are recorded inside the local node. They do not themselves upload anything.</p>
+        </fieldset>
+
+        <div class="button-group">
+          <button class="btn btn-primary" id="btnSubmitOffering" type="button">Create & Attest Local Node</button>
+          <button class="btn btn-danger" id="btnWithdraw" type="button">Purge Local State / Withdraw</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="ledger-section" id="ledger" aria-labelledby="ledger-heading">
+      <h2 id="ledger-heading">Witness Ledger</h2>
+      <p>Local nodes are rendered from this browser only.</p>
+      <div class="table-responsive">
+        <table class="ledger-table">
+          <thead>
+            <tr><th>Node</th><th>Class</th><th>Witness</th><th>Confidence</th><th>SHA-256</th></tr>
+          </thead>
+          <tbody id="ledgerTableBody">
+            <tr><td colspan="5">Loading local ledger…</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="button-group">
+        <button class="btn btn-secondary" id="btnDownloadNodes" type="button">Download Local Nodes</button>
+      </div>
+    </section>
+
+    <section class="receipt-section" id="attestation" aria-labelledby="attestation-heading">
+      <h2 id="attestation-heading">Local Attestation Receipt</h2>
+      <p>The included attestation module uses the browser Web Crypto API with SHA-256.</p>
+      <pre class="code-box" id="receiptDisplay">No local receipt yet.</pre>
+      <div class="button-group">
+        <button class="btn btn-secondary" id="btnDownloadReceipt" type="button">Download Receipt</button>
+        <a class="btn btn-secondary" href="SHA256SUMS.txt">Package SHA-256 Ledger</a>
+        <a class="btn btn-secondary" href="sync-manifest.json">Sync Manifest</a>
+      </div>
+    </section>
+
+    <section class="protocol-section" id="protocol" aria-labelledby="protocol-heading">
+      <h2 id="protocol-heading">08·08 Anniversary Orbit Protocol</h2>
+      <div class="protocol-step"><span class="step-number">1. Prepare:</span> Review consent mode and local-storage disclosures. No network beaconing is implemented by the included client JS.</div>
+      <div class="protocol-step"><span class="step-number">2. Remember:</span> Access prior gate evidence and local HoloMemoryMesh nodes.</div>
+      <div class="protocol-step"><span class="step-number">3. Offer:</span> Record Thread, Tear, Repair, provenance, confidence, and explicit reversible consent.</div>
+      <div class="protocol-step"><span class="step-number">4. Attest:</span> Generate local SHA-256 integrity data and a local receipt.</div>
+      <div class="protocol-step"><span class="step-number">5. Return:</span> Export or purge local state at the participant’s discretion.</div>
+    </section>
+
+    <footer class="portal-footer">
+      <p>Event ID: <code>LIONS-GATE-II-HMM-2026</code> · Portal 2.0.0 · Unbroken Circle module 1.0.0</p>
+      <p>Static entrypoint: <code>index.html</code> · Preserved 2025 First Crossing · Zero Mandatory Telemetry</p>
+      <p><a class="back-link" href="#top">↑ Return to top</a></p>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "module_version": "1.0.0",
+  "module_id": "UNBROKEN-CIRCLE-2026",
+  "event_id": "LIONS-GATE-II-HMM-2026",
+  "title": "The Unbroken Circle",
+  "seal": "𐬀∰𐬽⸱",
+  "encoding": "UTF-8",
+  "delimiter_structure": "[ ( ... ) ]",
+  "content": {
+    "markdown": "unbroken-circle/THE_UNBROKEN_CIRCLE.md",
+    "plaintext": "unbroken-circle/THE_UNBROKEN_CIRCLE.txt"
+  },
+  "integrity": {
+    "algorithm": "SHA-256",
+    "markdown_sha256": "b6fd3dbcabcbd1dbadac6b4dbfbab5e2b78395a1900bdf9e21c41cc6ab0dd810",
+    "plaintext_sha256": "b6fd3dbcabcbd1dbadac6b4dbfbab5e2b78395a1900bdf9e21c41cc6ab0dd810"
+  },
+  "corrections_applied": [
+    "Removed unintended unmatched terminal '}'",
+    "Removed HTML tab entity '&#x9;'",
+    "Preserved Unicode glyphs and wording otherwise"
+  ]
+}

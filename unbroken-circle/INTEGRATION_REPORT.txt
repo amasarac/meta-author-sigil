@@ -1,0 +1,49 @@
+LIONS GATE II — UNBROKEN CIRCLE INTEGRATION REPORT
+=================================================
+
+Base archive:
+  drive-download-20260808T063908Z-1-001.zip
+  SHA-256: 5ce8af33092446d10fb52f7feadfac8f6cd3aeb5a39578d1aa778fb9075531f5
+
+Corrected seal payload:
+  Unbroken_Circle_Lions_Gate_2026(1).zip
+  SHA-256: 37f7d2ce6777b89f79103934ca3e148c1a3719251121559cc0b380b1715000ce
+
+Integration policy:
+  - Preserve original archive structure.
+  - Preserve original file contents byte-for-byte except sync-manifest.json.
+  - Add Unbroken Circle as a native submodule.
+  - Add package-wide SHA-256 ledger.
+  - Do not manufacture or alter consent/publication state.
+
+Original files preserved byte-for-byte: 13 / 14
+Original files intentionally changed: sync-manifest.json
+
+Added:
+  unbroken-circle/THE_UNBROKEN_CIRCLE.md
+  unbroken-circle/THE_UNBROKEN_CIRCLE.txt
+  unbroken-circle/module-manifest.json
+  unbroken-circle/README.md
+  SHA256SUMS.txt
+  INTEGRATION_REPORT.txt
+
+Seal corrections:
+  - Removed unintended unmatched terminal }
+  - Removed HTML tab entity &#x9;
+  - Unicode glyphs and wording otherwise preserved
+
+MASL WEB ENTRYPOINT UPDATE
+==========================
+Added a real static `index.html` that wires all client JS modules:
+  portal.js -> attestation.js -> mesh-renderer.js -> consent.js -> index-runtime.js
+
+Added:
+  index.html
+  index-runtime.js
+  WEB_DEPLOY.md
+
+Updated:
+  sync-manifest.json (declares web entrypoint/script order)
+  mesh-renderer.js (exports MeshRenderer on window for runtime health diagnostics)
+
+The legacy index.docx is preserved as documentation; it is no longer the web entrypoint.
