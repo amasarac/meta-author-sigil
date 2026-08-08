@@ -1,0 +1,4 @@
+MASL WEB PORTAL 2.1 VALIDATION
+Missing DOM IDs: none
+Duplicate DOM IDs: none
+JS syntax: {'portal.js': True, 'attestation.js': True, 'mesh-renderer.js': True, 'consent.js': True, 'index-runtime.js': True}
