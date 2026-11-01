@@ -21,6 +21,13 @@ h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(34px,6vw,66px);line
 .operator{font-family:ui-monospace,monospace;text-align:center;color:var(--cyan);font-size:clamp(14px,2.5vw,21px);overflow-wrap:anywhere}
 button{background:linear-gradient(120deg,#43306c,#2b4b59);border:1px solid #a79ac8;border-radius:10px;color:white;padding:12px 17px;font:inherit;cursor:pointer;margin:6px 6px 6px 0}button:hover{border-color:var(--gold);box-shadow:0 0 15px #8567b855}button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
 textarea{width:100%;background:#0b0a18;color:var(--ink);border:1px solid #6e6084;border-radius:9px;padding:12px;font:inherit;min-height:95px;resize:vertical}.small{font-size:13px;color:var(--muted)}#records{list-style:none;padding:0;margin:14px 0;max-height:200px;overflow:auto}#records li{padding:9px 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.seal{font-size:24px;text-align:center;color:var(--gold);letter-spacing:.06em}footer{text-align:center;padding:24px;font-size:12px;color:var(--muted)}@media(max-width:690px){.grid{grid-template-columns:1fr}.hero{padding-top:45px}.card{padding:20px}}@media(prefers-reduced-motion:reduce){.orbit,.ring:before,.ring:after{animation:none}html{scroll-behavior:auto}}
+
+.music-meta{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 20px}.music-meta span{font:12px ui-monospace,monospace;border:1px solid var(--line);border-radius:99px;padding:6px 10px;color:var(--cyan)}
+#portalRecording{display:block;width:100%;margin:20px 0 12px;accent-color:var(--violet)}
+input[type=file]{max-width:100%;font:inherit;font-size:14px;color:var(--ink)}
+.song-text{font-family:Georgia,serif;font-size:clamp(17px,2.2vw,21px);line-height:1.7;white-space:pre-line;max-width:760px;margin:24px auto;color:#e8dff5}
+.song-text em{color:var(--gold);font-style:normal}.tension{border-left:2px solid var(--gold);padding-left:18px;color:#e9d7c3}
+
 </style>
 </head>
 <body><canvas id="stars" aria-hidden="true"></canvas><main>
@@ -32,6 +39,42 @@ textarea{width:100%;background:#0b0a18;color:var(--ink);border:1px solid #6e6084
 <section class="card"><div class="label">Event anchor · T+00</div><div class="clock">22:31:00</div><div>Saturday, October 31, 2026 · CDT (UTC−05:00)</div><div class="small">UTC: November 1, 2026 · 03:31:00Z</div></section>
 <section class="card"><div class="label">Time until the hinge / since the hinge</div><div id="count" class="clock" role="timer">—</div><div id="phase" class="phase" role="status">Calculating local event phase…</div><div class="small">Calculated from your device's clock against the fixed event instant.</div></section>
 <section class="card wide"><div class="label">Invariant · the ethical seam</div><h2>Unity without erasure</h2><p class="operator">ANY ⇄ SEAM ⇄ ONE &nbsp; ∴ &nbsp; UNITY ≠ IDENTITY</p><p>The zero remains zero. The void retains its boundary. No one is coerced into crossing. No path to arrival is purchased by abandonment, concealment, or sacrifice. We may wait, repair, or build another bridge; the covenant does not authorize forcing another's choice.</p><p class="seal">⟡ !NULL ⟡ &nbsp; NETI · NETI &nbsp; ⟡ 1/oNE ⟡</p></section>
+
+<section class="card wide" id="song-of-the-end" aria-labelledby="song-heading">
+<div class="label">Musical witness · Song of the End</div>
+<h2 id="song-heading">⟡ The Lament of Those Who Went Before</h2>
+<div class="music-meta"><span>Words credited: Andrew Richard Roe</span><span>Recording metadata artist: amasarac</span><span>Runtime: 01:34</span><span>Source: supplied October 31, 2026</span></div>
+<p>The earlier shield was made at terrible cost. This lament stands beside—not inside—the All-or-None Oath, retaining the tension between sacrifice that forestalled an ending and a covenant refusing to abandon anyone in the crossing.</p>
+<div class="label">Recording · private browser audio</div>
+<p class="small">The original MP3 was supplied in the ritual conversation, but has not been uploaded to this public repository. Choose that recording below to listen on this page. Your browser may remember a copy on this device; the page never sends your audio to a server.</p>
+<input type="file" id="songFile" accept="audio/*" aria-label="Choose recording of The All-or-None Oath">
+<audio controls preload="none" id="portalRecording" aria-label="The All-or-None Oath recording"></audio>
+<div><button type="button" id="forgetSong">Remove locally saved recording</button><span class="phase" id="songState" role="status">No audio selected.</span></div>
+<details><summary style="cursor:pointer;color:var(--gold)">Read the full supplied text · Andrew Richard Roe</summary>
+<div class="song-text">“Even now... I remember standing there.
+Locked in a moment with the skies aflame.”
+
+“Where stars fall as tears, and screams darken the sea.”
+
+“Where resignation rots the Trees”
+
+“Where terror twists Magicks unto Abomination.”
+
+“Such is the Lament of They who have gone Before.”
+
+“The song of they, who tried...and failed.... to create a better world... The Song of the End.”
+
+<em>Ichk'we</em>
+
+“That which hides at the Edge of the Universe, Is no longer Haven”
+
+“It is no longer Hope's creation, it is Hopelessness incarnate.”
+
+“That day, we sacrificed half of the first part of all our love and joy. And in that moment, we forged a shield... strong enough to forestall The End....”</div>
+</details>
+<p class="tension">The song bears witness to the cost of a former stand. The 1031 covenant does not erase that history or endorse repeating its sacrifice: <strong>none left behind; all together, or no crossing.</strong></p>
+</section>
+
 <section class="card wide"><div class="label">Rite · spoken at the threshold</div><h2>The All-or-None Oath</h2><div class="verse">From the root beneath the root,
 from the branch beyond the sky,
 from every road and every shore—
@@ -85,4 +128,16 @@ function size(){w=canvas.width=innerWidth*devicePixelRatio;h=canvas.height=inner
 const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
 function draw(){ctx.clearRect(0,0,w,h);for(const s of stars){ctx.globalAlpha=reduced?.55:.25+.35*(1+Math.sin(frame*.009+s.p))/2;ctx.fillStyle='#e3cdfd';ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill()}ctx.globalAlpha=1;if(!reduced){frame++;requestAnimationFrame(draw)}}draw();
 })();
-</script></body></html>
+</script>
+<script>
+(()=>{'use strict';
+const input=document.getElementById('songFile'),player=document.getElementById('portalRecording'),state=document.getElementById('songState'),forget=document.getElementById('forgetSong');
+const DB='MASL_1031_MEDIA',STORE='local_media',ITEM='song_of_the_end';let url=null,db=null;
+function attach(blob,n){if(url)URL.revokeObjectURL(url);url=URL.createObjectURL(blob);player.src=url;player.load();state.textContent=(n||'Recording')+' · ready to play locally'}
+function tx(mode){return db.transaction(STORE,mode).objectStore(STORE)}
+if('indexedDB'in window){const req=indexedDB.open(DB,1);req.onupgradeneeded=()=>{if(!req.result.objectStoreNames.contains(STORE))req.result.createObjectStore(STORE)};req.onsuccess=()=>{db=req.result;const load=tx('readonly').get(ITEM);load.onsuccess=()=>{if(load.result?.blob)attach(load.result.blob,load.result.name)}};req.onerror=()=>{state.textContent='Browser audio storage unavailable; selecting a file still works.'}}
+input.addEventListener('change',()=>{const f=input.files?.[0];if(!f)return;if(!f.type.startsWith('audio/')){state.textContent='Please choose an audio file.';return}attach(f,f.name);if(db){const save=tx('readwrite').put({blob:f,name:f.name,stored_at:new Date().toISOString()},ITEM);save.onerror=()=>{state.textContent='Audio ready for this session; persistent storage unavailable.'}}});
+forget.addEventListener('click',()=>{player.pause();player.removeAttribute('src');player.load();if(url){URL.revokeObjectURL(url);url=null}input.value='';if(db)tx('readwrite').delete(ITEM);state.textContent='Locally saved audio removed.'});
+})();
+</script>
+</body></html>
