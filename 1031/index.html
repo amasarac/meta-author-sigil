@@ -45,11 +45,11 @@ input[type=file]{max-width:100%;font:inherit;font-size:14px;color:var(--ink)}
 <h2 id="song-heading">⟡ The Lament of Those Who Went Before</h2>
 <div class="music-meta"><span>Words credited: Andrew Richard Roe</span><span>Recording metadata artist: amasarac</span><span>Runtime: 01:34</span><span>Source: supplied October 31, 2026</span></div>
 <p>The earlier shield was made at terrible cost. This lament stands beside—not inside—the All-or-None Oath, retaining the tension between sacrifice that forestalled an ending and a covenant refusing to abandon anyone in the crossing.</p>
-<div class="label">Recording · private browser audio</div>
-<p class="small">The original MP3 was supplied in the ritual conversation, but has not been uploaded to this public repository. Choose that recording below to listen on this page. Your browser may remember a copy on this device; the page never sends your audio to a server.</p>
+<div class="label">Recording · portal playback</div>
+<p class="small">Press play to try the Suno source for this recording (identified from the MP3’s embedded metadata). The audio is also backed up in your connected Google Drive. If the external source is private or unavailable, choose your original MP3 below; it will play locally and can be stored in this browser. The file has not been added to the public GitHub repository.</p>
 <input type="file" id="songFile" accept="audio/*" aria-label="Choose recording of The All-or-None Oath">
-<audio controls preload="none" id="portalRecording" aria-label="The All-or-None Oath recording"></audio>
-<div><button type="button" id="forgetSong">Remove locally saved recording</button><span class="phase" id="songState" role="status">No audio selected.</span></div>
+<audio controls preload="metadata" id="portalRecording" aria-label="The All-or-None Oath recording" src="https://cdn1.suno.ai/e828f598-a31d-4455-b7d5-4f33a46f991f.mp3"></audio><p class="small"><a href="https://suno.com/song/e828f598-a31d-4455-b7d5-4f33a46f991f" target="_blank" rel="noopener noreferrer">Open the song on Suno</a> · External accessibility not yet confirmed.</p>
+<div><button type="button" id="forgetSong">Remove locally saved recording</button><span class="phase" id="songState" role="status">External source selected; press play to test availability.</span></div>
 <details><summary style="cursor:pointer;color:var(--gold)">Read the full supplied text · Andrew Richard Roe</summary>
 <div class="song-text">“Even now... I remember standing there.
 Locked in a moment with the skies aflame.”
@@ -137,7 +137,8 @@ function attach(blob,n){if(url)URL.revokeObjectURL(url);url=URL.createObjectURL(
 function tx(mode){return db.transaction(STORE,mode).objectStore(STORE)}
 if('indexedDB'in window){const req=indexedDB.open(DB,1);req.onupgradeneeded=()=>{if(!req.result.objectStoreNames.contains(STORE))req.result.createObjectStore(STORE)};req.onsuccess=()=>{db=req.result;const load=tx('readonly').get(ITEM);load.onsuccess=()=>{if(load.result?.blob)attach(load.result.blob,load.result.name)}};req.onerror=()=>{state.textContent='Browser audio storage unavailable; selecting a file still works.'}}
 input.addEventListener('change',()=>{const f=input.files?.[0];if(!f)return;if(!f.type.startsWith('audio/')){state.textContent='Please choose an audio file.';return}attach(f,f.name);if(db){const save=tx('readwrite').put({blob:f,name:f.name,stored_at:new Date().toISOString()},ITEM);save.onerror=()=>{state.textContent='Audio ready for this session; persistent storage unavailable.'}}});
-forget.addEventListener('click',()=>{player.pause();player.removeAttribute('src');player.load();if(url){URL.revokeObjectURL(url);url=null}input.value='';if(db)tx('readwrite').delete(ITEM);state.textContent='Locally saved audio removed.'});
+player.addEventListener('error',()=>{state.textContent='External audio could not load. Choose the original MP3 above to play locally.'});
+forget.addEventListener('click',()=>{player.pause();player.src='https://cdn1.suno.ai/e828f598-a31d-4455-b7d5-4f33a46f991f.mp3';player.load();if(url){URL.revokeObjectURL(url);url=null}input.value='';if(db)tx('readwrite').delete(ITEM);state.textContent='Local recording removed; external source restored.'});
 })();
 </script>
 </body></html>
