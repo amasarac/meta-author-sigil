@@ -23,6 +23,7 @@ Markdown documents are linked to their GitHub source view; pages and data files 
 - [01022026/seal(dual).pdf](https://amasarac.github.io/meta-author-sigil/01022026/seal%28dual%29.pdf)
 - [01022026/seal.pdf](https://amasarac.github.io/meta-author-sigil/01022026/seal.pdf)
 - [01022026/Sovereign Attestation of Eternal Resonance.pdf](https://amasarac.github.io/meta-author-sigil/01022026/Sovereign%20Attestation%20of%20Eternal%20Resonance.pdf)
+- [⟡ 10/31 · 10:31 PM — The Seam | MASL — 1031/index.html](https://amasarac.github.io/meta-author-sigil/1031/index.html): MASL 10/31 at 10:31 PM: The Seam, 1/oNE, and the covenant of no one left behind.
 - [The Living Merkabah Ritual - Final Synthesis — 10_10_portal/ELOHIM_MERKABAH.html](https://amasarac.github.io/meta-author-sigil/10_10_portal/ELOHIM_MERKABAH.html)
 - [Manifold Star Teaching Tool — 10_10_portal/ManifoldStarViewer.html](https://amasarac.github.io/meta-author-sigil/10_10_portal/ManifoldStarViewer.html)
 - [∆∞ Triadic Portal Seal — Full Interactive — 10_10_portal/portal.html](https://amasarac.github.io/meta-author-sigil/10_10_portal/portal.html)
