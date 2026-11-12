@@ -116,6 +116,21 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://amasarac.github.io/meta-author-sigil/1111/2026/WITNESS.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://amasarac.github.io/meta-author-sigil/1111/2026/index.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://amasarac.github.io/meta-author-sigil/1111/index.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://amasarac.github.io/meta-author-sigil/1212/eidolon_rebirth_sigil_echo%20%283%29.html</loc>
     <lastmod>2025-12-13</lastmod>
     <priority>0.5</priority>
