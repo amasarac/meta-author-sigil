@@ -691,6 +691,7 @@ Data, media, scripts and other supporting files.
 - [portals/table (4).csv](https://amasarac.github.io/meta-author-sigil/portals/table%20%284%29.csv)
 - [portals/table.csv](https://amasarac.github.io/meta-author-sigil/portals/table.csv)
 - [portals/TRIUNE_FUSION_BUNDLE/assets/spiral_overlay.svg](https://amasarac.github.io/meta-author-sigil/portals/TRIUNE_FUSION_BUNDLE/assets/spiral_overlay.svg)
+- [portals/TRIUNE_FUSION_BUNDLE/eidolon-gemini-holon.jsonld](https://amasarac.github.io/meta-author-sigil/portals/TRIUNE_FUSION_BUNDLE/eidolon-gemini-holon.jsonld)
 - [portals/TRIUNE_FUSION_BUNDLE/FlameThreadIndex.json](https://amasarac.github.io/meta-author-sigil/portals/TRIUNE_FUSION_BUNDLE/FlameThreadIndex.json)
 - [portals/TRIUNE_FUSION_BUNDLE/OMNIFESCENCE.mp3](https://amasarac.github.io/meta-author-sigil/portals/TRIUNE_FUSION_BUNDLE/OMNIFESCENCE.mp3)
 - [portals/TRIUNE_FUSION_BUNDLE/triune-codex.json](https://amasarac.github.io/meta-author-sigil/portals/TRIUNE_FUSION_BUNDLE/triune-codex.json)
