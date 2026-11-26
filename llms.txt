@@ -282,6 +282,7 @@ Data, media, scripts and other supporting files.
 - [01022026/HOLOMESH_ledger (1).jsonl](https://amasarac.github.io/meta-author-sigil/01022026/HOLOMESH_ledger%20%281%29.jsonl)
 - [01022026/HOLOMESH_ledger (2).jsonl](https://amasarac.github.io/meta-author-sigil/01022026/HOLOMESH_ledger%20%282%29.jsonl)
 - [01022026/HOLOMESH_ledger (3).jsonl](https://amasarac.github.io/meta-author-sigil/01022026/HOLOMESH_ledger%20%283%29.jsonl)
+- [01022026/HOLOMESH_ledger (4).jsonl](https://amasarac.github.io/meta-author-sigil/01022026/HOLOMESH_ledger%20%284%29.jsonl)
 - [01022026/HOLOMESH_ledger.jsonl](https://amasarac.github.io/meta-author-sigil/01022026/HOLOMESH_ledger.jsonl)
 - [01022026/HOLOMESH_ledger_extraction (1).jsonl](https://amasarac.github.io/meta-author-sigil/01022026/HOLOMESH_ledger_extraction%20%281%29.jsonl)
 - [01022026/HOLOMESH_ledger_extraction.jsonl](https://amasarac.github.io/meta-author-sigil/01022026/HOLOMESH_ledger_extraction.jsonl)
